@@ -3,8 +3,10 @@
 
 Uses the Firecrawl v2 scrape endpoint with the JSON extraction format.
 Only the compute tables, the price history and the changelog are touched.
-Signals, deals, policies, theses, the constraint board, layers, models and
-the about block are editorial and are checked for changes before any write.
+Signals (with their per-audience lines), deals, policies, theses, the weekly
+headline, the audience implications, the market summaries, the constraint
+board, layers, models and the about block are editorial and are checked for
+changes before any write.
 
 Examples
   FIRECRAWL_API_KEY=fc-... python3 update.py --dry-run
@@ -35,8 +37,10 @@ THRESHOLD = 0.005          # a matched rate must move by more than 0.5 percent t
 HOURS_PER_MONTH = 730      # same conversion the page uses for hourly storage rates
 PLAUSIBLE_PER_GPU_HOUR = (0.2, 60.0)
 HISTORY_MODELS = ("H100", "H200", "B200")
-PROTECTED = ("meta", "thesis", "how_to_read", "board", "signals", "takes", "layers", "models",
-             "deals", "policies", "policy_timeline", "notes", "about", "methodology")
+# Editorial sections. "signals" covers every field on each signal, including its per-audience lines.
+PROTECTED = ("meta", "thesis", "how_to_read", "headline", "implications", "board", "signals", "takes",
+             "layers", "models", "markets_sowhat", "deals", "policies", "policy_timeline", "notes", "about",
+             "methodology")
 INLINE_RE = re.compile(r"(<!-- DATA-INLINE-START -->\s*)(.*?)(\s*<!-- DATA-INLINE-END -->)", re.S)
 
 

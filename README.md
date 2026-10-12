@@ -14,7 +14,7 @@ A weekly AI industry dashboard built around one idea. Value accrues to whoever c
 
 ## How the page loads its data
 
-The page asks for `data.json` first. If that request fails, or if you open the file straight from disk, it falls back to the copy built into `index.html`. Both paths render the same page. A small line in the top bar shows the issue number, the update date and the date prices were last checked.
+The page asks for `data.json` first. If that request fails, or if you open the file straight from disk, it falls back to the copy built into `index.html`. Both paths render the same page. The masthead under the header shows the issue number, the issue date and the date prices were last checked.
 
 `update.py` keeps the built-in copy in step with `data.json` by itself. If you edit `data.json` by hand, run this once afterwards.
 
@@ -47,7 +47,7 @@ What it does for each entry in `price_sources`.
 Safety rules built into the script.
 
 - It never deletes a row.
-- It never touches signals, deals, policies, takes, the constraint board, layers, models, the about block or the methodology. If any of those would change, it refuses to save.
+- It never touches signals (including their per-audience lines), the weekly headline, the audience implications, the market summaries, deals, policies, takes, the constraint board, layers, models, the about block or the methodology. If any of those would change, it refuses to save.
 - A failed source is reported and skipped. Everything else still updates, and the exit code is 1.
 - Entries it cannot match are listed and left alone. Add a row and a `match_sku` token to `data.json` if you want them tracked.
 
@@ -82,7 +82,8 @@ Automated by `update.py`.
 
 Editorial, written by hand in `data.json`.
 
-- Signals, including the constraint tags, the Moves line and the sources
+- The weekly `headline`, the three `implications` per audience (investors, bigtech, builders) and the `markets_sowhat` summaries
+- Signals, including the constraint tags, the per-audience `audience` lines, the Moves line and the sources
 - The thesis, the constraint board and the three takes
 - Capital deals, model entries and policy items
 - The ecosystem layers, about, methodology and notes
@@ -96,6 +97,7 @@ The Silicon Data neocloud index line on the chart and the chart annotations are 
 2. Run `python3 airadar/update.py` to save it. Open any source link behind a large move and confirm the number on the page.
 3. Add new signals, deals, policy items and model entries by hand. Every figure needs a date and a link. Leave out anything you cannot source.
 4. Revisit the board. Say which constraint moved and why, and update the "what would flip this" line.
+   Rewrite the headline, the nine implications and the audience line on each new signal. Every implication lists `evidence` ids, which must match an `id` on a signal, deal, model or policy, or `price-<row id>` for a price row. `{lo_row}` and `{hi_row}` point at the cheapest and dearest H100 rows.
 5. Raise `meta.issue`, set `meta.updated` and `meta.next_issue`, and add a changelog entry for the editorial changes.
 6. Run `python3 airadar/update.py --sync-only` so the built-in copy matches.
 7. Open `index.html` once from disk and once over http to confirm both load paths look the same, then publish.

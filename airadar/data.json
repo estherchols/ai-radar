@@ -6,6 +6,114 @@
   "author": "Esther Suebsubanant"
  },
  "last_price_check": "2026-10-11",
+ "headline": "Compute got more expensive this month while the models that run on it got cheaper. Nebius raised GPU list prices by about a fifth and GMI Cloud funded two thirds of a $668M raise with debt, yet Anthropic cut its flagship token price 20 percent and the best open model now sits 12 index points behind the leader. The margin is moving to whoever owns capacity at one end and the customer's workflow at the other, and 2 December is the next hard date for anyone shipping generated text into Europe.",
+ "implications": {
+  "investors": [
+   {
+    "id": "inv-neocloud-debt",
+    "call": "Underwrite neocloud equity on utilisation and the cost of debt, not on the number of GPUs.",
+    "why": "GMI Cloud funded $445M of its $668M raise with a credit facility, and Nebius lifted H100 list prices from $3.85 to $4.50 on 1 October. Higher list prices help service that debt only for as long as demand outruns supply.",
+    "evidence": [
+     "sig-gmi-cloud",
+     "deal-gmi-cloud",
+     "price-nebius-h100"
+    ],
+    "watch": "Whether the Nebius increase holds through the next price checks, or new Blackwell capacity pulls list prices back toward September levels."
+   },
+   {
+    "id": "inv-marks",
+    "call": "Pay for revenue, not for proximity to the frontier labs.",
+    "why": "Instinct raised $1B at a $10B valuation without publishing revenue, while EliseAI raised at $4B on more than $200M in annual recurring revenue. At the top, the reported $1.4T OpenAI mark is still only talks, so the sector's reference price is not yet set.",
+    "evidence": [
+     "deal-instinct",
+     "deal-eliseai",
+     "deal-openai-talks"
+    ],
+    "watch": "Whether the OpenAI round closes near $1.4T. A lower close or a failed one would reprice every lab and late-stage round marked against it."
+   },
+   {
+    "id": "inv-exits",
+    "call": "In AI tooling the likely exit is a strategic buyer, so price tooling deals as future acquisitions.",
+    "why": "SpaceX closed its $60B purchase of Cursor in August and Nvidia agreed to buy Hugging Face for about $13B in September. Supabase folded in Turso in the same week it raised $150M, so independent tools are being absorbed by the platforms above them.",
+    "evidence": [
+     "deal-cursor",
+     "deal-hugging-face",
+     "deal-supabase"
+    ],
+    "watch": "Whether the Nvidia and Hugging Face deal closes on its announced terms, which would confirm chip vendors as buyers of developer distribution."
+   }
+  ],
+  "bigtech": [
+   {
+    "id": "bt-capacity",
+    "call": "Lock in GPU capacity on contract now, because on-demand rates are rising and the gap between providers is wide.",
+    "why": "Published H100 on-demand rates run from {lo_price} at {lo_provider} to {hi_price} at {hi_provider} ({hi_type} source), a spread of {ratio} times for the same chip. Nebius raised list prices 17 to 21 percent on 1 October and lists commit discounts of up to 35 percent.",
+    "evidence": [
+     "{lo_row}",
+     "{hi_row}",
+     "sig-nebius-prices"
+    ],
+    "watch": "B200 undercutting H100 per unit of work as Blackwell supply grows, which would favour shorter commitments."
+   },
+   {
+    "id": "bt-platform",
+    "call": "Assume the model vendors and chip makers now compete for your users and your developers.",
+    "why": "GPT-6 brought a generative interface with charts, forms and buttons to more than 1.2 billion weekly ChatGPT users. Nvidia is buying Hugging Face and SpaceX bought Cursor, so the places developers gather are moving under chip and platform owners.",
+    "evidence": [
+     "sig-gpt-6",
+     "sig-nvidia-hugging-face",
+     "deal-cursor"
+    ],
+    "watch": "How Nvidia runs Hugging Face after the deal closes, and whether terms change for models built for rival hardware."
+   },
+   {
+    "id": "bt-deployment",
+    "call": "Fund compliance and deployment people ahead of more model spend, since those now gate agent launches.",
+    "why": "Marking for text generators already on the EU market is due on 2 December 2026, and OpenAI is shipping watermarking ahead of it. Anthropic is paying $100M to train 10,000 deployment engineers with the large consultancies, which says the people who put agents into production are the scarce input.",
+    "evidence": [
+     "rule-eu-omnibus",
+     "sig-openai-watermark",
+     "sig-frontier-academy"
+    ],
+    "watch": "Whether US courts let federal action override state AI laws before Colorado's rewritten act applies on 1 January 2027."
+   }
+  ],
+  "builders": [
+   {
+    "id": "bld-cost",
+    "call": "Rerun your inference cost model this month, because the price floor dropped at every tier.",
+    "why": "Claude Haiku 5.5 starts at $0.10 per million input tokens, Sonnet 5.5 is at $2 and Opus 5.5 is 20 percent cheaper than Opus 5. The $0.75 Gemini 3.8 Flash rate is introductory and runs only through 31 December 2026, so separate promotional prices from list prices.",
+    "evidence": [
+     "model-claude-haiku-5-5",
+     "model-claude-opus-5-5",
+     "model-gemini-3-8-flash"
+    ],
+    "watch": "Whether Google extends the Gemini 3.8 Flash introductory price past 31 December or lets it step up."
+   },
+   {
+    "id": "bld-open",
+    "call": "Keep an open-weight model as a tested fallback, but price the GPU hours honestly.",
+    "why": "MiMo-V2.6 Pro is MIT licensed and scores 46 on the Artificial Analysis index against 58 for Opus 5.5. Renting H100s to serve it costs {lo_price} to {hi_price} per GPU-hour on published rates, and Nebius just raised its prices.",
+    "evidence": [
+     "model-mimo-v2-6-pro",
+     "sig-xiaomi-mimo",
+     "price-nebius-h100"
+    ],
+    "watch": "DeepSeek confirming the license on V4.1 Flash, and whether its claimed cut in KV cache memory holds up outside the vendor's own tests."
+   },
+   {
+    "id": "bld-wedge",
+    "call": "Wedge in where agents do the buying or where the work is sold as an outcome, not in the chat front end.",
+    "why": "Supabase says about 70 percent of its new databases are created by agents, and EliseAI passed $200M in annual recurring revenue selling finished leasing and intake work. GPT-6 put a generative interface in front of more than 1.2 billion weekly users, which leaves a thin chat layer little room.",
+    "evidence": [
+     "sig-supabase-turso",
+     "deal-eliseai",
+     "sig-gpt-6"
+    ],
+    "watch": "Which pricing model wins for agents, the seat, the task or the outcome, as more application companies disclose revenue."
+   }
+  ]
+ },
  "thesis": {
   "title": "The Bottleneck Thesis",
   "text": "In AI, value accrues to whoever controls the scarcest input, and the scarce input keeps moving. Right now there are three. Compute (chips, power, capacity), capital (who can fund the build), and rules (who is allowed to deploy what, where). Every item on this page is tagged by which constraint it moves and in which direction.",
@@ -98,9 +206,16 @@
  ],
  "signals": [
   {
+   "id": "sig-anthropic-prices",
+   "short": "Anthropic price cuts",
    "date": "2026-10-07",
    "category": "Models",
-   "audience": "Operators",
+   "audience_tag": "Operators",
+   "audience": {
+    "investors": "Falling token prices compress gross margin for any startup that resells model access, so check how much of a company's value is a markup on tokens.",
+    "bigtech": "A 20 percent cut at the flagship tier lowers the cost of buying over building and weakens the case for training an in-house model of the same class.",
+    "builders": "Haiku 5.5 at $0.10 per million input tokens for prompts under 100k tokens makes routing, classification and extraction cheap enough to run on every request."
+   },
    "tags": [
     {
      "constraint": "compute",
@@ -123,9 +238,16 @@
    ]
   },
   {
+   "id": "sig-gpt-6",
+   "short": "GPT-6 rollout",
    "date": "2026-10-07",
    "category": "Models",
-   "audience": "Founders",
+   "audience_tag": "Founders",
+   "audience": {
+    "investors": "A generative interface in front of more than 1.2 billion weekly users puts pressure on any startup whose main product is a chat front end.",
+    "bigtech": "OpenAI now owns a consumer surface that renders forms and buttons, so any assistant you ship competes with it for the same users.",
+    "builders": "A thin chat interface on top of a model is now weaker than the one the model vendor ships to every ChatGPT tier, so put your effort elsewhere."
+   },
    "tags": [
     {
      "constraint": "compute",
@@ -144,9 +266,16 @@
    ]
   },
   {
+   "id": "sig-openai-watermark",
+   "short": "OpenAI watermarking",
    "date": "2026-10-05",
    "category": "Policy",
-   "audience": "Policy",
+   "audience_tag": "Policy",
+   "audience": {
+    "investors": "Portfolio companies selling into Europe face a dated compliance cost on 2 December, which is worth raising at the next board meeting.",
+    "bigtech": "Text marking is becoming a condition of shipping generative features in the EU, so product and legal teams need one provenance plan before December.",
+    "builders": "If you generate text for EU users, decide now whether to rely on your model vendor's watermark or add your own."
+   },
    "tags": [
     {
      "constraint": "rules",
@@ -169,9 +298,16 @@
    ]
   },
   {
+   "id": "sig-supabase-turso",
+   "short": "Supabase buys Turso",
    "date": "2026-10-02",
    "category": "Enterprise",
-   "audience": "Founders",
+   "audience_tag": "Founders",
+   "audience": {
+    "investors": "Infrastructure tools are being folded into larger platforms, so the likely exit in the database layer is a sale to a platform.",
+    "bigtech": "When agents create most new databases on a platform, the developer you sell to is increasingly an agent, which changes how APIs and pricing should work.",
+    "builders": "Make your product easy for an agent to provision and use through an API, because agents already create most new databases on Supabase."
+   },
    "tags": [
     {
      "constraint": "capital",
@@ -190,9 +326,16 @@
    ]
   },
   {
+   "id": "sig-frontier-academy",
+   "short": "Frontier Academy",
    "date": "2026-10-02",
    "category": "Enterprise",
-   "audience": "Operators",
+   "audience_tag": "Operators",
+   "audience": {
+    "investors": "Deployment capacity sits between model spend and revenue, which favours companies that pair software with hands-on rollout in the near term.",
+    "bigtech": "Anthropic is training deployment engineers with Accenture, Bain, Deloitte and McKinsey, so the talent to roll out agents will increasingly come through vendor programs.",
+    "builders": "Customers will expect hands-on deployment help, so budget for forward deployed engineers instead of planning a pure self-serve motion."
+   },
    "tags": [
     {
      "constraint": "capital",
@@ -211,9 +354,16 @@
    ]
   },
   {
+   "id": "sig-gmi-cloud",
+   "short": "GMI Cloud raise",
    "date": "2026-10-01",
    "category": "Infrastructure",
-   "audience": "Investors",
+   "audience_tag": "Investors",
+   "audience": {
+    "investors": "With $445 million of the $668 million in debt, returns on neocloud equity now depend on utilisation staying high enough to service credit.",
+    "bigtech": "Debt-funded capacity in the US, Taiwan and Asia-Pacific adds suppliers to contract with, but their balance sheets belong in the vendor review.",
+    "builders": "More GPU supply in Taiwan and Asia-Pacific may give you regional options for serving users there."
+   },
    "tags": [
     {
      "constraint": "capital",
@@ -236,9 +386,16 @@
    ]
   },
   {
+   "id": "sig-nebius-prices",
+   "short": "Nebius price rise",
    "date": "2026-10-01",
    "category": "Infrastructure",
-   "audience": "Investors",
+   "audience_tag": "Investors",
+   "audience": {
+    "investors": "A neocloud lifting list prices 17 to 21 percent supports near-term revenue for capacity owners and says demand still outruns supply.",
+    "bigtech": "Rising on-demand rates strengthen the case for committed capacity, and Nebius lists commit discounts of up to 35 percent.",
+    "builders": "If you rent H100s on demand, your hosting bill can rise with no change on your side, so keep a second provider tested and ready."
+   },
    "tags": [
     {
      "constraint": "compute",
@@ -257,9 +414,16 @@
    ]
   },
   {
+   "id": "sig-openai-raise",
+   "short": "OpenAI raise talks",
    "date": "2026-09-29",
    "category": "Capital",
-   "audience": "Investors",
+   "audience_tag": "Investors",
+   "audience": {
+    "investors": "A close near $1.4 trillion would reset the reference price for every lab, and a cut or failed close would mark down everyone priced against it.",
+    "bigtech": "A round of at least $30 billion would fund more compute and more product reach, so expect OpenAI to keep moving into adjacent surfaces.",
+    "builders": "Well-funded labs will keep cutting prices and shipping features, so any product that depends only on model access stays exposed."
+   },
    "tags": [
     {
      "constraint": "capital",
@@ -278,9 +442,16 @@
    ]
   },
   {
+   "id": "sig-xiaomi-mimo",
+   "short": "Xiaomi MiMo release",
    "date": "2026-09-22",
    "category": "Models",
-   "audience": "Founders",
+   "audience_tag": "Founders",
+   "audience": {
+    "investors": "An MIT-licensed model within 12 index points of the leader limits how much closed-model vendors can charge over time.",
+    "bigtech": "A credible open model makes running open weights in-house a realistic alternative to buying API access for cost-sensitive workloads.",
+    "builders": "MiMo-V2.6 Pro is a self-hosted fallback with a 1 million token context, worth testing on your most cost-sensitive workloads."
+   },
    "tags": [
     {
      "constraint": "compute",
@@ -299,9 +470,16 @@
    ]
   },
   {
+   "id": "sig-nvidia-hugging-face",
+   "short": "Nvidia buys Hugging Face",
    "date": "2026-09-03",
    "category": "Capital",
-   "audience": "Investors",
+   "audience_tag": "Investors",
+   "audience": {
+    "investors": "About $13 billion for the main open model hub shows strategic buyers will pay for developer distribution, which supports exit values for platforms.",
+    "bigtech": "The leading chip vendor owning the main open model hub is a platform risk for any team whose models or tools depend on Hugging Face.",
+    "builders": "If your stack depends on Hugging Face hosting or libraries, watch for changed terms once the Nvidia deal closes."
+   },
    "tags": [
     {
      "constraint": "compute",
@@ -349,6 +527,7 @@
  ],
  "layers": [
   {
+   "id": "layer-silicon",
    "name": "Silicon",
    "subtitle": "Accelerators, memory and the fabs behind them.",
    "tags": [
@@ -378,6 +557,7 @@
    ]
   },
   {
+   "id": "layer-infrastructure",
    "name": "Infrastructure",
    "subtitle": "Clouds and data centres that rent the compute.",
    "tags": [
@@ -408,6 +588,7 @@
    ]
   },
   {
+   "id": "layer-data",
    "name": "Data",
    "subtitle": "Where training data, enterprise records and agent memory live.",
    "tags": [
@@ -436,6 +617,7 @@
    ]
   },
   {
+   "id": "layer-models",
    "name": "Foundation models",
    "subtitle": "The labs that train the general-purpose models.",
    "tags": [
@@ -474,6 +656,7 @@
    ]
   },
   {
+   "id": "layer-tools",
    "name": "Enablers and tools",
    "subtitle": "Software that turns a model into something a team can ship.",
    "tags": [
@@ -502,6 +685,7 @@
    ]
   },
   {
+   "id": "layer-applications",
    "name": "Applications",
    "subtitle": "Products that sell finished work to a business or a consumer.",
    "tags": [
@@ -531,6 +715,7 @@
    ]
   },
   {
+   "id": "layer-capital",
    "name": "Capital",
    "subtitle": "Who pays for the build, and on what terms.",
    "tags": [
@@ -561,6 +746,7 @@
    ]
   },
   {
+   "id": "layer-rules",
    "name": "Rules and policy",
    "subtitle": "Law, export control and standards that gate deployment.",
    "tags": [
@@ -1166,6 +1352,7 @@
  },
  "models": [
   {
+   "id": "model-gpt-6",
    "model": "GPT-6 (Astra, Sol, Luna)",
    "developer": "OpenAI",
    "released": "2026-09-03 to 2026-10-07",
@@ -1182,6 +1369,7 @@
    "source_label": "OpenAI"
   },
   {
+   "id": "model-claude-opus-5-5",
    "model": "Claude Opus 5.5",
    "developer": "Anthropic",
    "released": "2026-09-22",
@@ -1202,6 +1390,7 @@
    "source_label": "Anthropic"
   },
   {
+   "id": "model-claude-sonnet-5-5",
    "model": "Claude Sonnet 5.5",
    "developer": "Anthropic",
    "released": "2026-09-28",
@@ -1218,6 +1407,7 @@
    "source_label": "Anthropic"
   },
   {
+   "id": "model-claude-haiku-5-5",
    "model": "Claude Haiku 5.5",
    "developer": "Anthropic",
    "released": "2026-10-07",
@@ -1234,6 +1424,7 @@
    "source_label": "Anthropic"
   },
   {
+   "id": "model-gemini-3-8-flash",
    "model": "Gemini 3.8 Flash",
    "developer": "Google",
    "released": "2026-09-02",
@@ -1250,6 +1441,7 @@
    "source_label": "Lets Data Science"
   },
   {
+   "id": "model-deepseek-v4-1-flash",
    "model": "DeepSeek-V4.1-Flash",
    "developer": "DeepSeek",
    "released": "2026-09-10",
@@ -1266,6 +1458,7 @@
    "source_label": "DeepSeek"
   },
   {
+   "id": "model-mimo-v2-6-pro",
    "model": "MiMo-V2.6 Pro",
    "developer": "Xiaomi",
    "released": "2026-09-22",
@@ -1286,6 +1479,7 @@
    "source_label": "The Next Web"
   },
   {
+   "id": "model-claude-fable-5-1",
    "model": "Claude Fable 5.1",
    "developer": "Anthropic",
    "released": "2026-09-03",
@@ -1306,8 +1500,15 @@
    "source_label": "ThursdAI tracker"
   }
  ],
+ "markets_sowhat": {
+  "compute": "On-demand H100 rates still differ by {ratio} times for the same chip, from {lo_price} at {lo_provider} to {hi_price} at {hi_provider}. Nebius moved up on 1 October while AWS has held $6.88 per GPU-hour since its June 2025 cut, so today's cheapest provider may not stay cheapest.",
+  "capital": "Money is abundant at the very top, where the largest items are acquisitions and lab rounds. Below that, rounds of $150M to $1B went to applications, world models, agent databases and GPU clouds, and GMI Cloud leaned on debt for two thirds of its raise.",
+  "models": "Prices fell at every new Anthropic tier and Google is discounting Gemini 3.8 Flash through 31 December. Open-weight releases from Xiaomi and DeepSeek narrow the gap to the closed frontier, though the DeepSeek license is not yet confirmed."
+ },
  "deals": [
   {
+   "id": "deal-cursor",
+   "short": "Cursor",
    "date": "2026-08-14",
    "company": "Cursor (acquired by SpaceX)",
    "amount_musd": 60000,
@@ -1327,6 +1528,8 @@
    "source_label": "Bloomberg Law"
   },
   {
+   "id": "deal-hugging-face",
+   "short": "Hugging Face",
    "date": "2026-09-03",
    "company": "Hugging Face (to Nvidia)",
    "amount_musd": 13000,
@@ -1350,6 +1553,8 @@
    "source_label": "Bloomberg Law"
   },
   {
+   "id": "deal-instinct",
+   "short": "Instinct",
    "date": "2026-09-28",
    "company": "Instinct",
    "amount_musd": 1000,
@@ -1369,6 +1574,8 @@
    "source_label": "TechFundingNews"
   },
   {
+   "id": "deal-openai-talks",
+   "short": "OpenAI talks",
    "date": "2026-09-29",
    "company": "OpenAI (reported talks)",
    "amount_musd": 30000,
@@ -1388,6 +1595,8 @@
    "source_label": "Reuters via WHBL"
   },
   {
+   "id": "deal-eliseai",
+   "short": "EliseAI",
    "date": "2026-09-29",
    "company": "EliseAI",
    "amount_musd": 350,
@@ -1407,6 +1616,8 @@
    "source_label": "Fortune"
   },
   {
+   "id": "deal-general-intuition",
+   "short": "General Intuition",
    "date": "2026-09-29",
    "company": "General Intuition",
    "amount_musd": 220,
@@ -1426,6 +1637,8 @@
    "source_label": "SiliconANGLE"
   },
   {
+   "id": "deal-armadin",
+   "short": "Armadin",
    "date": "2026-10-01",
    "company": "Armadin",
    "amount_musd": 255.5,
@@ -1445,6 +1658,8 @@
    "source_label": "Help Net Security"
   },
   {
+   "id": "deal-gmi-cloud",
+   "short": "GMI Cloud",
    "date": "2026-10-01",
    "company": "GMI Cloud",
    "amount_musd": 668,
@@ -1468,6 +1683,8 @@
    "source_label": "AI Insider"
   },
   {
+   "id": "deal-supabase",
+   "short": "Supabase",
    "date": "2026-10-02",
    "company": "Supabase (and Turso)",
    "amount_musd": 150,
@@ -1489,6 +1706,8 @@
  ],
  "policies": [
   {
+   "id": "rule-eu-omnibus",
+   "short": "EU Digital Omnibus",
    "date": "2026-07-27",
    "jurisdiction": "European Union",
    "status": "In force",
@@ -1505,6 +1724,8 @@
    "source_label": "Lewis Silkin"
   },
   {
+   "id": "rule-us-state-eo",
+   "short": "US order on state laws",
    "date": "2025-12",
    "jurisdiction": "United States, federal",
    "status": "In effect",
@@ -1521,6 +1742,8 @@
    "source_label": "Pillsbury"
   },
   {
+   "id": "rule-us-frontier-eo",
+   "short": "US frontier model order",
    "date": "2026-06-02",
    "jurisdiction": "United States, federal",
    "status": "In effect",
@@ -1537,6 +1760,8 @@
    "source_label": "King and Spalding"
   },
   {
+   "id": "rule-colorado",
+   "short": "Colorado AI Act",
    "date": "2026-05-14",
    "jurisdiction": "Colorado",
    "status": "Contested",
@@ -1553,6 +1778,8 @@
    "source_label": "Vaquill"
   },
   {
+   "id": "rule-california-sb53",
+   "short": "California SB 53",
    "date": "2026-01-01",
    "jurisdiction": "California",
    "status": "In effect",
@@ -1569,6 +1796,8 @@
    "source_label": "Layer3 Labs"
   },
   {
+   "id": "rule-bis-h200",
+   "short": "BIS H200 rule",
    "date": "2026-01-15",
    "jurisdiction": "Export controls",
    "status": "In effect",
@@ -1589,6 +1818,8 @@
    "source_label": "Introl"
   },
   {
+   "id": "rule-china-csl",
+   "short": "China AI clause",
    "date": "2026-01-01",
    "jurisdiction": "China",
    "status": "In effect",
@@ -1682,7 +1913,8 @@
   "paragraphs": [
    "MBA candidate at Stanford Graduate School of Business, expected June 2028, with a dual MS through Stanford EIPER focused on AI, compute and energy. Previously built the corporate venture capital function at Thai Union Ventures from scratch with a $30M mandate and led corporate strategy work. Before that, M&A advisory at The Quant Group across 30+ cross-border transactions, and a start at L'Oréal as a management trainee across finance, commercial and supply chain. Conducts independent research on agentic AI SaaS through Stanford's RDI. Fluent in Thai and English, connected to Bangkok and the Bay Area. Interested in AI product management and in founding an agentic AI company."
   ],
-  "thread": "Corporate venture and M&A work taught her to follow the scarce input in every deal, and her EIPER work on compute and energy applies the same habit to the AI stack."
+  "thread": "Corporate venture and M&A work taught her to follow the scarce input in every deal, and her EIPER work on compute and energy applies the same habit to the AI stack.",
+  "short": "AI Radar is written by Esther Suebsubanant, an MBA and MS candidate at Stanford who built a corporate venture fund at Thai Union and advised on more than 30 cross-border M&A deals."
  },
  "methodology": "AI Radar is a human-curated weekly brief. Figures are transcribed from official pages on the check date, and each carries its source link. Where an official page draws prices only in the browser, the figure comes from a third-party mirror and is marked Secondary. Chart points that are derived are marked as derived. Anything that could not be confirmed is left out and not estimated. Prices change without notice, so verify in the provider console before purchasing.",
  "changelog": [
