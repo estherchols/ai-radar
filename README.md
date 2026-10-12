@@ -1,6 +1,6 @@
 # AI Radar
 
-A weekly AI industry dashboard built around one idea. Value accrues to whoever controls the scarcest input, and right now there are three. Compute, capital and rules. Every item on the page is tagged by the constraint it moves and the direction it moves it.
+A weekly AI industry dashboard built around one idea. Value accrues to whoever controls the scarcest input, and right now there are three. Compute, capital and energy. Rules that steer money are tracked under capital. Every item on the page is tagged by the constraint it moves and the direction it moves it.
 
 ## Files
 
