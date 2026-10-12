@@ -1,0 +1,25 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "storage_prices": [
+    {
+     "product": "Cloud Storage Standard, us-central1",
+     "price_per_gb_month": 2.7397e-05,
+     "unit": "per GiB-hour"
+    },
+    {
+     "product": "Cloud Storage Standard, US multi-region",
+     "price_per_gb_month": 3.5616e-05,
+     "unit": "per GiB-hour"
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://cloud.google.com/storage/pricing",
+   "url": "https://cloud.google.com/storage/pricing",
+   "statusCode": 200
+  }
+ }
+}

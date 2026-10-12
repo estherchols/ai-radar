@@ -1,0 +1,20 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "storage_prices": [
+    {
+     "product": "R2 Standard storage",
+     "price_per_gb_month": 0.015,
+     "unit": "per GB-month"
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://developers.cloudflare.com/r2/pricing/",
+   "url": "https://developers.cloudflare.com/r2/pricing/",
+   "statusCode": 200
+  }
+ }
+}

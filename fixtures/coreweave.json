@@ -1,0 +1,39 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "gpu_prices": [
+    {
+     "gpu_model": "H100",
+     "sku_or_instance": "NVIDIA HGX H100",
+     "price_usd": 49.24,
+     "billing_unit": "per_instance_hour",
+     "conditions": "",
+     "gpus_per_instance": 8
+    },
+    {
+     "gpu_model": "H200",
+     "sku_or_instance": "NVIDIA HGX H200",
+     "price_usd": 52.8,
+     "billing_unit": "per_instance_hour",
+     "conditions": "",
+     "gpus_per_instance": 8
+    },
+    {
+     "gpu_model": "B200",
+     "sku_or_instance": "NVIDIA HGX B200",
+     "price_usd": 68.8,
+     "billing_unit": "per_instance_hour",
+     "conditions": "",
+     "gpus_per_instance": 8
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://www.coreweave.com/pricing",
+   "url": "https://www.coreweave.com/pricing",
+   "statusCode": 200
+  }
+ }
+}

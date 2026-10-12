@@ -1,0 +1,23 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "gpu_prices": [
+    {
+     "gpu_model": "H100",
+     "sku_or_instance": "Standard_ND96isr_H100_v5",
+     "price_usd": 94.4,
+     "billing_unit": "per_instance_hour",
+     "conditions": "",
+     "gpus_per_instance": 8
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://cloudprice.net/vm/Standard_ND96isr_H100_v5",
+   "url": "https://cloudprice.net/vm/Standard_ND96isr_H100_v5",
+   "statusCode": 200
+  }
+ }
+}

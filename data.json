@@ -1,0 +1,1807 @@
+{
+ "meta": {
+  "issue": "01",
+  "updated": "2026-10-11",
+  "next_issue": "2026-10-18",
+  "author": "Esther Suebsubanant"
+ },
+ "last_price_check": "2026-10-11",
+ "thesis": {
+  "title": "The Bottleneck Thesis",
+  "text": "In AI, value accrues to whoever controls the scarcest input, and the scarce input keeps moving. Right now there are three. Compute (chips, power, capacity), capital (who can fund the build), and rules (who is allowed to deploy what, where). Every item on this page is tagged by which constraint it moves and in which direction.",
+  "key": [
+   {
+    "direction": "tightens",
+    "text": "The input got scarcer or harder to access."
+   },
+   {
+    "direction": "loosens",
+    "text": "The input got easier or cheaper to get."
+   },
+   {
+    "direction": "shifts",
+    "text": "The input moved hands or is contested."
+   }
+  ]
+ },
+ "how_to_read": "Each item carries a constraint tag and a direction. Read the board first, then use the filters to see which items move which constraint. Prices, deals and rules below are the evidence, and every row links to the page it came from.",
+ "board": [
+  {
+   "id": "compute",
+   "constraint": "compute",
+   "direction": "tightens",
+   "name": "Compute",
+   "state": "Tightening",
+   "line": "Neocloud list prices rose this month and the published H100 spread is {ratio} times.",
+   "evidence": [
+    {
+     "text": "Nebius lifted H100 to $4.50 and B200 to $8.50 per GPU-hour on 1 Oct, up 17 to 21 percent",
+     "url": "https://nebius.com/prices"
+    },
+    {
+     "text": "One-year H100 contract index rose nearly 40 percent, from $1.70 in Oct 2025 to $2.35 in Mar 2026",
+     "url": "https://www.itiger.com/hans/news/1185188896"
+    },
+    {
+     "text": "On-demand H100 runs from {lo_price} at {lo_provider} to {hi_price} at {hi_provider} ({hi_type} source)",
+     "url": "#compute"
+    }
+   ],
+   "flip": "Listed prices falling back to September levels for two quarters, or B200 undercutting H100 per unit of work as Blackwell supply grows."
+  },
+  {
+   "id": "capital",
+   "constraint": "capital",
+   "direction": "loosens",
+   "name": "Capital",
+   "state": "Loosening at the top, concentrating",
+   "line": "Mega-rounds are getting done, and debt is carrying the infrastructure build.",
+   "evidence": [
+    {
+     "text": "OpenAI is reportedly seeking at least $30B at about $1.4T before new money (talks only)",
+     "url": "https://whbl.com/2026/09/29/openai-targets-30-billion-funding-at-1-4-trillion-valuation-bloomberg-news-reports/"
+    },
+    {
+     "text": "Anthropic closed a $65B Series H at $965B post-money on 28 May 2026",
+     "url": "https://news.crunchbase.com/ai/anthropic-nears-1t-valuation-65b-seriesh/"
+    },
+    {
+     "text": "GMI Cloud raised $668M, of which $445M was debt",
+     "url": "https://theaiinsider.tech/2026/10/01/gmi-cloud-raises-over-660m-to-accelerate-global-ai-infrastructure-expansion/"
+    }
+   ],
+   "flip": "A mega-round that fails to close or reprices down, or GPU-backed debt that gets harder to place."
+  },
+  {
+   "id": "rules",
+   "constraint": "rules",
+   "direction": "shifts",
+   "name": "Rules",
+   "state": "Hardening in the EU, fragmenting in the US",
+   "line": "Transparency duties are fixed in Europe while US federal and state rules pull apart.",
+   "evidence": [
+    {
+     "text": "EU Digital Omnibus in force 27 Jul 2026. High-risk duties move to Dec 2027 and Article 50 marking lands 2 Dec 2026 for older systems",
+     "url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo"
+    },
+    {
+     "text": "Colorado replaced its AI Act and a federal court order may still block enforcement",
+     "url": "https://www.vaquill.ai/blog/colorado-ai-act-explained-from-the-statute"
+    },
+    {
+     "text": "A Dec 2025 US executive order directs DOJ to challenge state AI laws",
+     "url": "https://www.pillsburylaw.com/en/news-and-insights/new-executive-order-national-policy-framework-artificial-intelligence.html"
+    }
+   ],
+   "flip": "A federal preemption statute that ends the US patchwork, or another EU delay to Article 50."
+  }
+ ],
+ "signals": [
+  {
+   "date": "2026-10-07",
+   "category": "Models",
+   "audience": "Operators",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    }
+   ],
+   "title": "Anthropic cuts its flagship price and ships a ten cent small model",
+   "summary": "Claude Opus 5.5 launched on 22 September at $4 input and $20 output per million tokens, down from $5 and $25 for Opus 5. Claude Haiku 5.5 followed on 7 October at $0.10 and $0.50 for prompts under 100k tokens.",
+   "moves": "The buyer's cost of capability. Per-token prices fell 20 percent at the flagship tier and the new small model starts at $0.10 per million input tokens.",
+   "why_it_matters": "Per-token prices keep falling at every tier, which squeezes any product whose only edge is access to a model.",
+   "sources": [
+    {
+     "label": "Opus 5.5",
+     "url": "https://www.anthropic.com/claude-opus-5-5"
+    },
+    {
+     "label": "Haiku 5.5",
+     "url": "https://www.anthropic.com/claude-haiku-5-5"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-07",
+   "category": "Models",
+   "audience": "Founders",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "tightens"
+    }
+   ],
+   "title": "GPT-6 reaches every ChatGPT tier with a generative interface",
+   "summary": "OpenAI began rolling out GPT-6 in ChatGPT on 7 October, with Sol behind paid tiers and Luna behind Free and Go. Answers can now include charts, forms and tappable buttons, and OpenAI says ChatGPT has more than 1.2 billion weekly users.",
+   "moves": "Compute demand. A 1.2 billion weekly user base on a new model keeps inference load, and so GPU demand, rising.",
+   "why_it_matters": "The interface layer is turning generative, so any team building a chat front end now competes with the model vendor's own UI.",
+   "sources": [
+    {
+     "label": "OpenAI",
+     "url": "https://openai.com/index/gpt-6-for-everyone/"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-05",
+   "category": "Policy",
+   "audience": "Policy",
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "tightens"
+    }
+   ],
+   "title": "OpenAI ships text watermarking ahead of an EU marking deadline",
+   "summary": "From 5 October API customers can opt in to machine-readable text watermarking, and an EU-only invisible watermark is coming to ChatGPT and Codex. The EU AI Act marking duty applies from 2 December 2026 to systems placed on the market before 2 August.",
+   "moves": "Deployment rights in the EU. Text marking is becoming a condition of shipping there.",
+   "why_it_matters": "Provenance is turning into a shipping requirement, and teams selling into Europe need a plan before December.",
+   "sources": [
+    {
+     "label": "OpenAI",
+     "url": "https://openai.com/index/eu-text-provenance/"
+    },
+    {
+     "label": "Lewis Silkin",
+     "url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-02",
+   "category": "Enterprise",
+   "audience": "Founders",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "shifts"
+    }
+   ],
+   "title": "Supabase buys Turso and says agents create most new databases",
+   "summary": "Supabase raised $150 million led by GIC and acquired Turso, with terms undisclosed. It says about 70 percent of new databases on its platform are created by agents or AI-driven tools.",
+   "moves": "Capital toward agent-native infrastructure. The acquisition folds a database primitive into a larger platform.",
+   "why_it_matters": "Agents are becoming the primary buyer of infrastructure primitives, which changes who the product has to be designed for.",
+   "sources": [
+    {
+     "label": "CityBiz",
+     "url": "https://www.citybiz.co/article/913344/supabase-raises-150-million-acquires-turso-to-scale-agentic-databases/"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-02",
+   "category": "Enterprise",
+   "audience": "Operators",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "shifts"
+    }
+   ],
+   "title": "Anthropic commits $100 million to train 10,000 deployment engineers",
+   "summary": "The Claude Frontier Academy will train Frontier Deployed Engineers through a residency run inside customer organisations. First-cohort partners include Accenture, Bain, Deloitte, McKinsey and Morgan Stanley.",
+   "moves": "Where capital goes after compute. $100M is aimed at deployment capacity, the scarce skill between a model and a production agent.",
+   "why_it_matters": "The scarce input is people who can put agents into production, and the vendors are now paying to create them.",
+   "sources": [
+    {
+     "label": "Anthropic",
+     "url": "https://www.anthropic.com/news/claude-frontier-academy"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-01",
+   "category": "Infrastructure",
+   "audience": "Investors",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    },
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    }
+   ],
+   "title": "GMI Cloud raises $668 million, most of it debt",
+   "summary": "The GPU cloud closed a $223 million Series B led by ARCHIV with NVIDIA taking part, plus a $445 million credit facility led by CTBC. It will add capacity in the US, Taiwan and the wider Asia-Pacific region.",
+   "moves": "How the build is financed. Debt supplied $445M of the $668M, so capacity growth leans on credit.",
+   "why_it_matters": "Debt is now funding more of the GPU build than equity, which ties neocloud returns to utilisation and interest rates.",
+   "sources": [
+    {
+     "label": "AI Insider",
+     "url": "https://theaiinsider.tech/2026/10/01/gmi-cloud-raises-over-660m-to-accelerate-global-ai-infrastructure-expansion/"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-01",
+   "category": "Infrastructure",
+   "audience": "Investors",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "tightens"
+    }
+   ],
+   "title": "Nebius raises GPU list prices by about a fifth",
+   "summary": "The Nebius price page now shows H100 at $4.50 per GPU-hour, up from $3.85, with H200 at $5.40, B200 at $8.50 and B300 at $9.50. Those are rises of 17 to 21 percent, effective 1 October.",
+   "moves": "Rental price of H100 to B300 capacity, up 17 to 21 percent in one step.",
+   "why_it_matters": "A neocloud lifting list prices says demand for accelerated capacity still outruns supply.",
+   "sources": [
+    {
+     "label": "Nebius pricing",
+     "url": "https://nebius.com/prices"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-29",
+   "category": "Capital",
+   "audience": "Investors",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "title": "OpenAI reportedly seeks $30 billion at a $1.4 trillion valuation",
+   "summary": "Bloomberg reported on 29 September that OpenAI is in early talks to raise at least $30 billion at about $1.4 trillion before the new money. The talks are not closed and terms could change.",
+   "moves": "The top of the capital stack. A mark near $1.4 trillion resets the reference price for every lab, if the round closes.",
+   "why_it_matters": "It sets the entry price for the frontier-lab asset class and the bar every other lab is measured against.",
+   "sources": [
+    {
+     "label": "Reuters via WHBL",
+     "url": "https://whbl.com/2026/09/29/openai-targets-30-billion-funding-at-1-4-trillion-valuation-bloomberg-news-reports/"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-22",
+   "category": "Models",
+   "audience": "Founders",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    }
+   ],
+   "title": "Xiaomi releases a trillion-parameter open-weight model under MIT",
+   "summary": "MiMo-V2.6 Pro has 1.02 trillion total and 42 billion active parameters, a 1 million token context, and weights on Hugging Face. Artificial Analysis scores it 46 on its Intelligence Index, the highest for an open-weight model, against 58 for Claude Opus 5.5.",
+   "moves": "Dependence on closed-model capacity. An open model within 12 index points can run on rented GPUs.",
+   "why_it_matters": "A twelve point gap to the closed frontier makes self-hosting a credible option for cost-sensitive workloads.",
+   "sources": [
+    {
+     "label": "The Next Web",
+     "url": "https://thenextweb.com/news/xiaomi-mimo-v2-6-open-weight-model-anthropic-distillation"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-03",
+   "category": "Capital",
+   "audience": "Investors",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "shifts"
+    },
+    {
+     "constraint": "capital",
+     "direction": "shifts"
+    }
+   ],
+   "title": "Nvidia agrees to buy Hugging Face for about $13 billion",
+   "summary": "The deal includes an equity retention program of up to $1 billion for employees who join Nvidia. Nvidia frames it as a way to protect open-source AI developers who rely on the platform.",
+   "moves": "Control of distribution. The chip vendor would own the main hub for open models.",
+   "why_it_matters": "The dominant chip vendor would own the main distribution hub for open models, a new kind of vertical integration.",
+   "sources": [
+    {
+     "label": "Bloomberg Law",
+     "url": "https://news.bloomberglaw.com/crypto/nvidia-agrees-to-13-billion-deal-for-ai-platform-hugging-face"
+    }
+   ]
+  }
+ ],
+ "takes": [
+  {
+   "constraint": "compute",
+   "direction": "tightens",
+   "headline": "Compute is the binding constraint, and the owners of power and capacity keep the margin.",
+   "body": "Published H100 on-demand prices run from {lo_price} to {hi_price} per GPU-hour, a spread of {ratio} times for the same chip. Nebius lifted its list prices 17 to 21 percent on 1 October, and a one-year H100 contract index rose nearly 40 percent between October 2025 and March 2026. GMI Cloud financed most of its latest raise with debt, so capacity growth now depends on credit as much as on chips. The margin sits with whoever controls electricity, buildings and financing, because the chip is only one of three inputs.",
+   "change_my_mind": "Listed prices falling back to September levels for two quarters, or B200 undercutting H100 per unit of work as Blackwell supply grows."
+  },
+  {
+   "constraint": "capital",
+   "direction": "loosens",
+   "headline": "Capital is loosening for a few names, and value in agentic software accrues to whoever owns the workflow and the outcome.",
+   "body": "Anthropic closed $65 billion at $965 billion and OpenAI is reportedly seeking $30 billion more, so money is abundant at the top. Meanwhile the price of model access keeps falling, with Opus 5.5 at 20 percent below Opus 5 and an MIT-licensed open model within 12 index points of the leader. EliseAI reports more than $200 million in annual recurring revenue by selling leasing and patient intake as finished work, and Supabase says agents create about 70 percent of its new databases. Model access is heading toward a commodity, while trust in a specific job is not.",
+   "change_my_mind": "Model vendors bundling the workflow themselves. The SpaceX purchase of Cursor is the case to watch."
+  },
+  {
+   "constraint": "rules",
+   "direction": "shifts",
+   "headline": "Feasibility has stopped being the constraint, and rules and deployment capacity now decide which products become businesses.",
+   "body": "The EU marking duty for text generators lands on 2 December 2026 for systems already on the market, and OpenAI is shipping watermarking ahead of it. In the US, Colorado rewrote its AI Act while a federal court order may still block enforcement. Anthropic gates biology and cyber use behind verification programs and is putting $100 million into training deployment engineers. Instinct reached a $10 billion valuation without publishing revenue, which shows how far capital has run ahead of a proven business model.",
+   "change_my_mind": "A federal preemption statute that ends the US patchwork, or cohort data showing capability alone sustains retention without services-heavy deployment."
+  }
+ ],
+ "layers": [
+  {
+   "name": "Silicon",
+   "subtitle": "Accelerators, memory and the fabs behind them.",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "tightens"
+    }
+   ],
+   "bottleneck_now": "Packaging, high-bandwidth memory and export licensing decide who gets chips. Published H100 rates still differ by 3 times across providers.",
+   "players": [
+    "Nvidia",
+    "AMD",
+    "Broadcom",
+    "TSMC",
+    "Google TPU",
+    "AWS Trainium",
+    "SK hynix"
+   ],
+   "business_model": "Sell accelerators and full systems at high margin, while hyperscalers build custom chips to cut their own bill.",
+   "structural_bottleneck": "Advanced packaging, high-bandwidth memory and the export rules that decide which chips can cross which borders.",
+   "question_to_watch": "Do custom chips take a meaningful share of inference from GPUs within two years?",
+   "sources": [
+    {
+     "label": "BIS case-by-case H200 rule, via Introl",
+     "url": "https://introl.com/blog/bis-h200-mi325x-export-policy-china-case-by-case-review-2026"
+    }
+   ]
+  },
+  {
+   "name": "Infrastructure",
+   "subtitle": "Clouds and data centres that rent the compute.",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "tightens"
+    }
+   ],
+   "bottleneck_now": "Capacity and the debt that funds it. Nebius raised list prices 17 to 21 percent and GMI Cloud leaned on $445M of credit.",
+   "players": [
+    "AWS",
+    "Microsoft Azure",
+    "Google Cloud",
+    "Oracle",
+    "CoreWeave",
+    "Nebius",
+    "Lambda",
+    "GMI Cloud"
+   ],
+   "business_model": "Hourly GPU rental, committed capacity contracts, and managed inference on top.",
+   "structural_bottleneck": "Power, grid connection and construction time, more than the chips themselves.",
+   "question_to_watch": "Will the Nebius price rise hold, or does new Blackwell capacity pull list prices back down?",
+   "sources": [
+    {
+     "label": "Nebius pricing",
+     "url": "https://nebius.com/prices"
+    }
+   ]
+  },
+  {
+   "name": "Data",
+   "subtitle": "Where training data, enterprise records and agent memory live.",
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "shifts"
+    }
+   ],
+   "bottleneck_now": "Provenance and permission. EU marking duties and training-data disclosure laws are turning data lineage into a compliance cost.",
+   "players": [
+    "Databricks",
+    "Snowflake",
+    "Scale AI",
+    "Supabase",
+    "Cloudflare",
+    "MongoDB"
+   ],
+   "business_model": "Usage-based storage and query fees, plus paid data labelling and licensing.",
+   "structural_bottleneck": "Permissioned, high-quality and expert-labelled data, and the cost of moving it.",
+   "question_to_watch": "If agents create most new databases, who becomes the default data layer for them?",
+   "sources": [
+    {
+     "label": "Supabase and Turso, CityBiz",
+     "url": "https://www.citybiz.co/article/913344/supabase-raises-150-million-acquires-turso-to-scale-agentic-databases/"
+    }
+   ]
+  },
+  {
+   "name": "Foundation models",
+   "subtitle": "The labs that train the general-purpose models.",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    },
+    {
+     "constraint": "capital",
+     "direction": "tightens"
+    }
+   ],
+   "bottleneck_now": "Training cost against price. Per-token prices fell again while valuations rose, so the lead has to be refunded by capital.",
+   "players": [
+    "OpenAI",
+    "Anthropic",
+    "Google DeepMind",
+    "Meta",
+    "xAI",
+    "DeepSeek",
+    "Alibaba Qwen",
+    "Xiaomi MiMo"
+   ],
+   "business_model": "Per-token API fees and seat subscriptions, with open weights used as a distribution and ecosystem play.",
+   "structural_bottleneck": "Training compute, post-training talent and holding a lead while list prices fall.",
+   "question_to_watch": "Does the open-weight gap keep narrowing, and does it matter once price per task is near zero?",
+   "sources": [
+    {
+     "label": "Claude Opus 5.5 pricing",
+     "url": "https://www.anthropic.com/claude-opus-5-5"
+    },
+    {
+     "label": "MiMo-V2.6",
+     "url": "https://thenextweb.com/news/xiaomi-mimo-v2-6-open-weight-model-anthropic-distillation"
+    }
+   ]
+  },
+  {
+   "name": "Enablers and tools",
+   "subtitle": "Software that turns a model into something a team can ship.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "shifts"
+    }
+   ],
+   "bottleneck_now": "Independence. Cursor went to SpaceX, Hugging Face is going to Nvidia and Turso went to Supabase, so tooling is being absorbed upward.",
+   "players": [
+    "Cursor",
+    "Cognition",
+    "Hugging Face",
+    "LangChain",
+    "Vercel",
+    "Atlassian Rovo"
+   ],
+   "business_model": "Developer subscriptions, usage fees and platform bundles that sit between the model and the product.",
+   "structural_bottleneck": "Evaluation, reliability and permissions for agents that act, plus being squeezed by the model vendors.",
+   "question_to_watch": "Do coding-agent tools stay independent, or are they absorbed by the labs and the chip vendors?",
+   "sources": [
+    {
+     "label": "SpaceX completes Cursor deal, Bloomberg Law",
+     "url": "https://news.bgov.com/mergers-and-acquisitions/spacex-completes-its-60-billion-cursor-acquisition"
+    }
+   ]
+  },
+  {
+   "name": "Applications",
+   "subtitle": "Products that sell finished work to a business or a consumer.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "bottleneck_now": "Proof of return. Large rounds went to EliseAI, Armadin and Instinct, and the open question is retention and deployment capacity.",
+   "players": [
+    "EliseAI",
+    "Armadin",
+    "Instinct",
+    "Harvey",
+    "Sierra",
+    "Abridge",
+    "Cursor"
+   ],
+   "business_model": "Seat plus usage pricing, drifting toward outcome-based pricing for agentic work.",
+   "structural_bottleneck": "Proving return on investment, distribution into the enterprise, and margin squeezed by model costs.",
+   "question_to_watch": "Which pricing model wins for agents, the seat, the task or the outcome?",
+   "sources": [
+    {
+     "label": "EliseAI round, Fortune",
+     "url": "https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/"
+    }
+   ]
+  },
+  {
+   "name": "Capital",
+   "subtitle": "Who pays for the build, and on what terms.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "bottleneck_now": "Concentration. A few names can raise at will while the rest of the stack leans on debt and strategic money.",
+   "players": [
+    "Sequoia",
+    "a16z",
+    "Benchmark",
+    "Coatue",
+    "GIC",
+    "Nvidia",
+    "Amazon",
+    "Google"
+   ],
+   "business_model": "Equity at rising marks, strategic money from suppliers, and a growing share of asset-backed debt.",
+   "structural_bottleneck": "Concentration in a handful of labs, and the cost of debt for data centre builders.",
+   "question_to_watch": "Does a $1.4 trillion mark for OpenAI hold, and what does it do to everyone priced against it?",
+   "sources": [
+    {
+     "label": "Anthropic Series H, Crunchbase",
+     "url": "https://news.crunchbase.com/ai/anthropic-nears-1t-valuation-65b-seriesh/"
+    }
+   ]
+  },
+  {
+   "name": "Rules and policy",
+   "subtitle": "Law, export control and standards that gate deployment.",
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "shifts"
+    }
+   ],
+   "bottleneck_now": "Jurisdiction. The EU is fixing dates for transparency, and in the US federal action and state law are in open conflict.",
+   "players": [
+    "EU AI Office",
+    "US Commerce and BIS",
+    "US DOJ",
+    "California",
+    "Colorado Attorney General",
+    "China CAC",
+    "UK AI Security Institute"
+   ],
+   "business_model": "Compliance cost for deployers, licensing for exporters, and disclosure duties for model developers.",
+   "structural_bottleneck": "Fragmentation across jurisdictions and unresolved federal versus state authority in the US.",
+   "question_to_watch": "Do the courts let federal action override state AI laws before the EU deadlines bite?",
+   "sources": [
+    {
+     "label": "EU Digital Omnibus, Lewis Silkin",
+     "url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo"
+    }
+   ]
+  }
+ ],
+ "compute": {
+  "asof": "2026-10-11",
+  "gpu": [
+   {
+    "id": "lambda-h100",
+    "provider": "Lambda",
+    "gpu": "H100",
+    "label": "Lambda H100",
+    "sku": "NVIDIA H100 SXM",
+    "scope": "On-demand, self-serve. Size not stated on page",
+    "billing_unit": "per GPU-hour",
+    "gpus_per_instance": null,
+    "instance_price_usd": null,
+    "price_per_gpu_hour_usd": 3.99,
+    "conditions": "Excludes tax. Confirm instance size before ordering.",
+    "source_type": "official",
+    "source_url": "https://lambda.ai/pricing",
+    "match_sku": [
+     "h100sxm"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "nebius-h100",
+    "provider": "Nebius",
+    "gpu": "H100",
+    "label": "Nebius H100",
+    "sku": "NVIDIA HGX H100",
+    "scope": "Published list, region not stated",
+    "billing_unit": "per GPU-hour",
+    "gpus_per_instance": null,
+    "instance_price_usd": null,
+    "price_per_gpu_hour_usd": 4.5,
+    "conditions": "Effective 1 Oct 2026, previously $3.85. Excludes tax. Commit discounts up to 35%.",
+    "source_type": "official",
+    "source_url": "https://nebius.com/prices",
+    "match_sku": [
+     "hgxh100"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "coreweave-h100",
+    "provider": "CoreWeave",
+    "gpu": "H100",
+    "label": "CoreWeave H100",
+    "sku": "NVIDIA HGX H100, 8 GPU",
+    "scope": "North America, Europe the same",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 49.24,
+    "price_per_gpu_hour_usd": 6.16,
+    "conditions": "Per-GPU figure is instance price divided by 8.",
+    "source_type": "official",
+    "source_url": "https://www.coreweave.com/pricing",
+    "match_sku": [
+     "hgxh100"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "aws-p5",
+    "provider": "AWS",
+    "gpu": "H100",
+    "label": "AWS p5",
+    "sku": "p5.48xlarge, 8 GPU, 192 vCPU",
+    "scope": "US East (N. Virginia)",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 55.04,
+    "price_per_gpu_hour_usd": 6.88,
+    "conditions": "On-demand. Mirror last updated 11 Oct 2026.",
+    "source_type": "secondary",
+    "source_url": "https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1",
+    "match_sku": [
+     "p548xlarge"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "google-a3-high",
+    "provider": "Google Cloud",
+    "gpu": "H100",
+    "label": "Google A3 High",
+    "sku": "a3-highgpu-8g, 8 GPU",
+    "scope": "Region not stated on page",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 88.49,
+    "price_per_gpu_hour_usd": 11.06,
+    "conditions": "Default on-demand model. Excludes disks and networking.",
+    "source_type": "official",
+    "source_url": "https://cloud.google.com/products/compute/pricing/accelerator-optimized",
+    "match_sku": [
+     "a3highgpu8g"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "google-a3-mega",
+    "provider": "Google Cloud",
+    "gpu": "H100",
+    "label": "Google A3 Mega",
+    "sku": "a3-megagpu-8g, 8 GPU",
+    "scope": "Region not stated on page",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 93.4,
+    "price_per_gpu_hour_usd": 11.68,
+    "conditions": "A3 Mega. Default on-demand model.",
+    "source_type": "official",
+    "source_url": "https://cloud.google.com/products/compute/pricing/accelerator-optimized",
+    "match_sku": [
+     "a3megagpu8g"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "azure-nd-h100-v5",
+    "provider": "Microsoft Azure",
+    "gpu": "H100",
+    "label": "Azure ND H100 v5",
+    "sku": "Standard_ND96isr_H100_v5, 8 GPU",
+    "scope": "East US, Linux pay-as-you-go",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 98.32,
+    "price_per_gpu_hour_usd": 12.29,
+    "conditions": "Mirror data dated 7 Oct 2026. Other regions cost more.",
+    "source_type": "secondary",
+    "source_url": "https://cloudprice.net/vm/Standard_ND96isr_H100_v5",
+    "match_sku": [
+     "nd96isrh100v5"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "nebius-h200",
+    "provider": "Nebius",
+    "gpu": "H200",
+    "label": "Nebius H200",
+    "sku": "NVIDIA HGX H200",
+    "scope": "Published list, region not stated",
+    "billing_unit": "per GPU-hour",
+    "gpus_per_instance": null,
+    "instance_price_usd": null,
+    "price_per_gpu_hour_usd": 5.4,
+    "conditions": "Effective 1 Oct 2026, previously $4.50. Excludes tax.",
+    "source_type": "official",
+    "source_url": "https://nebius.com/prices",
+    "match_sku": [
+     "hgxh200"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "coreweave-h200",
+    "provider": "CoreWeave",
+    "gpu": "H200",
+    "label": "CoreWeave H200",
+    "sku": "NVIDIA HGX H200, 8 GPU",
+    "scope": "North America, Europe the same",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 50.44,
+    "price_per_gpu_hour_usd": 6.31,
+    "conditions": "Per-GPU figure is instance price divided by 8.",
+    "source_type": "official",
+    "source_url": "https://www.coreweave.com/pricing",
+    "match_sku": [
+     "hgxh200"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "google-a3-ultra",
+    "provider": "Google Cloud",
+    "gpu": "H200",
+    "label": "Google A3 Ultra",
+    "sku": "a3-ultragpu-8g, 8 GPU",
+    "scope": "Region not stated on page",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 84.81,
+    "price_per_gpu_hour_usd": 10.6,
+    "conditions": "A3 Ultra. Default on-demand model.",
+    "source_type": "official",
+    "source_url": "https://cloud.google.com/products/compute/pricing/accelerator-optimized",
+    "match_sku": [
+     "a3ultragpu8g"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "lambda-b200",
+    "provider": "Lambda",
+    "gpu": "B200",
+    "label": "Lambda B200",
+    "sku": "NVIDIA B200 SXM6",
+    "scope": "On-demand, self-serve. Size not stated on page",
+    "billing_unit": "per GPU-hour",
+    "gpus_per_instance": null,
+    "instance_price_usd": null,
+    "price_per_gpu_hour_usd": 6.69,
+    "conditions": "Excludes tax. 1-Click Clusters cost more and need a term.",
+    "source_type": "official",
+    "source_url": "https://lambda.ai/pricing",
+    "match_sku": [
+     "b200sxm6",
+     "b200"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "nebius-b200",
+    "provider": "Nebius",
+    "gpu": "B200",
+    "label": "Nebius B200",
+    "sku": "NVIDIA HGX B200",
+    "scope": "Published list, region not stated",
+    "billing_unit": "per GPU-hour",
+    "gpus_per_instance": null,
+    "instance_price_usd": null,
+    "price_per_gpu_hour_usd": 8.5,
+    "conditions": "Effective 1 Oct 2026, previously $7.15. Excludes tax.",
+    "source_type": "official",
+    "source_url": "https://nebius.com/prices",
+    "match_sku": [
+     "hgxb200"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "coreweave-b200",
+    "provider": "CoreWeave",
+    "gpu": "B200",
+    "label": "CoreWeave B200",
+    "sku": "NVIDIA HGX B200, 8 GPU",
+    "scope": "North America, Europe the same",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 68.8,
+    "price_per_gpu_hour_usd": 8.6,
+    "conditions": "Per-GPU figure is instance price divided by 8.",
+    "source_type": "official",
+    "source_url": "https://www.coreweave.com/pricing",
+    "match_sku": [
+     "hgxb200"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "google-a4-high",
+    "provider": "Google Cloud",
+    "gpu": "B200",
+    "label": "Google A4 High",
+    "sku": "a4-highgpu-8g, 8 GPU",
+    "scope": "Region not stated on page",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 64.44,
+    "price_per_gpu_hour_usd": 8.06,
+    "conditions": "A4 High. Default on-demand model.",
+    "source_type": "official",
+    "source_url": "https://cloud.google.com/products/compute/pricing/accelerator-optimized",
+    "match_sku": [
+     "a4highgpu8g"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "aws-p6-b200",
+    "provider": "AWS",
+    "gpu": "B200",
+    "label": "AWS p6 B200",
+    "sku": "p6-b200.48xlarge, 8 GPU",
+    "scope": "US East, as reported",
+    "billing_unit": "per instance-hour",
+    "gpus_per_instance": 8,
+    "instance_price_usd": 113.93,
+    "price_per_gpu_hour_usd": 14.24,
+    "conditions": "Reported by a pricing guide updated 3 Oct 2026. Treat as indicative.",
+    "source_type": "secondary",
+    "source_url": "https://www.spheron.network/blog/nvidia-b200-cloud-pricing-2026/",
+    "match_sku": [
+     "p6b200"
+    ],
+    "checked": "2026-10-11"
+   }
+  ],
+  "storage": [
+   {
+    "id": "nebius-object-storage-standard",
+    "provider": "Nebius",
+    "product": "Object Storage, Standard",
+    "billing_unit": "per GiB-month",
+    "price_per_month_usd": 0.0147,
+    "egress": "$0.0150 per GiB",
+    "conditions": "Volume tier. Billed in GiB.",
+    "source_type": "official",
+    "source_url": "https://nebius.com/prices",
+    "match_sku": [
+     "standard"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "cloudflare-r2-r2-standard",
+    "provider": "Cloudflare R2",
+    "product": "R2 Standard",
+    "billing_unit": "per GB-month",
+    "price_per_month_usd": 0.015,
+    "egress": "$0 to the internet",
+    "conditions": "Free tier of 10 GB-month. Class A ops $4.50 per million, Class B $0.36 per million.",
+    "source_type": "official",
+    "source_url": "https://developers.cloudflare.com/r2/pricing/",
+    "match_sku": [
+     "r2standard",
+     "standard"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "google-cloud-cloud-storage-standard-us-central1",
+    "provider": "Google Cloud",
+    "product": "Cloud Storage Standard, us-central1",
+    "billing_unit": "per GiB-month (derived)",
+    "price_per_month_usd": 0.02,
+    "egress": "Not captured",
+    "conditions": "Page lists $0.000027397 per GiB-hour. Multiplied by 730 hours.",
+    "source_type": "official",
+    "source_url": "https://cloud.google.com/storage/pricing",
+    "match_sku": [
+     "uscentral1"
+    ],
+    "checked": "2026-10-11"
+   },
+   {
+    "id": "google-cloud-cloud-storage-standard-us-multi-region",
+    "provider": "Google Cloud",
+    "product": "Cloud Storage Standard, US multi-region",
+    "billing_unit": "per GiB-month (derived)",
+    "price_per_month_usd": 0.026,
+    "egress": "Not captured",
+    "conditions": "Page lists $0.000035616 per GiB-hour. Multiplied by 730 hours.",
+    "source_type": "official",
+    "source_url": "https://cloud.google.com/storage/pricing",
+    "match_sku": [
+     "multiregion",
+     "usmulti"
+    ],
+    "checked": "2026-10-11"
+   }
+  ],
+  "provider_slots": {
+   "Lambda": 1,
+   "Nebius": 2,
+   "AWS": 3,
+   "CoreWeave": 4,
+   "Google Cloud": 5,
+   "Microsoft Azure": 6
+  },
+  "spread_models": [
+   "H100",
+   "H200",
+   "B200"
+  ]
+ },
+ "price_history": {
+  "H100": {
+   "series": [
+    {
+     "provider": "Lambda",
+     "row_id": "lambda-h100",
+     "points": [
+      {
+       "date": "2023-08-02",
+       "price_per_gpu_hour_usd": 2.59,
+       "type": "official",
+       "note": "8x H100 SXM on-demand launch rate, per GPU.",
+       "source_url": "https://lambda.ai/blog/lambda-cloud-deploys-on-demand-nvidia-hgx-h100-with-8x-h100-sxm-instances",
+       "source_label": "Lambda blog, 2 Aug 2023"
+      },
+      {
+       "date": "2026-07-13",
+       "price_per_gpu_hour_usd": 3.99,
+       "type": "secondary",
+       "note": "H100 SXM per GPU, captured July 2026 from lambda.ai/instances. Instance size not stated.",
+       "source_url": "https://gpusmith.com/articles/h100-rental-price-history-trends",
+       "source_label": "GPUSmith, 13 Jul 2026"
+      },
+      {
+       "date": "2026-10-11",
+       "price_per_gpu_hour_usd": 3.99,
+       "type": "official",
+       "note": "H100 SXM on-demand, instance size not stated on the page.",
+       "source_url": "https://lambda.ai/pricing",
+       "source_label": "Lambda pricing, checked 11 Oct 2026"
+      }
+     ]
+    },
+    {
+     "provider": "Nebius",
+     "row_id": "nebius-h100",
+     "points": [
+      {
+       "date": "2024-10-29",
+       "price_per_gpu_hour_usd": 2.95,
+       "type": "official",
+       "note": "Standard on-demand rate beyond a $1.50 first-1,000-hours promotion.",
+       "source_url": "https://nebius.com/blog/posts/h100-explorer-tier",
+       "source_label": "Nebius blog, 29 Oct 2024"
+      },
+      {
+       "date": "2026-06-05",
+       "price_per_gpu_hour_usd": 3.85,
+       "type": "secondary",
+       "note": "Press report of a rise from $2.95 to $3.85. Effective date not given, so the report date is used.",
+       "source_url": "https://www.boerse-express.com/news/articles/nebius-aktie-h100-miete-steigt-auf-385-dollar-913702",
+       "source_label": "Boerse Express, 5 Jun 2026"
+      },
+      {
+       "date": "2026-10-01",
+       "price_per_gpu_hour_usd": 4.5,
+       "type": "official",
+       "note": "Rate in the column headed Effective October 1, 2026.",
+       "source_url": "https://nebius.com/prices",
+       "source_label": "Nebius pricing, checked 11 Oct 2026"
+      }
+     ]
+    },
+    {
+     "provider": "AWS",
+     "row_id": "aws-p5",
+     "points": [
+      {
+       "date": "2025-05-31",
+       "price_per_gpu_hour_usd": 12.29,
+       "type": "derived",
+       "note": "Derived baseline. AWS cut P5 on-demand 44% from its 31 May 2025 prices. $55.04 per instance divided by 0.56 gives about $98.29 per instance, or $12.29 per GPU.",
+       "source_url": "https://aws.amazon.com/blogs/aws/announcing-up-to-45-price-reduction-for-amazon-ec2-nvidia-gpu-accelerated-instances/",
+       "source_label": "AWS News Blog, 5 Jun 2025"
+      },
+      {
+       "date": "2025-06-01",
+       "price_per_gpu_hour_usd": 6.88,
+       "type": "derived",
+       "note": "Derived. 44% below the baseline on the effective date of the cut, p5.48xlarge in US East divided by 8.",
+       "source_url": "https://aws.amazon.com/blogs/aws/announcing-up-to-45-price-reduction-for-amazon-ec2-nvidia-gpu-accelerated-instances/",
+       "source_label": "AWS News Blog, 5 Jun 2025"
+      },
+      {
+       "date": "2026-05-21",
+       "price_per_gpu_hour_usd": 6.88,
+       "type": "secondary",
+       "note": "p5.48xlarge us-east-1 at $55.04 per instance-hour, divided by 8.",
+       "source_url": "https://www.spheron.network/blog/aws-h100-pricing-2026/",
+       "source_label": "Spheron, 21 May 2026"
+      },
+      {
+       "date": "2026-10-11",
+       "price_per_gpu_hour_usd": 6.88,
+       "type": "secondary",
+       "note": "p5.48xlarge us-east-1 at $55.04 per instance-hour from a pricing mirror, divided by 8.",
+       "source_url": "https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1",
+       "source_label": "Holori mirror, 11 Oct 2026"
+      }
+     ]
+    },
+    {
+     "provider": "CoreWeave",
+     "row_id": "coreweave-h100",
+     "points": [
+      {
+       "date": "2026-10-11",
+       "price_per_gpu_hour_usd": 6.16,
+       "type": "official",
+       "note": "HGX H100 8-GPU instance at $49.24 per hour, divided by 8.",
+       "source_url": "https://www.coreweave.com/pricing",
+       "source_label": "CoreWeave pricing, checked 11 Oct 2026"
+      }
+     ]
+    },
+    {
+     "provider": "Google Cloud",
+     "row_id": "google-a3-high",
+     "points": [
+      {
+       "date": "2026-10-11",
+       "price_per_gpu_hour_usd": 11.06,
+       "type": "official",
+       "note": "a3-highgpu-8g at $88.49 per hour, divided by 8.",
+       "source_url": "https://cloud.google.com/products/compute/pricing/accelerator-optimized",
+       "source_label": "Google Cloud pricing, checked 11 Oct 2026"
+      }
+     ]
+    },
+    {
+     "provider": "Microsoft Azure",
+     "row_id": "azure-nd-h100-v5",
+     "points": [
+      {
+       "date": "2026-10-07",
+       "price_per_gpu_hour_usd": 12.29,
+       "type": "secondary",
+       "note": "Standard_ND96isr_H100_v5 East US Linux at $98.32 per hour, divided by 8.",
+       "source_url": "https://cloudprice.net/vm/Standard_ND96isr_H100_v5",
+       "source_label": "Cloudprice mirror, 7 Oct 2026"
+      }
+     ]
+    }
+   ],
+   "index": {
+    "name": "Neocloud median (Silicon Data index)",
+    "source_url": "https://www.silicondata.com/blog/h100-rental-price-over-time",
+    "source_label": "Silicon Data, 21 Dec 2025",
+    "segments": [
+     {
+      "from": "2024-07-01",
+      "to": "2024-12-31",
+      "price_per_gpu_hour_usd": 2.99
+     },
+     {
+      "from": "2025-01-01",
+      "to": "2025-05-31",
+      "price_per_gpu_hour_usd": 3.5
+     },
+     {
+      "from": "2025-06-01",
+      "to": "2025-06-30",
+      "price_per_gpu_hour_usd": 3.29
+     },
+     {
+      "from": "2025-07-01",
+      "to": "2025-12-31",
+      "price_per_gpu_hour_usd": 3.33
+     }
+    ],
+    "label": {
+     "date": "2025-02-01",
+     "value": 3.5,
+     "dy": -8
+    }
+   },
+   "annotations": [
+    {
+     "date": "2025-06-01",
+     "value": 9.6,
+     "dx": 7,
+     "dy": 3,
+     "anchor": "start",
+     "text": "AWS P5 cut, 44%"
+    },
+    {
+     "date": "2026-10-01",
+     "value": 4.5,
+     "dx": -6,
+     "dy": -16,
+     "anchor": "end",
+     "text": "Nebius +17%"
+    }
+   ]
+  },
+  "H200": {
+   "series": [],
+   "index": null,
+   "annotations": []
+  },
+  "B200": {
+   "series": [],
+   "index": null,
+   "annotations": []
+  }
+ },
+ "models": [
+  {
+   "model": "GPT-6 (Astra, Sol, Luna)",
+   "developer": "OpenAI",
+   "released": "2026-09-03 to 2026-10-07",
+   "released_sort": "2026-09-03",
+   "license": "Closed",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "tightens"
+    }
+   ],
+   "note": "Sol on paid ChatGPT tiers, Luna on Free and Go, with generative interface from 7 Oct. Astra date is Secondary.",
+   "source_url": "https://openai.com/index/gpt-6-for-everyone/",
+   "source_label": "OpenAI"
+  },
+  {
+   "model": "Claude Opus 5.5",
+   "developer": "Anthropic",
+   "released": "2026-09-22",
+   "released_sort": "2026-09-22",
+   "license": "Closed",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    },
+    {
+     "constraint": "rules",
+     "direction": "tightens"
+    }
+   ],
+   "note": "$4 in and $20 out per million tokens. 30% faster than Opus 5. Biology work needs a verification program.",
+   "source_url": "https://www.anthropic.com/claude-opus-5-5",
+   "source_label": "Anthropic"
+  },
+  {
+   "model": "Claude Sonnet 5.5",
+   "developer": "Anthropic",
+   "released": "2026-09-28",
+   "released_sort": "2026-09-28",
+   "license": "Closed",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    }
+   ],
+   "note": "$2 in and $10 out. Vendor reports up to 30% lower cost per task than Sonnet 5.",
+   "source_url": "https://www.anthropic.com/claude-sonnet-5-5",
+   "source_label": "Anthropic"
+  },
+  {
+   "model": "Claude Haiku 5.5",
+   "developer": "Anthropic",
+   "released": "2026-10-07",
+   "released_sort": "2026-10-07",
+   "license": "Closed",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    }
+   ],
+   "note": "$0.10 in and $0.50 out under 100k tokens. First Haiku with adjustable effort.",
+   "source_url": "https://www.anthropic.com/claude-haiku-5-5",
+   "source_label": "Anthropic"
+  },
+  {
+   "model": "Gemini 3.8 Flash",
+   "developer": "Google",
+   "released": "2026-09-02",
+   "released_sort": "2026-09-02",
+   "license": "Closed",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "shifts"
+    }
+   ],
+   "note": "Introductory $0.75 in and $3.75 out through 31 Dec 2026. Cyber variant is restricted.",
+   "source_url": "https://letsdatascience.com/news/google-adds-gemini-38-flash-to-ai-mode-51fb6349",
+   "source_label": "Lets Data Science"
+  },
+  {
+   "model": "DeepSeek-V4.1-Flash",
+   "developer": "DeepSeek",
+   "released": "2026-09-10",
+   "released_sort": "2026-09-10",
+   "license": "Open weights listed",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    }
+   ],
+   "note": "552B mixture of experts, multimodal. Claims one quarter of the HBM for KV cache. License not confirmed.",
+   "source_url": "https://api-docs.deepseek.com/news/news260910",
+   "source_label": "DeepSeek"
+  },
+  {
+   "model": "MiMo-V2.6 Pro",
+   "developer": "Xiaomi",
+   "released": "2026-09-22",
+   "released_sort": "2026-09-22",
+   "license": "Open (MIT)",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    },
+    {
+     "constraint": "rules",
+     "direction": "shifts"
+    }
+   ],
+   "note": "1.02T total, 42B active, 1M context. Top open-weight score on the Artificial Analysis index. Anthropic names Xiaomi in a distillation report.",
+   "source_url": "https://thenextweb.com/news/xiaomi-mimo-v2-6-open-weight-model-anthropic-distillation",
+   "source_label": "The Next Web"
+  },
+  {
+   "model": "Claude Fable 5.1",
+   "developer": "Anthropic",
+   "released": "2026-09-03",
+   "released_sort": "2026-09-03",
+   "license": "Closed",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "shifts"
+    },
+    {
+     "constraint": "rules",
+     "direction": "tightens"
+    }
+   ],
+   "note": "Higher tier than Opus 5.5 per Anthropic, with cyber and biology safeguards. Release date is Secondary.",
+   "source_url": "https://thursdai.news/releases/2026-09",
+   "source_label": "ThursdAI tracker"
+  }
+ ],
+ "deals": [
+  {
+   "date": "2026-08-14",
+   "company": "Cursor (acquired by SpaceX)",
+   "amount_musd": 60000,
+   "amount_label": "$60B",
+   "stage": "Acquisition, closed",
+   "kind": "acquisition",
+   "leads": "SpaceX (acquirer)",
+   "valuation": "Price $60B",
+   "rationale": "Help SpaceX close ground on Anthropic and OpenAI in AI coding tools.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "shifts"
+    }
+   ],
+   "source_url": "https://news.bgov.com/mergers-and-acquisitions/spacex-completes-its-60-billion-cursor-acquisition",
+   "source_label": "Bloomberg Law"
+  },
+  {
+   "date": "2026-09-03",
+   "company": "Hugging Face (to Nvidia)",
+   "amount_musd": 13000,
+   "amount_label": "About $13B",
+   "stage": "Acquisition, announced",
+   "kind": "acquisition",
+   "leads": "Nvidia (acquirer)",
+   "valuation": "Price about $13B",
+   "rationale": "Protect open-source AI developers who rely on the platform. Includes up to $1B retention equity.",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "shifts"
+    },
+    {
+     "constraint": "capital",
+     "direction": "shifts"
+    }
+   ],
+   "source_url": "https://news.bloomberglaw.com/crypto/nvidia-agrees-to-13-billion-deal-for-ai-platform-hugging-face",
+   "source_label": "Bloomberg Law"
+  },
+  {
+   "date": "2026-09-28",
+   "company": "Instinct",
+   "amount_musd": 1000,
+   "amount_label": "$1B",
+   "stage": "Series C",
+   "kind": "round",
+   "leads": "Sequoia, Benchmark, Coatue",
+   "valuation": "$10B",
+   "rationale": "Reach more people and keep developing a personal agent that handles everyday tasks.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "source_url": "https://techfundingnews.com/ai-agent-instinct-jumps-to-10b-valuation-with-1b-led-by-sequoia-benchmark-and-coatue/",
+   "source_label": "TechFundingNews"
+  },
+  {
+   "date": "2026-09-29",
+   "company": "OpenAI (reported talks)",
+   "amount_musd": 30000,
+   "amount_label": "At least $30B",
+   "stage": "Reported, not closed",
+   "kind": "reported",
+   "leads": "Not named",
+   "valuation": "About $1.4T pre-money",
+   "rationale": "Early-stage talks reported by Bloomberg. Terms could change.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "source_url": "https://whbl.com/2026/09/29/openai-targets-30-billion-funding-at-1-4-trillion-valuation-bloomberg-news-reports/",
+   "source_label": "Reuters via WHBL"
+  },
+  {
+   "date": "2026-09-29",
+   "company": "EliseAI",
+   "amount_musd": 350,
+   "amount_label": "$350M",
+   "stage": "Primary growth round",
+   "kind": "round",
+   "leads": "a16z, Bessemer",
+   "valuation": "$4B",
+   "rationale": "Product, engineering and sales hiring and a second engineering hub in San Francisco. ARR above $200M.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "source_url": "https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/",
+   "source_label": "Fortune"
+  },
+  {
+   "date": "2026-09-29",
+   "company": "General Intuition",
+   "amount_musd": 220,
+   "amount_label": "$220M",
+   "stage": "Growth round",
+   "kind": "round",
+   "leads": "No lead named. Valor, Atreides, Seven Seven Six, Point72, Khosla, General Catalyst",
+   "valuation": "$6.2B",
+   "rationale": "Hire more AI researchers to build world models that generate synthetic training video.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "source_url": "https://siliconangle.com/2026/09/29/world-model-startup-general-intuition-closes-220m-investment/",
+   "source_label": "SiliconANGLE"
+  },
+  {
+   "date": "2026-10-01",
+   "company": "Armadin",
+   "amount_musd": 255.5,
+   "amount_label": "$255.5M",
+   "stage": "Series B",
+   "kind": "round",
+   "leads": "a16z, Accel",
+   "valuation": "Over $2.5B",
+   "rationale": "Scale its agentic offensive-security platform, research and go-to-market.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "source_url": "https://www.helpnetsecurity.com/2026/10/01/armadin-raises-255-5-million-funding/",
+   "source_label": "Help Net Security"
+  },
+  {
+   "date": "2026-10-01",
+   "company": "GMI Cloud",
+   "amount_musd": 668,
+   "amount_label": "$668M ($223M equity, $445M debt)",
+   "stage": "Series B plus credit facility",
+   "kind": "round",
+   "leads": "ARCHIV (equity), CTBC (debt)",
+   "valuation": "Not stated",
+   "rationale": "Expand GPU capacity in the US, Taiwan and Asia-Pacific and grow inference services.",
+   "tags": [
+    {
+     "constraint": "compute",
+     "direction": "loosens"
+    },
+    {
+     "constraint": "capital",
+     "direction": "loosens"
+    }
+   ],
+   "source_url": "https://theaiinsider.tech/2026/10/01/gmi-cloud-raises-over-660m-to-accelerate-global-ai-infrastructure-expansion/",
+   "source_label": "AI Insider"
+  },
+  {
+   "date": "2026-10-02",
+   "company": "Supabase (and Turso)",
+   "amount_musd": 150,
+   "amount_label": "$150M",
+   "stage": "Growth round plus acquisition",
+   "kind": "round",
+   "leads": "GIC",
+   "valuation": "Not stated",
+   "rationale": "Agent demand for instantly provisioned databases. Turso terms undisclosed.",
+   "tags": [
+    {
+     "constraint": "capital",
+     "direction": "shifts"
+    }
+   ],
+   "source_url": "https://www.citybiz.co/article/913344/supabase-raises-150-million-acquires-turso-to-scale-agentic-databases/",
+   "source_label": "CityBiz"
+  }
+ ],
+ "policies": [
+  {
+   "date": "2026-07-27",
+   "jurisdiction": "European Union",
+   "status": "In force",
+   "deadline": "2026-12-02",
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "shifts"
+    }
+   ],
+   "title": "AI Act Digital Omnibus changes the high-risk timetable",
+   "body": "Stand-alone high-risk systems such as hiring and credit scoring move from 2 Aug 2026 to 2 Dec 2027. AI built into regulated products moves to 2 Aug 2028. Article 50 transparency duties still apply from 2 Aug 2026, with marking for earlier systems due by 2 Dec 2026.",
+   "source_url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo",
+   "source_label": "Lewis Silkin"
+  },
+  {
+   "date": "2025-12",
+   "jurisdiction": "United States, federal",
+   "status": "In effect",
+   "deadline": null,
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "shifts"
+    }
+   ],
+   "title": "Executive order targets state AI laws",
+   "body": "Sets up a DOJ litigation task force to challenge state AI laws, asks Commerce to classify them, and ties some federal funding to state AI rules. It carves out child safety, compute infrastructure and state procurement. Exact signing date was not confirmed in the source.",
+   "source_url": "https://www.pillsburylaw.com/en/news-and-insights/new-executive-order-national-policy-framework-artificial-intelligence.html",
+   "source_label": "Pillsbury"
+  },
+  {
+   "date": "2026-06-02",
+   "jurisdiction": "United States, federal",
+   "status": "In effect",
+   "deadline": null,
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "shifts"
+    }
+   ],
+   "title": "Voluntary pre-release access to frontier models",
+   "body": "Creates a voluntary framework for developers to give government early access to frontier models up to 30 days before release. It also directs Homeland Security to issue cyber directives and build a classified benchmark for cyber capability. Reported by a law firm and not checked against the order text.",
+   "source_url": "https://www.kslaw.com/insights/articles/white-house-issues-executive-order-on-ai-innovation-and-security",
+   "source_label": "King and Spalding"
+  },
+  {
+   "date": "2026-05-14",
+   "jurisdiction": "Colorado",
+   "status": "Contested",
+   "deadline": "2027-01-01",
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "shifts"
+    }
+   ],
+   "title": "Colorado rewrites its AI Act and a court pauses enforcement",
+   "body": "SB 26-189 replaces the 2024 law, drops impact assessments and applies to decisions made on or after 1 Jan 2027, with attorney general enforcement only. A federal court order in X.AI v. Weiser bars enforcement while an injunction request is pending, and its wording may reach the new law.",
+   "source_url": "https://www.vaquill.ai/blog/colorado-ai-act-explained-from-the-statute",
+   "source_label": "Vaquill"
+  },
+  {
+   "date": "2026-01-01",
+   "jurisdiction": "California",
+   "status": "In effect",
+   "deadline": null,
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "tightens"
+    }
+   ],
+   "title": "SB 53 frontier transparency law is live",
+   "body": "Requires developers training models above 10^26 FLOPs to publish transparency information. AB 2013 on training-data disclosure took effect the same day.",
+   "source_url": "https://www.layer3labs.io/guides/state-ai-laws-by-state",
+   "source_label": "Layer3 Labs"
+  },
+  {
+   "date": "2026-01-15",
+   "jurisdiction": "Export controls",
+   "status": "In effect",
+   "deadline": null,
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "loosens"
+    },
+    {
+     "constraint": "compute",
+     "direction": "shifts"
+    }
+   ],
+   "title": "H200 and MI325X to China move to case-by-case licensing",
+   "body": "BIS replaced a presumption of denial for chips under set performance and bandwidth thresholds. Conditions include a 25 percent surcharge, independent US lab testing and a cap at half of US volumes. Reported by a secondary source.",
+   "source_url": "https://introl.com/blog/bis-h200-mi325x-export-policy-china-case-by-case-review-2026",
+   "source_label": "Introl"
+  },
+  {
+   "date": "2026-01-01",
+   "jurisdiction": "China",
+   "status": "In effect",
+   "deadline": null,
+   "tags": [
+    {
+     "constraint": "rules",
+     "direction": "tightens"
+    }
+   ],
+   "title": "Cybersecurity Law gains its first AI clause",
+   "body": "The amended law adds AI governance for the first time, covering support for compute and training data alongside ethics, risk assessment and security oversight. Fines run up to RMB 10 million for critical infrastructure operators.",
+   "source_url": "https://www.reedsmith.com/articles/china-approves-major-amendments-to-cybersecurity-law/",
+   "source_label": "Reed Smith"
+  }
+ ],
+ "policy_timeline": [
+  {
+   "date": "2025-08-02",
+   "label": "EU GPAI duties apply",
+   "source_url": "https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/",
+   "label_to_left": false
+  },
+  {
+   "date": "2026-01-01",
+   "label": "CA SB 53 and China CSL AI clause",
+   "source_url": "https://www.layer3labs.io/guides/state-ai-laws-by-state",
+   "label_to_left": false
+  },
+  {
+   "date": "2026-01-15",
+   "label": "BIS H200 licence rule",
+   "source_url": "https://introl.com/blog/bis-h200-mi325x-export-policy-china-case-by-case-review-2026",
+   "label_to_left": false
+  },
+  {
+   "date": "2026-06-02",
+   "label": "US frontier model EO",
+   "source_url": "https://www.kslaw.com/insights/articles/white-house-issues-executive-order-on-ai-innovation-and-security",
+   "label_to_left": false
+  },
+  {
+   "date": "2026-07-27",
+   "label": "EU Omnibus in force",
+   "source_url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo",
+   "label_to_left": false
+  },
+  {
+   "date": "2026-08-02",
+   "label": "EU Art. 50 applies",
+   "source_url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo",
+   "label_to_left": false
+  },
+  {
+   "date": "2026-12-02",
+   "label": "Art. 50(2) marking, older systems",
+   "source_url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo",
+   "label_to_left": false
+  },
+  {
+   "date": "2027-01-01",
+   "label": "Colorado SB 26-189 applies",
+   "source_url": "https://www.vaquill.ai/blog/colorado-ai-act-explained-from-the-statute",
+   "label_to_left": false
+  },
+  {
+   "date": "2027-12-02",
+   "label": "EU Annex III high-risk",
+   "source_url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo",
+   "label_to_left": false
+  },
+  {
+   "date": "2028-08-02",
+   "label": "EU Annex I high-risk",
+   "source_url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo",
+   "label_to_left": true
+  }
+ ],
+ "notes": {
+  "history": "Points are published list prices on the dates shown. The line is held flat between observations, so a step marks the date a change was first observed and not necessarily the date it happened. Filled dots come from an official page or announcement. Hollow dots are secondary mirrors, press reports or derived values and say so on hover. Lambda's 2023 point is an 8-GPU instance rate and its 2026 points are from a page that does not state instance size. Hyperscaler rates are per-instance prices divided by eight.",
+  "spread": "Hatched bars with an outline are Secondary, taken from a third-party mirror of the provider list. Hyperscaler bars are instance price divided by eight. No H200 rate was verified for AWS, Azure or Lambda, and no B200 rate for Azure.",
+  "gpu_table": "Hyperscalers price one 8-GPU instance per hour, so the per-GPU column divides the instance rate by eight. Lambda and Nebius price each GPU. Prices exclude tax, networking and storage. The AWS B200 row is indicative only.",
+  "storage_table": "Nebius bills per GiB and Google per GiB-hour, converted here at 730 hours a month. Cloudflare bills per GB. AWS S3 Standard is not shown because its rate could not be verified from the official page on the check date.",
+  "models": "Prices are per million tokens as published by each developer. Benchmark figures are vendor reported unless stated. Release dates marked Secondary come from a release tracker and not from the developer.",
+  "capital": "Deal size on a log scale. Bars start at $100M, so lengths compare ratios and not absolute amounts. The OpenAI row is a press report of early talks and not a closed round.",
+  "policy": "Effective and deadline dates on a single axis. The shaded band is the next 90 days from the issue date."
+ },
+ "about": {
+  "name": "Esther Suebsubanant",
+  "monogram": "ES",
+  "paragraphs": [
+   "MBA, Stanford Graduate School of Business, Class of 2027, with a dual MS through Stanford EIPER focused on AI, compute and energy. Previously built the corporate venture capital function at Thai Union Ventures from scratch with a $30M mandate and led corporate strategy work. Before that, M&A advisory at The Quant Group across 30+ cross-border transactions, and a start at L'Oréal as a management trainee across finance, commercial and supply chain. Conducts independent research on agentic AI SaaS through Stanford's RDI. Fluent in Thai and English, connected to Bangkok and the Bay Area. Interested in AI product management and in founding an agentic AI company."
+  ],
+  "thread": "Corporate venture and M&A work taught her to follow the scarce input in every deal, and her EIPER work on compute and energy applies the same habit to the AI stack."
+ },
+ "methodology": "AI Radar is a human-curated weekly brief. Figures are transcribed from official pages on the check date, and each carries its source link. Where an official page draws prices only in the browser, the figure comes from a third-party mirror and is marked Secondary. Chart points that are derived are marked as derived. Anything that could not be confirmed is left out and not estimated. Prices change without notice, so verify in the provider console before purchasing.",
+ "changelog": [
+  {
+   "date": "2026-10-11",
+   "title": "Issue 01",
+   "items": [
+    "Rebuilt around the Bottleneck Thesis, with a constraint board and a constraint tag on every signal, deal, model, rule and layer.",
+    "Added the H100 price history chart, the cross-provider spread chart, the deal size chart and the rules timeline.",
+    "Nebius rates reflect the 1 October 2026 column on its price page."
+   ]
+  }
+ ],
+ "price_sources": [
+  {
+   "id": "nebius",
+   "provider": "Nebius",
+   "url": "https://nebius.com/prices",
+   "source_type": "official",
+   "kinds": [
+    "gpu",
+    "storage"
+   ],
+   "gpus": null,
+   "hint": "The page may show more than one price column. Return the rate in effect today and put any future-dated column in conditions."
+  },
+  {
+   "id": "lambda",
+   "provider": "Lambda",
+   "url": "https://lambda.ai/pricing",
+   "source_type": "official",
+   "kinds": [
+    "gpu"
+   ],
+   "gpus": null,
+   "hint": "On-demand instances only. Ignore 1-Click Clusters and reserved rates."
+  },
+  {
+   "id": "coreweave",
+   "provider": "CoreWeave",
+   "url": "https://www.coreweave.com/pricing",
+   "source_type": "official",
+   "kinds": [
+    "gpu"
+   ],
+   "gpus": null,
+   "hint": "On-demand HGX instances. Return the per-instance hourly price and the GPU count."
+  },
+  {
+   "id": "google-accelerator",
+   "provider": "Google Cloud",
+   "url": "https://cloud.google.com/products/compute/pricing/accelerator-optimized",
+   "source_type": "official",
+   "kinds": [
+    "gpu"
+   ],
+   "gpus": null,
+   "hint": "Default on-demand consumption model only. Return the machine type as sku_or_instance."
+  },
+  {
+   "id": "google-storage",
+   "provider": "Google Cloud",
+   "url": "https://cloud.google.com/storage/pricing",
+   "source_type": "official",
+   "kinds": [
+    "storage"
+   ],
+   "gpus": null,
+   "hint": "Standard storage class. Return us-central1 and US multi-region in the product name."
+  },
+  {
+   "id": "cloudflare-r2",
+   "provider": "Cloudflare R2",
+   "url": "https://developers.cloudflare.com/r2/pricing/",
+   "source_type": "official",
+   "kinds": [
+    "storage"
+   ],
+   "gpus": null,
+   "hint": "R2 Standard storage class."
+  },
+  {
+   "id": "aws-p5-mirror",
+   "provider": "AWS",
+   "url": "https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1",
+   "source_type": "secondary",
+   "kinds": [
+    "gpu"
+   ],
+   "gpus": [
+    "H100"
+   ],
+   "hint": "Third-party mirror of AWS on-demand US East (N. Virginia) pricing for p5.48xlarge."
+  },
+  {
+   "id": "aws-p6-mirror",
+   "provider": "AWS",
+   "url": "https://www.spheron.network/blog/nvidia-b200-cloud-pricing-2026/",
+   "source_type": "secondary",
+   "kinds": [
+    "gpu"
+   ],
+   "gpus": [
+    "B200"
+   ],
+   "hint": "Third-party guide. Only the AWS p6-b200.48xlarge on-demand rate matters."
+  },
+  {
+   "id": "azure-mirror",
+   "provider": "Microsoft Azure",
+   "url": "https://cloudprice.net/vm/Standard_ND96isr_H100_v5",
+   "source_type": "secondary",
+   "kinds": [
+    "gpu"
+   ],
+   "gpus": [
+    "H100"
+   ],
+   "hint": "Third-party mirror of Azure pay-as-you-go Linux pricing in East US for Standard_ND96isr_H100_v5."
+  }
+ ]
+}

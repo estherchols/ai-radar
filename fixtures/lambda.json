@@ -1,0 +1,29 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "gpu_prices": [
+    {
+     "gpu_model": "H100",
+     "sku_or_instance": "NVIDIA H100 SXM",
+     "price_usd": 3.99,
+     "billing_unit": "per_gpu_hour",
+     "conditions": ""
+    },
+    {
+     "gpu_model": "B200",
+     "sku_or_instance": "NVIDIA B200 SXM6",
+     "price_usd": 6.69,
+     "billing_unit": "per_gpu_hour",
+     "conditions": ""
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://lambda.ai/pricing",
+   "url": "https://lambda.ai/pricing",
+   "statusCode": 200
+  }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "gpu_prices": [
+    {
+     "gpu_model": "H100",
+     "sku_or_instance": "p5.48xlarge",
+     "price_usd": 55.04,
+     "billing_unit": "per_instance_hour",
+     "conditions": "",
+     "gpus_per_instance": 8
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1",
+   "url": "https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1",
+   "statusCode": 200
+  }
+ }
+}

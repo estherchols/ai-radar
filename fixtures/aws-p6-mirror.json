@@ -1,0 +1,23 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "gpu_prices": [
+    {
+     "gpu_model": "B200",
+     "sku_or_instance": "p6-b200.48xlarge",
+     "price_usd": 113.93,
+     "billing_unit": "per_instance_hour",
+     "conditions": "",
+     "gpus_per_instance": 8
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://www.spheron.network/blog/nvidia-b200-cloud-pricing-2026/",
+   "url": "https://www.spheron.network/blog/nvidia-b200-cloud-pricing-2026/",
+   "statusCode": 200
+  }
+ }
+}

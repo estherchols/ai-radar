@@ -1,0 +1,50 @@
+{
+ "success": true,
+ "data": {
+  "json": {
+   "gpu_prices": [
+    {
+     "gpu_model": "H100",
+     "sku_or_instance": "NVIDIA HGX H100",
+     "price_usd": 4.25,
+     "billing_unit": "per_gpu_hour",
+     "conditions": "On-demand"
+    },
+    {
+     "gpu_model": "H200",
+     "sku_or_instance": "NVIDIA HGX H200",
+     "price_usd": 5.4,
+     "billing_unit": "per_gpu_hour",
+     "conditions": ""
+    },
+    {
+     "gpu_model": "B200",
+     "sku_or_instance": "NVIDIA HGX B200",
+     "price_usd": 8.5,
+     "billing_unit": "per_gpu_hour",
+     "conditions": ""
+    },
+    {
+     "gpu_model": "GB200",
+     "sku_or_instance": "NVIDIA GB200 NVL72",
+     "price_usd": 14.0,
+     "billing_unit": "per_gpu_hour",
+     "conditions": "Contact sales for availability"
+    }
+   ],
+   "storage_prices": [
+    {
+     "product": "Object Storage, Standard",
+     "price_per_gb_month": 0.0147,
+     "unit": "per GiB-month"
+    }
+   ]
+  },
+  "metadata": {
+   "title": "Pricing",
+   "sourceURL": "https://nebius.com/prices",
+   "url": "https://nebius.com/prices",
+   "statusCode": 200
+  }
+ }
+}
