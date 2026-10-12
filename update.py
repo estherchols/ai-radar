@@ -86,7 +86,7 @@ def build_schema(kinds):
                 "type": "object",
                 "properties": {
                     "product": {"type": "string", "description": "Product, storage class and location as printed on the page."},
-                    "price_per_gb_month": {"type": "number", "description": "Price in US dollars exactly as printed."},
+                    "price_per_gb_month": {"type": "number", "description": "Price in US dollars exactly as printed, keeping every decimal place. A per-hour rate such as 0.000027397 must be returned with all nine decimals and never rounded to 0."},
                     "unit": {"type": "string", "description": "The unit printed on the page, for example per GB-month, per GiB-month or per GiB-hour."},
                 },
                 "required": ["product", "price_per_gb_month", "unit"],
@@ -105,7 +105,7 @@ def build_prompt(src, today):
     if "gpu" in src["kinds"]:
         parts.append("For GPU compute return gpu_model, sku_or_instance, price_usd, billing_unit (per_gpu_hour or per_instance_hour) and gpus_per_instance when the price is per instance.")
     if "storage" in src["kinds"]:
-        parts.append("For object storage return the standard storage class only, with product, price_per_gb_month and the printed unit.")
+        parts.append("For object storage return the standard storage class only, with product, price_per_gb_month and the printed unit. Include the location or region in the product name, for example 'Standard storage, us-central1' and 'Standard storage, US multi-region', so each entry is distinct. Keep the full decimal precision of the printed price. If the page quotes per GiB-hour, return that tiny number with every decimal and set unit to per GiB-hour. Never return 0 for a price that is printed.")
     if src.get("hint"):
         parts.append(src["hint"])
     return " ".join(parts)
@@ -266,6 +266,9 @@ def apply_storage(data, src, items, today, rep, max_change):
             price = float(it["price_per_gb_month"])
         except (KeyError, TypeError, ValueError):
             rep.warnings.append("%s: skipped a storage entry with no usable price" % src["id"])
+            continue
+        if price <= 0:
+            rep.warnings.append("%s: storage %s returned a zero or negative price, skipped (check extraction precision)" % (src["id"], it.get("product", "?")))
             continue
         prod = norm(it.get("product"))
         cands = [r for r in rows if r["provider"] == src["provider"] and any(t in prod for t in r["match_sku"])]
