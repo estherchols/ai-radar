@@ -4,160 +4,344 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Esther Suebsubanant</title>
-<meta name="description" content="Esther Suebsubanant. Stanford GSB MBA and EIPER MS, former corporate venture and M&A, writing AI Radar, a weekly brief on the AI stack.">
+<meta name="description" content="Esther Suebsubanant. Corporate venture and M&A, now an MBA and MS candidate at Stanford working on AI products, compute and capital. Writes AI Radar.">
+<meta property="og:title" content="Esther Suebsubanant">
+<meta property="og:description" content="Corporate venture and M&A, now at Stanford working on AI products, compute and capital. Writes AI Radar.">
+<meta property="og:url" content="https://esthercs.dev/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23132033'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%235fb3aa' stroke-width='2.5'/%3E%3Ccircle cx='32' cy='32' r='10' fill='none' stroke='%235fb3aa' stroke-width='2.5' opacity='.6'/%3E%3Ccircle cx='44' cy='24' r='4' fill='%23e3a248'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #fafaf8; --panel: #ffffff; --ink: #15171a; --dim: #6b7077; --line: #d9dbd6; --accent: #1f4fd8; --accent-ink: #ffffff; --soft: #f1f1ec;
-  --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --paper: #ffffff; --mist: #f4f6f8; --ink: #132033; --slate: #4a5567; --dim: #6c7686; --line: #e1e6ec;
+  --teal: #0f6b63; --teal-soft: #e6f2f0; --amber: #b45309; --indigo: #3f4fb8;
+  --ring: #c9d4dd; --dot: #e7ebf0;
+  --sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #101214; --panel: #16191c; --ink: #e8e8e4; --dim: #9a9fa6; --line: #2a2e33; --accent: #7aa2ff; --accent-ink: #0b0d10; --soft: #1c2024; }
+  :root { --paper: #0e1622; --mist: #131d2b; --ink: #e9eef4; --slate: #b4bfcc; --dim: #8a96a6; --line: #243244;
+    --teal: #5fb3aa; --teal-soft: #15302f; --amber: #e3a248; --indigo: #8f9cf0; --ring: #2b3a4d; --dot: #1a2534; }
 }
-:root[data-theme="dark"] { --bg: #101214; --panel: #16191c; --ink: #e8e8e4; --dim: #9a9fa6; --line: #2a2e33; --accent: #7aa2ff; --accent-ink: #0b0d10; --soft: #1c2024; }
 * { box-sizing: border-box; }
-html, body { margin: 0; }
-body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
-a { color: var(--accent); }
-.mono { font-family: var(--mono); }
-.dim { color: var(--dim); }
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-header.top { border-bottom: 1px solid var(--line); background: var(--bg); }
-.bar { display: flex; align-items: center; gap: 18px; height: 48px; }
-.word { font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
-.bar nav { margin-left: auto; display: flex; gap: 16px; }
-.bar nav a { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); text-decoration: none; }
-.bar nav a:hover { color: var(--ink); }
-.tbtn { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; background: none; border: 1px solid var(--line); color: var(--dim); padding: 4px 8px; border-radius: 2px; cursor: pointer; }
-main.wrap { padding: 40px 16px 56px; }
-.grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-@media (min-width: 820px) { .grid { grid-template-columns: 7fr 5fr; } }
-.pb { background: var(--panel); border: 1px solid var(--line); border-radius: 2px; padding: 22px 24px; }
-.pb.full { grid-column: 1 / -1; }
-.ph { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
-.ph h2, .ph .lab { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; color: var(--dim); margin: 0; }
-h1 { font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -.01em; margin: 0 0 6px; }
-.role { font-size: 16px; color: var(--dim); margin: 0 0 20px; }
-p { margin: 0 0 12px; }
-.mark { width: 56px; height: 56px; border: 1px solid var(--line); border-radius: 2px; display: grid; place-items: center; font-family: var(--mono); font-size: 18px; letter-spacing: .08em; color: var(--ink); background: var(--soft); margin-bottom: 18px; }
-.btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-.btn { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; color: var(--ink); border: 1px solid var(--line); padding: 9px 14px; border-radius: 2px; background: var(--panel); }
-.btn.pri { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-.btn:hover { border-color: var(--ink); }
-.btn.pri:hover { filter: brightness(1.08); }
-dl { display: grid; grid-template-columns: 110px 1fr; gap: 8px 14px; margin: 0; }
-dt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); padding-top: 3px; }
-dd { margin: 0; }
-dd a { word-break: break-all; }
-.list { margin: 0; padding: 0; list-style: none; }
-.list li { padding: 10px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 2px 16px; }
-.list li:first-child { border-top: 0; padding-top: 0; }
-@media (min-width: 600px) { .list li { grid-template-columns: 150px 1fr; } }
-.list .k { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); padding-top: 3px; }
-.radar { display: grid; gap: 14px; }
-.radar .big { font-size: 22px; font-weight: 600; line-height: 1.25; }
-.stamps { font-family: var(--mono); font-size: 11px; color: var(--dim); display: flex; gap: 14px; flex-wrap: wrap; }
-.pills { display: flex; gap: 6px; flex-wrap: wrap; }
-.pill { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; border: 1px solid var(--line); padding: 3px 8px; border-radius: 2px; color: var(--ink); background: var(--soft); }
-footer { border-top: 1px solid var(--line); padding: 18px 16px 28px; font-family: var(--mono); font-size: 11px; color: var(--dim); display: flex; flex-wrap: wrap; gap: 8px 18px; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px); background-size: 24px 24px; }
+a { color: var(--teal); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+.site { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.site .wrap { display: flex; align-items: center; height: 60px; gap: 24px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 16px; }
+.brand svg { flex: none; }
+.site nav { margin-left: auto; display: flex; align-items: center; gap: 22px; }
+.site nav a { color: var(--slate); text-decoration: none; font-size: 15px; }
+.site nav a:hover { color: var(--ink); }
+.site nav a.cta { color: var(--paper); background: var(--ink); padding: 8px 14px; border-radius: 6px; font-weight: 500; }
+@media (max-width: 560px) { .site nav a.hide-s { display: none; } .brand .nm { display: none; } }
+
+main > section { padding: 88px 0; border-top: 1px solid var(--line); }
+main > section.hero { border-top: 0; padding: 72px 0 64px; }
+.kicker { font-size: 14px; color: var(--teal); font-weight: 600; margin: 0 0 6px; }
+h2 { font-size: 34px; line-height: 1.15; letter-spacing: -.02em; font-weight: 700; margin: 0 0 14px; }
+.lead { color: var(--slate); max-width: 62ch; margin: 0 0 36px; }
+
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+@media (min-width: 860px) { .hero-grid { grid-template-columns: 1.25fr 1fr; gap: 48px; } }
+.who { font-weight: 600; font-size: 17px; margin: 0; }
+.what { color: var(--dim); font-size: 15px; margin: 2px 0 22px; }
+h1 { font-size: clamp(38px, 6vw, 58px); line-height: 1.05; letter-spacing: -.035em; font-weight: 700; margin: 0 0 22px; }
+.intro { color: var(--slate); font-size: 17px; max-width: 54ch; margin: 0 0 18px; }
+.status { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink); background: var(--teal-soft); padding: 7px 12px; border-radius: 999px; }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--teal) 22%, transparent); flex: none; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); }
+.stats b { display: block; font-size: 28px; letter-spacing: -.02em; font-weight: 700; font-variant-numeric: tabular-nums; }
+.stats span { color: var(--dim); font-size: 14px; line-height: 1.35; display: block; }
+@media (max-width: 520px) { .stats b { font-size: 22px; } .stats span { font-size: 13px; } }
+
+.radar { position: relative; width: min(100%, 380px); aspect-ratio: 1; margin: 0 auto; }
+.radar svg.scope { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.scope .rng { fill: none; stroke: var(--ring); stroke-width: 1; }
+.scope .axis { stroke: var(--ring); stroke-width: 1; }
+.scope .sweep { transform-origin: 200px 200px; opacity: 0; }
+.radar.go .sweep { animation: sweep 2.4s cubic-bezier(.45,.05,.3,1) .3s 1 forwards; }
+@keyframes sweep { 0% { opacity: 0; transform: rotate(-90deg); } 10% { opacity: .9; } 85% { opacity: .9; } 100% { opacity: 0; transform: rotate(270deg); } }
+.blip, .blip-label { opacity: 0; }
+.radar.go .blip, .radar.go .blip-label { animation: blip .5s ease-out forwards; }
+@keyframes blip { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .radar.go .sweep { animation: none; } .blip, .blip-label, .radar.go .blip, .radar.go .blip-label { opacity: 1; animation: none; } }
+.portrait { position: absolute; left: 50%; top: 50%; width: 46%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; overflow: hidden;
+  background: var(--ink); color: var(--paper); display: grid; place-items: center; box-shadow: 0 0 0 6px var(--paper), 0 0 0 7px var(--line); }
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait .mono-mark { font-size: 44px; font-weight: 700; letter-spacing: -.02em; }
+.blip-label { position: absolute; font-size: 13px; line-height: 1.25; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 9px; white-space: nowrap; color: var(--ink); text-decoration: none; }
+.blip-label strong { font-weight: 600; }
+.blip-label span { color: var(--dim); display: block; font-size: 12px; }
+.blip-label:hover { border-color: var(--ink); }
+.legend { display: none; list-style: none; margin: 16px auto 0; padding: 0; max-width: 340px; }
+.legend li { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.legend li:first-child { border-top: 0; }
+.legend i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.legend b { font-weight: 600; }
+.legend span { color: var(--dim); }
+@media (max-width: 640px) { .blip-label { display: none; } .legend { display: block; } .radar { width: min(100%, 300px); } }
+.radar-cap { text-align: center; font-size: 13px; color: var(--dim); margin: 14px 0 0; }
+.radar-cap a { color: var(--dim); }
+
+.cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 720px) { .cards { grid-template-columns: 1fr 1fr; } }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 22px 22px 20px; display: flex; flex-direction: column; }
+.card.feature { border-color: color-mix(in srgb, var(--teal) 45%, var(--line)); }
+@media (min-width: 720px) { .card.feature, .cards > .card:last-child:nth-child(even) { grid-column: 1 / -1; } }
+.card-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.card h3 { font-size: 19px; font-weight: 700; letter-spacing: -.01em; margin: 0; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: 12.5px; color: var(--slate); background: var(--mist); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; }
+.tag.on { color: var(--teal); background: var(--teal-soft); border-color: transparent; font-weight: 500; }
+.card p { color: var(--slate); margin: 0 0 14px; font-size: 15.5px; }
+.card .links { margin-top: auto; display: flex; gap: 16px; font-size: 15px; font-weight: 500; }
+.more { margin: 26px 0 0; font-size: 15px; }
+
+.prose { font-family: var(--serif); font-size: 19px; line-height: 1.65; max-width: 62ch; color: var(--ink); }
+.prose p { margin: 0 0 18px; }
+.tl { margin-top: 48px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 28px; overflow-x: auto; padding: 16px 0 10px; scroll-snap-type: x proximity; }
+.tl > div { scroll-snap-align: start; position: relative; padding-top: 30px; }
+.tl > div::before { content: ""; position: absolute; top: 5px; left: 0; right: -28px; height: 1px; background: var(--line); }
+.tl > div:last-child::before { right: 0; }
+.tl > div::after { content: ""; position: absolute; top: 0; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--paper); border: 2px solid var(--ring); }
+.tl > div.now::after { background: var(--teal); border-color: var(--teal); }
+.tl .when { font-size: 13px; color: var(--dim); position: absolute; top: -18px; left: 0; white-space: nowrap; }
+.tl h4 { margin: 0 0 4px; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+.tl .role { font-size: 14px; color: var(--teal); font-weight: 500; margin: 0 0 8px; }
+.tl p { margin: 0; font-size: 15px; color: var(--slate); }
+.tl-note { font-size: 13px; color: var(--dim); margin: 8px 0 0; }
+
+.sk { display: grid; gap: 26px; }
+@media (min-width: 760px) { .sk { grid-template-columns: repeat(3, 1fr); } }
+.sk h3 { font-size: 15px; font-weight: 600; margin: 0 0 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 14px; padding: 5px 11px; border-radius: 6px; background: var(--mist); border: 1px solid var(--line); color: var(--ink); }
+
+.contact { background: #132033; color: #ffffff; border-radius: 14px; padding: 40px 36px; display: grid; gap: 28px; }
+@media (max-width: 600px) { .contact { padding: 28px 20px; } }
+@media (min-width: 760px) { .contact { grid-template-columns: 1.3fr 1fr; align-items: center; } }
+.contact h2 { color: #ffffff; }
+.contact p { color: rgba(255,255,255,.75); margin: 0; max-width: 46ch; }
+.contact ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.contact li a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 16px; border-radius: 8px; background: rgba(255,255,255,.08); color: #ffffff; text-decoration: none; font-weight: 500; }
+.contact li a span { color: rgba(255,255,255,.65); font-weight: 400; font-size: 14px; overflow-wrap: anywhere; text-align: right; }
+.contact li a:hover { background: rgba(255,255,255,.14); }
+.contact a:focus-visible { outline-color: #5fb3aa; }
+@media (prefers-color-scheme: dark) { .contact { background: var(--mist); border: 1px solid var(--line); } }
+footer { padding: 28px 0 44px; font-size: 14px; color: var(--dim); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 footer a { color: var(--dim); }
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="wrap bar">
-    <a class="word" href="/">esthercs.dev</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Esther Suebsubanant, home">
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#132033"/><circle cx="32" cy="32" r="20" fill="none" stroke="#5fb3aa" stroke-width="2.5"/><circle cx="32" cy="32" r="10" fill="none" stroke="#5fb3aa" stroke-width="2.5" opacity=".6"/><circle cx="44" cy="24" r="4" fill="#e3a248"/></svg>
+      <span class="nm">Esther Suebsubanant</span>
+    </a>
     <nav aria-label="Site">
-      <a href="/airadar/">AI Radar</a>
+      <a class="hide-s" href="#work">Work</a>
+      <a class="hide-s" href="#about">About</a>
       <a href="#contact">Contact</a>
+      <a class="cta" href="/airadar/">AI Radar</a>
     </nav>
-    <button class="tbtn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">THEME</button>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="grid">
-    <section class="pb" aria-labelledby="who">
-      <div class="mark" aria-hidden="true">ES</div>
-      <h1 id="who">Esther Suebsubanant</h1>
-      <p class="role">MBA and MS candidate at Stanford, expected June 2028. Graduate School of Business and EIPER, on AI, compute and energy.</p>
-      <p>I follow the scarce input. In corporate venture at Thai Union I built the fund from scratch and learned that most deals turn on who controls one resource. In M&A advisory at The Quant Group, across more than 30 cross-border transactions, the same pattern held. Now at Stanford I study agentic AI SaaS through RDI and spend most of my time on the economics of compute, capital and regulation.</p>
-      <p>I write <a href="/airadar/">AI Radar</a>, a weekly monitoring board for the AI stack, so that founders, investors and operators can see which constraint moved this week and why it matters for a decision.</p>
-      <div class="btnrow">
-        <a class="btn pri" href="mailto:esthercs@stanford.edu">Email me</a>
-        <a class="btn" href="https://www.linkedin.com/in/esther-suebsubanant" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="/airadar/">Read AI Radar</a>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="who">Esther Suebsubanant</p>
+        <p class="what">AI products, compute and capital. Stanford MBA and MS candidate.</p>
+        <h1>I find where a business is constrained, then build around it.</h1>
+        <p class="intro">M&amp;A advisory across more than 30 cross-border deals, then the first corporate venture hire at Thai Union, building a $30M fund from scratch. Now at Stanford, studying how AI really gets adopted inside companies and what it costs to run.</p>
+        <span class="status"><i aria-hidden="true"></i>Looking for AI product and forward deployed roles</span>
+        <div class="stats">
+          <div><b>$30M</b><span>Corporate venture fund built from scratch</span></div>
+          <div><b>30+</b><span>Cross-border M&amp;A transactions</span></div>
+          <div><b>~40</b><span>Interviews with teams deploying AI</span></div>
+        </div>
       </div>
-    </section>
 
-    <aside class="pb" id="contact" aria-labelledby="contact-h">
-      <div class="ph"><h2 id="contact-h">Contact</h2><span class="lab">Bay Area</span></div>
-      <dl>
-        <dt>Email</dt><dd><a href="mailto:esthercs@stanford.edu">esthercs@stanford.edu</a></dd>
-        <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/esther-suebsubanant" target="_blank" rel="noopener">linkedin.com/in/esther-suebsubanant</a></dd>
-        <dt>Location</dt><dd>Stanford, California, with roots in Bangkok</dd>
-        <dt>Languages</dt><dd>English, Thai</dd>
-        <dt>Open to</dt><dd>AI product management, forward deployed roles, and conversations about compute economics and agentic AI</dd>
-      </dl>
-    </aside>
-
-    <section class="pb full" aria-labelledby="radar-h">
-      <div class="ph"><h2 id="radar-h">AI Radar, this week</h2><span class="stamps" id="stamps"></span></div>
-      <div class="radar">
-        <div class="big" id="thesisLine">A weekly brief on the three constraints on AI. Compute, capital and rules.</div>
-        <div class="pills" id="pills"></div>
-        <p class="dim" id="radarBlurb">Every signal, price, deal and rule on the board is tagged by which constraint it moves and in which direction, with a link to the source it came from.</p>
-        <div class="btnrow" style="margin-top:4px"><a class="btn pri" href="/airadar/">Open the board</a></div>
+      <div>
+        <div class="radar" id="radar">
+          <svg class="scope" viewBox="0 0 400 400" aria-hidden="true">
+            <defs>
+              <linearGradient id="sw" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#0f6b63" stop-opacity="0"/>
+                <stop offset="1" stop-color="#0f6b63" stop-opacity=".3"/>
+              </linearGradient>
+            </defs>
+            <circle class="rng" cx="200" cy="200" r="196"/>
+            <circle class="rng" cx="200" cy="200" r="148"/>
+            <circle class="rng" cx="200" cy="200" r="100"/>
+            <line class="axis" x1="200" y1="4" x2="200" y2="396"/>
+            <line class="axis" x1="4" y1="200" x2="396" y2="200"/>
+            <path class="sweep" d="M200 200 L396 200 A196 196 0 0 0 338.6 61.4 Z" fill="url(#sw)"/>
+            <g id="blips"></g>
+          </svg>
+          <div class="portrait" id="portrait">
+            <img src="/headshot.jpg" alt="Esther Suebsubanant">
+          </div>
+          <div id="labels"></div>
+        </div>
+        <ul class="legend" id="legend"></ul>
+        <p class="radar-cap" id="radarCap">This week on <a href="/airadar/">AI Radar</a></p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="pb full" aria-labelledby="bg-h">
-      <div class="ph"><h2 id="bg-h">Background</h2></div>
-      <ul class="list">
-        <li><span class="k">Stanford GSB</span><span>MBA, with a dual MS through EIPER in AI, compute and energy. Independent research on agentic AI SaaS through Stanford RDI. Leads professional development for Women in Management, with tracks on women in investing and women in tech.</span></li>
-        <li><span class="k">Thai Union Ventures</span><span>First corporate venture capital manager. Built the CVC function from scratch under a $30M mandate and led corporate strategy work with McKinsey and Bain as the client.</span></li>
-        <li><span class="k">The Quant Group</span><span>M&A advisory across more than 30 cross-border transactions.</span></li>
-        <li><span class="k">L'Oréal</span><span>Management trainee across finance, commercial and supply chain.</span></li>
-        <li><span class="k">Thammasat University</span><span>Valedictorian. King Scholarship.</span></li>
-      </ul>
-    </section>
-  </div>
+  <section id="work">
+    <div class="wrap">
+      <p class="kicker">Work</p>
+      <h2>Things I've built.</h2>
+      <p class="lead">Tools and research, mostly about how AI gets bought, deployed and paid for.</p>
+      <div class="cards">
+        <article class="card feature">
+          <div class="card-top"><h3>AI Radar</h3><div class="tags"><span class="tag on">Live, updated weekly</span><span class="tag">Firecrawl</span><span class="tag">GitHub Actions</span><span class="tag">Data viz</span></div></div>
+          <p>A weekly board on the three things that constrain AI right now. Compute, capital and rules. Every price, deal and regulation is tagged by which one it tightens or loosens, with what it means for investors, big tech and builders. GPU prices refresh every week by scraping each provider's pricing page.</p>
+          <div class="links"><a href="/airadar/">Open the board</a><a href="https://github.com/estherchols/ai-radar" target="_blank" rel="noopener">Code</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><h3>AI adoption study</h3><div class="tags"><span class="tag">Stanford RDI</span><span class="tag">Agents</span></div></div>
+          <p>About 40 interviews with people who build and deploy AI inside companies, from Databricks to a16z-backed startups. I ran outreach, scheduling and summaries through agents I built on a VPS. The finding was that AI arrives top-down and stalls with the people who have to use it.</p>
+        </article>
+        <article class="card">
+          <div class="card-top"><h3>Anchor</h3><div class="tags"><span class="tag on">2nd runner-up</span><span class="tag">Stanford x Anthropic Hackathon</span></div></div>
+          <p>A WhatsApp-native AI companion for people caring for someone with Alzheimer's. Built on the channel caregivers already use every day, so there is nothing new to install or learn.</p>
+        </article>
+        <article class="card">
+          <div class="card-top"><h3>Kiuda Data Layer</h3><div class="tags"><span class="tag">React</span><span class="tag">Recharts</span></div></div>
+          <p>An operations and brand-intelligence dashboard prototype for a K-beauty logistics operator whose freight and warehousing data spans about 350 brands, with category benchmarks for each brand against its peers.</p>
+          <div class="links"><a href="https://github.com/estherchols/kiuda-data-layer" target="_blank" rel="noopener">Code</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><h3>DealRoom</h3><div class="tags"><span class="tag">In progress</span><span class="tag">CS 224V</span></div></div>
+          <p>AI due diligence over M&amp;A data rooms, built with Kenaj Washington for Stanford's CS 224V. The tool I wanted on every deal at The Quant Group.</p>
+        </article>
+        <article class="card">
+          <div class="card-top"><h3>Cards Against Harasser</h3><div class="tags"><span class="tag">Card game</span><span class="tag">Community</span></div></div>
+          <p>A card game for naming unacceptable behavior at work, made for the women-in-business group I founded in Bangkok. It has since spread to other companies and industries.</p>
+        </article>
+      </div>
+      <p class="more"><a href="https://github.com/estherchols" target="_blank" rel="noopener">More on GitHub</a></p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <p class="kicker">About</p>
+      <h2>How I got here.</h2>
+      <div class="prose">
+        <p>I ask a lot of questions until I can see where a business is constrained, then I build the structure around it. In M&amp;A that meant finding the one asset a deal really turned on. In corporate venture it meant building Thai Union's fund from nothing, under a $30M mandate.</p>
+        <p>At Stanford I'm adding an MS in AI, compute and energy to the MBA, because most AI products fail on the business model, not on what the technology can do. My research with Stanford RDI found the same thing inside companies. AI arrives from the top and stalls with the people who have to use it. I'm looking for AI product and forward deployed roles where closing that gap is the job.</p>
+      </div>
+      <div class="tl" role="list" aria-label="Career, most recent first">
+        <div class="now" role="listitem"><span class="when">Expected 2028</span><h4>Stanford University</h4><p class="role">MBA and MS candidate</p><p>Graduate School of Business, with an MS through EIPER in AI, compute and energy. Independent research on agentic AI SaaS with Stanford RDI. Leads professional development for Women in Management.</p></div>
+        <div role="listitem"><span class="when">Corporate venture</span><h4>Thai Union Ventures</h4><p class="role">First CVC manager</p><p>Built the corporate venture function from scratch under a $30M mandate, and led corporate strategy work with McKinsey and Bain as the client.</p></div>
+        <div role="listitem"><span class="when">M&amp;A advisory</span><h4>The Quant Group</h4><p class="role">Advisory</p><p>More than 30 cross-border transactions.</p></div>
+        <div role="listitem"><span class="when">First role</span><h4>L'Oréal</h4><p class="role">Management trainee</p><p>Rotations across finance, commercial and supply chain.</p></div>
+        <div role="listitem"><span class="when">Undergraduate</span><h4>Thammasat University</h4><p class="role">Valedictorian</p><p>King Scholarship.</p></div>
+      </div>
+      <p class="tl-note">Most recent first. Scroll sideways for earlier roles.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <p class="kicker">Skills</p>
+      <h2>What I bring.</h2>
+      <p class="lead">An investor's read on a business, with enough technical depth to see where the bottleneck is.</p>
+      <div class="sk">
+        <div><h3>Investing and strategy</h3><div class="chips"><span class="chip">Corporate venture capital</span><span class="chip">Cross-border M&amp;A</span><span class="chip">Due diligence</span><span class="chip">Valuation and modelling</span><span class="chip">Corporate strategy</span></div></div>
+        <div><h3>Product and AI</h3><div class="chips"><span class="chip">AI adoption research</span><span class="chip">Agent workflows</span><span class="chip">Go-to-market</span><span class="chip">Market mapping</span><span class="chip">Customer interviews</span></div></div>
+        <div><h3>Technical and languages</h3><div class="chips"><span class="chip">Python</span><span class="chip">React</span><span class="chip">n8n</span><span class="chip">Claude and agent tooling</span><span class="chip">Firecrawl</span><span class="chip">English</span><span class="chip">Thai</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Let's talk.</h2>
+          <p>Hiring for AI product or forward deployed work, investing in the stack, or building on it. I'm happy to compare notes.</p>
+        </div>
+        <ul>
+          <li><a href="mailto:esthercs@stanford.edu">Email <span>esthercs@stanford.edu</span></a></li>
+          <li><a href="https://www.linkedin.com/in/esther-suebsubanant" target="_blank" rel="noopener">LinkedIn <span>esther-suebsubanant</span></a></li>
+          <li><a href="/airadar/">AI Radar <span>This week's board</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="wrap">
-  <span>Esther Suebsubanant</span>
-  <a href="/airadar/">AI Radar</a>
-  <a href="mailto:esthercs@stanford.edu">esthercs@stanford.edu</a>
-  <a href="https://www.linkedin.com/in/esther-suebsubanant" target="_blank" rel="noopener">LinkedIn</a>
+<footer>
+  <div class="wrap">
+    <span>Esther Suebsubanant</span>
+    <span>Stanford, California</span>
+    <a href="https://github.com/estherchols" target="_blank" rel="noopener">GitHub</a>
+  </div>
 </footer>
 
 <script>
 (function () {
-  var root = document.documentElement;
-  try { var t = localStorage.getItem("theme"); if (t) root.setAttribute("data-theme", t); } catch (e) {}
-  document.getElementById("themeBtn").addEventListener("click", function () {
-    var dark = root.getAttribute("data-theme") === "dark" || (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
-    var next = dark ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
-  });
+  var img = document.querySelector("#portrait img");
+  function noPhoto() { if (img && img.parentNode) { var p = img.parentNode; p.removeChild(img); var s = document.createElement("span"); s.className = "mono-mark"; s.setAttribute("aria-hidden", "true"); s.textContent = "ES"; p.appendChild(s); } }
+  if (img) { if (img.complete && !img.naturalWidth) noPhoto(); else img.addEventListener("error", noPhoto); }
+
+  var radar = document.getElementById("radar"), blips = document.getElementById("blips"), labels = document.getElementById("labels");
+  var NS = "http://www.w3.org/2000/svg";
   var glyph = { tightens: "▲", loosens: "▼", shifts: "◆" };
-  fetch("/airadar/data.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-    if (!d) return;
-    var m = d.meta || {};
-    var st = document.getElementById("stamps");
-    if (st) st.textContent = "ISSUE " + (m.issue || "") + "  ·  UPDATED " + (m.updated || "");
-    var board = Array.isArray(d.board) ? d.board : [];
-    var pills = document.getElementById("pills");
-    board.forEach(function (b) {
-      var s = document.createElement("span"); s.className = "pill";
-      s.textContent = (b.name || b.id || "").toUpperCase() + " " + (glyph[b.direction] || "") + " " + (b.state || "");
-      pills.appendChild(s);
+  var color = { compute: "var(--amber)", capital: "var(--teal)", rules: "var(--indigo)" };
+  var place = { compute: [-50, .86, "r"], capital: [135, .8, "r"], rules: [38, .9, "r"] };
+  var fallback = [
+    { id: "compute", name: "Compute", direction: "tightens", state: "Tightening" },
+    { id: "capital", name: "Capital", direction: "loosens", state: "Loosening at the top" },
+    { id: "rules", name: "Rules", direction: "shifts", state: "Hardening in the EU" }
+  ];
+  function draw(board, issue) {
+    board.forEach(function (b, i) {
+      var p = place[b.id]; if (!p) return;
+      var a = p[0] * Math.PI / 180, r = 196 * p[1];
+      var x = 200 + r * Math.cos(a), y = 200 + r * Math.sin(a);
+      var g = document.createElementNS(NS, "g"); g.setAttribute("class", "blip");
+      g.style.animationDelay = (0.9 + i * 0.45) + "s"; g.style.transformOrigin = x + "px " + y + "px";
+      var halo = document.createElementNS(NS, "circle"); halo.setAttribute("cx", x); halo.setAttribute("cy", y); halo.setAttribute("r", 12); halo.setAttribute("fill", color[b.id]); halo.setAttribute("opacity", ".16");
+      var dot = document.createElementNS(NS, "circle"); dot.setAttribute("cx", x); dot.setAttribute("cy", y); dot.setAttribute("r", 5.5); dot.setAttribute("fill", color[b.id]);
+      g.appendChild(halo); g.appendChild(dot); blips.appendChild(g);
+      var l = document.createElement("a"); l.className = "blip-label"; l.href = "/airadar/#board-" + b.id;
+      l.style.animationDelay = (1.0 + i * 0.45) + "s";
+      var strong = document.createElement("strong"); strong.textContent = (b.name || b.id) + " " + (glyph[b.direction] || "");
+      var sp = document.createElement("span"); sp.textContent = String(b.state || "").split(",")[0];
+      l.appendChild(strong); l.appendChild(sp);
+      var px = x / 400 * 100, py = y / 400 * 100;
+      if (p[2] === "r") l.style.left = "calc(" + px + "% + 14px)"; else l.style.right = "calc(" + (100 - px) + "% + 14px)";
+      l.style.top = "calc(" + py + "% - 18px)";
+      labels.appendChild(l);
+      var li = document.createElement("li"); var dotEl = document.createElement("i"); dotEl.style.background = color[b.id];
+      var bb = document.createElement("b"); bb.textContent = strong.textContent; var ss = document.createElement("span"); ss.textContent = sp.textContent;
+      li.appendChild(dotEl); li.appendChild(bb); li.appendChild(ss); document.getElementById("legend").appendChild(li);
     });
-  }).catch(function () {});
+    if (issue) { var c = document.getElementById("radarCap"); c.textContent = "This week on "; var a = document.createElement("a"); a.href = "/airadar/"; a.textContent = "AI Radar"; c.appendChild(a); c.appendChild(document.createTextNode(", issue " + issue)); }
+    requestAnimationFrame(function () { radar.classList.add("go"); });
+  }
+  fetch("/airadar/data.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) { draw(d && Array.isArray(d.board) ? d.board : fallback, d && d.meta ? d.meta.issue : ""); })
+    .catch(function () { draw(fallback, ""); });
 })();
 </script>
 </body>
