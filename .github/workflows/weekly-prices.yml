@@ -23,14 +23,14 @@ jobs:
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: |
-          if [ "${{ inputs.dry_run }}" = "true" ]; then python update.py --dry-run; else python update.py; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then python airadar/update.py --dry-run; else python airadar/update.py; fi
       - name: Commit if anything moved
         if: ${{ inputs.dry_run != true }}
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "ai-radar-bot@users.noreply.github.com"
-          rm -f data.json.bak index.html.bak
+          rm -f airadar/data.json.bak airadar/index.html.bak
           if git diff --quiet; then echo "No price changes"; exit 0; fi
-          git add data.json index.html
+          git add airadar/data.json airadar/index.html
           git commit -m "Weekly price check $(date -u +%Y-%m-%d)"
           git push

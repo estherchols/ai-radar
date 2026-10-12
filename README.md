@@ -19,7 +19,7 @@ The page asks for `data.json` first. If that request fails, or if you open the f
 `update.py` keeps the built-in copy in step with `data.json` by itself. If you edit `data.json` by hand, run this once afterwards.
 
 ```
-python3 update.py --sync-only
+python3 airadar/update.py --sync-only
 ```
 
 ## Running the price updater
@@ -29,8 +29,8 @@ You need Python 3 and the `requests` package, plus a Firecrawl API key.
 ```
 pip install requests
 export FIRECRAWL_API_KEY=fc-your-key
-python3 update.py --dry-run     # prints what would change, writes nothing
-python3 update.py               # writes data.json and data.json.bak
+python3 airadar/update.py --dry-run     # prints what would change, writes nothing
+python3 airadar/update.py               # writes data.json and data.json.bak
 ```
 
 Without a key the script stops at once with exit code 2 and tells you why.
@@ -54,8 +54,8 @@ Safety rules built into the script.
 ### Testing without Firecrawl
 
 ```
-python3 update.py --fixture fixtures --dry-run --today 2026-10-18
-python3 update.py --fixture fixtures --today 2026-10-18
+python3 airadar/update.py --fixture fixtures --dry-run --today 2026-10-18
+python3 airadar/update.py --fixture fixtures --today 2026-10-18
 ```
 
 The fixtures hold hand-made responses in the shape Firecrawl returns. They include three price moves, one entry with no matching row and one source with no file. Restore the original with `cp data.json.bak data.json` afterwards.
@@ -92,12 +92,12 @@ The Silicon Data neocloud index line on the chart and the chart annotations are 
 
 ## Weekly routine
 
-1. Run `python3 update.py --dry-run` and read the diff.
-2. Run `python3 update.py` to save it. Open any source link behind a large move and confirm the number on the page.
+1. Run `python3 airadar/update.py --dry-run` and read the diff.
+2. Run `python3 airadar/update.py` to save it. Open any source link behind a large move and confirm the number on the page.
 3. Add new signals, deals, policy items and model entries by hand. Every figure needs a date and a link. Leave out anything you cannot source.
 4. Revisit the board. Say which constraint moved and why, and update the "what would flip this" line.
 5. Raise `meta.issue`, set `meta.updated` and `meta.next_issue`, and add a changelog entry for the editorial changes.
-6. Run `python3 update.py --sync-only` so the built-in copy matches.
+6. Run `python3 airadar/update.py --sync-only` so the built-in copy matches.
 7. Open `index.html` once from disk and once over http to confirm both load paths look the same, then publish.
 
 ## Notes on the Firecrawl request

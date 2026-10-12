@@ -1,0 +1,887 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Radar</title>
+<meta name="description" content="A monitoring board for the three constraints on AI, compute, capital and rules, by Esther Suebsubanant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout concept. Dense monitoring board on a 12-column grid. Hairline panels, mono numerals, three constraint tags on every item.
+   Series colors are the validated categorical order, bound to providers and never reused for tags. Light default, dark by token. */
+:root {
+  --bg: #fbfbfa;
+  --panel: #f3f2ee;
+  --panel-2: #e9e8e2;
+  --ink: #0b0b0b;
+  --ink-2: #4a4944;
+  --muted: #6b6a64;
+  --rule: #d9d8d1;
+  --rule-strong: #b9b8af;
+  --grid: #dedcd5;
+  --link: #1c5cab;
+  --focus: #2a78d6;
+  --s1: #2a78d6;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+  --s6: #008300;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0f0e; --panel: #1a1a19; --panel-2: #242423; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+    --rule: #2c2c2a; --rule-strong: #4a4a46; --grid: #2c2c2a; --link: #6da7ec; --focus: #6da7ec;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0f0e; --panel: #1a1a19; --panel-2: #242423; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+  --rule: #2c2c2a; --rule-strong: #4a4a46; --grid: #2c2c2a; --link: #6da7ec; --focus: #6da7ec;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 13px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+h1, h2, h3, h4, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+button { font-family: inherit; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--muted); }
+.tg, .tscroll, .cscroll, .tabs, .filters { position: relative; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); border-bottom: 1px solid var(--rule-strong); }
+.bar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 16px; padding: 8px 16px; max-width: 1480px; margin-inline: auto; }
+.word { font-weight: 600; font-size: 15px; letter-spacing: .12em; color: var(--ink); text-decoration: none; }
+.bar .mono { font-size: 11px; letter-spacing: .06em; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; flex: 1 1 auto; }
+.tbtn { font-size: 11px; letter-spacing: .06em; color: var(--ink-2); background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 3px 9px; cursor: pointer; }
+.tbtn:hover { color: var(--ink); border-color: var(--ink-2); }
+.sub { display: flex; gap: 2px; overflow-x: auto; padding: 0 12px; max-width: 1480px; margin-inline: auto; scrollbar-width: none; border-top: 1px solid var(--rule); }
+.sub::-webkit-scrollbar { display: none; }
+.sub a { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; padding: 6px 8px; white-space: nowrap; }
+.sub a:hover { color: var(--ink); background: var(--panel); }
+
+/* page grid */
+.page { max-width: 1480px; margin-inline: auto; padding: 12px 16px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
+.c12 { grid-column: span 12; } .c8 { grid-column: span 8; } .c7 { grid-column: span 7; } .c5 { grid-column: span 5; } .c4 { grid-column: span 4; } .c2 { grid-column: span 2; }
+.panel { background: var(--panel); border: 1px solid var(--rule-strong); border-radius: 2px; min-width: 0; display: flex; flex-direction: column; }
+.ph { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; padding: 7px 12px; border-bottom: 1px solid var(--rule-strong); }
+.ph h2 { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+.ph .asof { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: .03em; }
+.pb { padding: 12px; min-width: 0; }
+.pb.flush { padding: 0; }
+.note { font-size: 11.5px; color: var(--muted); max-width: 110ch; }
+.note b { color: var(--ink-2); font-weight: 600; }
+
+/* tags */
+.tg { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 1px 5px; color: var(--ink-2); background: var(--bg); white-space: nowrap; line-height: 1.4; }
+.tg b { font-weight: 600; color: var(--ink); }
+.tg i { font-style: normal; font-size: 9px; }
+.tags { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.pill { display: inline-flex; gap: 6px; align-items: center; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .05em; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 2px 8px; background: var(--panel); color: var(--ink-2); text-decoration: none; }
+.pill b { color: var(--ink); font-weight: 600; }
+.pill:hover { border-color: var(--ink-2); color: var(--ink); }
+.src { font-family: var(--font-mono); font-size: 10px; letter-spacing: .04em; border-radius: 2px; padding: 0 5px; border: 1px solid var(--rule-strong); color: var(--ink-2); white-space: nowrap; }
+.src.sec { border-style: dashed; color: var(--muted); }
+
+/* thesis and board */
+.thesis-body { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 16px 28px; align-items: start; }
+.thesis-body p.lead { font-size: 16px; line-height: 1.5; font-weight: 500; max-width: 90ch; }
+.legend-k { display: grid; gap: 4px; font-size: 12px; color: var(--ink-2); }
+.legend-k div { display: flex; gap: 8px; align-items: baseline; }
+.legend-k .g { font-family: var(--font-mono); width: 14px; color: var(--ink); }
+.cb-state { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.cb-state .big { font-family: var(--font-mono); font-size: 22px; font-weight: 500; line-height: 1.1; }
+.cb-state .arr { font-family: var(--font-mono); font-size: 14px; }
+.cb-line { font-size: 13.5px; font-weight: 500; margin-bottom: 10px; }
+.ev { display: grid; gap: 6px; margin-bottom: 10px; }
+.ev li { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 4px; font-size: 12.5px; color: var(--ink-2); }
+.ev li::before { content: ""; width: 5px; height: 5px; background: var(--ink-2); margin-top: 7px; }
+.flip { border-top: 1px solid var(--rule-strong); padding-top: 8px; font-size: 12.5px; color: var(--ink-2); }
+.flip b { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 2px; font-weight: 600; }
+.how { display: flex; flex-wrap: wrap; gap: 6px 24px; align-items: baseline; }
+.how p { font-size: 12.5px; color: var(--ink-2); max-width: 130ch; }
+.how b { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin-right: 10px; }
+
+/* stat tiles */
+.tile { padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tile .l { font-size: 11px; color: var(--ink-2); line-height: 1.3; }
+.tile .v { font-family: var(--font-mono); font-size: 28px; line-height: 1.1; font-weight: 500; letter-spacing: -.01em; }
+.tile .v small { font-size: 13px; color: var(--muted); font-weight: 400; margin-left: 3px; }
+.tile .s { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: .03em; margin-top: auto; padding-top: 4px; }
+
+/* charts */
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 8px; font-size: 11.5px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.sw { width: 14px; height: 0; border-top: 2px solid currentColor; display: inline-block; }
+.dotk { width: 9px; height: 9px; border-radius: 50%; border: 2px solid currentColor; display: inline-block; }
+.dotk.f { background: currentColor; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.chart text.ink { fill: var(--ink-2); }
+.chart text.lab { font-size: 11px; fill: var(--ink-2); }
+.chart .pt { cursor: pointer; outline: none; }
+.chart .pt:focus-visible .ring, .chart [tabindex]:focus-visible { stroke: var(--focus); stroke-width: 2px; }
+.chart .hit { fill: transparent; }
+.chart .brow { cursor: pointer; outline: none; }
+.chart .brow:hover .bar, .chart .brow:focus-visible .bar { opacity: .85; }
+.cscroll { overflow-x: auto; }
+.tip { position: fixed; z-index: 60; max-width: 300px; background: var(--bg); color: var(--ink); border: 1px solid var(--ink-2); border-radius: 2px; padding: 8px 10px; font-size: 12px; line-height: 1.45; box-shadow: none; }
+.tip .tt { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; color: var(--muted); margin-bottom: 2px; }
+.tip .tv { font-family: var(--font-mono); font-size: 16px; font-weight: 500; }
+.tip .tb { color: var(--ink-2); margin-top: 2px; }
+.tip a { display: inline-block; margin-top: 4px; }
+details.tv { margin-top: 10px; border-top: 1px solid var(--rule); padding-top: 8px; }
+details.tv summary { cursor: pointer; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+
+/* tables */
+.tscroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-family: var(--font-sans); font-size: 12px; line-height: 1.4; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover td { background: var(--panel-2); }
+th { font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-2); background: var(--panel-2); white-space: nowrap; border-bottom: 1px solid var(--rule-strong); }
+th button { font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; background: transparent; border: 0; padding: 0; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; }
+th button:hover { color: var(--ink); }
+th[aria-sort="ascending"], th[aria-sort="descending"] { color: var(--ink); }
+td.num, th.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.mono, td.nowrap { white-space: nowrap; }
+td.pg { font-weight: 600; font-size: 13px; }
+td .sub2 { display: block; color: var(--muted); font-size: 11px; margin-top: 1px; }
+.m-lg { min-width: 1000px; } .m-md { min-width: 780px; } .m-sm { min-width: 620px; }
+.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--rule-strong); padding: 0 12px; }
+.tab { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); background: transparent; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; cursor: pointer; margin-bottom: -1px; }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* filters */
+.filters { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 8px 12px; border-bottom: 1px solid var(--rule); align-items: center; }
+.fg { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.fg .fl { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+.chip { font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 2px 8px; cursor: pointer; }
+.chip:hover { color: var(--ink); border-color: var(--ink-2); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip .ct { opacity: .6; margin-left: 4px; }
+
+/* signal rows */
+.srow { display: grid; grid-template-columns: 82px minmax(0, 1fr) 190px; gap: 4px 16px; padding: 9px 12px; border-bottom: 1px solid var(--rule); }
+.srow:last-child { border-bottom: 0; }
+.srow:hover { background: var(--panel-2); }
+.srow .d { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.srow h3 { font-size: 13px; font-weight: 600; line-height: 1.35; }
+.srow p { font-size: 12.5px; color: var(--ink-2); max-width: 105ch; }
+.srow .mv, .srow .wy { font-size: 12.5px; color: var(--ink); max-width: 105ch; }
+.srow .mv b, .srow .wy b { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; margin-right: 6px; color: var(--muted); font-weight: 600; }
+.srow .side { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; font-size: 11.5px; }
+.srow .side .meta { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); }
+.srow .side a { display: block; }
+
+/* ecosystem */
+.lrow { border-bottom: 1px solid var(--rule); }
+.lrow:last-child { border-bottom: 0; }
+.lbtn { width: 100%; display: grid; grid-template-columns: 34px 150px 200px minmax(0, 1fr) 16px; gap: 4px 12px; align-items: baseline; text-align: left; background: transparent; border: 0; padding: 8px 12px; cursor: pointer; color: var(--ink); font-size: 12.5px; }
+.lbtn:hover { background: var(--panel-2); }
+.lbtn .ix { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.lbtn .nm { font-weight: 600; }
+.lbtn .sits { color: var(--ink-2); }
+.lbtn .ch { font-family: var(--font-mono); color: var(--muted); text-align: right; }
+.lpanel { padding: 4px 12px 14px 58px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 24px; }
+.lpanel h4 { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; font-weight: 500; }
+.lpanel p { font-size: 12.5px; color: var(--ink-2); }
+.lpanel .full { grid-column: 1 / -1; }
+.players { display: flex; flex-wrap: wrap; gap: 4px; }
+.players span { border: 1px solid var(--rule-strong); border-radius: 2px; padding: 0 6px; font-size: 12px; background: var(--bg); }
+
+/* takes */
+.take h3 { font-size: 15px; line-height: 1.35; font-weight: 600; margin: 8px 0; }
+.take p { font-size: 12.5px; color: var(--ink-2); }
+.take .chg { border-top: 1px solid var(--rule-strong); margin-top: 10px; padding-top: 8px; font-size: 12.5px; color: var(--ink-2); }
+.take .chg b { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 2px; font-weight: 600; }
+.take .ref { margin-top: 8px; font-family: var(--font-mono); font-size: 11px; }
+
+/* about, method, footer */
+.about { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; }
+.mark { width: 56px; height: 56px; border: 1px solid var(--ink-2); display: grid; place-items: center; font-family: var(--font-mono); font-size: 18px; font-weight: 500; border-radius: 2px; }
+.about p { font-size: 12.5px; color: var(--ink-2); max-width: 120ch; margin-top: 4px; }
+.about h3 { font-size: 15px; font-weight: 600; }
+.about .thread { color: var(--ink); font-weight: 500; }
+.btnrow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.btn { display: inline-block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .05em; padding: 5px 12px; border: 1px solid var(--rule-strong); border-radius: 2px; color: var(--ink); background: transparent; text-decoration: none; cursor: pointer; }
+.btn:hover { border-color: var(--ink); }
+.btn.pri { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn.pri:hover { opacity: .88; color: var(--bg); }
+.method { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 28px; }
+.method h3 { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; font-weight: 600; }
+.method p, .method li { font-size: 12.5px; color: var(--ink-2); max-width: 90ch; }
+.method ul { display: grid; gap: 4px; padding-left: 14px; list-style: square; }
+.method ul ul { margin-top: 2px; }
+.errbox { padding: 16px; border: 1px solid var(--rule-strong); margin: 16px; font-size: 13px; }
+.subrow { display: flex; flex-wrap: wrap; gap: 6px; }
+.subrow input { flex: 1 1 14rem; min-width: 0; font: inherit; font-size: 13px; color: var(--ink); background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 2px; padding: 6px 9px; }
+.subrow input::placeholder { color: var(--muted); }
+.thanks { margin-top: 6px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink); }
+.foot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 28px; align-items: start; }
+.foot h2 { font-size: 14px; font-weight: 600; }
+.foot p { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; max-width: 60ch; }
+.legal { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 10px; }
+
+@media (max-width: 1100px) {
+  .c8, .c7, .c5, .c4 { grid-column: span 12; }
+  .c2 { grid-column: span 4; }
+  .thesis-body, .method, .foot { grid-template-columns: minmax(0, 1fr); }
+  .lpanel { grid-template-columns: minmax(0, 1fr); padding-left: 12px; }
+  .lbtn { grid-template-columns: 30px minmax(0, 1fr) 16px; }
+  .lbtn .tags, .lbtn .sits { grid-column: 2; }
+  .lbtn .ch { grid-row: 1; grid-column: 3; }
+}
+@media (max-width: 640px) {
+  .pills { display: none; }
+  .c2 { grid-column: span 6; }
+  .srow { grid-template-columns: minmax(0, 1fr); }
+  .srow .side { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+  .about { grid-template-columns: minmax(0, 1fr); }
+  .bar { gap: 6px 12px; }
+  .tile .v { font-size: 24px; }
+}
+</style>
+
+<header class="top" id="top">
+  <div class="bar">
+    <a class="mono dim" href="/" aria-label="Back to esthercs.dev" style="text-decoration:none">esthercs.dev /</a><a class="word mono" href="#top" aria-label="AI Radar, back to top">AI RADAR</a>
+    <span class="mono dim" id="issueStamp"></span>
+    <span class="mono dim" id="updStamp"></span><span class="mono dim" id="chkStamp"></span>
+    <div class="pills" id="topPills" aria-label="Constraint state this week"></div>
+    <button class="tbtn mono" id="themeBtn" type="button" aria-label="Toggle light and dark theme">THEME</button>
+  </div>
+  <nav class="sub" aria-label="Sections">
+    <a href="#thesis">Thesis</a><a href="#board">Board</a><a href="#compute">Compute</a><a href="#signals">Signals</a><a href="#capital">Capital</a><a href="#models">Models</a><a href="#policy">Rules</a><a href="#map">Stack</a><a href="#take">Take</a><a href="#about">About</a><a href="#method">Method</a>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="panel c12" id="thesis" aria-labelledby="h-thesis" data-asof="1">
+    <div class="ph"><h2 id="h-thesis"></h2><span class="asof" id="thesisAsof"></span></div>
+    <div class="pb thesis-body">
+      <p class="lead" id="thesisText"></p>
+      <div class="legend-k" id="thesisKey" aria-label="Tag key"></div>
+        <div><span class="g">&#9670;</span><span><b>Shifts.</b> The input moved hands or is contested.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c12" id="board" aria-labelledby="h-board" style="display:contents">
+    <h2 class="sr" id="h-board">Constraint board</h2>
+    <div id="boardCols" style="display:contents"></div>
+  </section>
+
+  <section class="panel c12" aria-label="How to read this page">
+    <div class="pb how">
+      <p><b>How to read this page</b><span id="howText"></span></p>
+    </div>
+  </section>
+
+  <div class="c12" style="display:contents" id="tiles"></div>
+
+  <section class="panel c8" id="compute" aria-labelledby="h-hist" data-asof="compute">
+    <div class="ph"><h2 id="h-hist">H100 on-demand price history, USD per GPU-hour</h2><span class="asof" data-meta></span></div>
+    <div class="pb">
+      <div class="fg" id="histModels" style="margin-bottom:8px" hidden></div>
+      <div class="legend" id="histLegend"></div>
+      <div class="cscroll"><div id="histWrap" style="min-width:640px"></div></div>
+      <p class="note" id="noteHist"></p>
+      <details class="tv"><summary>Table view of every plotted point</summary><div class="tscroll" style="margin-top:6px"><table class="m-md" id="histTable"></table></div></details>
+    </div>
+  </section>
+
+  <section class="panel c4" id="spread" aria-labelledby="h-spread" data-asof="compute">
+    <div class="ph"><h2 id="h-spread">Spread today, USD per GPU-hour</h2><span class="asof" data-meta></span></div>
+    <div class="pb">
+      <div class="legend" id="spreadLegend"></div>
+      <div id="spreadWrap"></div>
+      <p class="note" id="noteSpread"></p>
+    </div>
+  </section>
+
+  <section class="panel c12" id="ci" aria-labelledby="h-ci" data-asof="compute">
+    <div class="ph"><h2 id="h-ci">Compute index tables</h2><span class="asof" data-meta></span></div>
+    <div class="tabs" role="tablist" aria-label="Compute index views">
+      <button class="tab" role="tab" id="tab-gpu" aria-selected="true" aria-controls="panel-gpu" type="button">GPU compute</button>
+      <button class="tab" role="tab" id="tab-sto" aria-selected="false" aria-controls="panel-sto" type="button" tabindex="-1">Object storage</button>
+    </div>
+    <h3 class="sr" id="h-ci-h">Provider price tables</h3>
+    <div id="panel-gpu" role="tabpanel" aria-labelledby="tab-gpu">
+      <div class="tscroll" tabindex="0" role="region" aria-label="GPU price table, scrolls sideways on small screens">
+        <table class="m-lg" id="gpuTable"><caption class="sr">On-demand GPU list prices checked 11 Oct 2026. Click a column header to sort.</caption><thead><tr id="gpuHead"></tr></thead><tbody id="gpuBody"></tbody></table>
+      </div>
+      <div class="pb"><p class="note" id="noteGpu"></p></div>
+    </div>
+    <div id="panel-sto" role="tabpanel" aria-labelledby="tab-sto" hidden>
+      <div class="tscroll" tabindex="0" role="region" aria-label="Storage price table, scrolls sideways on small screens">
+        <table class="m-md" id="stoTable"><caption class="sr">Object storage list prices checked 11 Oct 2026. Click a column header to sort.</caption><thead><tr id="stoHead"></tr></thead><tbody id="stoBody"></tbody></table>
+      </div>
+      <div class="pb"><p class="note" id="noteSto"></p></div>
+    </div>
+  </section>
+
+  <section class="panel c12" id="signals" aria-labelledby="h-sig" data-asof="1">
+    <div class="ph"><h2 id="h-sig">Signals desk</h2><span class="asof" data-meta></span></div>
+    <div class="filters" id="filters" role="group" aria-label="Filter signals"></div>
+    <div id="signalList" aria-live="polite"></div>
+  </section>
+
+  <section class="panel c12" id="capital" aria-labelledby="h-cap" data-asof="1">
+    <div class="ph"><h2 id="h-cap">Capital tracker, last 60 days</h2><span class="asof" data-meta></span></div>
+    <div class="pb">
+      <div class="legend" id="capLegend"></div>
+      <div class="cscroll"><div id="capWrap" style="min-width:900px"></div></div>
+      <p class="note" id="noteCap"></p>
+    </div>
+    <div class="tscroll" tabindex="0" role="region" aria-label="Capital tracker table, scrolls sideways on small screens">
+      <table class="m-lg" id="capTable"><caption class="sr">Notable AI funding rounds and acquisitions between mid August and 11 October 2026.</caption><thead><tr id="capHead"></tr></thead><tbody id="capBody"></tbody></table>
+    </div>
+  </section>
+
+  <section class="panel c12" id="models" aria-labelledby="h-mod" data-asof="1">
+    <div class="ph"><h2 id="h-mod">Model landscape</h2><span class="asof" data-meta></span></div>
+    <div class="tscroll" tabindex="0" role="region" aria-label="Model table, scrolls sideways on small screens">
+      <table class="m-lg" id="modTable"><caption class="sr">Frontier and open-weight models released in the last six weeks.</caption><thead><tr id="modHead"></tr></thead><tbody id="modBody"></tbody></table>
+    </div>
+    <div class="pb"><p class="note" id="noteMod"></p></div>
+  </section>
+
+  <section class="panel c12" id="policy" aria-labelledby="h-pol" data-asof="1">
+    <div class="ph"><h2 id="h-pol">Rules watch</h2><span class="asof" data-meta></span></div>
+    <div class="pb">
+      <div class="cscroll"><div id="polWrap" style="min-width:960px"></div></div>
+      <p class="note" id="notePol"></p>
+    </div>
+    <div class="tscroll" tabindex="0" role="region" aria-label="Policy table, scrolls sideways on small screens">
+      <table class="m-lg" id="polTable"><caption class="sr">Regulatory items affecting AI deployment.</caption><thead><tr id="polHead"></tr></thead><tbody id="polBody"></tbody></table>
+    </div>
+  </section>
+
+  <section class="panel c12" id="map" aria-labelledby="h-map" data-asof="1">
+    <div class="ph"><h2 id="h-map">Ecosystem map, eight layers</h2><span class="asof" data-meta></span></div>
+    <div id="acc"></div>
+  </section>
+
+  <section class="c12" id="take" aria-labelledby="h-take" style="display:contents">
+    <h2 class="sr" id="h-take">Esther's take</h2>
+    <div id="takes" style="display:contents"></div>
+  </section>
+
+  <section class="panel c12" id="about" aria-labelledby="h-about">
+    <div class="ph"><h2 id="h-about">About the author</h2><span class="asof" id="aboutAsof"></span></div>
+    <div class="pb about">
+      <div class="mark" id="aboutMark" aria-hidden="true"></div>
+      <div>
+        <h3 id="aboutName"></h3>
+        <div id="aboutBody"></div>
+        <div class="btnrow"><a class="btn pri" href="https://www.linkedin.com/in/esther-suebsubanant" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="mailto:esthercs@stanford.edu">Email</a><a class="btn" href="/">esthercs.dev</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel c12" id="method" aria-labelledby="h-met">
+    <div class="ph"><h2 id="h-met">Methodology and changelog</h2><span class="asof" id="methAsof"></span></div>
+    <div class="pb method">
+      <div>
+        <h3>Methodology</h3>
+        <p id="methText"></p>
+      </div>
+      <div>
+        <h3>Changelog</h3>
+        <div id="changelog"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel c12" aria-labelledby="h-sub">
+    <div class="pb foot">
+      <div>
+        <h2 id="h-sub">Subscribe to the weekly brief</h2>
+        <p>One email a week with the board, the price moves and the deals that changed a constraint.</p>
+        <div class="legal" id="legal"></div>
+      </div>
+      <div>
+        <form class="subrow" id="subForm" novalidate>
+          <label class="sr" for="subEmail">Email address</label>
+          <input type="email" id="subEmail" name="email" placeholder="you@company.com" autocomplete="email" required>
+          <button class="btn pri" type="submit">Subscribe to the weekly brief</button>
+        </form>
+        <p class="thanks" id="subMsg" role="status" hidden>Thank you. You are on the list for the next issue.</p>
+        <p class="thanks" id="subErr" role="alert" hidden>Enter a valid email address to subscribe.</p>
+        <div class="btnrow"><a class="btn" href="https://www.linkedin.com/in/esther-suebsubanant" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="mailto:esthercs@stanford.edu">Email</a><a class="btn" href="/">esthercs.dev</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+<noscript><p style="padding:16px">AI Radar needs JavaScript to draw the board.</p></noscript>
+<!-- DATA-INLINE-START -->
+<script type="application/json" id="data-inline">{"meta":{"issue":"01","updated":"2026-10-11","next_issue":"2026-10-18","author":"Esther Suebsubanant"},"last_price_check":"2026-10-11","thesis":{"title":"The Bottleneck Thesis","text":"In AI, value accrues to whoever controls the scarcest input, and the scarce input keeps moving. Right now there are three. Compute (chips, power, capacity), capital (who can fund the build), and rules (who is allowed to deploy what, where). Every item on this page is tagged by which constraint it moves and in which direction.","key":[{"direction":"tightens","text":"The input got scarcer or harder to access."},{"direction":"loosens","text":"The input got easier or cheaper to get."},{"direction":"shifts","text":"The input moved hands or is contested."}]},"how_to_read":"Each item carries a constraint tag and a direction. Read the board first, then use the filters to see which items move which constraint. Prices, deals and rules below are the evidence, and every row links to the page it came from.","board":[{"id":"compute","constraint":"compute","direction":"tightens","name":"Compute","state":"Tightening","line":"Neocloud list prices rose this month and the published H100 spread is {ratio} times.","evidence":[{"text":"Nebius lifted H100 to $4.50 and B200 to $8.50 per GPU-hour on 1 Oct, up 17 to 21 percent","url":"https://nebius.com/prices"},{"text":"One-year H100 contract index rose nearly 40 percent, from $1.70 in Oct 2025 to $2.35 in Mar 2026","url":"https://www.itiger.com/hans/news/1185188896"},{"text":"On-demand H100 runs from {lo_price} at {lo_provider} to {hi_price} at {hi_provider} ({hi_type} source)","url":"#compute"}],"flip":"Listed prices falling back to September levels for two quarters, or B200 undercutting H100 per unit of work as Blackwell supply grows."},{"id":"capital","constraint":"capital","direction":"loosens","name":"Capital","state":"Loosening at the top, concentrating","line":"Mega-rounds are getting done, and debt is carrying the infrastructure build.","evidence":[{"text":"OpenAI is reportedly seeking at least $30B at about $1.4T before new money (talks only)","url":"https://whbl.com/2026/09/29/openai-targets-30-billion-funding-at-1-4-trillion-valuation-bloomberg-news-reports/"},{"text":"Anthropic closed a $65B Series H at $965B post-money on 28 May 2026","url":"https://news.crunchbase.com/ai/anthropic-nears-1t-valuation-65b-seriesh/"},{"text":"GMI Cloud raised $668M, of which $445M was debt","url":"https://theaiinsider.tech/2026/10/01/gmi-cloud-raises-over-660m-to-accelerate-global-ai-infrastructure-expansion/"}],"flip":"A mega-round that fails to close or reprices down, or GPU-backed debt that gets harder to place."},{"id":"rules","constraint":"rules","direction":"shifts","name":"Rules","state":"Hardening in the EU, fragmenting in the US","line":"Transparency duties are fixed in Europe while US federal and state rules pull apart.","evidence":[{"text":"EU Digital Omnibus in force 27 Jul 2026. High-risk duties move to Dec 2027 and Article 50 marking lands 2 Dec 2026 for older systems","url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo"},{"text":"Colorado replaced its AI Act and a federal court order may still block enforcement","url":"https://www.vaquill.ai/blog/colorado-ai-act-explained-from-the-statute"},{"text":"A Dec 2025 US executive order directs DOJ to challenge state AI laws","url":"https://www.pillsburylaw.com/en/news-and-insights/new-executive-order-national-policy-framework-artificial-intelligence.html"}],"flip":"A federal preemption statute that ends the US patchwork, or another EU delay to Article 50."}],"signals":[{"date":"2026-10-07","category":"Models","audience":"Operators","tags":[{"constraint":"compute","direction":"loosens"}],"title":"Anthropic cuts its flagship price and ships a ten cent small model","summary":"Claude Opus 5.5 launched on 22 September at $4 input and $20 output per million tokens, down from $5 and $25 for Opus 5. Claude Haiku 5.5 followed on 7 October at $0.10 and $0.50 for prompts under 100k tokens.","moves":"The buyer's cost of capability. Per-token prices fell 20 percent at the flagship tier and the new small model starts at $0.10 per million input tokens.","why_it_matters":"Per-token prices keep falling at every tier, which squeezes any product whose only edge is access to a model.","sources":[{"label":"Opus 5.5","url":"https://www.anthropic.com/claude-opus-5-5"},{"label":"Haiku 5.5","url":"https://www.anthropic.com/claude-haiku-5-5"}]},{"date":"2026-10-07","category":"Models","audience":"Founders","tags":[{"constraint":"compute","direction":"tightens"}],"title":"GPT-6 reaches every ChatGPT tier with a generative interface","summary":"OpenAI began rolling out GPT-6 in ChatGPT on 7 October, with Sol behind paid tiers and Luna behind Free and Go. Answers can now include charts, forms and tappable buttons, and OpenAI says ChatGPT has more than 1.2 billion weekly users.","moves":"Compute demand. A 1.2 billion weekly user base on a new model keeps inference load, and so GPU demand, rising.","why_it_matters":"The interface layer is turning generative, so any team building a chat front end now competes with the model vendor's own UI.","sources":[{"label":"OpenAI","url":"https://openai.com/index/gpt-6-for-everyone/"}]},{"date":"2026-10-05","category":"Policy","audience":"Policy","tags":[{"constraint":"rules","direction":"tightens"}],"title":"OpenAI ships text watermarking ahead of an EU marking deadline","summary":"From 5 October API customers can opt in to machine-readable text watermarking, and an EU-only invisible watermark is coming to ChatGPT and Codex. The EU AI Act marking duty applies from 2 December 2026 to systems placed on the market before 2 August.","moves":"Deployment rights in the EU. Text marking is becoming a condition of shipping there.","why_it_matters":"Provenance is turning into a shipping requirement, and teams selling into Europe need a plan before December.","sources":[{"label":"OpenAI","url":"https://openai.com/index/eu-text-provenance/"},{"label":"Lewis Silkin","url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo"}]},{"date":"2026-10-02","category":"Enterprise","audience":"Founders","tags":[{"constraint":"capital","direction":"shifts"}],"title":"Supabase buys Turso and says agents create most new databases","summary":"Supabase raised $150 million led by GIC and acquired Turso, with terms undisclosed. It says about 70 percent of new databases on its platform are created by agents or AI-driven tools.","moves":"Capital toward agent-native infrastructure. The acquisition folds a database primitive into a larger platform.","why_it_matters":"Agents are becoming the primary buyer of infrastructure primitives, which changes who the product has to be designed for.","sources":[{"label":"CityBiz","url":"https://www.citybiz.co/article/913344/supabase-raises-150-million-acquires-turso-to-scale-agentic-databases/"}]},{"date":"2026-10-02","category":"Enterprise","audience":"Operators","tags":[{"constraint":"capital","direction":"shifts"}],"title":"Anthropic commits $100 million to train 10,000 deployment engineers","summary":"The Claude Frontier Academy will train Frontier Deployed Engineers through a residency run inside customer organisations. First-cohort partners include Accenture, Bain, Deloitte, McKinsey and Morgan Stanley.","moves":"Where capital goes after compute. $100M is aimed at deployment capacity, the scarce skill between a model and a production agent.","why_it_matters":"The scarce input is people who can put agents into production, and the vendors are now paying to create them.","sources":[{"label":"Anthropic","url":"https://www.anthropic.com/news/claude-frontier-academy"}]},{"date":"2026-10-01","category":"Infrastructure","audience":"Investors","tags":[{"constraint":"capital","direction":"loosens"},{"constraint":"compute","direction":"loosens"}],"title":"GMI Cloud raises $668 million, most of it debt","summary":"The GPU cloud closed a $223 million Series B led by ARCHIV with NVIDIA taking part, plus a $445 million credit facility led by CTBC. It will add capacity in the US, Taiwan and the wider Asia-Pacific region.","moves":"How the build is financed. Debt supplied $445M of the $668M, so capacity growth leans on credit.","why_it_matters":"Debt is now funding more of the GPU build than equity, which ties neocloud returns to utilisation and interest rates.","sources":[{"label":"AI Insider","url":"https://theaiinsider.tech/2026/10/01/gmi-cloud-raises-over-660m-to-accelerate-global-ai-infrastructure-expansion/"}]},{"date":"2026-10-01","category":"Infrastructure","audience":"Investors","tags":[{"constraint":"compute","direction":"tightens"}],"title":"Nebius raises GPU list prices by about a fifth","summary":"The Nebius price page now shows H100 at $4.50 per GPU-hour, up from $3.85, with H200 at $5.40, B200 at $8.50 and B300 at $9.50. Those are rises of 17 to 21 percent, effective 1 October.","moves":"Rental price of H100 to B300 capacity, up 17 to 21 percent in one step.","why_it_matters":"A neocloud lifting list prices says demand for accelerated capacity still outruns supply.","sources":[{"label":"Nebius pricing","url":"https://nebius.com/prices"}]},{"date":"2026-09-29","category":"Capital","audience":"Investors","tags":[{"constraint":"capital","direction":"loosens"}],"title":"OpenAI reportedly seeks $30 billion at a $1.4 trillion valuation","summary":"Bloomberg reported on 29 September that OpenAI is in early talks to raise at least $30 billion at about $1.4 trillion before the new money. The talks are not closed and terms could change.","moves":"The top of the capital stack. A mark near $1.4 trillion resets the reference price for every lab, if the round closes.","why_it_matters":"It sets the entry price for the frontier-lab asset class and the bar every other lab is measured against.","sources":[{"label":"Reuters via WHBL","url":"https://whbl.com/2026/09/29/openai-targets-30-billion-funding-at-1-4-trillion-valuation-bloomberg-news-reports/"}]},{"date":"2026-09-22","category":"Models","audience":"Founders","tags":[{"constraint":"compute","direction":"loosens"}],"title":"Xiaomi releases a trillion-parameter open-weight model under MIT","summary":"MiMo-V2.6 Pro has 1.02 trillion total and 42 billion active parameters, a 1 million token context, and weights on Hugging Face. Artificial Analysis scores it 46 on its Intelligence Index, the highest for an open-weight model, against 58 for Claude Opus 5.5.","moves":"Dependence on closed-model capacity. An open model within 12 index points can run on rented GPUs.","why_it_matters":"A twelve point gap to the closed frontier makes self-hosting a credible option for cost-sensitive workloads.","sources":[{"label":"The Next Web","url":"https://thenextweb.com/news/xiaomi-mimo-v2-6-open-weight-model-anthropic-distillation"}]},{"date":"2026-09-03","category":"Capital","audience":"Investors","tags":[{"constraint":"compute","direction":"shifts"},{"constraint":"capital","direction":"shifts"}],"title":"Nvidia agrees to buy Hugging Face for about $13 billion","summary":"The deal includes an equity retention program of up to $1 billion for employees who join Nvidia. Nvidia frames it as a way to protect open-source AI developers who rely on the platform.","moves":"Control of distribution. The chip vendor would own the main hub for open models.","why_it_matters":"The dominant chip vendor would own the main distribution hub for open models, a new kind of vertical integration.","sources":[{"label":"Bloomberg Law","url":"https://news.bloomberglaw.com/crypto/nvidia-agrees-to-13-billion-deal-for-ai-platform-hugging-face"}]}],"takes":[{"constraint":"compute","direction":"tightens","headline":"Compute is the binding constraint, and the owners of power and capacity keep the margin.","body":"Published H100 on-demand prices run from {lo_price} to {hi_price} per GPU-hour, a spread of {ratio} times for the same chip. Nebius lifted its list prices 17 to 21 percent on 1 October, and a one-year H100 contract index rose nearly 40 percent between October 2025 and March 2026. GMI Cloud financed most of its latest raise with debt, so capacity growth now depends on credit as much as on chips. The margin sits with whoever controls electricity, buildings and financing, because the chip is only one of three inputs.","change_my_mind":"Listed prices falling back to September levels for two quarters, or B200 undercutting H100 per unit of work as Blackwell supply grows."},{"constraint":"capital","direction":"loosens","headline":"Capital is loosening for a few names, and value in agentic software accrues to whoever owns the workflow and the outcome.","body":"Anthropic closed $65 billion at $965 billion and OpenAI is reportedly seeking $30 billion more, so money is abundant at the top. Meanwhile the price of model access keeps falling, with Opus 5.5 at 20 percent below Opus 5 and an MIT-licensed open model within 12 index points of the leader. EliseAI reports more than $200 million in annual recurring revenue by selling leasing and patient intake as finished work, and Supabase says agents create about 70 percent of its new databases. Model access is heading toward a commodity, while trust in a specific job is not.","change_my_mind":"Model vendors bundling the workflow themselves. The SpaceX purchase of Cursor is the case to watch."},{"constraint":"rules","direction":"shifts","headline":"Feasibility has stopped being the constraint, and rules and deployment capacity now decide which products become businesses.","body":"The EU marking duty for text generators lands on 2 December 2026 for systems already on the market, and OpenAI is shipping watermarking ahead of it. In the US, Colorado rewrote its AI Act while a federal court order may still block enforcement. Anthropic gates biology and cyber use behind verification programs and is putting $100 million into training deployment engineers. Instinct reached a $10 billion valuation without publishing revenue, which shows how far capital has run ahead of a proven business model.","change_my_mind":"A federal preemption statute that ends the US patchwork, or cohort data showing capability alone sustains retention without services-heavy deployment."}],"layers":[{"name":"Silicon","subtitle":"Accelerators, memory and the fabs behind them.","tags":[{"constraint":"compute","direction":"tightens"}],"bottleneck_now":"Packaging, high-bandwidth memory and export licensing decide who gets chips. Published H100 rates still differ by 3 times across providers.","players":["Nvidia","AMD","Broadcom","TSMC","Google TPU","AWS Trainium","SK hynix"],"business_model":"Sell accelerators and full systems at high margin, while hyperscalers build custom chips to cut their own bill.","structural_bottleneck":"Advanced packaging, high-bandwidth memory and the export rules that decide which chips can cross which borders.","question_to_watch":"Do custom chips take a meaningful share of inference from GPUs within two years?","sources":[{"label":"BIS case-by-case H200 rule, via Introl","url":"https://introl.com/blog/bis-h200-mi325x-export-policy-china-case-by-case-review-2026"}]},{"name":"Infrastructure","subtitle":"Clouds and data centres that rent the compute.","tags":[{"constraint":"compute","direction":"tightens"}],"bottleneck_now":"Capacity and the debt that funds it. Nebius raised list prices 17 to 21 percent and GMI Cloud leaned on $445M of credit.","players":["AWS","Microsoft Azure","Google Cloud","Oracle","CoreWeave","Nebius","Lambda","GMI Cloud"],"business_model":"Hourly GPU rental, committed capacity contracts, and managed inference on top.","structural_bottleneck":"Power, grid connection and construction time, more than the chips themselves.","question_to_watch":"Will the Nebius price rise hold, or does new Blackwell capacity pull list prices back down?","sources":[{"label":"Nebius pricing","url":"https://nebius.com/prices"}]},{"name":"Data","subtitle":"Where training data, enterprise records and agent memory live.","tags":[{"constraint":"rules","direction":"shifts"}],"bottleneck_now":"Provenance and permission. EU marking duties and training-data disclosure laws are turning data lineage into a compliance cost.","players":["Databricks","Snowflake","Scale AI","Supabase","Cloudflare","MongoDB"],"business_model":"Usage-based storage and query fees, plus paid data labelling and licensing.","structural_bottleneck":"Permissioned, high-quality and expert-labelled data, and the cost of moving it.","question_to_watch":"If agents create most new databases, who becomes the default data layer for them?","sources":[{"label":"Supabase and Turso, CityBiz","url":"https://www.citybiz.co/article/913344/supabase-raises-150-million-acquires-turso-to-scale-agentic-databases/"}]},{"name":"Foundation models","subtitle":"The labs that train the general-purpose models.","tags":[{"constraint":"compute","direction":"loosens"},{"constraint":"capital","direction":"tightens"}],"bottleneck_now":"Training cost against price. Per-token prices fell again while valuations rose, so the lead has to be refunded by capital.","players":["OpenAI","Anthropic","Google DeepMind","Meta","xAI","DeepSeek","Alibaba Qwen","Xiaomi MiMo"],"business_model":"Per-token API fees and seat subscriptions, with open weights used as a distribution and ecosystem play.","structural_bottleneck":"Training compute, post-training talent and holding a lead while list prices fall.","question_to_watch":"Does the open-weight gap keep narrowing, and does it matter once price per task is near zero?","sources":[{"label":"Claude Opus 5.5 pricing","url":"https://www.anthropic.com/claude-opus-5-5"},{"label":"MiMo-V2.6","url":"https://thenextweb.com/news/xiaomi-mimo-v2-6-open-weight-model-anthropic-distillation"}]},{"name":"Enablers and tools","subtitle":"Software that turns a model into something a team can ship.","tags":[{"constraint":"capital","direction":"shifts"}],"bottleneck_now":"Independence. Cursor went to SpaceX, Hugging Face is going to Nvidia and Turso went to Supabase, so tooling is being absorbed upward.","players":["Cursor","Cognition","Hugging Face","LangChain","Vercel","Atlassian Rovo"],"business_model":"Developer subscriptions, usage fees and platform bundles that sit between the model and the product.","structural_bottleneck":"Evaluation, reliability and permissions for agents that act, plus being squeezed by the model vendors.","question_to_watch":"Do coding-agent tools stay independent, or are they absorbed by the labs and the chip vendors?","sources":[{"label":"SpaceX completes Cursor deal, Bloomberg Law","url":"https://news.bgov.com/mergers-and-acquisitions/spacex-completes-its-60-billion-cursor-acquisition"}]},{"name":"Applications","subtitle":"Products that sell finished work to a business or a consumer.","tags":[{"constraint":"capital","direction":"loosens"}],"bottleneck_now":"Proof of return. Large rounds went to EliseAI, Armadin and Instinct, and the open question is retention and deployment capacity.","players":["EliseAI","Armadin","Instinct","Harvey","Sierra","Abridge","Cursor"],"business_model":"Seat plus usage pricing, drifting toward outcome-based pricing for agentic work.","structural_bottleneck":"Proving return on investment, distribution into the enterprise, and margin squeezed by model costs.","question_to_watch":"Which pricing model wins for agents, the seat, the task or the outcome?","sources":[{"label":"EliseAI round, Fortune","url":"https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/"}]},{"name":"Capital","subtitle":"Who pays for the build, and on what terms.","tags":[{"constraint":"capital","direction":"loosens"}],"bottleneck_now":"Concentration. A few names can raise at will while the rest of the stack leans on debt and strategic money.","players":["Sequoia","a16z","Benchmark","Coatue","GIC","Nvidia","Amazon","Google"],"business_model":"Equity at rising marks, strategic money from suppliers, and a growing share of asset-backed debt.","structural_bottleneck":"Concentration in a handful of labs, and the cost of debt for data centre builders.","question_to_watch":"Does a $1.4 trillion mark for OpenAI hold, and what does it do to everyone priced against it?","sources":[{"label":"Anthropic Series H, Crunchbase","url":"https://news.crunchbase.com/ai/anthropic-nears-1t-valuation-65b-seriesh/"}]},{"name":"Rules and policy","subtitle":"Law, export control and standards that gate deployment.","tags":[{"constraint":"rules","direction":"shifts"}],"bottleneck_now":"Jurisdiction. The EU is fixing dates for transparency, and in the US federal action and state law are in open conflict.","players":["EU AI Office","US Commerce and BIS","US DOJ","California","Colorado Attorney General","China CAC","UK AI Security Institute"],"business_model":"Compliance cost for deployers, licensing for exporters, and disclosure duties for model developers.","structural_bottleneck":"Fragmentation across jurisdictions and unresolved federal versus state authority in the US.","question_to_watch":"Do the courts let federal action override state AI laws before the EU deadlines bite?","sources":[{"label":"EU Digital Omnibus, Lewis Silkin","url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo"}]}],"compute":{"asof":"2026-10-11","gpu":[{"id":"lambda-h100","provider":"Lambda","gpu":"H100","label":"Lambda H100","sku":"NVIDIA H100 SXM","scope":"On-demand, self-serve. Size not stated on page","billing_unit":"per GPU-hour","gpus_per_instance":null,"instance_price_usd":null,"price_per_gpu_hour_usd":3.99,"conditions":"Excludes tax. Confirm instance size before ordering.","source_type":"official","source_url":"https://lambda.ai/pricing","match_sku":["h100sxm"],"checked":"2026-10-11"},{"id":"nebius-h100","provider":"Nebius","gpu":"H100","label":"Nebius H100","sku":"NVIDIA HGX H100","scope":"Published list, region not stated","billing_unit":"per GPU-hour","gpus_per_instance":null,"instance_price_usd":null,"price_per_gpu_hour_usd":4.5,"conditions":"Effective 1 Oct 2026, previously $3.85. Excludes tax. Commit discounts up to 35%.","source_type":"official","source_url":"https://nebius.com/prices","match_sku":["hgxh100"],"checked":"2026-10-11"},{"id":"coreweave-h100","provider":"CoreWeave","gpu":"H100","label":"CoreWeave H100","sku":"NVIDIA HGX H100, 8 GPU","scope":"North America, Europe the same","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":49.24,"price_per_gpu_hour_usd":6.16,"conditions":"Per-GPU figure is instance price divided by 8.","source_type":"official","source_url":"https://www.coreweave.com/pricing","match_sku":["hgxh100"],"checked":"2026-10-11"},{"id":"aws-p5","provider":"AWS","gpu":"H100","label":"AWS p5","sku":"p5.48xlarge, 8 GPU, 192 vCPU","scope":"US East (N. Virginia)","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":55.04,"price_per_gpu_hour_usd":6.88,"conditions":"On-demand. Mirror last updated 11 Oct 2026.","source_type":"secondary","source_url":"https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1","match_sku":["p548xlarge"],"checked":"2026-10-11"},{"id":"google-a3-high","provider":"Google Cloud","gpu":"H100","label":"Google A3 High","sku":"a3-highgpu-8g, 8 GPU","scope":"Region not stated on page","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":88.49,"price_per_gpu_hour_usd":11.06,"conditions":"Default on-demand model. Excludes disks and networking.","source_type":"official","source_url":"https://cloud.google.com/products/compute/pricing/accelerator-optimized","match_sku":["a3highgpu8g"],"checked":"2026-10-11"},{"id":"google-a3-mega","provider":"Google Cloud","gpu":"H100","label":"Google A3 Mega","sku":"a3-megagpu-8g, 8 GPU","scope":"Region not stated on page","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":93.4,"price_per_gpu_hour_usd":11.68,"conditions":"A3 Mega. Default on-demand model.","source_type":"official","source_url":"https://cloud.google.com/products/compute/pricing/accelerator-optimized","match_sku":["a3megagpu8g"],"checked":"2026-10-11"},{"id":"azure-nd-h100-v5","provider":"Microsoft Azure","gpu":"H100","label":"Azure ND H100 v5","sku":"Standard_ND96isr_H100_v5, 8 GPU","scope":"East US, Linux pay-as-you-go","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":98.32,"price_per_gpu_hour_usd":12.29,"conditions":"Mirror data dated 7 Oct 2026. Other regions cost more.","source_type":"secondary","source_url":"https://cloudprice.net/vm/Standard_ND96isr_H100_v5","match_sku":["nd96isrh100v5"],"checked":"2026-10-11"},{"id":"nebius-h200","provider":"Nebius","gpu":"H200","label":"Nebius H200","sku":"NVIDIA HGX H200","scope":"Published list, region not stated","billing_unit":"per GPU-hour","gpus_per_instance":null,"instance_price_usd":null,"price_per_gpu_hour_usd":5.4,"conditions":"Effective 1 Oct 2026, previously $4.50. Excludes tax.","source_type":"official","source_url":"https://nebius.com/prices","match_sku":["hgxh200"],"checked":"2026-10-11"},{"id":"coreweave-h200","provider":"CoreWeave","gpu":"H200","label":"CoreWeave H200","sku":"NVIDIA HGX H200, 8 GPU","scope":"North America, Europe the same","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":50.44,"price_per_gpu_hour_usd":6.31,"conditions":"Per-GPU figure is instance price divided by 8.","source_type":"official","source_url":"https://www.coreweave.com/pricing","match_sku":["hgxh200"],"checked":"2026-10-11"},{"id":"google-a3-ultra","provider":"Google Cloud","gpu":"H200","label":"Google A3 Ultra","sku":"a3-ultragpu-8g, 8 GPU","scope":"Region not stated on page","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":84.81,"price_per_gpu_hour_usd":10.6,"conditions":"A3 Ultra. Default on-demand model.","source_type":"official","source_url":"https://cloud.google.com/products/compute/pricing/accelerator-optimized","match_sku":["a3ultragpu8g"],"checked":"2026-10-11"},{"id":"lambda-b200","provider":"Lambda","gpu":"B200","label":"Lambda B200","sku":"NVIDIA B200 SXM6","scope":"On-demand, self-serve. Size not stated on page","billing_unit":"per GPU-hour","gpus_per_instance":null,"instance_price_usd":null,"price_per_gpu_hour_usd":6.69,"conditions":"Excludes tax. 1-Click Clusters cost more and need a term.","source_type":"official","source_url":"https://lambda.ai/pricing","match_sku":["b200sxm6","b200"],"checked":"2026-10-11"},{"id":"nebius-b200","provider":"Nebius","gpu":"B200","label":"Nebius B200","sku":"NVIDIA HGX B200","scope":"Published list, region not stated","billing_unit":"per GPU-hour","gpus_per_instance":null,"instance_price_usd":null,"price_per_gpu_hour_usd":8.5,"conditions":"Effective 1 Oct 2026, previously $7.15. Excludes tax.","source_type":"official","source_url":"https://nebius.com/prices","match_sku":["hgxb200"],"checked":"2026-10-11"},{"id":"coreweave-b200","provider":"CoreWeave","gpu":"B200","label":"CoreWeave B200","sku":"NVIDIA HGX B200, 8 GPU","scope":"North America, Europe the same","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":68.8,"price_per_gpu_hour_usd":8.6,"conditions":"Per-GPU figure is instance price divided by 8.","source_type":"official","source_url":"https://www.coreweave.com/pricing","match_sku":["hgxb200"],"checked":"2026-10-11"},{"id":"google-a4-high","provider":"Google Cloud","gpu":"B200","label":"Google A4 High","sku":"a4-highgpu-8g, 8 GPU","scope":"Region not stated on page","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":64.44,"price_per_gpu_hour_usd":8.06,"conditions":"A4 High. Default on-demand model.","source_type":"official","source_url":"https://cloud.google.com/products/compute/pricing/accelerator-optimized","match_sku":["a4highgpu8g"],"checked":"2026-10-11"},{"id":"aws-p6-b200","provider":"AWS","gpu":"B200","label":"AWS p6 B200","sku":"p6-b200.48xlarge, 8 GPU","scope":"US East, as reported","billing_unit":"per instance-hour","gpus_per_instance":8,"instance_price_usd":113.93,"price_per_gpu_hour_usd":14.24,"conditions":"Reported by a pricing guide updated 3 Oct 2026. Treat as indicative.","source_type":"secondary","source_url":"https://www.spheron.network/blog/nvidia-b200-cloud-pricing-2026/","match_sku":["p6b200"],"checked":"2026-10-11"}],"storage":[{"id":"nebius-object-storage-standard","provider":"Nebius","product":"Object Storage, Standard","billing_unit":"per GiB-month","price_per_month_usd":0.0147,"egress":"$0.0150 per GiB","conditions":"Volume tier. Billed in GiB.","source_type":"official","source_url":"https://nebius.com/prices","match_sku":["standard"],"checked":"2026-10-11"},{"id":"cloudflare-r2-r2-standard","provider":"Cloudflare R2","product":"R2 Standard","billing_unit":"per GB-month","price_per_month_usd":0.015,"egress":"$0 to the internet","conditions":"Free tier of 10 GB-month. Class A ops $4.50 per million, Class B $0.36 per million.","source_type":"official","source_url":"https://developers.cloudflare.com/r2/pricing/","match_sku":["r2standard","standard"],"checked":"2026-10-11"},{"id":"google-cloud-cloud-storage-standard-us-central1","provider":"Google Cloud","product":"Cloud Storage Standard, us-central1","billing_unit":"per GiB-month (derived)","price_per_month_usd":0.02,"egress":"Not captured","conditions":"Page lists $0.000027397 per GiB-hour. Multiplied by 730 hours.","source_type":"official","source_url":"https://cloud.google.com/storage/pricing","match_sku":["uscentral1"],"checked":"2026-10-11"},{"id":"google-cloud-cloud-storage-standard-us-multi-region","provider":"Google Cloud","product":"Cloud Storage Standard, US multi-region","billing_unit":"per GiB-month (derived)","price_per_month_usd":0.026,"egress":"Not captured","conditions":"Page lists $0.000035616 per GiB-hour. Multiplied by 730 hours.","source_type":"official","source_url":"https://cloud.google.com/storage/pricing","match_sku":["multiregion","usmulti"],"checked":"2026-10-11"}],"provider_slots":{"Lambda":1,"Nebius":2,"AWS":3,"CoreWeave":4,"Google Cloud":5,"Microsoft Azure":6},"spread_models":["H100","H200","B200"]},"price_history":{"H100":{"series":[{"provider":"Lambda","row_id":"lambda-h100","points":[{"date":"2023-08-02","price_per_gpu_hour_usd":2.59,"type":"official","note":"8x H100 SXM on-demand launch rate, per GPU.","source_url":"https://lambda.ai/blog/lambda-cloud-deploys-on-demand-nvidia-hgx-h100-with-8x-h100-sxm-instances","source_label":"Lambda blog, 2 Aug 2023"},{"date":"2026-07-13","price_per_gpu_hour_usd":3.99,"type":"secondary","note":"H100 SXM per GPU, captured July 2026 from lambda.ai/instances. Instance size not stated.","source_url":"https://gpusmith.com/articles/h100-rental-price-history-trends","source_label":"GPUSmith, 13 Jul 2026"},{"date":"2026-10-11","price_per_gpu_hour_usd":3.99,"type":"official","note":"H100 SXM on-demand, instance size not stated on the page.","source_url":"https://lambda.ai/pricing","source_label":"Lambda pricing, checked 11 Oct 2026"}]},{"provider":"Nebius","row_id":"nebius-h100","points":[{"date":"2024-10-29","price_per_gpu_hour_usd":2.95,"type":"official","note":"Standard on-demand rate beyond a $1.50 first-1,000-hours promotion.","source_url":"https://nebius.com/blog/posts/h100-explorer-tier","source_label":"Nebius blog, 29 Oct 2024"},{"date":"2026-06-05","price_per_gpu_hour_usd":3.85,"type":"secondary","note":"Press report of a rise from $2.95 to $3.85. Effective date not given, so the report date is used.","source_url":"https://www.boerse-express.com/news/articles/nebius-aktie-h100-miete-steigt-auf-385-dollar-913702","source_label":"Boerse Express, 5 Jun 2026"},{"date":"2026-10-01","price_per_gpu_hour_usd":4.5,"type":"official","note":"Rate in the column headed Effective October 1, 2026.","source_url":"https://nebius.com/prices","source_label":"Nebius pricing, checked 11 Oct 2026"}]},{"provider":"AWS","row_id":"aws-p5","points":[{"date":"2025-05-31","price_per_gpu_hour_usd":12.29,"type":"derived","note":"Derived baseline. AWS cut P5 on-demand 44% from its 31 May 2025 prices. $55.04 per instance divided by 0.56 gives about $98.29 per instance, or $12.29 per GPU.","source_url":"https://aws.amazon.com/blogs/aws/announcing-up-to-45-price-reduction-for-amazon-ec2-nvidia-gpu-accelerated-instances/","source_label":"AWS News Blog, 5 Jun 2025"},{"date":"2025-06-01","price_per_gpu_hour_usd":6.88,"type":"derived","note":"Derived. 44% below the baseline on the effective date of the cut, p5.48xlarge in US East divided by 8.","source_url":"https://aws.amazon.com/blogs/aws/announcing-up-to-45-price-reduction-for-amazon-ec2-nvidia-gpu-accelerated-instances/","source_label":"AWS News Blog, 5 Jun 2025"},{"date":"2026-05-21","price_per_gpu_hour_usd":6.88,"type":"secondary","note":"p5.48xlarge us-east-1 at $55.04 per instance-hour, divided by 8.","source_url":"https://www.spheron.network/blog/aws-h100-pricing-2026/","source_label":"Spheron, 21 May 2026"},{"date":"2026-10-11","price_per_gpu_hour_usd":6.88,"type":"secondary","note":"p5.48xlarge us-east-1 at $55.04 per instance-hour from a pricing mirror, divided by 8.","source_url":"https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1","source_label":"Holori mirror, 11 Oct 2026"}]},{"provider":"CoreWeave","row_id":"coreweave-h100","points":[{"date":"2026-10-11","price_per_gpu_hour_usd":6.16,"type":"official","note":"HGX H100 8-GPU instance at $49.24 per hour, divided by 8.","source_url":"https://www.coreweave.com/pricing","source_label":"CoreWeave pricing, checked 11 Oct 2026"}]},{"provider":"Google Cloud","row_id":"google-a3-high","points":[{"date":"2026-10-11","price_per_gpu_hour_usd":11.06,"type":"official","note":"a3-highgpu-8g at $88.49 per hour, divided by 8.","source_url":"https://cloud.google.com/products/compute/pricing/accelerator-optimized","source_label":"Google Cloud pricing, checked 11 Oct 2026"}]},{"provider":"Microsoft Azure","row_id":"azure-nd-h100-v5","points":[{"date":"2026-10-07","price_per_gpu_hour_usd":12.29,"type":"secondary","note":"Standard_ND96isr_H100_v5 East US Linux at $98.32 per hour, divided by 8.","source_url":"https://cloudprice.net/vm/Standard_ND96isr_H100_v5","source_label":"Cloudprice mirror, 7 Oct 2026"}]}],"index":{"name":"Neocloud median (Silicon Data index)","source_url":"https://www.silicondata.com/blog/h100-rental-price-over-time","source_label":"Silicon Data, 21 Dec 2025","segments":[{"from":"2024-07-01","to":"2024-12-31","price_per_gpu_hour_usd":2.99},{"from":"2025-01-01","to":"2025-05-31","price_per_gpu_hour_usd":3.5},{"from":"2025-06-01","to":"2025-06-30","price_per_gpu_hour_usd":3.29},{"from":"2025-07-01","to":"2025-12-31","price_per_gpu_hour_usd":3.33}],"label":{"date":"2025-02-01","value":3.5,"dy":-8}},"annotations":[{"date":"2025-06-01","value":9.6,"dx":7,"dy":3,"anchor":"start","text":"AWS P5 cut, 44%"},{"date":"2026-10-01","value":4.5,"dx":-6,"dy":-16,"anchor":"end","text":"Nebius +17%"}]},"H200":{"series":[],"index":null,"annotations":[]},"B200":{"series":[],"index":null,"annotations":[]}},"models":[{"model":"GPT-6 (Astra, Sol, Luna)","developer":"OpenAI","released":"2026-09-03 to 2026-10-07","released_sort":"2026-09-03","license":"Closed","tags":[{"constraint":"compute","direction":"tightens"}],"note":"Sol on paid ChatGPT tiers, Luna on Free and Go, with generative interface from 7 Oct. Astra date is Secondary.","source_url":"https://openai.com/index/gpt-6-for-everyone/","source_label":"OpenAI"},{"model":"Claude Opus 5.5","developer":"Anthropic","released":"2026-09-22","released_sort":"2026-09-22","license":"Closed","tags":[{"constraint":"compute","direction":"loosens"},{"constraint":"rules","direction":"tightens"}],"note":"$4 in and $20 out per million tokens. 30% faster than Opus 5. Biology work needs a verification program.","source_url":"https://www.anthropic.com/claude-opus-5-5","source_label":"Anthropic"},{"model":"Claude Sonnet 5.5","developer":"Anthropic","released":"2026-09-28","released_sort":"2026-09-28","license":"Closed","tags":[{"constraint":"compute","direction":"loosens"}],"note":"$2 in and $10 out. Vendor reports up to 30% lower cost per task than Sonnet 5.","source_url":"https://www.anthropic.com/claude-sonnet-5-5","source_label":"Anthropic"},{"model":"Claude Haiku 5.5","developer":"Anthropic","released":"2026-10-07","released_sort":"2026-10-07","license":"Closed","tags":[{"constraint":"compute","direction":"loosens"}],"note":"$0.10 in and $0.50 out under 100k tokens. First Haiku with adjustable effort.","source_url":"https://www.anthropic.com/claude-haiku-5-5","source_label":"Anthropic"},{"model":"Gemini 3.8 Flash","developer":"Google","released":"2026-09-02","released_sort":"2026-09-02","license":"Closed","tags":[{"constraint":"compute","direction":"shifts"}],"note":"Introductory $0.75 in and $3.75 out through 31 Dec 2026. Cyber variant is restricted.","source_url":"https://letsdatascience.com/news/google-adds-gemini-38-flash-to-ai-mode-51fb6349","source_label":"Lets Data Science"},{"model":"DeepSeek-V4.1-Flash","developer":"DeepSeek","released":"2026-09-10","released_sort":"2026-09-10","license":"Open weights listed","tags":[{"constraint":"compute","direction":"loosens"}],"note":"552B mixture of experts, multimodal. Claims one quarter of the HBM for KV cache. License not confirmed.","source_url":"https://api-docs.deepseek.com/news/news260910","source_label":"DeepSeek"},{"model":"MiMo-V2.6 Pro","developer":"Xiaomi","released":"2026-09-22","released_sort":"2026-09-22","license":"Open (MIT)","tags":[{"constraint":"compute","direction":"loosens"},{"constraint":"rules","direction":"shifts"}],"note":"1.02T total, 42B active, 1M context. Top open-weight score on the Artificial Analysis index. Anthropic names Xiaomi in a distillation report.","source_url":"https://thenextweb.com/news/xiaomi-mimo-v2-6-open-weight-model-anthropic-distillation","source_label":"The Next Web"},{"model":"Claude Fable 5.1","developer":"Anthropic","released":"2026-09-03","released_sort":"2026-09-03","license":"Closed","tags":[{"constraint":"compute","direction":"shifts"},{"constraint":"rules","direction":"tightens"}],"note":"Higher tier than Opus 5.5 per Anthropic, with cyber and biology safeguards. Release date is Secondary.","source_url":"https://thursdai.news/releases/2026-09","source_label":"ThursdAI tracker"}],"deals":[{"date":"2026-08-14","company":"Cursor (acquired by SpaceX)","amount_musd":60000,"amount_label":"$60B","stage":"Acquisition, closed","kind":"acquisition","leads":"SpaceX (acquirer)","valuation":"Price $60B","rationale":"Help SpaceX close ground on Anthropic and OpenAI in AI coding tools.","tags":[{"constraint":"capital","direction":"shifts"}],"source_url":"https://news.bgov.com/mergers-and-acquisitions/spacex-completes-its-60-billion-cursor-acquisition","source_label":"Bloomberg Law"},{"date":"2026-09-03","company":"Hugging Face (to Nvidia)","amount_musd":13000,"amount_label":"About $13B","stage":"Acquisition, announced","kind":"acquisition","leads":"Nvidia (acquirer)","valuation":"Price about $13B","rationale":"Protect open-source AI developers who rely on the platform. Includes up to $1B retention equity.","tags":[{"constraint":"compute","direction":"shifts"},{"constraint":"capital","direction":"shifts"}],"source_url":"https://news.bloomberglaw.com/crypto/nvidia-agrees-to-13-billion-deal-for-ai-platform-hugging-face","source_label":"Bloomberg Law"},{"date":"2026-09-28","company":"Instinct","amount_musd":1000,"amount_label":"$1B","stage":"Series C","kind":"round","leads":"Sequoia, Benchmark, Coatue","valuation":"$10B","rationale":"Reach more people and keep developing a personal agent that handles everyday tasks.","tags":[{"constraint":"capital","direction":"loosens"}],"source_url":"https://techfundingnews.com/ai-agent-instinct-jumps-to-10b-valuation-with-1b-led-by-sequoia-benchmark-and-coatue/","source_label":"TechFundingNews"},{"date":"2026-09-29","company":"OpenAI (reported talks)","amount_musd":30000,"amount_label":"At least $30B","stage":"Reported, not closed","kind":"reported","leads":"Not named","valuation":"About $1.4T pre-money","rationale":"Early-stage talks reported by Bloomberg. Terms could change.","tags":[{"constraint":"capital","direction":"loosens"}],"source_url":"https://whbl.com/2026/09/29/openai-targets-30-billion-funding-at-1-4-trillion-valuation-bloomberg-news-reports/","source_label":"Reuters via WHBL"},{"date":"2026-09-29","company":"EliseAI","amount_musd":350,"amount_label":"$350M","stage":"Primary growth round","kind":"round","leads":"a16z, Bessemer","valuation":"$4B","rationale":"Product, engineering and sales hiring and a second engineering hub in San Francisco. ARR above $200M.","tags":[{"constraint":"capital","direction":"loosens"}],"source_url":"https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/","source_label":"Fortune"},{"date":"2026-09-29","company":"General Intuition","amount_musd":220,"amount_label":"$220M","stage":"Growth round","kind":"round","leads":"No lead named. Valor, Atreides, Seven Seven Six, Point72, Khosla, General Catalyst","valuation":"$6.2B","rationale":"Hire more AI researchers to build world models that generate synthetic training video.","tags":[{"constraint":"capital","direction":"loosens"}],"source_url":"https://siliconangle.com/2026/09/29/world-model-startup-general-intuition-closes-220m-investment/","source_label":"SiliconANGLE"},{"date":"2026-10-01","company":"Armadin","amount_musd":255.5,"amount_label":"$255.5M","stage":"Series B","kind":"round","leads":"a16z, Accel","valuation":"Over $2.5B","rationale":"Scale its agentic offensive-security platform, research and go-to-market.","tags":[{"constraint":"capital","direction":"loosens"}],"source_url":"https://www.helpnetsecurity.com/2026/10/01/armadin-raises-255-5-million-funding/","source_label":"Help Net Security"},{"date":"2026-10-01","company":"GMI Cloud","amount_musd":668,"amount_label":"$668M ($223M equity, $445M debt)","stage":"Series B plus credit facility","kind":"round","leads":"ARCHIV (equity), CTBC (debt)","valuation":"Not stated","rationale":"Expand GPU capacity in the US, Taiwan and Asia-Pacific and grow inference services.","tags":[{"constraint":"compute","direction":"loosens"},{"constraint":"capital","direction":"loosens"}],"source_url":"https://theaiinsider.tech/2026/10/01/gmi-cloud-raises-over-660m-to-accelerate-global-ai-infrastructure-expansion/","source_label":"AI Insider"},{"date":"2026-10-02","company":"Supabase (and Turso)","amount_musd":150,"amount_label":"$150M","stage":"Growth round plus acquisition","kind":"round","leads":"GIC","valuation":"Not stated","rationale":"Agent demand for instantly provisioned databases. Turso terms undisclosed.","tags":[{"constraint":"capital","direction":"shifts"}],"source_url":"https://www.citybiz.co/article/913344/supabase-raises-150-million-acquires-turso-to-scale-agentic-databases/","source_label":"CityBiz"}],"policies":[{"date":"2026-07-27","jurisdiction":"European Union","status":"In force","deadline":"2026-12-02","tags":[{"constraint":"rules","direction":"shifts"}],"title":"AI Act Digital Omnibus changes the high-risk timetable","body":"Stand-alone high-risk systems such as hiring and credit scoring move from 2 Aug 2026 to 2 Dec 2027. AI built into regulated products moves to 2 Aug 2028. Article 50 transparency duties still apply from 2 Aug 2026, with marking for earlier systems due by 2 Dec 2026.","source_url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo","source_label":"Lewis Silkin"},{"date":"2025-12","jurisdiction":"United States, federal","status":"In effect","deadline":null,"tags":[{"constraint":"rules","direction":"shifts"}],"title":"Executive order targets state AI laws","body":"Sets up a DOJ litigation task force to challenge state AI laws, asks Commerce to classify them, and ties some federal funding to state AI rules. It carves out child safety, compute infrastructure and state procurement. Exact signing date was not confirmed in the source.","source_url":"https://www.pillsburylaw.com/en/news-and-insights/new-executive-order-national-policy-framework-artificial-intelligence.html","source_label":"Pillsbury"},{"date":"2026-06-02","jurisdiction":"United States, federal","status":"In effect","deadline":null,"tags":[{"constraint":"rules","direction":"shifts"}],"title":"Voluntary pre-release access to frontier models","body":"Creates a voluntary framework for developers to give government early access to frontier models up to 30 days before release. It also directs Homeland Security to issue cyber directives and build a classified benchmark for cyber capability. Reported by a law firm and not checked against the order text.","source_url":"https://www.kslaw.com/insights/articles/white-house-issues-executive-order-on-ai-innovation-and-security","source_label":"King and Spalding"},{"date":"2026-05-14","jurisdiction":"Colorado","status":"Contested","deadline":"2027-01-01","tags":[{"constraint":"rules","direction":"shifts"}],"title":"Colorado rewrites its AI Act and a court pauses enforcement","body":"SB 26-189 replaces the 2024 law, drops impact assessments and applies to decisions made on or after 1 Jan 2027, with attorney general enforcement only. A federal court order in X.AI v. Weiser bars enforcement while an injunction request is pending, and its wording may reach the new law.","source_url":"https://www.vaquill.ai/blog/colorado-ai-act-explained-from-the-statute","source_label":"Vaquill"},{"date":"2026-01-01","jurisdiction":"California","status":"In effect","deadline":null,"tags":[{"constraint":"rules","direction":"tightens"}],"title":"SB 53 frontier transparency law is live","body":"Requires developers training models above 10^26 FLOPs to publish transparency information. AB 2013 on training-data disclosure took effect the same day.","source_url":"https://www.layer3labs.io/guides/state-ai-laws-by-state","source_label":"Layer3 Labs"},{"date":"2026-01-15","jurisdiction":"Export controls","status":"In effect","deadline":null,"tags":[{"constraint":"rules","direction":"loosens"},{"constraint":"compute","direction":"shifts"}],"title":"H200 and MI325X to China move to case-by-case licensing","body":"BIS replaced a presumption of denial for chips under set performance and bandwidth thresholds. Conditions include a 25 percent surcharge, independent US lab testing and a cap at half of US volumes. Reported by a secondary source.","source_url":"https://introl.com/blog/bis-h200-mi325x-export-policy-china-case-by-case-review-2026","source_label":"Introl"},{"date":"2026-01-01","jurisdiction":"China","status":"In effect","deadline":null,"tags":[{"constraint":"rules","direction":"tightens"}],"title":"Cybersecurity Law gains its first AI clause","body":"The amended law adds AI governance for the first time, covering support for compute and training data alongside ethics, risk assessment and security oversight. Fines run up to RMB 10 million for critical infrastructure operators.","source_url":"https://www.reedsmith.com/articles/china-approves-major-amendments-to-cybersecurity-law/","source_label":"Reed Smith"}],"policy_timeline":[{"date":"2025-08-02","label":"EU GPAI duties apply","source_url":"https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/","label_to_left":false},{"date":"2026-01-01","label":"CA SB 53 and China CSL AI clause","source_url":"https://www.layer3labs.io/guides/state-ai-laws-by-state","label_to_left":false},{"date":"2026-01-15","label":"BIS H200 licence rule","source_url":"https://introl.com/blog/bis-h200-mi325x-export-policy-china-case-by-case-review-2026","label_to_left":false},{"date":"2026-06-02","label":"US frontier model EO","source_url":"https://www.kslaw.com/insights/articles/white-house-issues-executive-order-on-ai-innovation-and-security","label_to_left":false},{"date":"2026-07-27","label":"EU Omnibus in force","source_url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo","label_to_left":false},{"date":"2026-08-02","label":"EU Art. 50 applies","source_url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo","label_to_left":false},{"date":"2026-12-02","label":"Art. 50(2) marking, older systems","source_url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo","label_to_left":false},{"date":"2027-01-01","label":"Colorado SB 26-189 applies","source_url":"https://www.vaquill.ai/blog/colorado-ai-act-explained-from-the-statute","label_to_left":false},{"date":"2027-12-02","label":"EU Annex III high-risk","source_url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo","label_to_left":false},{"date":"2028-08-02","label":"EU Annex I high-risk","source_url":"https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo","label_to_left":true}],"notes":{"history":"Points are published list prices on the dates shown. The line is held flat between observations, so a step marks the date a change was first observed and not necessarily the date it happened. Filled dots come from an official page or announcement. Hollow dots are secondary mirrors, press reports or derived values and say so on hover. Lambda's 2023 point is an 8-GPU instance rate and its 2026 points are from a page that does not state instance size. Hyperscaler rates are per-instance prices divided by eight.","spread":"Hatched bars with an outline are Secondary, taken from a third-party mirror of the provider list. Hyperscaler bars are instance price divided by eight. No H200 rate was verified for AWS, Azure or Lambda, and no B200 rate for Azure.","gpu_table":"Hyperscalers price one 8-GPU instance per hour, so the per-GPU column divides the instance rate by eight. Lambda and Nebius price each GPU. Prices exclude tax, networking and storage. The AWS B200 row is indicative only.","storage_table":"Nebius bills per GiB and Google per GiB-hour, converted here at 730 hours a month. Cloudflare bills per GB. AWS S3 Standard is not shown because its rate could not be verified from the official page on the check date.","models":"Prices are per million tokens as published by each developer. Benchmark figures are vendor reported unless stated. Release dates marked Secondary come from a release tracker and not from the developer.","capital":"Deal size on a log scale. Bars start at $100M, so lengths compare ratios and not absolute amounts. The OpenAI row is a press report of early talks and not a closed round.","policy":"Effective and deadline dates on a single axis. The shaded band is the next 90 days from the issue date."},"about":{"name":"Esther Suebsubanant","monogram":"ES","paragraphs":["MBA candidate at Stanford Graduate School of Business, expected June 2028, with a dual MS through Stanford EIPER focused on AI, compute and energy. Previously built the corporate venture capital function at Thai Union Ventures from scratch with a $30M mandate and led corporate strategy work. Before that, M&A advisory at The Quant Group across 30+ cross-border transactions, and a start at L'Oréal as a management trainee across finance, commercial and supply chain. Conducts independent research on agentic AI SaaS through Stanford's RDI. Fluent in Thai and English, connected to Bangkok and the Bay Area. Interested in AI product management and in founding an agentic AI company."],"thread":"Corporate venture and M&A work taught her to follow the scarce input in every deal, and her EIPER work on compute and energy applies the same habit to the AI stack."},"methodology":"AI Radar is a human-curated weekly brief. Figures are transcribed from official pages on the check date, and each carries its source link. Where an official page draws prices only in the browser, the figure comes from a third-party mirror and is marked Secondary. Chart points that are derived are marked as derived. Anything that could not be confirmed is left out and not estimated. Prices change without notice, so verify in the provider console before purchasing.","changelog":[{"date":"2026-10-11","title":"Issue 01","items":["Rebuilt around the Bottleneck Thesis, with a constraint board and a constraint tag on every signal, deal, model, rule and layer.","Added the H100 price history chart, the cross-provider spread chart, the deal size chart and the rules timeline.","Nebius rates reflect the 1 October 2026 column on its price page."]}],"price_sources":[{"id":"nebius","provider":"Nebius","url":"https://nebius.com/prices","source_type":"official","kinds":["gpu","storage"],"gpus":null,"hint":"The page may show more than one price column. Return the rate in effect today and put any future-dated column in conditions."},{"id":"lambda","provider":"Lambda","url":"https://lambda.ai/pricing","source_type":"official","kinds":["gpu"],"gpus":null,"hint":"On-demand instances only. Ignore 1-Click Clusters and reserved rates."},{"id":"coreweave","provider":"CoreWeave","url":"https://www.coreweave.com/pricing","source_type":"official","kinds":["gpu"],"gpus":null,"hint":"On-demand HGX instances. Return the per-instance hourly price and the GPU count."},{"id":"google-accelerator","provider":"Google Cloud","url":"https://cloud.google.com/products/compute/pricing/accelerator-optimized","source_type":"official","kinds":["gpu"],"gpus":null,"hint":"Default on-demand consumption model only. Return the machine type as sku_or_instance."},{"id":"google-storage","provider":"Google Cloud","url":"https://cloud.google.com/storage/pricing","source_type":"official","kinds":["storage"],"gpus":null,"hint":"Standard storage class. Return us-central1 and US multi-region in the product name."},{"id":"cloudflare-r2","provider":"Cloudflare R2","url":"https://developers.cloudflare.com/r2/pricing/","source_type":"official","kinds":["storage"],"gpus":null,"hint":"R2 Standard storage class."},{"id":"aws-p5-mirror","provider":"AWS","url":"https://calculator.holori.com/aws/ec2/p5.48xlarge/us-east-1","source_type":"secondary","kinds":["gpu"],"gpus":["H100"],"hint":"Third-party mirror of AWS on-demand US East (N. Virginia) pricing for p5.48xlarge."},{"id":"aws-p6-mirror","provider":"AWS","url":"https://www.spheron.network/blog/nvidia-b200-cloud-pricing-2026/","source_type":"secondary","kinds":["gpu"],"gpus":["B200"],"hint":"Third-party guide. Only the AWS p6-b200.48xlarge on-demand rate matters."},{"id":"azure-mirror","provider":"Microsoft Azure","url":"https://cloudprice.net/vm/Standard_ND96isr_H100_v5","source_type":"secondary","kinds":["gpu"],"gpus":["H100"],"hint":"Third-party mirror of Azure pay-as-you-go Linux pricing in East US for Standard_ND96isr_H100_v5."}]}</script>
+<!-- DATA-INLINE-END -->
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.from((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var link = function (u, t) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(t) + "</a>"; };
+  var usd = function (n, d) { return "$" + n.toFixed(d == null ? 2 : d); };
+  var utc = function (s) { var p = s.split("-"); return Date.UTC(+p[0], +p[1] - 1, +p[2]); };
+  var DAY = 86400000;
+  var CN = { compute: "COMPUTE", capital: "CAPITAL", rules: "RULES" };
+  var DG = { t: "▲", l: "▼", s: "◆" };
+  var DN = { t: "tightens", l: "loosens", s: "shifts" };
+  function tag(c, d) { return '<span class="tg"><b>' + CN[c] + "</b><i aria-hidden=\"true\">" + DG[d] + '</i><span class="sr">' + DN[d] + "</span></span>"; }
+  function tags(a) { return '<span class="tags">' + a.map(function (x) { return tag(x[0], x[1]); }).join("") + "</span>"; }
+  function fmtDate(iso) { return iso; }
+ 
+  
+  var DIRK = { tightens: "t", loosens: "l", shifts: "s" };
+  var cap1 = function (s) { return s.charAt(0).toUpperCase() + s.slice(1); };
+  function tg2(a) { return (a || []).map(function (x) { return [x.constraint, DIRK[x.direction]]; }); }
+  function s2(a) { return (a || []).map(function (y) { return [y.label, y.url]; }); }
+  function valid(D) { return D && D.meta && D.board && D.signals && D.compute && D.compute.gpu && D.price_history && D.deals && D.policies; }
+
+  function render(D) {
+  var SER = D.compute.provider_slots;
+  var SIGNALS = D.signals.map(function (x) { return { d: x.date, cat: x.category, aud: x.audience, tg: tg2(x.tags), t: x.title, s: x.summary, mv: x.moves, w: x.why_it_matters, src: s2(x.sources) }; });
+  SIGNALS.sort(function (a, b) { return a.d < b.d ? 1 : -1; });
+  var GPU = D.compute.gpu.map(function (r) { return { id: r.id, p: r.provider, a: r.gpu, lb: r.label, sku: r.sku, sc: r.scope, u: r.billing_unit, ip: r.instance_price_usd, ph: r.price_per_gpu_hour_usd, cond: r.conditions, t: cap1(r.source_type), url: r.source_url }; });
+  var STO = D.compute.storage.map(function (r) { return { p: r.provider, sku: r.product, u: r.billing_unit, pm: r.price_per_month_usd, eg: r.egress, cond: r.conditions, url: r.source_url }; });
+  var MODELS = D.models.map(function (m) { return { m: m.model, dev: m.developer, rd: m.released_sort, rl: m.released, oc: m.license, tg: tg2(m.tags), n: m.note, url: m.source_url, ul: m.source_label }; });
+  var TYK = { acquisition: "acq", round: "rnd", reported: "rep" };
+  var CAP = D.deals.map(function (c) { return { d: c.date, co: c.company, amt: c.amount_musd, al: c.amount_label, st: c.stage, ty: TYK[c.kind], ld: c.leads, v: c.valuation, r: c.rationale, tg: tg2(c.tags), url: c.source_url, ul: c.source_label }; });
+  var POL = D.policies.map(function (p) { return { j: p.jurisdiction, st: p.status, dt: p.date, dl: p.deadline, tg: tg2(p.tags), t: p.title, b: p.body, url: p.source_url, ul: p.source_label }; });
+  var LAYERS = D.layers.map(function (l) { return { n: l.name, sub: l.subtitle, tg: tg2(l.tags), sits: l.bottleneck_now, pl: l.players, bm: l.business_model, bn: l.structural_bottleneck, q: l.question_to_watch, src: s2(l.sources) }; });
+
+  var spreadCache = (function () {
+    var h = GPU.filter(function (r) { return r.a === "H100"; });
+    var lo = h.reduce(function (a, b) { return b.ph < a.ph ? b : a; });
+    var hi = h.reduce(function (a, b) { return b.ph > a.ph ? b : a; });
+    return { lo: lo, hi: hi, ratio: hi.ph / lo.ph };
+  })();
+  var RATIO = spreadCache.ratio.toFixed(1);
+  function fill(t) {
+    return String(t).replace(/\{(lo_price|lo_provider|hi_price|hi_provider|ratio|hi_type)\}/g, function (m, k) {
+      return { lo_price: usd(spreadCache.lo.ph), lo_provider: spreadCache.lo.p, hi_price: usd(spreadCache.hi.ph), hi_provider: spreadCache.hi.p, ratio: RATIO, hi_type: spreadCache.hi.t.toLowerCase() }[k];
+    });
+  }
+  var BOARD = D.board.map(function (b) { return { id: b.id, c: b.constraint, d: DIRK[b.direction], name: b.name, state: b.state, line: fill(b.line), ev: b.evidence.map(function (e) { return [fill(e.text), e.url]; }), flip: fill(b.flip) }; });
+  var TAKES = D.takes.map(function (t) { return { c: t.constraint, d: DIRK[t.direction], h: fill(t.headline), p: fill(t.body), ch: fill(t.change_my_mind) }; });
+
+  /* static copy that lives in data.json */
+  $("#issueStamp").textContent = "ISSUE " + D.meta.issue;
+  $("#updStamp").textContent = "UPDATED " + D.meta.updated;
+  $("#chkStamp").textContent = "PRICES CHECKED " + D.last_price_check;
+  $("#h-thesis").textContent = D.thesis.title;
+  $("#thesisAsof").textContent = "ISSUE " + D.meta.issue + " / " + D.meta.updated;
+  $("#thesisText").textContent = D.thesis.text;
+  var GLY = { tightens: "▲", loosens: "▼", shifts: "◆" };
+  $("#thesisKey").innerHTML = D.thesis.key.map(function (k) { return '<div><span class="g">' + GLY[k.direction] + "</span><span><b>" + cap1(k.direction) + ".</b> " + esc(k.text) + "</span></div>"; }).join("");
+  $("#howText").textContent = D.how_to_read;
+  [["#noteHist", "history"], ["#noteSpread", "spread"], ["#noteGpu", "gpu_table"], ["#noteSto", "storage_table"], ["#noteCap", "capital"], ["#noteMod", "models"], ["#notePol", "policy"]].forEach(function (x) { $(x[0]).textContent = D.notes[x[1]]; });
+  $("#aboutMark").textContent = D.about.monogram; $("#aboutName").textContent = D.about.name; $("#aboutAsof").textContent = D.about.name.toUpperCase();
+  $("#aboutBody").innerHTML = D.about.paragraphs.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + '<p class="thread">' + esc(D.about.thread) + "</p>";
+  $("#methAsof").textContent = "ISSUE " + D.meta.issue + " / " + D.meta.updated;
+  $("#methText").textContent = D.methodology;
+  $("#changelog").innerHTML = "<ul>" + D.changelog.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).map(function (e) { return "<li><b>" + esc(e.title) + ", " + e.date + ".</b><ul>" + e.items.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul></li>"; }).join("") + "<li>Next issue, " + esc(D.meta.next_issue) + ".</li></ul>";
+  $("#legal").innerHTML = "<span>AI Radar by " + esc(D.meta.author) + "</span><span>Issue " + esc(D.meta.issue) + "</span><span>Not investment advice</span>";
+
+  /* ================= TOOLTIP ================= */
+  var tipEl = $("#tip"), tipTimer = null, tipReg = {}, tipSeq = 0;
+  function regTip(html) { var id = "t" + (++tipSeq); tipReg[id] = html; return id; }
+  function showTip(id, target) {
+    clearTimeout(tipTimer);
+    tipEl.innerHTML = tipReg[id]; tipEl.hidden = false;
+    var r = target.getBoundingClientRect(), w = tipEl.offsetWidth, h = tipEl.offsetHeight, vw = document.documentElement.clientWidth;
+    var x = r.right + 8; if (x + w > vw - 8) x = Math.max(8, r.left - w - 8);
+    var y = Math.min(Math.max(8, r.top + r.height / 2 - h / 2), window.innerHeight - h - 8);
+    tipEl.style.left = x + "px"; tipEl.style.top = y + "px";
+  }
+  function hideTip(now) { clearTimeout(tipTimer); tipTimer = setTimeout(function () { tipEl.hidden = true; }, now ? 0 : 260); }
+  tipEl.addEventListener("pointerenter", function () { clearTimeout(tipTimer); });
+  tipEl.addEventListener("pointerleave", function () { hideTip(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hideTip(true); });
+  document.addEventListener("scroll", function () { hideTip(true); }, { passive: true });
+  function bindTips(root) {
+    root.addEventListener("pointerover", function (e) { var t = e.target.closest("[data-tip]"); if (t && root.contains(t) && e.pointerType !== "touch") showTip(t.getAttribute("data-tip"), t); });
+    root.addEventListener("pointerout", function (e) { var t = e.target.closest("[data-tip]"); if (t && e.pointerType !== "touch") hideTip(); });
+    root.addEventListener("focusin", function (e) { var t = e.target.closest("[data-tip]"); if (t) showTip(t.getAttribute("data-tip"), t); });
+    root.addEventListener("focusout", function () { hideTip(); });
+    root.addEventListener("click", function (e) { var t = e.target.closest("[data-tip]"); if (t) { showTip(t.getAttribute("data-tip"), t); } });
+  }
+  function kindName(k) { return k.charAt(0).toUpperCase() + k.slice(1); }
+
+  /* ================= TOP PILLS, BOARD ================= */
+  $("#topPills").innerHTML = BOARD.map(function (b) {
+    return '<a class="pill" href="#board-' + b.id + '"><b>' + CN[b.c] + "</b><span aria-hidden=\"true\">" + DG[b.d] + "</span>" + esc(b.state.toUpperCase()) + "</a>";
+  }).join("");
+  $("#boardCols").innerHTML = BOARD.map(function (b) {
+    return '<section class="panel c4" id="board-' + b.id + '" aria-labelledby="bh-' + b.id + '" data-asof="1"><div class="ph"><h2 id="bh-' + b.id + '">' + CN[b.c] + '</h2><span class="asof" data-meta></span></div><div class="pb">' +
+      '<div class="cb-state"><span class="arr" aria-hidden="true">' + DG[b.d] + '</span><span class="big">' + esc(b.state) + '</span></div>' +
+      '<p class="cb-line">' + esc(b.line) + "</p><ul class=\"ev\">" + b.ev.map(function (e) {
+        var ext = e[1].charAt(0) !== "#";
+        return "<li><span>" + (ext ? link(e[1], e[0]) : '<a href="' + e[1] + '">' + esc(e[0]) + "</a>") + "</span></li>";
+      }).join("") + '</ul><div class="flip"><b>What would flip it</b>' + esc(b.flip) + "</div></div></section>";
+  }).join("");
+
+  /* ================= TILES ================= */
+  var deals = CAP.filter(function (c) { return c.ty !== "rep"; });
+  var dealTotal = deals.reduce(function (a, c) { return a + c.amt; }, 0);
+  var today = utc(D.meta.updated), horizon = today + 90 * DAY;
+  var soon = POL.filter(function (p) { return p.dl && utc(p.dl) >= today && utc(p.dl) <= horizon; });
+  var TILES = [
+    ["Cheapest verified H100 rate", usd(spreadCache.lo.ph), "/GPU-hr", spreadCache.lo.p + ", " + spreadCache.lo.t.toLowerCase() + ". Computed from table."],
+    ["Most expensive verified H100 rate", usd(spreadCache.hi.ph), "/GPU-hr", spreadCache.hi.p + ", " + spreadCache.hi.t.toLowerCase() + ". Computed from table."],
+    ["Spread, high to low", RATIO + "x", "", "Computed from table."],
+    ["Deals logged, closed or announced", "$" + (dealTotal / 1000).toFixed(1) + "B", deals.length + " deals", "Plus 1 reported. Computed from capital tracker."],
+    ["Policies with a deadline inside 90 days", String(soon.length), "of " + POL.length, "Computed from rules watch."],
+    ["Signals this issue", String(SIGNALS.length), "", "Computed from signals desk."]
+  ];
+  $("#tiles").innerHTML = TILES.map(function (t) {
+    return '<div class="panel c2 tile"><span class="l">' + esc(t[0]) + '</span><span class="v">' + esc(t[1]) + (t[2] ? "<small>" + esc(t[2]) + "</small>" : "") + '</span><span class="s">' + esc(t[3]) + "</span></div>";
+  }).join("");
+
+  /* ================= CHART: PRICE HISTORY ================= */
+  var MN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function monthStart(ms, off) { var d = new Date(ms); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + off, 1); }
+  function shortName(n) { return n === "Microsoft Azure" ? "Azure" : n === "Google Cloud" ? "Google" : n; }
+  var histModels = Object.keys(D.price_history).filter(function (m) { return D.price_history[m].series.some(function (s) { return s.points.length; }); });
+  var histModel = histModels.indexOf("H100") >= 0 ? "H100" : histModels[0];
+  var histUrls = [];
+  Object.keys(D.price_history).forEach(function (m) { var Hd = D.price_history[m]; Hd.series.forEach(function (s) { s.points.forEach(function (p) { histUrls.push(p.source_url); }); }); if (Hd.index) histUrls.push(Hd.index.source_url); });
+  function drawHist(model) {
+    var Hd = D.price_history[model], W = 760, H = 380, L = 44, R = 124, T = 14, B = 34, all = [], maxV = 0;
+    Hd.series.forEach(function (s) { s.points.forEach(function (p) { all.push(utc(p.date)); maxV = Math.max(maxV, p.price_per_gpu_hour_usd); }); });
+    if (Hd.index) Hd.index.segments.forEach(function (g) { all.push(utc(g.from), utc(g.to)); maxV = Math.max(maxV, g.price_per_gpu_hour_usd); });
+    var T0 = monthStart(Math.min.apply(null, all), -1), T1 = monthStart(Math.max.apply(null, all), 1);
+    var YMAX = Math.max(2, Math.ceil(maxV / 2) * 2), STEP = YMAX <= 8 ? 1 : 2;
+    var sxm = function (ms) { return L + (ms - T0) / (T1 - T0) * (W - L - R); };
+    var sx = function (d) { return sxm(utc(d)); };
+    var sy = function (v) { return T + (1 - v / YMAX) * (H - T - B); };
+    var s = '<svg class="chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Line chart of ' + model + ' on-demand price per GPU-hour by provider. A table view follows the chart.">';
+    for (var v = 0; v <= YMAX; v += STEP) {
+      s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + sy(v) + '" y2="' + sy(v) + '" style="stroke:var(--grid);stroke-width:1"/>';
+      s += '<text x="' + (L - 6) + '" y="' + (sy(v) + 3.5) + '" text-anchor="end">$' + v + "</text>";
+    }
+    for (var yr = new Date(T0).getUTCFullYear(); yr <= new Date(T1).getUTCFullYear(); yr++) {
+      [0, 6].forEach(function (mo) {
+        var ms = Date.UTC(yr, mo, 1); if (ms < T0 || ms > T1) return;
+        s += '<line x1="' + sxm(ms) + '" x2="' + sxm(ms) + '" y1="' + (H - B) + '" y2="' + (H - B + 4) + '" style="stroke:var(--rule-strong)"/>';
+        s += '<text x="' + sxm(ms) + '" y="' + (H - B + 16) + '" text-anchor="middle">' + MN[mo] + " " + String(yr).slice(2) + "</text>";
+      });
+    }
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" style="stroke:var(--rule-strong)"/>';
+    var ix = Hd.index;
+    if (ix) {
+      var ip = "";
+      ix.segments.forEach(function (g, i) { var x0 = sx(g.from), x1 = sx(g.to), y = sy(g.price_per_gpu_hour_usd); ip += (i === 0 ? "M" + x0 + " " + y : "V" + y) + "H" + x1; });
+      s += '<path d="' + ip + '" style="fill:none;stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 3"/>';
+      ix.segments.forEach(function (g) {
+        var id = regTip('<div class="tt">' + esc(ix.name.toUpperCase()) + '</div><div class="tv">' + usd(g.price_per_gpu_hour_usd) + '</div><div class="tb">Median for ' + g.from + " to " + g.to + ". An index of neocloud rates, not a single provider list price. Secondary.</div>" + link(ix.source_url, ix.source_label));
+        s += '<rect data-tip="' + id + '" tabindex="0" role="img" aria-label="' + esc(ix.name) + " " + usd(g.price_per_gpu_hour_usd) + " " + g.from + " to " + g.to + '" x="' + sx(g.from) + '" y="' + (sy(g.price_per_gpu_hour_usd) - 7) + '" width="' + Math.max(6, sx(g.to) - sx(g.from)) + '" height="14" style="fill:transparent;cursor:pointer"/>';
+      });
+      if (ix.label) s += '<text x="' + sx(ix.label.date) + '" y="' + (sy(ix.label.value) + ix.label.dy) + '" text-anchor="middle" style="font-size:10px">Neocloud median (index)</text>';
+    }
+    var nm = function (se) { return se.name || se.provider; }, col = function (se) { return "var(--s" + (SER[se.provider] || 1) + ")"; };
+    Hd.series.forEach(function (se) {
+      if (se.points.length > 1) {
+        var d = "";
+        se.points.forEach(function (p, i) { d += (i === 0 ? "M" + sx(p.date) + " " + sy(p.price_per_gpu_hour_usd) : "H" + sx(p.date) + "V" + sy(p.price_per_gpu_hour_usd)); });
+        s += '<path d="' + d + '" style="fill:none;stroke:' + col(se) + ';stroke-width:2;stroke-linejoin:round;stroke-linecap:round"/>';
+      }
+    });
+    (Hd.annotations || []).forEach(function (a) { s += '<text x="' + (sx(a.date) + a.dx) + '" y="' + (sy(a.value) + a.dy) + '" text-anchor="' + a.anchor + '" class="ink" style="font-size:10px">' + esc(a.text) + "</text>"; });
+    Hd.series.forEach(function (se) {
+      var c = col(se);
+      se.points.forEach(function (p) {
+        var x = sx(p.date), y = sy(p.price_per_gpu_hour_usd), off = p.type === "official";
+        var id = regTip('<div class="tt">' + esc(nm(se).toUpperCase()) + " / " + p.date + " / " + p.type.toUpperCase() + '</div><div class="tv">' + usd(p.price_per_gpu_hour_usd) + ' <span class="dim" style="font-size:11px">per GPU-hour</span></div><div class="tb">' + esc(p.note) + "</div>" + link(p.source_url, p.source_label));
+        s += '<g class="pt" tabindex="0" data-tip="' + id + '" role="img" aria-label="' + esc(nm(se)) + " " + p.date + " " + usd(p.price_per_gpu_hour_usd) + " per GPU-hour, " + kindName(p.type) + '">' +
+          '<circle class="hit" cx="' + x + '" cy="' + y + '" r="12"/><circle class="ring" cx="' + x + '" cy="' + y + '" r="6.5" style="fill:var(--panel);stroke:none"/>' +
+          '<circle cx="' + x + '" cy="' + y + '" r="4.5" style="' + (off ? "fill:" + c + ";stroke:none" : "fill:var(--panel);stroke:" + c + ";stroke-width:2") + '"/></g>';
+      });
+      var last = se.points[se.points.length - 1];
+      s += '<text class="lab" x="' + (sx(last.date) + 10) + '" y="' + (sy(last.price_per_gpu_hour_usd) + 4) + '">' + esc(shortName(nm(se))) + " " + usd(last.price_per_gpu_hour_usd) + "</text>";
+    });
+    $("#histWrap").innerHTML = s + "</svg>";
+    $("#h-hist").textContent = model + " on-demand price history, USD per GPU-hour";
+    $("#histLegend").innerHTML = Hd.series.map(function (se) { return '<span style="color:' + col(se) + '"><i class="sw"></i><span style="color:var(--ink-2)">' + esc(nm(se)) + "</span></span>"; }).join("") +
+      (ix ? '<span style="color:var(--muted)"><i class="sw" style="border-top-style:dashed"></i><span style="color:var(--ink-2)">Neocloud median (index)</span></span>' : "") +
+      '<span style="color:var(--ink-2)"><i class="dotk f"></i>Official</span><span style="color:var(--ink-2)"><i class="dotk"></i>Secondary or derived</span>';
+    var rows = [];
+    Hd.series.forEach(function (se) { se.points.forEach(function (p) { rows.push([p.date, nm(se), usd(p.price_per_gpu_hour_usd), kindName(p.type), p.note, link(p.source_url, p.source_label)]); }); });
+    if (ix) ix.segments.forEach(function (g) { rows.push([g.from, ix.name, usd(g.price_per_gpu_hour_usd), "Secondary", "Median for " + g.from + " to " + g.to + ".", link(ix.source_url, ix.source_label)]); });
+    rows.sort(function (a, b) { return a[0] < b[0] ? -1 : 1; });
+    $("#histTable").innerHTML = '<thead><tr><th>Date</th><th>Series</th><th class="num">USD per GPU-hr</th><th>Source type</th><th>Basis</th><th>Source</th></tr></thead><tbody>' +
+      rows.map(function (r) { return '<tr><td class="mono">' + r[0] + "</td><td>" + esc(r[1]) + '</td><td class="num">' + r[2] + "</td><td>" + r[3] + "</td><td>" + esc(r[4]) + "</td><td>" + r[5] + "</td></tr>"; }).join("") + "</tbody>";
+  }
+  bindTips($("#histWrap"));
+  if (histModels.length > 1) {
+    var hm = $("#histModels"); hm.hidden = false;
+    hm.innerHTML = '<span class="fl">GPU</span>' + histModels.map(function (m) { return '<button type="button" class="chip" data-m="' + m + '" aria-pressed="' + (m === histModel) + '">' + m + "</button>"; }).join("");
+    hm.addEventListener("click", function (e) {
+      var b = e.target.closest(".chip"); if (!b) return;
+      $$(".chip", hm).forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      histModel = b.getAttribute("data-m"); drawHist(histModel);
+    });
+  }
+  drawHist(histModel);
+
+  /* ================= CHART: SPREAD BARS ================= */
+  (function () {
+    var maxPh = Math.max.apply(null, GPU.map(function (r) { return r.ph; })), MAXV = Math.max(5, Math.ceil(maxPh / 5) * 5), W = 372, L = 100, BW = 200, RH = 20, GH = 22;
+    var groups = D.compute.spread_models, y = 4, s = "", out = "";
+    out += '<defs>';
+    for (var i = 1; i <= 6; i++) out += '<pattern id="hp' + i + '" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--panel)"/><line x1="0" y1="0" x2="0" y2="6" style="stroke:var(--s' + i + ');stroke-width:2.6"/></pattern>';
+    out += "</defs>";
+    var body = "";
+    groups.forEach(function (g) {
+      body += '<text x="0" y="' + (y + 14) + '" class="ink" style="font-weight:600;font-size:11px">' + g + "</text>";
+      body += '<line x1="30" x2="' + (L + BW + 50) + '" y1="' + (y + 10) + '" y2="' + (y + 10) + '" style="stroke:var(--rule)"/>';
+      y += GH;
+      GPU.filter(function (r) { return r.a === g; }).sort(function (a, b) { return a.ph - b.ph; }).forEach(function (r) {
+        var w = r.ph / MAXV * BW, sec = r.t !== "Official", c = SER[r.p];
+        var id = regTip('<div class="tt">' + esc(r.p.toUpperCase()) + " / " + r.a + " / " + r.t.toUpperCase() + '</div><div class="tv">' + usd(r.ph) + ' <span class="dim" style="font-size:11px">per GPU-hour</span></div><div class="tb">' + esc(r.sku) + ". " + esc(r.sc) + ". " + esc(r.cond) + (r.ip ? " Instance price " + usd(r.ip) + " per hour." : "") + "</div>" + link(r.url, "Pricing source"));
+        var rr = 4, x0 = L, x1 = L + w, yy = y + 3, hh = 12;
+        var d = "M" + x0 + " " + yy + "H" + (x1 - rr) + "Q" + x1 + " " + yy + " " + x1 + " " + (yy + rr) + "V" + (yy + hh - rr) + "Q" + x1 + " " + (yy + hh) + " " + (x1 - rr) + " " + (yy + hh) + "H" + x0 + "Z";
+        body += '<g class="brow" tabindex="0" data-tip="' + id + '" role="img" aria-label="' + esc(r.lb) + " " + usd(r.ph) + " per GPU-hour, " + r.t + '">' +
+          '<rect x="0" y="' + y + '" width="' + W + '" height="' + RH + '" style="fill:transparent"/>' +
+          '<text x="' + (L - 6) + '" y="' + (y + 13) + '" text-anchor="end" class="lab" style="font-size:10.5px;font-family:var(--font-sans)">' + esc(r.lb) + "</text>" +
+          '<path class="bar" d="' + d + '" style="' + (sec ? "fill:url(#hp" + c + ");stroke:var(--s" + c + ");stroke-width:1.5" : "fill:var(--s" + c + ")") + '"/>' +
+          '<text x="' + (x1 + 6) + '" y="' + (y + 13) + '" class="ink" style="font-size:10.5px">' + usd(r.ph) + (sec ? " SEC" : "") + "</text></g>";
+        y += RH;
+      });
+      y += 4;
+    });
+    var Hh = y + 22;
+    var grid = "";
+    for (var gv = 0; gv <= MAXV; gv += 5) { var g = gv;
+      var x = L + g / MAXV * BW;
+      grid += '<line x1="' + x + '" x2="' + x + '" y1="2" y2="' + (Hh - 20) + '" style="stroke:var(--grid)"/><text x="' + x + '" y="' + (Hh - 6) + '" text-anchor="middle">$' + g + "</text>";
+    }
+    $("#spreadWrap").innerHTML = '<svg class="chart" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="Horizontal bar chart of on-demand price per GPU-hour by provider for H100, H200 and B200. Table view in the compute index tables.">' + out + grid + body + "</svg>";
+    bindTips($("#spreadWrap"));
+    $("#spreadLegend").innerHTML = Object.keys(SER).map(function (n) { return '<span style="color:var(--s' + SER[n] + ')"><i class="dotk f" style="border-radius:1px"></i><span style="color:var(--ink-2)">' + esc(n === "Microsoft Azure" ? "Azure" : n) + "</span></span>"; }).join("");
+  })();
+
+  /* ================= CHART: DEAL SIZES ================= */
+  (function () {
+    var W = 1180, L = 200, PW = 700, RH = 24, T = 6, B = 26;
+    var rows = CAP.slice().sort(function (a, b) { return b.amt - a.amt; });
+    var Hh = T + rows.length * RH + B;
+    var lx = function (m) { return L + Math.log10(m / 100) / 3 * PW; };
+    var s = '<svg class="chart" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="Bar chart of deal size on a log scale for nine AI deals. Table view below."><defs><pattern id="hpk" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--panel)"/><line x1="0" y1="0" x2="0" y2="6" style="stroke:var(--ink-2);stroke-width:2.6"/></pattern></defs>';
+    [[100, "$100M"], [1000, "$1B"], [10000, "$10B"], [100000, "$100B"]].forEach(function (g) {
+      s += '<line x1="' + lx(g[0]) + '" x2="' + lx(g[0]) + '" y1="' + T + '" y2="' + (Hh - B + 2) + '" style="stroke:var(--grid)"/><text x="' + lx(g[0]) + '" y="' + (Hh - 8) + '" text-anchor="middle">' + g[1] + "</text>";
+    });
+    rows.forEach(function (r, i) {
+      var y = T + i * RH, x1 = lx(r.amt), x0 = L, rr = 4, yy = y + 6, hh = 12;
+      var id = regTip('<div class="tt">' + esc(r.co.toUpperCase()) + " / " + r.d + '</div><div class="tv">' + esc(r.al) + '</div><div class="tb">' + esc(r.st) + ". Leads " + esc(r.ld) + ". Valuation " + esc(r.v) + ". " + esc(r.r) + "</div>" + link(r.url, r.ul));
+      var d = "M" + x0 + " " + yy + "H" + (x1 - rr) + "Q" + x1 + " " + yy + " " + x1 + " " + (yy + rr) + "V" + (yy + hh - rr) + "Q" + x1 + " " + (yy + hh) + " " + (x1 - rr) + " " + (yy + hh) + "H" + x0 + "Z";
+      var st = r.ty === "acq" ? "fill:url(#hpk);stroke:var(--ink-2);stroke-width:1.5" : r.ty === "rep" ? "fill:var(--panel);stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:3 2" : "fill:var(--ink-2)";
+      s += '<g class="brow" tabindex="0" data-tip="' + id + '" role="img" aria-label="' + esc(r.co) + " " + esc(r.al) + '"><rect x="0" y="' + y + '" width="' + W + '" height="' + RH + '" style="fill:transparent"/>' +
+        '<text x="' + (L - 8) + '" y="' + (y + 16) + '" text-anchor="end" class="lab" style="font-family:var(--font-sans);font-size:11.5px">' + esc(r.co) + '</text><path class="bar" d="' + d + '" style="' + st + '"/>' +
+        '<text x="' + (x1 + 7) + '" y="' + (y + 16) + '" class="ink">' + esc(r.al.length > 14 ? r.al.split(" (")[0] : r.al) + "</text></g>";
+    });
+    s += "</svg>";
+    $("#capWrap").innerHTML = s; bindTips($("#capWrap"));
+    $("#capLegend").innerHTML = '<span style="color:var(--ink-2)"><i class="dotk f" style="border-radius:1px"></i>Funding round</span><span style="color:var(--ink-2)"><i class="dotk" style="border-radius:1px;background:repeating-linear-gradient(45deg,currentColor 0 2px,transparent 2px 4px)"></i>Acquisition</span><span style="color:var(--ink-2)"><i class="dotk" style="border-radius:1px;border-style:dashed"></i>Reported talks, not closed</span>';
+  })();
+
+  /* ================= CHART: POLICY TIMELINE ================= */
+  (function () {
+    var W = 1200, L = 24, R = 24, TOP = 8, CW = 6.6, LH = 19;
+    var A0 = utc("2025-07-01"), A1 = utc("2028-10-01");
+    var px = function (d) { return L + (utc(d) - A0) / (A1 - A0) * (W - L - R); };
+    var TODAY = D.meta.updated, TODAY90 = new Date(utc(TODAY) + 90 * DAY).toISOString().slice(0, 10);
+    var EV = D.policy_timeline.map(function (e) { return { d: e.date, l: e.label, u: e.source_url, end: e.label_to_left ? 1 : 0 }; });
+    var ends = [], nl = 0;
+    EV.forEach(function (e) {
+      e.lab = e.d + " " + e.l; var w = e.lab.length * CW, x = px(e.d);
+      e.x0 = e.end ? x - 4 - w : x + 4; e.x1 = e.end ? x - 4 : x + 4 + w;
+      var i = 0; while (i < ends.length && ends[i] > e.x0 - 10) i++;
+      ends[i] = e.x1; e.ln = i; nl = Math.max(nl, i + 1);
+    });
+    var AX = TOP + 12 + nl * LH + 8, H = AX + 36, lane = function (n) { return TOP + 12 + n * LH; };
+    var s = '<svg class="chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Timeline of AI rule effective dates and deadlines from August 2025 to August 2028.">';
+    s += '<rect x="' + px(TODAY) + '" y="' + TOP + '" width="' + (px(TODAY90) - px(TODAY)) + '" height="' + (AX - TOP) + '" style="fill:var(--panel-2)"/>';
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + AX + '" y2="' + AX + '" style="stroke:var(--rule-strong)"/>';
+    ["2025-07-01", "2026-01-01", "2026-07-01", "2027-01-01", "2027-07-01", "2028-01-01", "2028-07-01"].forEach(function (d) {
+      var q = d.split("-"), m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"][+q[1] - 1];
+      s += '<line x1="' + px(d) + '" x2="' + px(d) + '" y1="' + AX + '" y2="' + (AX + 4) + '" style="stroke:var(--rule-strong)"/><text x="' + px(d) + '" y="' + (AX + 17) + '" text-anchor="middle">' + m + " " + q[0] + "</text>";
+    });
+    s += '<line x1="' + px(TODAY) + '" x2="' + px(TODAY) + '" y1="' + TOP + '" y2="' + AX + '" style="stroke:var(--ink);stroke-width:1.5"/><text x="' + (px(TODAY) + 4) + '" y="' + (AX + 31) + '" class="ink" style="font-weight:600">TODAY ' + TODAY + ', next 90 days shaded</text>';
+    EV.forEach(function (e) {
+      var x = px(e.d), y = lane(e.ln);
+      var id = regTip('<div class="tt">' + e.d + '</div><div class="tb" style="color:var(--ink)">' + esc(e.l) + "</div>" + link(e.u, "Source"));
+      s += '<g class="pt" tabindex="0" data-tip="' + id + '" role="img" aria-label="' + esc(e.lab) + '"><line x1="' + x + '" x2="' + x + '" y1="' + y + '" y2="' + AX + '" style="stroke:var(--rule-strong)"/><circle class="hit" cx="' + x + '" cy="' + AX + '" r="12"/>' +
+        '<path d="M' + x + " " + (AX - 5) + "L" + (x + 5) + " " + AX + "L" + x + " " + (AX + 5) + "L" + (x - 5) + " " + AX + 'Z" style="fill:var(--ink);stroke:var(--panel);stroke-width:2"/>' +
+        '<text x="' + (e.end ? x - 4 : x + 4) + '" y="' + (y - 3) + '" text-anchor="' + (e.end ? "end" : "start") + '" class="lab">' + esc(e.lab) + "</text></g>";
+    });
+    $("#polWrap").innerHTML = s + "</svg>"; bindTips($("#polWrap"));
+  })();
+
+  /* ================= SORTABLE TABLES ================= */
+  function buildTable(cfg) {
+    var head = $(cfg.head), body = $(cfg.body), state = { key: cfg.defKey, dir: cfg.defDir || 1 };
+    function paintHead() {
+      head.innerHTML = cfg.cols.map(function (c) {
+        var cls = c.num ? ' class="num"' : "";
+        if (!c.sort) return "<th" + cls + ' scope="col">' + esc(c.label) + "</th>";
+        var act = state.key === c.key, aria = act ? (state.dir > 0 ? "ascending" : "descending") : "none";
+        return "<th" + cls + ' scope="col" aria-sort="' + aria + '"><button type="button" data-k="' + c.key + '">' + esc(c.label) + '<span aria-hidden="true">' + (act ? (state.dir > 0 ? "▲" : "▼") : "↕") + "</span></button></th>";
+      }).join("");
+    }
+    function paintBody() {
+      var rows = cfg.rows.slice(), k = state.key, d = state.dir;
+      rows.sort(function (a, b) { var x = cfg.val(a, k), y = cfg.val(b, k); return typeof x === "string" ? d * x.localeCompare(y) : d * (x - y); });
+      body.innerHTML = rows.map(cfg.row).join("");
+    }
+    head.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-k]"); if (!b) return;
+      var k = b.getAttribute("data-k");
+      if (state.key === k) state.dir = -state.dir; else { state.key = k; state.dir = (cfg.firstDir && cfg.firstDir[k]) || 1; }
+      paintHead(); paintBody();
+    });
+    paintHead(); paintBody();
+  }
+  var aOrder = { H100: 1, H200: 2, B200: 3 };
+  function srcPill(t) { return '<span class="src' + (t === "Official" ? "" : " sec") + '">' + t.toUpperCase() + "</span>"; }
+  buildTable({
+    head: "#gpuHead", body: "#gpuBody", rows: GPU, defKey: "ph", defDir: 1,
+    cols: [{ key: "p", label: "Provider", sort: 1 }, { key: "a", label: "GPU", sort: 1 }, { label: "SKU" }, { label: "Scope and region" }, { label: "Billing unit" }, { key: "ip", label: "Instance USD/hr", sort: 1, num: 1 }, { key: "ph", label: "USD per GPU-hr", sort: 1, num: 1 }, { label: "Conditions" }, { key: "t", label: "Source", sort: 1 }],
+    val: function (r, k) { if (k === "a") return aOrder[r.a]; if (k === "ip") return r.ip == null ? r.ph : r.ip; return r[k]; },
+    row: function (r) {
+      return "<tr><td>" + esc(r.p) + '</td><td class="nowrap mono">' + r.a + "</td><td>" + esc(r.sku) + "</td><td>" + esc(r.sc) + "</td><td>" + esc(r.u) + '</td><td class="num">' + (r.ip == null ? "per GPU" : usd(r.ip)) + '</td><td class="num pg">' + usd(r.ph) + "</td><td>" + esc(r.cond) + "</td><td>" + srcPill(r.t) + '<span class="sub2">' + link(r.url, "Pricing page") + "</span></td></tr>";
+    }
+  });
+  buildTable({
+    head: "#stoHead", body: "#stoBody", rows: STO, defKey: "pm", defDir: 1,
+    cols: [{ key: "p", label: "Provider", sort: 1 }, { label: "Tier" }, { label: "Billing unit" }, { key: "pm", label: "USD per month", sort: 1, num: 1 }, { label: "Egress" }, { label: "Conditions" }, { label: "Source" }],
+    val: function (r, k) { return r[k]; },
+    row: function (r) { return "<tr><td>" + esc(r.p) + "</td><td>" + esc(r.sku) + "</td><td>" + esc(r.u) + '</td><td class="num pg">$' + r.pm.toFixed(4) + "</td><td>" + esc(r.eg) + "</td><td>" + esc(r.cond) + "</td><td>" + link(r.url, "Pricing page") + "</td></tr>"; }
+  });
+  buildTable({
+    head: "#modHead", body: "#modBody", rows: MODELS, defKey: "rd", defDir: -1, firstDir: { rd: -1 },
+    cols: [{ key: "m", label: "Model", sort: 1 }, { key: "dev", label: "Developer", sort: 1 }, { key: "rd", label: "Released", sort: 1 }, { key: "oc", label: "Open or closed", sort: 1 }, { label: "Constraint" }, { label: "Note" }, { label: "Source" }],
+    val: function (r, k) { return r[k]; },
+    row: function (r) { return "<tr><td><b>" + esc(r.m) + "</b></td><td>" + esc(r.dev) + '</td><td class="mono">' + esc(r.rl) + "</td><td>" + esc(r.oc) + "</td><td>" + tags(r.tg) + "</td><td>" + esc(r.n) + "</td><td>" + link(r.url, r.ul) + "</td></tr>"; }
+  });
+  buildTable({
+    head: "#capHead", body: "#capBody", rows: CAP, defKey: "d", defDir: -1, firstDir: { d: -1, amt: -1 },
+    cols: [{ key: "d", label: "Date", sort: 1 }, { key: "co", label: "Company", sort: 1 }, { key: "amt", label: "Amount", sort: 1, num: 1 }, { label: "Stage" }, { label: "Constraint" }, { label: "Lead investors" }, { label: "Valuation" }, { label: "Stated rationale" }, { label: "Source" }],
+    val: function (r, k) { return r[k]; },
+    row: function (r) { return '<tr><td class="mono">' + r.d + "</td><td><b>" + esc(r.co) + '</b></td><td class="num">' + esc(r.al) + "</td><td>" + esc(r.st) + "</td><td>" + tags(r.tg) + "</td><td>" + esc(r.ld) + "</td><td>" + esc(r.v) + "</td><td>" + esc(r.r) + "</td><td>" + link(r.url, r.ul) + "</td></tr>"; }
+  });
+  buildTable({
+    head: "#polHead", body: "#polBody", rows: POL, defKey: "dt", defDir: -1, firstDir: { dt: -1 },
+    cols: [{ key: "dt", label: "Date", sort: 1 }, { key: "j", label: "Jurisdiction", sort: 1 }, { key: "st", label: "Status", sort: 1 }, { label: "Constraint" }, { label: "Item and what it changes" }, { key: "dl", label: "Next deadline", sort: 1 }, { label: "Source" }],
+    val: function (r, k) { return r[k] || "9999"; },
+    row: function (r) { return '<tr><td class="mono">' + r.dt + "</td><td>" + esc(r.j) + "</td><td>" + esc(r.st) + "</td><td>" + tags(r.tg) + "</td><td><b>" + esc(r.t) + "</b><span class=\"sub2\" style=\"color:var(--ink-2)\">" + esc(r.b) + '</span></td><td class="mono">' + (r.dl || "None dated") + "</td><td>" + link(r.url, r.ul) + "</td></tr>"; }
+  });
+
+  /* tabs */
+  var tabs = [$("#tab-gpu"), $("#tab-sto")], panels = [$("#panel-gpu"), $("#panel-sto")];
+  function showTab(i, focus) { tabs.forEach(function (t, j) { t.setAttribute("aria-selected", j === i ? "true" : "false"); t.tabIndex = j === i ? 0 : -1; panels[j].hidden = j !== i; }); if (focus) tabs[i].focus(); }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { showTab(i); });
+    t.addEventListener("keydown", function (e) { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); showTab((i + 1) % 2, true); } });
+  });
+
+  /* ================= SIGNALS + FILTERS ================= */
+  var CATS = ["All", "Models", "Infrastructure", "Capital", "Enterprise", "Policy"], CONS = ["All", "Compute", "Capital", "Rules"];
+  var fstate = { cat: "All", con: "All" };
+  function paintSignals() {
+    var list = SIGNALS.filter(function (x) {
+      return (fstate.cat === "All" || x.cat === fstate.cat) && (fstate.con === "All" || x.tg.some(function (g) { return CN[g[0]] === fstate.con.toUpperCase(); }));
+    });
+    $("#signalList").innerHTML = list.length ? list.map(function (x) {
+      return '<article class="srow"><div class="d">' + x.d + '</div><div><h3>' + esc(x.t) + "</h3><p>" + esc(x.s) + '</p><p class="mv"><b>Moves</b>' + esc(x.mv) + '</p><p class="wy"><b>Why it matters</b>' + esc(x.w) + '</p></div><div class="side">' + tags(x.tg) + '<span class="meta">' + esc(x.cat.toUpperCase()) + " / " + esc(x.aud.toUpperCase()) + "</span><span>" + x.src.map(function (y) { return link(y[1], y[0]); }).join("") + "</span></div></article>";
+    }).join("") : '<div class="pb note">No signals match both filters. Clear one filter to see more.</div>';
+  }
+  function chipGroup(label, items, key, countFn) {
+    return '<div class="fg"><span class="fl">' + label + "</span>" + items.map(function (c) {
+      return '<button type="button" class="chip" data-g="' + key + '" data-c="' + c + '" aria-pressed="' + (c === "All") + '">' + c + '<span class="ct">' + countFn(c) + "</span></button>";
+    }).join("") + "</div>";
+  }
+  $("#filters").innerHTML = chipGroup("Category", CATS, "cat", function (c) { return c === "All" ? SIGNALS.length : SIGNALS.filter(function (s) { return s.cat === c; }).length; }) +
+    chipGroup("Constraint", CONS, "con", function (c) { return c === "All" ? SIGNALS.length : SIGNALS.filter(function (s) { return s.tg.some(function (g) { return CN[g[0]] === c.toUpperCase(); }); }).length; });
+  $("#filters").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    var g = b.getAttribute("data-g");
+    $$('.chip[data-g="' + g + '"]', $("#filters")).forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    fstate[g] = b.getAttribute("data-c"); paintSignals();
+  });
+  paintSignals();
+
+  /* ================= ECOSYSTEM ================= */
+  $("#acc").innerHTML = LAYERS.map(function (l, i) {
+    return '<div class="lrow"><h3><button class="lbtn" type="button" id="ab' + i + '" aria-expanded="false" aria-controls="ap' + i + '"><span class="ix">L' + (i + 1) + '</span><span class="nm">' + esc(l.n) + "</span>" + tags(l.tg) + '<span class="sits">' + esc(l.sits) + '</span><span class="ch" aria-hidden="true">+</span></button></h3>' +
+      '<div class="lpanel" id="ap' + i + '" role="region" aria-labelledby="ab' + i + '" hidden><div class="full"><h4>Key players</h4><div class="players">' + l.pl.map(function (p) { return "<span>" + esc(p) + "</span>"; }).join("") + "</div></div>" +
+      "<div><h4>Where the bottleneck sits now</h4><p>" + esc(l.sits) + "</p></div><div><h4>Business model</h4><p>" + esc(l.bm) + "</p></div><div><h4>Structural bottleneck</h4><p>" + esc(l.bn) + "</p></div>" +
+      '<div class="full"><h4>Question to watch</h4><p style="color:var(--ink)">' + esc(l.q) + '</p></div><div class="full"><h4>Sources</h4><p>' + l.src.map(function (s) { return link(s[1], s[0]); }).join(" &nbsp; ") + "</p></div></div></div>";
+  }).join("");
+  $("#acc").addEventListener("click", function (e) {
+    var b = e.target.closest(".lbtn"); if (!b) return;
+    var open = b.getAttribute("aria-expanded") === "true";
+    b.setAttribute("aria-expanded", open ? "false" : "true");
+    $(".ch", b).textContent = open ? "+" : "−".replace("−", "-");
+    $("#" + b.getAttribute("aria-controls")).hidden = open;
+  });
+
+  /* ================= TAKES ================= */
+  $("#takes").innerHTML = TAKES.map(function (t, i) {
+    return '<article class="panel c4 take"><div class="ph"><h2>Esther\'s take ' + (i + 1) + '</h2><span class="asof">READING OF ' + CN[t.c] + '</span></div><div class="pb">' + tags([[t.c, t.d]]) + "<h3>" + esc(t.h) + "</h3><p>" + esc(t.p) + '</p><div class="chg"><b>What would change my mind</b>' + esc(t.ch) + '</div><p class="ref"><a href="#board-' + t.c + '">See constraint board, ' + CN[t.c].charAt(0) + CN[t.c].slice(1).toLowerCase() + "</a></p></div></article>";
+  }).join("");
+
+  /* ================= PANEL META (as of, source count) ================= */
+  var EXTRA = { compute: histUrls, spread: GPU.map(function (r) { return r.url; }), capital: CAP.map(function (c) { return c.url; }), policy: POL.map(function (c) { return c.url; }) };
+  $$(".panel[data-asof]").forEach(function (p) {
+    var m = $("[data-meta]", p); if (!m) return;
+    var set = {}; $$('a[target="_blank"]', p).forEach(function (a) { set[a.href] = 1; });
+    (EXTRA[p.id] || []).forEach(function (u) { set[u] = 1; });
+    var n = Object.keys(set).length, asof = p.getAttribute("data-asof") === "compute" ? D.compute.asof : D.meta.updated;
+    m.textContent = "AS OF " + asof + " / " + n + " SOURCE" + (n === 1 ? "" : "S");
+  });
+
+  /* ================= MISC ================= */
+  $("#subForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = $("#subEmail").value.trim(), ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    $("#subMsg").hidden = !ok; $("#subErr").hidden = ok;
+    if (ok) $("#subEmail").value = "";
+  });
+  $("#themeBtn").addEventListener("click", function () {
+    var root = document.documentElement, cur = root.getAttribute("data-theme");
+    if (!cur) cur = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+
+  } /* end render */
+
+  function showErr() { var d = document.createElement("div"); d.className = "errbox"; d.textContent = "AI Radar could not load its data. Check that data.json sits next to this page."; document.body.insertBefore(d, document.body.firstChild); }
+  function inline() { try { var D = JSON.parse($("#data-inline").textContent); return valid(D) ? D : null; } catch (e) { return null; } }
+  function go(D, srcName) { document.documentElement.setAttribute("data-source", srcName); render(D); }
+  var fromInline = function () { var D = inline(); if (D) go(D, "inline"); else showErr(); };
+  if (window.fetch && location.protocol !== "file:") {
+    fetch("data.json", { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(function (D) { if (!valid(D)) throw new Error("bad data"); return D; })
+      .then(function (D) { go(D, "data.json"); }, fromInline);
+  } else { fromInline(); }
+})();
+</script>
