@@ -190,7 +190,7 @@ PROGS = [
     ("Malaysia: YTL 600 MW NVIDIA sovereign AI DC (Kulai), MYR 2.1B sovereign AI cloud", "Subsidised tenants", "Malaysia", 600, 2029, 100, 0, "Introl Dec 2025; Digital in Asia 2026."),
     ("Thailand: Gulf 2 GW AI DC plan, Siam AI, Google/Microsoft/AWS regions, BOI THB 521B approvals", "Subsidised tenants", "Thailand", 400, 2030, 30, 0, "LinkedIn (Gulf $4.3B, 2 GW); Digital in Asia. Sovereign portion is my estimate."),
     ("Indonesia, Vietnam, Singapore sovereign AI compute", "Subsidised tenants", "SEA other", 150, 2029, 40, 0, "My estimate."),
-    ("Canada Sovereign AI Compute Strategy (CAD 2B) and Australia (Firmus $10B facility)", "Subsidised tenants", "Canada/Australia", 150, 2029, 30, 0, "Augur; my estimate."),
+    ("Canada Sovereign AI Compute Strategy (CAD 2B) and Australia (Firmus $10B debt facility)", "Subsidised tenants", "Canada/Australia", 150, 2029, 30, 0, "Augur; my estimate."),
     ("Latin America (Brazil, Mexico, Chile) sovereign and national supercomputers", "Subsidised tenants", "LatAm", 80, 2029, 20, 0, "My estimate."),
 ]
 
