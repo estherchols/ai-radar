@@ -1,0 +1,30 @@
+<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top-down versus bottom-up sizing of sovereign AI compute spend 2026">
+<line x1="50" y1="240.0" x2="700" y2="240.0" stroke="var(--line)"/>
+<text x="42" y="244.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$0B</text>
+<line x1="50" y1="166.7" x2="700" y2="166.7" stroke="var(--line)"/>
+<text x="42" y="170.7" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$30B</text>
+<line x1="50" y1="93.3" x2="700" y2="93.3" stroke="var(--line)"/>
+<text x="42" y="97.3" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$60B</text>
+<line x1="50" y1="20.0" x2="700" y2="20.0" stroke="var(--line)"/>
+<text x="42" y="24.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$90B</text>
+<rect x="76.0" y="51.3" width="78.0" height="188.7" rx="3" fill="var(--electric)"/>
+<text x="115.0" y="45.3" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$77B</text>
+<text x="115.0" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path A</text>
+<text x="115.0" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">NVIDIA revenue</text>
+<rect x="206.0" y="188.3" width="78.0" height="51.7" rx="3" fill="var(--electric)"/>
+<text x="245.0" y="182.3" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$21B</text>
+<text x="245.0" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path B</text>
+<text x="245.0" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">analysts</text>
+<rect x="336.0" y="118.7" width="78.0" height="121.3" rx="3" fill="var(--electric)"/>
+<text x="375.0" y="112.7" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$50B</text>
+<text x="375.0" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path C</text>
+<text x="375.0" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">budgets x leverage</text>
+<rect x="466.0" y="119.4" width="78.0" height="120.6" rx="3" fill="#e3a248"/>
+<text x="505.0" y="113.4" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$49B</text>
+<text x="505.0" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Top-down</text>
+<text x="505.0" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">average</text>
+<rect x="596.0" y="135.5" width="78.0" height="104.5" rx="3" fill="#c4561c"/>
+<text x="635.0" y="129.5" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$43B</text>
+<text x="635.0" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Bottom-up</text>
+<text x="635.0" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">energised 2026</text>
+</svg>

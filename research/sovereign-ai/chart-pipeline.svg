@@ -1,0 +1,51 @@
+<svg viewBox="0 0 720 394" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Announced versus energised megawatts by sovereign AI programme">
+<text x="300" y="12" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">announced MW (grey) vs energised by end-2026 (teal)</text>
+<text x="290" y="43" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">France</text>
+<rect x="300" y="30" width="340.0" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="30" width="8.5" height="18" rx="3" fill="var(--electric)"/>
+<text x="648.0" y="43" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">2,400 / 60</text>
+<text x="290" y="73" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">HUMAIN</text>
+<rect x="300" y="60" width="269.2" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="60" width="21.2" height="18" rx="3" fill="var(--electric)"/>
+<text x="577.2" y="73" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">1,900 / 150</text>
+<text x="290" y="103" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">EU AI Gigafactories</text>
+<rect x="300" y="90" width="198.3" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="90" width="1.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="506.3" y="103" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">1,400 / 0</text>
+<text x="290" y="133" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Stargate UAE</text>
+<rect x="300" y="120" width="141.7" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="120" width="28.3" height="18" rx="3" fill="var(--electric)"/>
+<text x="449.7" y="133" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">1,000 / 200</text>
+<text x="290" y="163" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Malaysia</text>
+<rect x="300" y="150" width="85.0" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="150" width="14.2" height="18" rx="3" fill="var(--electric)"/>
+<text x="393.0" y="163" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">600 / 100</text>
+<text x="290" y="193" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Korea sovereign GPUs</text>
+<rect x="300" y="180" width="70.8" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="180" width="15.6" height="18" rx="3" fill="var(--electric)"/>
+<text x="378.8" y="193" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">500 / 110</text>
+<text x="290" y="223" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">AWS Riyadh AI Zone</text>
+<rect x="300" y="210" width="56.7" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="210" width="5.7" height="18" rx="3" fill="var(--electric)"/>
+<text x="364.7" y="223" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">400 / 40</text>
+<text x="290" y="253" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Thailand</text>
+<rect x="300" y="240" width="56.7" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="240" width="4.2" height="18" rx="3" fill="var(--electric)"/>
+<text x="364.7" y="253" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">400 / 30</text>
+<text x="290" y="283" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">EuroHPC AI Factories</text>
+<rect x="300" y="270" width="42.5" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="270" width="17.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="350.5" y="283" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">300 / 120</text>
+<text x="290" y="313" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Japan</text>
+<rect x="300" y="300" width="28.3" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="300" width="5.7" height="18" rx="3" fill="var(--electric)"/>
+<text x="336.3" y="313" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">200 / 40</text>
+<text x="290" y="343" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">UK</text>
+<rect x="300" y="330" width="28.3" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="330" width="4.2" height="18" rx="3" fill="var(--electric)"/>
+<text x="336.3" y="343" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">200 / 30</text>
+<text x="290" y="373" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Nordics and other EU national</text>
+<rect x="300" y="360" width="21.2" height="18" rx="3" fill="var(--line)"/>
+<rect x="300" y="360" width="7.1" height="18" rx="3" fill="var(--electric)"/>
+<text x="329.2" y="373" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">150 / 50</text>
+</svg>

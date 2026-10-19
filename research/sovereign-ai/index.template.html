@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who gets to build a gigawatt · Esther Suebsubanant</title>
+<meta name="description" content="A market sizing of sovereign AI compute for 2026, top-down and bottom-up across 18 national programmes, with a four-quadrant map of state buyers, what a gigawatt costs to own in five countries, four reference builds, pricing by route, value tests, and what each kind of state is actually buying. Model and sources included.">
+<meta property="og:title" content="Who gets to build a gigawatt">
+<meta property="og:description" content="States announce {{bu_pipe_gw}} of AI compute and switch on {{bu_gw26}} in 2026. The Gulf pays {{gulf_share}} of the bill. Europe announces {{eu_ann_share}} of the megawatts and energises {{eu_en_share}}. Here is the model.">
+<meta property="og:image" content="https://esthercs.dev/portfolio/esther.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/writing.css">
+<style>
+.stack{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:12px 0 24px;font-size:14px}
+.stack > div{display:grid;grid-template-columns:150px minmax(0,1fr) 190px;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--bg)}
+.stack > div:last-child{border-bottom:0}
+.stack b{font-weight:600}
+.stack .l{font-family:var(--mono);font-size:11.5px;color:var(--blue)}
+.stack .r{font-size:12.5px;color:var(--dim)}
+@media (max-width:640px){.stack > div{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header><div class="in">
+    <a class="name" href="/"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#132033"/><circle cx="32" cy="32" r="20" fill="none" stroke="#5fb3aa" stroke-width="2.5"/><circle cx="32" cy="32" r="10" fill="none" stroke="#5fb3aa" stroke-width="2.5" opacity=".6"/><circle cx="44" cy="24" r="4" fill="#e3a248"/></svg>Esther Suebsubanant</a>
+    <nav aria-label="Site"><a href="/portfolio/">Portfolio</a><a href="/airadar/">AI Radar</a><a href="/research/" aria-current="page">Research</a><a href="/freeagents/">Free agents</a><a href="/ai101/">AI 101</a><a href="/#contact">Contact</a></nav>
+  </div></header>
+  <div class="pagehero">
+    <div class="status"><i></i>Data center research · Sovereign AI</div>
+    <h1>Who gets to build <span>a gigawatt</span>.</h1>
+    <p>Governments and sovereign funds have announced about {{bu_pipe_gw}} of AI compute outside the US and China, worth {{bu_pipe_capex}} at today's cost per gigawatt. About {{bu_gw26}} of it gets switched on in 2026. This piece sizes what is actually being bought this year, maps the four kinds of state doing the buying, prices what a gigawatt costs to own in five countries, and asks what each one is worth. Every figure is dated, and the model is downloadable.</p>
+  </div>
+  <article class="art" id="main">
+<div class="byline"><div class="mark">E</div><div><b>Esther Suebsubanant</b><span>Ex-M&amp;A and corporate VC. Stanford GSB MBA/MS, EIPER (AI, compute and energy). Thesis work on AI in the semiconductor industry.</span></div></div>
+
+  <div class="tldr">
+    <div class="eyebrow">The short version</div>
+    <p><strong>The size.</strong> Sovereign AI compute is a {{td_R2}} to {{td_R1}} market in 2026 depending on how you count, {{td_R4}} on the average of three top-down paths. The bottom-up is {{td_R6}} of all-in capex for {{bu_gw26}} energised across eighteen programmes, roughly {{bu_gpus26}} GPUs, which is {{td_R7}} of the top-down average. The announced pipeline is {{bu_pipe_gw}} and {{bu_pipe_capex}}. At 2026's pace it takes {{bu_pipe_years}} years to deliver.</p>
+    <p><strong>The shape.</strong> Four kinds of state buy four different things. Compute exporters in the Gulf pay {{gulf_share}} of the 2026 bill and sell the capacity to foreign labs. Industrial sovereigns in Korea and Japan buy GPUs for their own carmakers and chipmakers. Regulated builders in Europe announce {{eu_ann_share}} of the megawatts and energise {{eu_en_share}}. Subsidised tenants in India and Southeast Asia buy GPU-hours for startups rather than buildings.</p>
+    <p><strong>The economics.</strong> A gigawatt costs about $38 billion to build wherever it sits, because the chips are priced the same everywhere. Owning one costs {{g18_us}} per used GPU-hour in the US and {{g18_de}} in Germany once the German delay is counted, against $8.50 to $10.50 to rent Blackwell. With a 12% cost of capital the break-even is {{g18c_us}} to {{g18c_de}}. A Saudi campus selling abroad clears a {{v_VC3b}} margin after capital. A European gigafactory selling at European sovereign-cloud prices loses {{v_VC6b_abs}} after capital.</p>
+    <p><strong>The point.</strong> The chip is {{p_P29}} of the money in a sovereign gigawatt. The rest is a building, a substation and a power contract, and those are what the state controls. Time to power decides who builds, which is why the Gulf can energise a gigawatt in two and a half years and a British site takes nine. For anyone selling into this market the product is not the GPU. It is the gigawatt, financed, permitted and switched on.</p>
+  </div>
+
+  <div class="toc">
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#question">The question and what counts as sovereign</a></li>
+      <li><a href="#map">The map: four kinds of state buyer</a></li>
+      <li><a href="#evidence">What has been announced and what is switched on</a></li>
+      <li><a href="#topdown">Sizing, top-down</a></li>
+      <li><a href="#bottomup">Sizing, bottom-up</a></li>
+      <li><a href="#gigawatt">What a gigawatt costs to own, by country</a></li>
+      <li><a href="#configs">The configurations states deploy</a></li>
+      <li><a href="#stack">The solution stack and the ecosystem</a></li>
+      <li><a href="#price">Price: the GPU-hour by route and region</a></li>
+      <li><a href="#value">Value: what sovereign compute is worth</a></li>
+      <li><a href="#gtm">What each state buys, and how it gets sold</a></li>
+      <li><a href="#synthesis">Synthesis</a></li>
+      <li><a href="#limits">Limitations</a></li>
+      <li><a href="#download">Download the model</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </div>
+
+  <h2 id="question">1. The question and what counts as sovereign</h2>
+  <p>In February 2026 NVIDIA told investors that its sovereign AI revenue had tripled to more than $30 billion in the fiscal year just ended.<sup>1,2</sup> That is a larger business than most of the companies it sells to. It is also a category nobody defines the same way. This piece uses a narrow and testable definition. Sovereign AI compute is accelerated computing bought, financed or subsidised by a state, a sovereign wealth fund or a state-designated national champion, for the stated purpose of running AI inside a jurisdiction. HUMAIN counts because PIF owns it. G42's Stargate UAE counts because Abu Dhabi funds it. Deutsche Telekom's Industrial AI Cloud counts because the German government blessed it as sovereign infrastructure even though the money is private. Korea's 260,000 GPUs count because the Ministry of Science and ICT convened the programme. A hyperscaler region in Bangkok does not count on its own, though the Thai state's subsidy for the hours bought on it does.</p>
+  <p>Two exclusions matter. China is out. Its state-directed build is larger than everything in this piece combined, but it runs on Huawei and on whatever NVIDIA silicon clears the export line, and NVIDIA's share of China's data center AI chips fell to 34% in the first half of 2026 as Huawei reached 28%.<sup>43</sup> It is a different market with different suppliers. The United States is also out as a buyer, because its sovereign AI spending is federal procurement inside the world's largest commercial market and would swamp the rest.</p>
+  <p>The questions are the same ones I asked of financial services. How much is bought in 2026, by whom, in what configuration, at what cost against renting, worth what to the buyer, and therefore what should the product and the selling motion look like?</p>
+
+  <h2 id="map">2. The map: four kinds of state buyer</h2>
+  <p>Grouping states by region or by GDP does not predict how they buy compute. Two things do. The first is capital, meaning the depth of the balance sheet the state can put behind a gigawatt, whether a sovereign wealth fund, a development bank or a chaebol it can lean on. The second is power, meaning how fast and how cheaply the state can energise a gigawatt, which is a function of grid headroom, permitting and the price of electricity. Put those on two axes and the eighteen programmes in this piece fall into four groups that buy differently.</p>
+  <div class="chart">{{CHART_MATRIX}}</div>
+  <p class="cap">Megawatts from the bottom-up model in section 5. Positions on the axes are qualitative.</p>
+  <p><strong>Compute exporters</strong> have both. Saudi Arabia, the UAE and Qatar have sovereign funds with more than $3 trillion between them and power that costs a few cents a kilowatt-hour from gas and record-low solar. They build beyond any plausible domestic demand and sell the capacity to foreign labs. HUMAIN's first 18,000 GB300s are for xAI. Stargate UAE is operated by OpenAI and Oracle. The US Commerce Department approved up to 35,000 GB300-equivalent chips each for HUMAIN and G42 in November 2025, with security and reporting conditions.<sup>6,7</sup> This is the only quadrant where a sovereign AI factory is a business.</p>
+  <p><strong>Industrial sovereigns</strong> have capital and lack power. Japan, Korea and Taiwan can mobilise industrial balance sheets at national scale, and their grids are tight and their land is scarce. Korea's 260,000 GPUs are split between a government computing centre and AI factories at SK, Hyundai and NAVER for the group's own products.<sup>17</sup> Japan's Noetra consortium of 44 companies behind 27,500 Rubin GPUs is the same pattern.<sup>18</sup> These states buy GPUs the way they once bought steel mills, for the industries they already have.</p>
+  <p><strong>Regulated builders</strong> have budgets, development banks and the most expensive, slowest power in the set. The EU has selected 19 AI Factories and is tendering up to seven gigafactories of more than 100,000 processors each, with EUR 10 billion of public money meant to unlock EUR 20 billion private.<sup>11,12</sup> France has a 1.4 GW campus planned for 2028 and the UK has Nscale's 58,640 GPUs with the first large tranche arriving in 2027.<sup>13,15</sup> Europe announces the most megawatts and energises the fewest, and Carnegie's country index puts Germany and the UK at the bottom of ten countries on lifecycle value because of timelines and power prices.<sup>30</sup></p>
+  <p><strong>Subsidised tenants</strong> have thin budgets and reasonable power. India, Malaysia, Thailand and most of Latin America cannot fund a gigafactory, so they subsidise the GPU-hour instead and let hyperscalers and neoclouds build. IndiaAI offers high-end GPUs to startups at INR 150 an hour, about $1.70, against INR 210 to 335 commercially.<sup>19</sup> Malaysia put MYR 2.1 billion into a sovereign AI cloud and froze non-AI data center applications.<sup>20,21</sup> The state is a tenant and a price-setter, not a landlord.</p>
+
+  <h2 id="evidence">3. What has been announced and what is switched on</h2>
+  <p>Sovereign AI is a market of announcements. The table below records, for each programme, what was announced, when it is meant to finish, and my estimate of how much is energised by the end of 2026. The gap between the first and last columns is the story of this market.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Programme</th><th>Quadrant</th><th>Announced MW</th><th>Target</th><th>MW live end-2026</th><th>GPUs implied 2026</th><th>Capex energised 2026</th></tr></thead>
+    <tbody>
+{{PROG_ROWS}}
+      <tr><td><b>Total</b></td><td></td><td class="num"><b>{{bu_pipe_gw}}</b></td><td></td><td class="num"><b>{{bu_gw26}}</b></td><td class="num"><b>{{bu_gpus26}}</b></td><td class="num"><b>{{bu_capex26}}</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">Announced megawatts are IT load as disclosed or derived from GPU counts at about 1.9 kW per installed GPU. Megawatts live by end-2026 are my estimates from disclosed phases (the 50 MW HUMAIN pilot, Stargate UAE's first 200 MW, Telekom's Munich hall, Mistral Compute's 40 MW). GPUs implied use NVL72 density, 72 GPUs per 120 kW rack. Capex uses Epoch AI's $38 billion per gigawatt, all-in.<sup>29</sup> Sources per row are on the BottomUp sheet.</p>
+  <div class="chart">{{CHART_PIPELINE}}</div>
+  <p class="cap">The twelve largest programmes by announced megawatts. Grey is announced, teal is live by end-2026.</p>
+  <p>Three patterns. The two largest announcements, France's 2.4 GW across the AI Campus and the UAE-France cooperation and HUMAIN's 1.9 GW, are at opposite ends of the delivery curve. HUMAIN has a 50 MW pilot running and a 100 MW AMD phase starting, with 211 land plots and 14 GW of power access secured.<sup>3</sup> France's campus breaks ground in the second half of 2026 for operations in 2028. Second, the EU gigafactories, the largest single public programme in the set, energise nothing in 2026 because the tenders only launched in August.<sup>11</sup> Third, the programmes that are actually live this year are small and private-sector-built. Telekom's 10,000 GPUs in Munich went from idea to launch in six months.<sup>14</sup> Mistral Compute's 40 MW is a startup's data center with a state cap table behind it.</p>
+
+  <h2 id="topdown">4. Sizing, top-down</h2>
+  <p>Three published numbers triangulate the market. None of them measures the same thing, which is why there are three.</p>
+  <h3>Path A, from NVIDIA's disclosed sovereign revenue</h3>
+  <p>NVIDIA's sovereign AI revenue was more than $30 billion in fiscal 2026, having tripled.<sup>1,2</sup> I grow it 40% to calendar 2026, giving {{td_A3}}, then gross up for the other accelerator vendors in sovereign deals (AMD's gigawatt with HUMAIN, Qualcomm's 200 MW, Groq's 19,000 LPUs in Dammam) at an 85% NVIDIA share, giving {{td_A5}} of accelerator systems, and then gross up from servers to the whole data center at Carnegie's 64% server share of capex,<sup>30</sup> giving <strong>{{td_A7}}</strong> of all-in sovereign data center capex. At $38 billion a gigawatt that implies {{td_A8}} energised, which is a useful number to hold against the bottom-up.</p>
+  <h3>Path B, from the analysts</h3>
+  <p>MarketsandMarkets sizes the sovereign AI market at $40.0 billion in 2025 growing at 20.6%, Grand View Research at $48.9 billion in 2026 with hardware at 48%.<sup>23,24</sup> The hardware slice averages {{td_B4}}. Precedence Research and SNS Insider size the narrower "sovereign AI infrastructure" market at {{td_B5}} and about $21 billion.<sup>25,26</sup> Path B averages those three at <strong>{{td_B7}}</strong>.</p>
+  <h3>Path C, from public budgets with leverage</h3>
+  <p>Adding up the public money that is actually appropriated for compute and dividing by programme years gives {{td_C1}} a year for the EU's gigafactories and AI Factories, {{td_C2}} for Japan's compute budget and the Noetra consortium, {{td_C3}} for Korea's government GPUs, and {{td_C4}} across India, the UK, France, Malaysia, Saudi Arabia's infrastructure fund and Canada, for {{td_C5}} of public budget in 2026.<sup>11,13,17,18,19,20</sup> The Commission targets ten dollars of private money for every public one. I apply two, which brings Gulf sovereign wealth and Korean chaebol balance sheets in without pretending the EU target is met. Path C lands at <strong>{{td_C7}}</strong>.</p>
+  <div class="chart">{{CHART_SIZING}}</div>
+  <p class="cap">Three top-down paths, their average, and the bottom-up build. 2026, $ billions, all-in data center capex.</p>
+  <p>The average is <strong>{{td_R4}}</strong> with a spread of {{td_R5}} of the mean, wider than I would like and honest about the definitions. Path A measures what NVIDIA has shipped and booked. Path B measures what analysts will count as sovereign, which excludes most private-sector builds the states call sovereign. Path C measures what legislatures voted. For scale, {{td_R4}} is {{td_R10}} of the near $1 trillion AI providers will spend on infrastructure in 2026,<sup>28</sup> and NVIDIA's sovereign line at {{td_A3}} is {{td_R11}} of its data center run-rate.</p>
+
+  <h2 id="bottomup">5. Sizing, bottom-up</h2>
+  <p>The bottom-up multiplies the megawatts I believe are live by the end of 2026 by $38 billion a gigawatt and sums across the eighteen programmes. It comes to <strong>{{bu_capex26}}</strong> of all-in capex, of which {{bu_gpu26}} is GPU systems, for roughly {{bu_gpus26}} GPUs. That is {{td_R7}} of the top-down average, which is close for a market this new.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Quadrant</th><th>Announced MW</th><th>MW live 2026</th><th>GPUs implied 2026</th><th>Capex energised 2026</th><th>Of which GPU systems</th></tr></thead>
+    <tbody>{{QUAD_ROWS}}</tbody>
+  </table></div>
+  <p>The Gulf's three programmes carry {{gulf_share}} of the 2026 capex. Europe's six carry {{eu_ann_share}} of the announced megawatts and {{eu_en_share}} of the live ones. The subsidised tenants, who get the least attention, energise almost as many megawatts as the regulated builders this year, because Malaysia's 600 MW YTL campus in Johor is a real building with NVIDIA GB200 racks in it and 500 MW of solar behind it.<sup>20</sup></p>
+  <h3>The reconciliation that matters</h3>
+  <p>Path A implies {{td_A8}} of capacity from NVIDIA's shipments. The bottom-up finds {{bu_gw26}} energised. The ratio is <strong>{{td_R9}}</strong>. The difference is GPUs that have been bought and booked but are not yet drawing power, sitting in warehouses, in racks waiting for a substation, or in the first phase of a campus whose grid connection is a year away. In financial services the gap between top-down and bottom-up was undisclosed intensity. In sovereign AI it is time to power. NVIDIA recognises revenue when the systems ship. The state gets a sovereign AI capability when the power is on. Everything in this market lives in that gap.</p>
+
+  <h2 id="gigawatt">6. What a gigawatt costs to own, by country</h2>
+  <p>Epoch AI's model of a one-gigawatt AI data center is the best public cost build I know. It needs $38 billion of up-front capex and $0.9 billion a year to operate, which annualises to $8.5 billion a year. Servers are $5 billion of that, 60%. Energy, the largest operating line, is $590 million.<sup>29</sup> Carnegie's Compute Coalition adds the second half of the picture. GPUs cost the same everywhere, so what varies by country is power price, PUE, insurance and above all time. A one-year delay costs a 100 MW US data center more than $500 million over its life, more than 5% of its value, and more than doubling the power price would.<sup>30</sup> I rebuilt the gigawatt on those inputs for five countries.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Country</th><th>Energy per year</th><th>Energy share of TCO</th><th>Annual TCO</th><th>Delay cost over life</th><th>$ per used GPU-hour incl. delay</th><th>Incl. 12% cost of capital</th></tr></thead>
+    <tbody>{{TCO_ROWS}}</tbody>
+  </table></div>
+  <p class="cap">1 GW IT load, GB200 NVL72 at 120 kW per rack, {{g15}} GPUs, 70% utilisation. Power prices 9.8c US (EIA), 5c Saudi, 13c Korea, 18c Germany, 9c India. Delay of 0.5 years for Korea, 1.5 for Germany, 1.0 for India, valued at 5.5% of lifecycle value per year (Carnegie). Saudi carries a 2.5% a year war-risk and country premium after Gulf insurance rose nineteen-fold in April 2026.<sup>29,30,36</sup> Capex per GPU all-in is {{g21}}.</p>
+  <div class="chart">{{CHART_TCO}}</div>
+  <p class="cap">Owner's cost per used GPU-hour by country, cash and with a 12% capital charge, against rental prices for Blackwell and for Hopper-class European sovereign clouds.</p>
+  <p>Four things fall out. First, <strong>the gigawatt costs nearly the same everywhere</strong>. Annual TCO runs from {{g11_us}} in the US to {{g11_de}} in Germany. A fourfold difference in power price moves total cost by single digits, because energy is {{g14_us}} of the bill in the US and {{g14_de}} in Germany. Second, <strong>delay costs more than power</strong>. Germany's 1.5-year wait is worth {{g13_de}} over the life of the asset, more than a decade of its extra electricity bill. Third, <strong>owning is far cheaper than renting</strong>. The owner's cost of {{g17_us}} to {{g17_de}} per used GPU-hour is a quarter of CoreWeave's $10.50 GB200 rate and a third of Nebius's $8.50 B200, and even with a 12% cost of capital the break-even of {{g18c_us}} to {{g18c_de}} is well under half the rental price.<sup>30,35</sup> Fourth, and this is the one that explains the map, <strong>Saudi Arabia is not cheaper than the US to build in</strong> once war-risk insurance is counted, and Carnegie and GovAI reach the same conclusion for the UAE. The Gulf's advantage is not cost. It is that it can clear a gigawatt in two and a half years while a 720 MW site in Northumberland is permitted for completion in 2036.<sup>30</sup></p>
+
+  <h2 id="configs">7. The configurations states deploy</h2>
+  <p>Four reference builds, one per quadrant, on the same rates. The Configs sheet carries every line as a formula.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th></th><th>Compute exporter campus</th><th>Industrial AI factory</th><th>EU gigafactory</th><th>Subsidised national GPU pool</th></tr></thead>
+    <tbody>
+      <tr><td>Who builds it</td><td>HUMAIN with xAI, G42 with OpenAI and Oracle</td><td>Hyundai, SK, SoftBank's Noetra, Deutsche Telekom</td><td>EuroHPC consortium under InvestAI</td><td>IndiaAI, Malaysia sovereign cloud, Thailand</td></tr>
+      <tr><td>IT load</td><td class="num">500 MW</td><td class="num">100 MW</td><td class="num">190 MW</td><td class="num">20 MW</td></tr>
+      <tr><td>Hardware</td><td>GB300 NVL72, liquid, 137.5 kW racks</td><td>GB200 NVL72, liquid</td><td>GB200 NVL72, liquid, ~100,000 processors</td><td>8-GPU air-cooled nodes</td></tr>
+      <tr><td>GPUs</td><td class="num">{{k_K4_1}}</td><td class="num">{{k_K4_2}}</td><td class="num">{{k_K4_3}}</td><td class="num">{{k_K4_4}}</td></tr>
+      <tr><td>Power</td><td>Grid plus dedicated gas and solar PPAs, 5c</td><td>Grid, 13c</td><td>Grid, 18c, 1.5-year interconnect queue</td><td>Grid, 9c</td></tr>
+      <tr><td>Who pays</td><td>Sovereign wealth equity plus project debt</td><td>Chaebol or telco balance sheet with state subsidy</td><td>EU and national budgets plus EIB, 10x private leverage target</td><td>State budget subsidises the hour, hyperscaler or neocloud builds</td></tr>
+      <tr><td>Anchor customer</td><td>xAI, OpenAI, foreign labs renting capacity</td><td>Own group companies in autos, semis, robotics</td><td>Mistral, Black Forest Labs, Helsing, research</td><td>Startups and universities at a subsidised rate</td></tr>
+      <tr><td>Up-front capex</td><td class="num">{{k_K11_1}}</td><td class="num">{{k_K11_2}}</td><td class="num">{{k_K11_3}}</td><td class="num">{{k_K11_4}}</td></tr>
+      <tr><td><b>Annual TCO</b></td><td class="num"><b>{{k_K16_1}}</b></td><td class="num"><b>{{k_K16_2}}</b></td><td class="num"><b>{{k_K16_3}}</b></td><td class="num"><b>{{k_K16_4}}</b></td></tr>
+      <tr><td>Delay cost over life</td><td class="num">{{k_K18_1}}</td><td class="num">{{k_K18_2}}</td><td class="num">{{k_K18_3}}</td><td class="num">{{k_K18_4}}</td></tr>
+      <tr><td>Utilisation</td><td class="num">{{k_K19_1}}</td><td class="num">{{k_K19_2}}</td><td class="num">{{k_K19_3}}</td><td class="num">{{k_K19_4}}</td></tr>
+      <tr><td><b>Owner's cost per used GPU-hour</b></td><td class="num"><b>{{k_K21_1}}</b></td><td class="num"><b>{{k_K21_2}}</b></td><td class="num"><b>{{k_K21_3}}</b></td><td class="num"><b>{{k_K21_4}}</b></td></tr>
+      <tr><td>Break-even incl. 12% cost of capital</td><td class="num">{{k_K21b_1}}</td><td class="num">{{k_K21b_2}}</td><td class="num">{{k_K21b_3}}</td><td class="num">{{k_K21b_4}}</td></tr>
+      <tr><td>Price charged</td><td class="num">{{k_K22_1}} (60% of CoreWeave GB200)</td><td class="num">internal</td><td class="num">{{k_K22_3}} (Scaleway H100)</td><td class="num">{{k_K22_4}} (IndiaAI rate)</td></tr>
+      <tr><td><b>Margin or subsidy per GPU-hour</b></td><td class="num"><b>{{k_K23_1}}</b></td><td class="num">n/a</td><td class="num"><b>{{k_K23_3}}</b></td><td class="num"><b>{{k_K23_4}}</b></td></tr>
+      <tr><td><b>Annual margin or subsidy</b></td><td class="num"><b>{{k_K24_1}}</b></td><td class="num">n/a</td><td class="num"><b>{{k_K24_3}}</b></td><td class="num"><b>{{k_K24_4}}</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">Utilisation reflects each buyer's reality: an exporter sells capacity it has pre-sold (80%), an industrial factory runs its own research (70%), a gigafactory serves many small tenants (60%), a subsidised pool is bursty (50%). Prices are from section 9.</p>
+  <p><strong>The exporter campus is the only one of the four that is a business.</strong> Five hundred megawatts of GB300 racks cost {{k_K11_1}} and {{k_K16_1}} a year to run. Sold at 60% of CoreWeave's GB200 rate to a lab that wants capacity now, it earns {{k_K23_1}} a GPU-hour and {{k_K24_1}} a year before financing, enough to carry a 12% cost of capital with room to spare. The risks are the two things the spreadsheet cannot price, export policy and a drone.</p>
+  <p><strong>The industrial AI factory is a cost centre and is meant to be.</strong> Hyundai's 50,000 Blackwell GPUs are for training the models that go into its cars and factories. The {{k_K16_2}} a year is an R&amp;D line, and the return is measured in vehicle programmes, not GPU-hours. This is the quadrant where Korea's 13 cent power and half-year delay do not matter, because the alternative is renting from a foreign cloud at $8.50 and sending the training data abroad.</p>
+  <p><strong>The EU gigafactory cannot be run as a cloud at European prices.</strong> At 60% utilisation and 18 cent power its cash cost is {{k_K21_3}} a GPU-hour and its break-even with capital is {{k_K21b_3}}. European sovereign clouds sell Hopper-class capacity at $3 (OVHcloud at $2.99, Scaleway at EUR 2.87),<sup>33,34</sup> so a gigafactory that tries to compete on price covers its cash cost and nothing else. It has to be valued as a research instrument that keeps Mistral, Black Forest Labs and Helsing training in Europe, and sold on Blackwell-class capability that the Hopper clouds do not have.</p>
+  <p><strong>The subsidised pool is the cheapest way to put compute in startups' hands and the most expensive per GPU.</strong> A 20 MW air-cooled pool of 8-GPU nodes at 50% utilisation costs {{k_K21_4}} a GPU-hour to run, and IndiaAI sells it at $1.70, so the state eats {{k_K23_4}} an hour, or about {{k_K24_4}} a year on this configuration. Against IndiaAI's five-year budget of about $1.2 billion that is sustainable, and it buys 45,000 GPUs of access without owning a single building. The weakness is that it buys no sovereignty of supply. The hyperscaler owns the hall.</p>
+
+  <h2 id="stack">8. The solution stack and the ecosystem</h2>
+  <p>A sovereign AI factory is bought as a stack, and the state controls the bottom two layers, which is where its leverage lives.</p>
+  <div class="stack">
+    <div><span class="l">Land and power</span><div><b>The layer only the state can deliver.</b> HUMAIN holds 211 plots with 14 GW of power access and signed a 250 MW JV with stc toward a gigawatt.<sup>3</sup> Malaysia froze non-AI data center permits to keep power for AI.<sup>21</sup> Germany's grid queue is the longest in Carnegie's set. Data centers already take 42% of Frankfurt's electricity demand and nearly 80% of Dublin's.<sup>32</sup></div><span class="r">Ministries, utilities, sovereign developers. Nobody in Silicon Valley sells this.</span></div>
+    <div><span class="l">Capital</span><div><b>Who pays.</b> PIF (~$925B), MGX (targeting $100B, co-led OpenAI's $122B round), Mubadala, ADIA, QIA, Temasek and GIC on the sovereign side. EIB co-financing the EU gigafactories. Blackstone's $3B AirTrunk campus with HUMAIN and Brookfield's $20B Qatar JV on the private side.<sup>13</sup> NVIDIA's own financing platforms with Apollo, BlackRock, Blackstone, Brookfield, Goldman and KKR target $500B.<sup>38</sup></div><span class="r">Sovereign funds, development banks, infrastructure PE.</span></div>
+    <div><span class="l">Silicon</span><div><b>Mostly NVIDIA, with deliberate second sources.</b> GB300 NVL72 at HUMAIN, Stargate UAE and Nscale. Rubin first to Jump Trading and to Japan's 27,500-GPU consortium. AMD MI355X live at HUMAIN with a 1 GW target by 2030 and a $10B collaboration. Qualcomm AI200 racks at 200 MW. Groq's 19,000 LPUs in Dammam. US export approvals sized at 35,000 GB300-equivalent chips each for HUMAIN and G42, valued at about $1B, or roughly $28,600 a chip.<sup>3,5,6</sup></div><span class="r">NVIDIA, AMD, Qualcomm, Groq. Huawei in China.</span></div>
+    <div><span class="l">Systems and operator</span><div><b>Who runs the hall.</b> OpenAI and Oracle operate Stargate UAE. Nscale builds the UK. SoftBank's Noetra runs Japan's Rubin fleet. Deutsche Telekom runs Munich. YTL runs Johor. Sakura Internet took 69% of METI's JPY 72.5B subsidy pool.<sup>8,14,15,18,20</sup></div><span class="r">Neoclouds and national telcos. NVIDIA Cloud Partners doubled their footprint in 2026.</span></div>
+    <div><span class="l">Models</span><div><b>The sovereignty argument.</b> OpenAI for Countries puts OpenAI's models on local compute in the UAE and UK. Mistral is Europe's open-weight champion with ASML as its largest shareholder. HUMAIN's ALLaM is Arabic-first. Perplexity made its inference layer sovereign inside Germany. 84% of financial institutions say open-source models matter to their strategy, and the same logic drives states.<sup>13,14,16</sup></div><span class="r">OpenAI, Mistral, national labs, open weights.</span></div>
+    <div><span class="l">Policy</span><div><b>The gate.</b> The AI Diffusion rule was rescinded in May 2025 and replaced with case-by-case approvals. The November 2025 Saudi and UAE approvals came with security and reporting conditions. The Commission's 2027 interim evaluation decides whether InvestAI continues.<sup>6,7,13</sup></div><span class="r">US Commerce, European Commission, national regulators.</span></div>
+  </div>
+  <p>The ecosystem observation is that the two layers NVIDIA does not sell, land and power and capital, are the two it has moved to influence in 2026 through its financing platforms and its European equity stakes, because they gate everything above them. The second is that the operator layer is where the sovereign premium is being captured. Nscale sought a $35 billion valuation on the back of UK and Norwegian capacity.<sup>1</sup> The state wants a national champion to run the hall, and the champion gets paid for being national.</p>
+
+  <h2 id="price">9. Price: the GPU-hour by route and region</h2>
+  <p>Sovereign compute is sold by the GPU-hour, and the price depends far more on who is selling and where than on the chip. Here is the range read from list prices in September and October 2026.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Route</th><th>$ per GPU-hour</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Azure H100, West Europe</td><td class="num">{{p_P9}}</td><td>Highest list in Europe<sup>33</sup></td></tr>
+      <tr><td>AWS H100, Japan</td><td class="num">{{p_P10}}</td><td>{{p_P20}} the METI-subsidised Sakura rate<sup>18</sup></td></tr>
+      <tr><td>CoreWeave GB200 on-demand</td><td class="num">{{p_P6}}</td><td>Lowest Blackwell-rack rental found, May 2026<sup>30</sup></td></tr>
+      <tr><td>Nebius B200</td><td class="num">{{p_P7}}</td><td>14 Oct 2026<sup>35</sup></td></tr>
+      <tr><td>AWS H100, Stockholm</td><td class="num">{{p_P11}}</td><td></td></tr>
+      <tr><td>CoreWeave HGX H100, Europe</td><td class="num">{{p_P12}}</td><td>Up to 60% off committed</td></tr>
+      <tr><td>Verda B200, Finland</td><td class="num">{{p_P8}}</td><td></td></tr>
+      <tr><td>Sakura Internet H100, Japan</td><td class="num">{{p_P13}}</td><td>JPY 990, METI-subsidised operator</td></tr>
+      <tr><td>Nebius H100 SXM</td><td class="num">{{p_P14}}</td><td></td></tr>
+      <tr><td><b>Break-even for a German gigawatt owner incl. 12% capital</b></td><td class="num"><b>{{p_P5d}}</b></td><td>From section 6</td></tr>
+      <tr><td><b>Break-even for a US gigawatt owner incl. 12% capital</b></td><td class="num"><b>{{p_P5b}}</b></td><td></td></tr>
+      <tr><td>Scaleway H100 PCIe, Paris</td><td class="num">{{p_P15}}</td><td>EUR 2.87</td></tr>
+      <tr><td>OVHcloud H100, Gravelines</td><td class="num">{{p_P16}}</td><td>Won a EUR 180M Commission sovereign-cloud contract<sup>34</sup></td></tr>
+      <tr><td>Global H100 on-demand median</td><td class="num">{{p_P17}}</td><td>NVIDIA's index, June 2026<sup>38</sup></td></tr>
+      <tr><td><b>Owner's cash cost, US gigawatt</b></td><td class="num"><b>{{p_P2}}</b></td><td>From section 6</td></tr>
+      <tr><td><b>IndiaAI subsidised rate</b></td><td class="num"><b>{{p_P18}}</b></td><td>INR 150, high-end GPU<sup>19</sup></td></tr>
+    </tbody>
+  </table></div>
+  <p>Four spreads carry the argument. <strong>European sovereign clouds sell at {{p_P19}} of Azure's European list price.</strong> OVHcloud and Scaleway are not winning on jurisdiction alone, they are a fifth of the hyperscaler's price for the same Hopper GPU, which is why the Commission gave OVHcloud a EUR 180 million sovereign-cloud contract.<sup>34</sup> <strong>A Saudi exporter's break-even including capital is {{p_P25c}} of CoreWeave's GB200 rate.</strong> That is the margin the Gulf is selling into, and it is why foreign labs are the anchor tenants. <strong>A German gigafactory's break-even including capital is {{p_P25b}} of Scaleway's price.</strong> It cannot earn its cost of capital in the European cloud market as it stands. <strong>India's subsidy gap against a hyperscaler's own cost is only {{p_P22}} an hour.</strong> IndiaAI's INR 150 rate is close to what it costs a US hyperscaler to produce a GPU-hour, so the subsidy is mostly eating the hyperscaler's margin rather than the hardware. On 45,000 GPUs at 50% utilisation that is about {{p_P23}} a year.</p>
+  <h3>Where the margin sits</h3>
+  <p>The export approvals price a GB300 at about $28,600, and NVIDIA's 75% gross margin puts its cost of goods near {{p_P27}}.<sup>6,37</sup> The all-in capex per GPU in a gigawatt is {{p_P28}}, so the chip is {{p_P29}} of the money. The rest is the server around it, the rack, the network, the building and the power plant. In a sovereign deal the state is spending more on things it controls than on the thing it imports, which is exactly why export approvals are negotiated at head-of-state level and why the Gulf's land and power, not its money, are its bargaining chips.</p>
+
+  <h2 id="value">10. Value: what sovereign compute is worth</h2>
+  <p>The value case for sovereign compute is usually made with a very large macro number. PwC's estimate that AI adds $15.7 trillion to global GDP by 2030, a 14% uplift, is the one most often quoted.<sup>39</sup> Most of that value is consumed as software and services that can run anywhere. I assume a quarter of it depends on compute being in-country, for regulated data, defence, latency and language, and test each quadrant against it.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>State</th><th>Annual GDP uplift at stake</th><th>Announced compute capex</th><th>Years of uplift to pay back</th></tr></thead>
+    <tbody>
+      <tr><td>Saudi Arabia (HUMAIN 1.9 GW)</td><td class="num">{{v_VA3}}</td><td class="num">{{v_VA4}}</td><td class="num">{{v_VA5}}</td></tr>
+      <tr><td>EU (gigafactories and AI Factories, 1.7 GW)</td><td class="num">{{v_VA6}}</td><td class="num">{{v_VA7}}</td><td class="num">{{v_VA8}}</td></tr>
+      <tr><td>India (IndiaAI pool, 90 MW)</td><td class="num">{{v_VA9}}</td><td class="num">{{v_VA10}}</td><td class="num">{{v_VA11}}</td></tr>
+      <tr><td>Thailand (Gulf Development 2 GW plan)</td><td class="num">{{v_VA12}}</td><td class="num">{{v_VA13}}</td><td class="num">{{v_VA14}}</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">GDP x 14% x 25%. GDP figures approximate. Capex at $38 billion per gigawatt.</p>
+  <p>The macro test says India and the EU are under-investing by any measure and Saudi Arabia and Thailand are building beyond what their own economies can use. Thailand's planned 2 GW would take four years of the country's entire in-country AI uplift to pay back, which only works if the capacity is sold to the region, as Malaysia's Johor campuses sell to Singapore. Saudi Arabia's 1.9 GW would take about two years, and HUMAIN has said its initial capacity is sold out to foreign tenants, which is the point.</p>
+  <p>The micro tests are harsher. Google's Public First study claims $41 billion of economic value from its $1 billion Bangkok region, a {{v_VB1}} multiplier that should be read as a vendor's number.<sup>22</sup> Anthropic told investors it earns $1.70 of revenue for every dollar of compute, which is the best disclosed return on compute in the industry and belongs to a lab, not a landlord.<sup>1</sup> Gartner's view of the landlords is that AI data center owners need $8.5 trillion of cumulative revenue through 2030 to cover capex, financing and a 12% return, against no more than $3.6 trillion of AI revenue attributable to them, so owners as a class cover {{v_VB3}} of what they need and more than $3.5 trillion of infrastructure is exposed to impairment.<sup>28</sup></p>
+  <div class="chart">{{CHART_MARGINS}}</div>
+  <p class="cap">Operating margin of a sovereign gigawatt in the two quadrants that sell capacity, before and after a 12% cost of capital.</p>
+  <p>Put a sovereign gigawatt through that test. A Saudi campus selling at 60% of CoreWeave's GB200 rate at 80% utilisation earns {{v_VC2}} a year on {{v_VC1}} of cost, a {{v_VC3}} cash margin and {{v_VC3b}} after capital. A German gigafactory selling at Scaleway's price at 60% utilisation earns {{v_VC5}} on {{v_VC4}} of cost, a {{v_VC6}} cash margin and {{v_VC6b}} after capital. To earn its cost of capital it would have to charge {{v_VC7}} a GPU-hour, which is Blackwell-class pricing for a market that is buying Hopper at $3.</p>
+  <div class="callout hot">
+    <p><strong>What the ratios miss.</strong> Three things do not appear above and explain why the capital keeps coming after the spreadsheet says stop. Optionality, because a state with its own gigawatt can run a national model when a foreign API is cut off. Industrial pull-through, because Korea's 260,000 GPUs are for Hyundai's and SK's products, not for sale. And bargaining power, because HUMAIN's 35,000-chip approval and $23 billion of agreements were negotiated between heads of state. These are real. They are also the reason the regulated builders keep announcing gigafactories they cannot run as businesses.</p>
+  </div>
+
+  <h2 id="gtm">11. What each state buys, and how it gets sold</h2>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Buyer</th><th>Product they are looking for</th><th>How it is sold</th><th>What kills the deal</th></tr></thead>
+    <tbody>
+      <tr><td><b>Compute exporters</b><br><span class="pill">Saudi Arabia, UAE, Qatar</span></td><td>Allocation of the newest racks at scale (hundreds of GB300 NVL72, Rubin next), an anchor tenant who will prepay (xAI, OpenAI), export approval, and a financing structure that lets the sovereign fund hold the asset. Second-source silicon (AMD, Qualcomm, Groq) as a hedge against the approval.</td><td>Head-of-state visits and investment forums. NVIDIA, AMD and Qualcomm sign in the same week. Hyperscalers bring tenants (AWS 150,000 accelerators in Riyadh). Private infrastructure capital (Blackstone, Brookfield) brings the buildings.</td><td>Export policy and war risk. The approval is conditional and the insurance went up nineteen-fold in April 2026. Also talent, which HUMAIN itself names as the constraint.</td></tr>
+      <tr><td><b>Industrial sovereigns</b><br><span class="pill">Korea, Japan, Taiwan</span></td><td>GPUs for their own industry, wrapped in the vendor's physical-AI and digital-twin software (Omniverse, Isaac, RTX PRO servers for factories). A national computing centre for the government and research. First access to the next generation, which Japan secured for Rubin.</td><td>Government convenes, chaebol and telcos buy. Announced at APEC and at national summits as industrial policy. Subsidy pools (METI's JPY 72.5B) go to domestic operators who then buy.</td><td>Power and land. Korea's grid and Japan's siting constraints cap the fleets. Also allocation, because these buyers compete with hyperscalers for the same racks.</td></tr>
+      <tr><td><b>Regulated builders</b><br><span class="pill">EU, France, Germany, UK</span></td><td>A gigafactory financed by public money and development banks, operated by a European neocloud or telco, with a European model lab as anchor tenant and open weights as the sovereignty story. Blackwell-class capability the Hopper clouds lack.</td><td>Tenders and consortia. The Commission selects, the EIB co-finances, Nscale, Mistral and Telekom operate. NVIDIA invests directly in the operators (14 European rounds in 2025, GBP 500M in Nscale).</td><td>Permits and the grid. The economics do not close against European sovereign-cloud prices, so the political case has to carry the project through a 2027 interim evaluation.</td></tr>
+      <tr><td><b>Subsidised tenants</b><br><span class="pill">India, Malaysia, Thailand, LatAm</span></td><td>GPU-hours at a subsidised rate for startups and universities, a sovereign cloud certification for the hyperscaler region that already exists, and a national model programme. The state wants access, not a building.</td><td>Hyperscalers and neoclouds build regions and campuses (Google Bangkok, YTL Johor, Neysa India). The state subsidises the hour and certifies the region. Sold through the hyperscaler's country team and the Board of Investment.</td><td>Budget and sovereignty of supply. The subsidy is sustainable, the building belongs to someone else, and the first data center protest in Malaysia happened in February 2026.</td></tr>
+    </tbody>
+  </table></div>
+  <p>The selling motion that works across all four is the one NVIDIA has already adopted. Sell the gigawatt, not the GPU. Arrive with the financing partner, the operator, the model partner and the export paperwork, and let the state supply the two things only it can, land with power and a signature. The vendor that treats a sovereign deal as a hardware sale loses to the one that treats it as project finance.</p>
+
+  <h2 id="synthesis">12. Synthesis</h2>
+  <p>The thesis behind all of this research is that value accrues to whoever controls the scarcest input. In sovereign AI the scarce inputs are, in order, time to power, export approval and an anchor tenant. Capital is not scarce. The Gulf has more than it can deploy, the EU has EUR 20 billion it cannot yet spend, and NVIDIA is financing its own customers. Chips are not scarce in the way they were in 2024, except at the newest generation.</p>
+  <p><strong>The market is real and smaller than its announcements.</strong> About {{td_R4}} of all-in capex on the top-down average and {{bu_capex26}} on the bottom-up in 2026, for {{bu_gw26}} switched on. The {{bu_pipe_gw}} pipeline is nine years of delivery at this pace. NVIDIA's sovereign revenue is running {{td_R9}} ahead of the power, which means a year of its sovereign shipments is sitting in halls waiting for substations. That is the single most useful number in this piece for anyone trying to forecast the category, because it says the constraint on sovereign AI revenue from here is grid connections, not purchase orders.</p>
+  <p><strong>Only one quadrant is a business.</strong> The compute exporters earn a margin because they have cheap fast power, prepaying foreign tenants and the chips. The industrial sovereigns run cost centres on purpose. The regulated builders cannot cover their cost of capital at European prices and should stop pretending the gigafactories are clouds. The subsidised tenants have found the cheapest route to access and given up on owning anything.</p>
+  <p><strong>The chip is less than half the money and the state controls the rest.</strong> That is why the bargaining happens at head-of-state level and why NVIDIA has spent 2026 investing in European operators and financing Gulf buildings. Whoever controls time to power holds the pricing power. Today that is the Gulf, and the one lever NVIDIA has over it is allocation of the next generation.</p>
+  <p><strong>What I would do in each quadrant.</strong> In the Gulf, sell allocation and insurance together, because the drone is now the risk that prices the deal. In Korea and Japan, sell the factory software stack, because the GPUs are already committed and the margin moves to Omniverse and physical AI. In Europe, stop selling gigafactories as clouds and sell them as the way to keep Mistral training in Europe, with a Blackwell-class price the Hopper clouds cannot match. In India and Southeast Asia, sell the certification and the national model programme to the state, and the racks to the hyperscaler who is going to build the hall anyway.</p>
+
+  <h2 id="limits">13. Limitations</h2>
+  <ul>
+    <li>The megawatts energised by end-2026 are my estimates from disclosed phases. Programmes do not publish commissioning dates. The honest range on the bottom-up is $35 billion to $50 billion.</li>
+    <li>Path A rests on one disclosed number, NVIDIA's $30 billion, and on my 40% growth and 85% share assumptions. NVIDIA's definition of sovereign is broader than mine and includes some commercial neoclouds.</li>
+    <li>The gigawatt cost model is Epoch's US hyperscaler build with GB200 racks. Gulf campuses use GB300 at higher density, European ones may mix generations, and construction costs vary by 20% to 30% across countries. I held capex constant on Carnegie's finding that IT is 64% of it and priced the same everywhere.</li>
+    <li>Power prices, PUE and delay by country are my figures anchored on Carnegie's index and EIA. The war-risk premium applies a shipping-insurance figure to a data center and is a lever.</li>
+    <li>Rental prices are list prices read in September and October 2026. Committed-use discounts of 30% to 60% exist and would narrow the owner-versus-rent spread.</li>
+    <li>China is excluded. Its sovereign build is larger than everything here and runs on different silicon.</li>
+    <li>The GDP value tests use PwC's 2017 figure and my 25% in-country share. They are order-of-magnitude checks, not forecasts.</li>
+  </ul>
+
+  <h2 id="download">14. Download the model</h2>
+  <p>Nine sheets. Assumptions holds every input with its source and date. TopDown, BottomUp, GigawattTCO, Configs, Pricing and Value are live formulas with each computed row stating its formula in words. The build script regenerates the workbook and the page script renders this article from the recalculated values, so the two cannot drift apart.</p>
+  <div class="dl">
+    <a href="/research/sovereign-ai/sovereign-ai-model.xlsx" download><code>sovereign-ai-model.xlsx</code> the model, 373 formulas</a>
+    <a href="/research/sovereign-ai/build_model.py" download><code>build_model.py</code> builds the workbook</a>
+    <a href="/research/sovereign-ai/build_page.py" download><code>build_page.py</code> renders this page from it</a>
+  </div>
+
+  <h2 id="sources">15. Sources</h2>
+  <div class="sources"><ol>
+    <li>Fortune, <a href="https://fortune.com/2026/10/15/nvidias-european-spending-spree-is-about-much-more-than-europe/" rel="noopener">Nvidia's European spending spree is about much more than Europe</a>, 15 Oct 2026 (sovereign revenue tripled to more than $30B, $8B into Europe, Nscale valuation, Anthropic $1.70 per compute dollar).</li>
+    <li>Air Street Capital, <a href="https://www.stateof.ai/" rel="noopener">State of AI Report 2026</a>, Oct 2026 (NVIDIA >$30B sovereign AI revenue FY2026, hyperscaler capex ~$733B).</li>
+    <li>vision2030.ai, <a href="https://vision2030.ai/analysis/humain-ai-infrastructure/" rel="noopener">HUMAIN's AI Infrastructure Machine: 600,000 GPUs, $77 Billion, 6.6 GW</a>, 2026.</li>
+    <li>Saudi Market Research Consulting, <a href="https://saudimarketresearchconsulting.com/insights/articles/humain-saudi-arabia-a-bold-sovereign-ai-push-reshaping-infrastructure-and-markets" rel="noopener">HUMAIN Saudi Arabia: A Bold Sovereign AI Push</a>, 2025-2026.</li>
+    <li>Qualcomm, <a href="https://www.qualcomm.com/news/releases/2025/10/humain-and-qualcomm-to-deploy-ai-infrastructure-in-saudi-arabia-" rel="noopener">HUMAIN and Qualcomm to deploy AI infrastructure in Saudi Arabia</a>, Oct 2025.</li>
+    <li>US Department of Commerce, <a href="https://www.commerce.gov/news/press-releases/2025/11/statement-uae-and-saudi-chip-exports" rel="noopener">Statement on UAE and Saudi Chip Exports</a>, 19 Nov 2025.</li>
+    <li>Reuters, <a href="https://www.reuters.com/business/us-authorizes-export-advanced-american-semiconductors-companies-saudi-uae-2025-11-19/" rel="noopener">US authorizes export of advanced American semiconductors to companies in Saudi, UAE</a>, 19 Nov 2025.</li>
+    <li>OpenAI, <a href="https://openai.com/index/introducing-stargate-uae/" rel="noopener">Introducing Stargate UAE</a>, May 2025.</li>
+    <li>G42, <a href="https://www.g42.ai/resources/news/global-tech-alliance-launches-stargate-uae" rel="noopener">Global Tech Alliance Launches Stargate UAE</a>, May 2025.</li>
+    <li>The Tech Capital, <a href="https://thetechcapital.com/first-200mw-of-stargate-uae-will-come-online-in-2026-says-g42-chief" rel="noopener">First 200 MW of Stargate UAE will come online in 2026 says G42 chief</a>, 15 Oct 2025.</li>
+    <li>European Commission, <a href="https://digital-strategy.ec.europa.eu/en/policies/ai-factories" rel="noopener">AI Factories</a>, updated 12 Aug 2026.</li>
+    <li>EIB, <a href="https://www.eib.org/en/press/all/2025-491-eib-group-and-european-commission-join-forces-to-finance-ai-gigafactories" rel="noopener">EIB Group and European Commission join forces to finance AI gigafactories</a>, 2025.</li>
+    <li>Augur (Mulani, Fitz, Fort), <a href="https://whoownsai.org/who-owns-ai.pdf" rel="noopener">Who Owns AI?</a>, data to May 2026.</li>
+    <li>Deutsche Telekom, <a href="https://www.telekom.com/en/newsroom/latest-updates/media-information/2025/11/for-a-sovereign-germany" rel="noopener">For a sovereign Germany: Deutsche Telekom launches Industrial AI Cloud with NVIDIA</a>, 4 Nov 2025.</li>
+    <li>Nscale, <a href="https://www.nscale.com/press-releases/nscale-uk-ai-infrastructure-announcement" rel="noopener">UK AI infrastructure commitment in partnership with Microsoft, NVIDIA and OpenAI</a>, 16 Sep 2025.</li>
+    <li>OpenAI, <a href="https://openai.com/index/introducing-stargate-uk/" rel="noopener">Introducing Stargate UK</a>, Sep 2025.</li>
+    <li>NVIDIA, <a href="https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-South-Korea-Government-and-Industrial-Giants-Build-AI-Infrastructure-and-Ecosystem-to-Fuel-Korea-Innovation-Industries-and-Jobs/default.aspx" rel="noopener">NVIDIA, South Korea Government and Industrial Giants Build AI Infrastructure</a>, 31 Oct 2025.</li>
+    <li>Spheron, <a href="https://www.spheron.network/blog/gpu-cloud-providers-japan-2026/" rel="noopener">GPU Cloud Providers in Japan 2026</a>, Oct 2026.</li>
+    <li>IndiaAI, <a href="https://indiaai.gov.in/hub/indiaai-compute-capacity" rel="noopener">IndiaAI Compute Capacity</a>, 2026, and MeitY statements on 38,000 GPUs at INR 150 per hour.</li>
+    <li>Introl, <a href="https://introl.com/blog/malaysia-thailand-emerging-ai-data-center-hubs-southeast-asia" rel="noopener">Malaysia and Thailand: Emerging AI Data Center Hubs</a>, Dec 2025 update.</li>
+    <li>Digital in Asia, <a href="https://digitalinasia.com/southeast-asia-ai-data-centre-boom/" rel="noopener">Who is Building AI Data Centres in Southeast Asia in 2026</a>, 2026.</li>
+    <li>Google Cloud, <a href="https://www.googlecloudpresscorner.com/2026-01-21-Google-Cloud-Launches-New-Cloud-Region-in-Thailand,-Bolstering-its-Commitment-to-Advancing-the-Countrys-AI-Driven-Digital-Economy" rel="noopener">Launches New Cloud Region in Thailand</a>, 21 Jan 2026.</li>
+    <li>MarketsandMarkets, <a href="https://finance.yahoo.com/technology/ai/articles/sovereign-ai-market-reach-usd-151500186.html" rel="noopener">Sovereign AI Market to Reach USD 148.0 Billion by 2032</a>, 19 Aug 2026.</li>
+    <li>Grand View Research, <a href="https://www.grandviewresearch.com/industry-analysis/sovereign-ai-market-report" rel="noopener">Sovereign AI Market (2026-2033)</a>.</li>
+    <li>Precedence Research, <a href="https://www.precedenceresearch.com/sovereign-ai-infrastructure-market" rel="noopener">Sovereign AI Infrastructure Market</a>.</li>
+    <li>SNS Insider, <a href="https://www.snsinsider.com/reports/sovereign-ai-infrastructure-market-10918" rel="noopener">Sovereign AI Infrastructure Market</a>.</li>
+    <li>Gartner, <a href="https://www.gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026" rel="noopener">Worldwide AI Spending to Grow 49.5% in 2026</a>, 16 Sep 2026.</li>
+    <li>Gartner, <a href="https://www.gartner.com/en/newsroom/press-releases/2026-10-14-gartner-says-over-us-dollars-three-and-a-half-trillion-of-artificial-intelligence-infrastructure-spending-could-be-exposed-to-impairment-by-the-end-of-2030" rel="noopener">Over $3.5 Trillion of AI Infrastructure Spending Could Be Exposed to Impairment by End of 2030</a>, 14 Oct 2026.</li>
+    <li>Epoch AI, <a href="https://epoch.ai/data-insights/ai-datacenter-cost-breakdown" rel="noopener">Total cost of ownership of a one-gigawatt AI data center</a>, updated 14-19 May 2026.</li>
+    <li>Carnegie Endowment, <a href="https://carnegieendowment.org/research/2026/06/the-compute-coalition-how-to-build-the-future-of-ai-in-the-free-world" rel="noopener">The Compute Coalition: How to Build the Future of AI in the Free World</a>, Jun 2026.</li>
+    <li>IDCA, <a href="https://www.idc-a.org/insights/Sk2PFZCost98Eqhk2FUA" rel="noopener">Global Data Center Report 2026</a>.</li>
+    <li>Brookings, <a href="https://www.brookings.edu/articles/global-energy-demands-within-the-ai-regulatory-landscape/" rel="noopener">Global energy demands within the AI regulatory landscape</a>, 2026.</li>
+    <li>Qovery, <a href="https://www.qovery.com/blog/european-gpu-cloud-alternatives-aws-azure-comparison" rel="noopener">European GPU Clouds: 8 Alternatives to AWS and Azure</a>, Sep 2026 list prices.</li>
+    <li>Spheron, <a href="https://www.spheron.network/blog/ovhcloud-gpu-pricing-2026-h100-cost-and-sovereign-ai/" rel="noopener">OVHcloud GPU Pricing 2026: H100 Cost and Sovereign AI</a>, Oct 2026.</li>
+    <li>computeprices.com, <a href="https://computeprices.com/providers/nebius" rel="noopener">Nebius GPU pricing</a>, 14 Oct 2026.</li>
+    <li>EIA, <a href="https://www.eia.gov/electricity/monthly/update/end-use.php" rel="noopener">Electricity Monthly Update, End Use, July 2026</a>.</li>
+    <li>NVIDIA, <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027" rel="noopener">Financial Results for Second Quarter Fiscal 2027</a>, Aug 2026.</li>
+    <li>Jensen Huang, <a href="https://blogs.nvidia.com/blog/nvidia-ai-factory-compute/" rel="noopener">NVIDIA AI Factory Compute Is Becoming an Investable Asset Class</a>, 12 Aug 2026.</li>
+    <li>PwC via World Economic Forum, <a href="https://www.weforum.org/stories/geographies-in-depth/the-global-economy-will-be-14-bigger-in-2030-because-of-ai" rel="noopener">The global economy will be $16 trillion bigger by 2030 because of AI</a>, 2017.</li>
+    <li>IDC, <a href="https://my.idc.com/getdoc.jsp?containerId=prUS52600524" rel="noopener">AI to drive $19.9 trillion through 2030</a>, 2024.</li>
+    <li>Bruegel, <a href="https://www.bruegel.org/policy-brief/how-can-europe-address-its-pressing-ai-compute-infrastructure-shortfall" rel="noopener">How can Europe address its pressing AI compute infrastructure shortfall?</a>, Sep 2026.</li>
+    <li>Futurum, <a href="https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/" rel="noopener">AI Capex 2026: The $690B Infrastructure Sprint</a>, 12 Feb 2026.</li>
+    <li>Reuters, <a href="https://www.reuters.com/business/retail-consumer/nvidias-china-ai-chip-share-falls-huawei-closes-gap-report-finds-2026-10-13/" rel="noopener">Nvidia's China AI-chip share falls as Huawei closes gap</a> (IDC), 13 Oct 2026.</li>
+    <li>Avid Solutions, <a href="https://avidsolutionsinc.com/13-data-center-growth-projections-that-will-shape-2026-2030/" rel="noopener">13 Data Center Growth Projections</a>, summarising McKinsey and JLL, Jan 2026.</li>
+  </ol></div>
+  <p class="note">Prices and programme figures were read from the sources on the dates shown and will move. The model carries the read dates next to every input.</p>
+
+  <div class="next">
+    <a href="/research/fs-gpu/"><div class="eyebrow">Read next</div><b>Where the GPUs are in finance</b><span>The same framework applied to banks, payment networks and quant firms.</span></a>
+    <a href="/airadar/#energy"><div class="eyebrow">Weekly</div><b>AI Radar: the Energy board</b><span>The power deals and prices that decide who gets to build, tracked week by week.</span></a>
+  </div>
+  </article>
+  <footer><span>Esther Suebsubanant</span><span><a href="/">esthercs.dev</a> · <a href="mailto:esthercs@stanford.edu">esthercs@stanford.edu</a></span></footer>
+</div>
+</body>
+</html>

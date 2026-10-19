@@ -1,0 +1,49 @@
+<svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Owner cost per GPU hour by country against rental prices">
+<line x1="55" y1="270.0" x2="700" y2="270.0" stroke="var(--line)"/>
+<text x="47" y="274.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$0</text>
+<line x1="55" y1="228.3" x2="700" y2="228.3" stroke="var(--line)"/>
+<text x="47" y="232.3" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$2</text>
+<line x1="55" y1="186.7" x2="700" y2="186.7" stroke="var(--line)"/>
+<text x="47" y="190.7" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$4</text>
+<line x1="55" y1="145.0" x2="700" y2="145.0" stroke="var(--line)"/>
+<text x="47" y="149.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$6</text>
+<line x1="55" y1="103.3" x2="700" y2="103.3" stroke="var(--line)"/>
+<text x="47" y="107.3" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$8</text>
+<line x1="55" y1="61.7" x2="700" y2="61.7" stroke="var(--line)"/>
+<text x="47" y="65.7" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$10</text>
+<line x1="55" y1="20.0" x2="700" y2="20.0" stroke="var(--line)"/>
+<text x="47" y="24.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$12</text>
+<rect x="74.3" y="220.9" width="36.1" height="49.1" rx="3" fill="var(--electric)"/>
+<text x="92.4" y="215.9" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$2.36</text>
+<rect x="114.5" y="195.1" width="36.1" height="74.9" rx="3" fill="#e3a248"/>
+<text x="132.5" y="190.1" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$3.60</text>
+<text x="112.5" y="288" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">United States</text>
+<rect x="203.3" y="218.5" width="36.1" height="51.5" rx="3" fill="var(--electric)"/>
+<text x="221.4" y="213.5" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$2.47</text>
+<rect x="243.5" y="192.7" width="36.1" height="77.3" rx="3" fill="#e3a248"/>
+<text x="261.5" y="187.7" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$3.71</text>
+<text x="241.5" y="288" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Saudi Arabia</text>
+<rect x="332.4" y="218.2" width="36.1" height="51.8" rx="3" fill="var(--electric)"/>
+<text x="350.4" y="213.2" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$2.49</text>
+<rect x="372.5" y="193.8" width="36.1" height="76.2" rx="3" fill="#e3a248"/>
+<text x="390.5" y="188.8" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$3.66</text>
+<text x="370.5" y="288" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">South Korea</text>
+<rect x="461.4" y="213.2" width="36.1" height="56.8" rx="3" fill="var(--electric)"/>
+<text x="479.4" y="208.2" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$2.73</text>
+<rect x="501.5" y="191.7" width="36.1" height="78.3" rx="3" fill="#e3a248"/>
+<text x="519.5" y="186.7" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$3.76</text>
+<text x="499.5" y="288" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Germany</text>
+<rect x="590.4" y="217.1" width="36.1" height="52.9" rx="3" fill="var(--electric)"/>
+<text x="608.4" y="212.1" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$2.54</text>
+<rect x="630.5" y="194.0" width="36.1" height="76.0" rx="3" fill="#e3a248"/>
+<text x="648.5" y="189.0" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono,monospace">$3.65</text>
+<text x="628.5" y="288" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">India</text>
+<line x1="55" y1="51.2" x2="700" y2="51.2" stroke="#c4561c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="696" y="46.2" font-size="11" text-anchor="end" fill="#c4561c" font-family="Schibsted Grotesk,sans-serif">CoreWeave GB200 on-demand $10.50</text>
+<line x1="55" y1="92.9" x2="700" y2="92.9" stroke="#c4561c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="696" y="87.9" font-size="11" text-anchor="end" fill="#c4561c" font-family="Schibsted Grotesk,sans-serif">Nebius B200 $8.50</text>
+<line x1="55" y1="205.4" x2="700" y2="205.4" stroke="var(--dim)" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="696" y="200.4" font-size="11" text-anchor="end" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Scaleway H100 (Hopper) $3.10</text>
+<rect x="55" y="306" width="10" height="10" fill="var(--electric)"/><text x="69" y="315" font-size="10.5" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">owner cash cost incl. delay</text>
+<rect x="255" y="306" width="10" height="10" fill="#e3a248"/><text x="269" y="315" font-size="10.5" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">incl. 12% cost of capital</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 720 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Operating margin of a sovereign gigawatt by quadrant">
+<line x1="530.0" y1="10" x2="530.0" y2="146" stroke="var(--line)"/>
+<text x="350" y="31" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Saudi exporter campus, after 12% capital (VC3b)</text>
+<rect x="530.0" y="18" width="82.4" height="18" rx="3" fill="var(--electric)"/>
+<text x="618.4" y="31" font-size="12" text-anchor="start" fill="var(--ink)" font-family="IBM Plex Mono,monospace">48%</text>
+<text x="350" y="65" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Saudi exporter campus, cash margin (VC3)</text>
+<rect x="530.0" y="52" width="111.7" height="18" rx="3" fill="var(--electric)"/>
+<text x="647.7" y="65" font-size="12" text-anchor="start" fill="var(--ink)" font-family="IBM Plex Mono,monospace">66%</text>
+<text x="350" y="99" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">EU gigafactory at European cloud prices, cash (VC6)</text>
+<rect x="530.0" y="86" width="8.8" height="18" rx="3" fill="var(--electric)"/>
+<text x="544.8" y="99" font-size="12" text-anchor="start" fill="var(--ink)" font-family="IBM Plex Mono,monospace">5%</text>
+<text x="350" y="133" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">EU gigafactory at European cloud prices, after 12% capital (VC6b)</text>
+<rect x="459.5" y="120" width="70.5" height="18" rx="3" fill="#c4561c"/>
+<text x="453.5" y="133" font-size="12" text-anchor="end" fill="var(--ink)" font-family="IBM Plex Mono,monospace">-41%</text>
+</svg>
