@@ -7,32 +7,38 @@
 <text x="76" y="464" font-size="10" fill="var(--dim)" font-family="IBM Plex Mono,monospace">tens to hundreds</text>
 <text x="664" y="464" font-size="10" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">thousands to tens of thousands</text>
 <rect x="380.0" y="40" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="#c4561c" stroke-width="1.5"/>
-<text x="396.0" y="70" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Sovereign fleets</text>
-<text x="644.0" y="70" font-size="12" text-anchor="end" fill="#c4561c" font-family="IBM Plex Mono,monospace">~99k GPUs</text>
-<text x="396.0" y="90" font-size="11.5" fill="#c4561c" font-family="IBM Plex Mono,monospace">G-SIBs · payment networks · large insurers</text>
-<text x="396.0" y="116" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Own, in region. Buy SuperPOD or NVL72 through</text>
-<text x="396.0" y="133" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Dell, HPE or a sovereign cloud. Train</text>
-<text x="396.0" y="150" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">transaction and risk models, serve open models</text>
-<text x="396.0" y="167" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">to staff.</text>
+<text x="394.0" y="70" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Sovereign fleets</text>
+<text x="646.0" y="70" font-size="11.5" text-anchor="end" fill="#c4561c" font-family="IBM Plex Mono,monospace">~99k GPUs</text>
+<text x="394.0" y="90" font-size="11" fill="#c4561c" font-family="IBM Plex Mono,monospace">G-SIBs · payment networks · large</text>
+<text x="394.0" y="105" font-size="11" fill="#c4561c" font-family="IBM Plex Mono,monospace">insurers</text>
+<text x="394.0" y="128" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Own, in region. Buy SuperPOD or NVL72</text>
+<text x="394.0" y="145" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">through Dell, HPE or a sovereign</text>
+<text x="394.0" y="162" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">cloud. Train transaction and risk</text>
+<text x="394.0" y="179" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">models, serve open models to staff.</text>
 <rect x="80" y="40" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="#e3a248" stroke-width="1.5"/>
-<text x="96" y="70" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Regulated pods</text>
-<text x="344.0" y="70" font-size="12" text-anchor="end" fill="#e3a248" font-family="IBM Plex Mono,monospace">~12k GPUs</text>
-<text x="96" y="90" font-size="11.5" fill="#e3a248" font-family="IBM Plex Mono,monospace">Regional banks · mid-size insurers · exchanges</text>
-<text x="96" y="116" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Small owned pods (4 to 8 nodes) for documents,</text>
-<text x="96" y="133" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">fraud and compliance. NIM blueprints, EDB or</text>
-<text x="96" y="150" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Cloudera on the bank's own data.</text>
+<text x="94" y="70" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Regulated pods</text>
+<text x="346.0" y="70" font-size="11.5" text-anchor="end" fill="#e3a248" font-family="IBM Plex Mono,monospace">~12k GPUs</text>
+<text x="94" y="90" font-size="11" fill="#e3a248" font-family="IBM Plex Mono,monospace">Regional banks · mid-size insurers ·</text>
+<text x="94" y="105" font-size="11" fill="#e3a248" font-family="IBM Plex Mono,monospace">exchanges</text>
+<text x="94" y="128" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Small owned pods (4 to 8 nodes) for</text>
+<text x="94" y="145" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">documents, fraud and compliance. NIM</text>
+<text x="94" y="162" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">blueprints, EDB or Cloudera on the</text>
+<text x="94" y="179" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">bank's own data.</text>
 <rect x="80" y="250.0" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="var(--dim)" stroke-width="1.5"/>
-<text x="96" y="280.0" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Renters</text>
-<text x="344.0" y="280.0" font-size="12" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">~9k GPUs</text>
-<text x="96" y="300.0" font-size="11.5" fill="var(--dim)" font-family="IBM Plex Mono,monospace">Hedge funds · asset managers · fintechs</text>
-<text x="96" y="326.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Rent reserved cloud capacity. Price sensitive,</text>
-<text x="96" y="343.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">elastic, no residency pull. Compete on</text>
-<text x="96" y="360.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">$/GPU-hour and reserved terms.</text>
+<text x="94" y="280.0" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Renters</text>
+<text x="346.0" y="280.0" font-size="11.5" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">~9k GPUs</text>
+<text x="94" y="300.0" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">Hedge funds · asset managers ·</text>
+<text x="94" y="315.0" font-size="11" fill="var(--dim)" font-family="IBM Plex Mono,monospace">fintechs</text>
+<text x="94" y="338.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Rent reserved cloud capacity. Price</text>
+<text x="94" y="355.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">sensitive, elastic, no residency pull.</text>
+<text x="94" y="372.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Compete on $/GPU-hour and reserved</text>
+<text x="94" y="389.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">terms.</text>
 <rect x="380.0" y="250.0" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="var(--electric)" stroke-width="1.5"/>
-<text x="396.0" y="280.0" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Research factories</text>
-<text x="644.0" y="280.0" font-size="12" text-anchor="end" fill="var(--electric)" font-family="IBM Plex Mono,monospace">~160k GPUs</text>
-<text x="396.0" y="300.0" font-size="11.5" fill="var(--electric)" font-family="IBM Plex Mono,monospace">Quant and market-making firms</text>
-<text x="396.0" y="326.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Own, but for latency, cost and secrecy rather</text>
-<text x="396.0" y="343.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">than regulation. Build their own data centers</text>
-<text x="396.0" y="360.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">(XTX Finland, HRT Lefdal). First to Rubin.</text>
+<text x="394.0" y="280.0" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Research factories</text>
+<text x="646.0" y="280.0" font-size="11.5" text-anchor="end" fill="var(--electric)" font-family="IBM Plex Mono,monospace">~160k GPUs</text>
+<text x="394.0" y="300.0" font-size="11" fill="var(--electric)" font-family="IBM Plex Mono,monospace">Quant and market-making firms</text>
+<text x="394.0" y="323.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Own, but for latency, cost and secrecy</text>
+<text x="394.0" y="340.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">rather than regulation. Build their</text>
+<text x="394.0" y="357.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">own data centers (XTX Finland, HRT</text>
+<text x="394.0" y="374.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Lefdal). First to Rubin.</text>
 </svg>

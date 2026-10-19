@@ -172,21 +172,27 @@ def chart_matrix():
         (L, T + ph / 2, "Renters", "Hedge funds · asset managers · fintechs", "Rent reserved cloud capacity. Price sensitive, elastic, no residency pull. Compete on $/GPU-hour and reserved terms.", f"~{segs[5]['gpus']/1000:.0f}k GPUs", DIM),
         (L + pw / 2, T + ph / 2, "Research factories", "Quant and market-making firms", "Own, but for latency, cost and secrecy rather than regulation. Build their own data centers (XTX Finland, HRT Lefdal). First to Rubin.", f"~{segs[4]['gpus']/1000:.0f}k GPUs", ACC),
     ]
-    for x, y, title, who, body, gp, col in quads:
-        out.append(f'<rect x="{x+10}" y="{y+10}" width="{pw/2-20}" height="{ph/2-20}" rx="10" fill="var(--bg)" stroke="{col}" stroke-width="1.5"/>')
-        out.append(f'<text x="{x+26}" y="{y+40}" font-size="17" font-weight="700" fill="{INK}" font-family="Schibsted Grotesk,sans-serif">{title}</text>')
-        out.append(f'<text x="{x+pw/2-26}" y="{y+40}" font-size="12" text-anchor="end" fill="{col}" font-family="IBM Plex Mono,monospace">{gp}</text>')
-        out.append(f'<text x="{x+26}" y="{y+60}" font-size="11.5" fill="{col}" font-family="IBM Plex Mono,monospace">{who}</text>')
-        # wrap body
-        words = body.split(); lines = []; cur = ""
+    def wrap(text, n):
+        words = text.split(); lines = []; cur = ""
         for w in words:
-            if len(cur) + len(w) + 1 > 46:
+            if len(cur) + len(w) + 1 > n and cur:
                 lines.append(cur); cur = w
             else:
                 cur = (cur + " " + w).strip()
         lines.append(cur)
-        for j, ln in enumerate(lines[:7]):
-            out.append(f'<text x="{x+26}" y="{y+86+j*17}" font-size="12.5" fill="{INK}" font-family="Schibsted Grotesk,sans-serif">{ln}</text>')
+        return lines
+    for x, y, title, who, body, gp, col in quads:
+        out.append(f'<rect x="{x+10}" y="{y+10}" width="{pw/2-20}" height="{ph/2-20}" rx="10" fill="var(--bg)" stroke="{col}" stroke-width="1.5"/>')
+        out.append(f'<text x="{x+24}" y="{y+40}" font-size="17" font-weight="700" fill="{INK}" font-family="Schibsted Grotesk,sans-serif">{title}</text>')
+        out.append(f'<text x="{x+pw/2-24}" y="{y+40}" font-size="11.5" text-anchor="end" fill="{col}" font-family="IBM Plex Mono,monospace">{gp}</text>')
+        yy = y + 60
+        for ln in wrap(who, 36):
+            out.append(f'<text x="{x+24}" y="{yy}" font-size="11" fill="{col}" font-family="IBM Plex Mono,monospace">{ln}</text>')
+            yy += 15
+        yy += 8
+        for ln in wrap(body, 38)[:8]:
+            out.append(f'<text x="{x+24}" y="{yy}" font-size="12.5" fill="{INK}" font-family="Schibsted Grotesk,sans-serif">{ln}</text>')
+            yy += 17
     out.append("</svg>")
     return "\n".join(out)
 
