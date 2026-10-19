@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ten coding tools, four meters, one switch · Esther Suebsubanant</title>
+<meta name="description" content="How ten AI coding tools charge, side by side, and a 10,000-developer Monte Carlo of what happens to Cursor&#x27;s revenue, margin and churn if it switches from the bundle to usage or outcome pricing. Model and data included.">
+<meta property="og:title" content="Ten coding tools, four meters, one switch">
+<meta property="og:description" content="How ten AI coding tools charge, side by side, and a 10,000-developer Monte Carlo of what happens to Cursor&#x27;s revenue, margin and churn if it switches from the bundle to usage or outcome pricing. Model and data included.">
+<meta property="og:image" content="https://esthercs.dev/portfolio/esther.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/writing.css">
+</head>
+<body>
+<div class="page">
+  <header><div class="in">
+    <a class="name" href="/"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#132033"/><circle cx="32" cy="32" r="20" fill="none" stroke="#5fb3aa" stroke-width="2.5"/><circle cx="32" cy="32" r="10" fill="none" stroke="#5fb3aa" stroke-width="2.5" opacity=".6"/><circle cx="44" cy="24" r="4" fill="#e3a248"/></svg>Esther Suebsubanant</a>
+    <nav aria-label="Site"><a href="/portfolio/">Portfolio</a><a href="/airadar/">AI Radar</a><a href="/writing/" aria-current="page">Writing</a><a href="/freeagents/">Free agents</a><a href="/ai101/">AI 101</a><a href="/#contact">Contact</a></nav>
+  </div></header>
+  <div class="pagehero">
+    <div class="status"><i></i>Pricing teardown · AI coding agents</div>
+    <h1>Ten coding tools, four meters, <span>one switch</span>.</h1>
+    <p>How ten AI coding tools charge, laid side by side. Then a 10,000-developer Monte Carlo of what happens to a Cursor-shaped vendor's revenue, margin and churn if it moves from today's bundle to a flat seat, pure usage, or an outcome-based tariff. The code and data are at the bottom.</p>
+    <p class="sub">Published 19 October 2026 · 18 min read · Prices read from vendor pages on 19 Oct 2026 unless noted</p>
+  </div>
+  <article class="art" id="main">
+<div class="byline"><div class="mark">E</div><div><b>Esther Suebsubanant</b><span>Ex-M&amp;A and corporate VC. Stanford GSB MBA/MS. My thesis work is on how agentic AI gets priced.</span></div></div>
+
+  <div class="tldr">
+    <div class="eyebrow">The short version</div>
+    <p><strong>The category.</strong> Ten coding tools, zero outcome pricing. Everyone sells a seat with an allowance, and the allowance is denominated in something the customer cannot forecast: dollars of model usage, credits, tasks per day, or a weekly pool. The $20 / $100 / $200 ladder is now universal.</p>
+    <p><strong>The switch.</strong> At the same starting price, today's bundle is the highest-margin meter in the set, at {{bundle_gm}} gross margin, because it refuses to subsidise third-party models. A pure usage meter is the worst on every axis. An outcome-based tariff gives up margin for retention and predictability, and only beats the bundle on gross profit once the success fee is above about $1 per merged pull request.</p>
+    <p><strong>The point.</strong> Nobody in this category has priced the merged PR yet. The model says the vendor that does it can hold margin, cut churn, and make the frontier-model price war someone else's problem.</p>
+  </div>
+
+  <div class="toc">
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#tools">Ten tools, how they charge</a></li>
+      <li><a href="#meters">The four meters</a></li>
+      <li><a href="#model">The switch model</a></li>
+      <li><a href="#results">Results at equal starting price</a></li>
+      <li><a href="#fee">What the success fee does</a></li>
+      <li><a href="#shocks">Model cost shocks and strict definitions</a></li>
+      <li><a href="#sowhat">What I would tell the pricing team</a></li>
+      <li><a href="#limits">Limitations</a></li>
+      <li><a href="#download">Download the model</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </div>
+
+  <h2 id="tools">1. Ten tools, how they charge</h2>
+  <p>I picked the ten coding tools a Stanford classmate is most likely to have an opinion on, read each vendor's live pricing page, and wrote down four things: what you pay to get in, what the meter is, what the top of the ladder costs, and who absorbs the cost when the agent is inefficient.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Tool</th><th>Meter</th><th>Entry</th><th>Ladder</th><th>Teams</th><th>Who eats inefficiency</th></tr></thead>
+    <tbody>
+      <tr><td><b>Cursor</b><br><span class="pill credit">pool</span> <span class="pill usage">pass-through</span></td><td>Weekly pool of first-party models (Grok, Composer), shared with Grok apps and X. Third-party models at API list from the first request.</td><td class="num">Plus $8</td><td class="num">Premium $30 (4x) · Super $100 (15x) · Ultra $200 (50x)</td><td class="num">$30 / $100 / $200 per seat, plus $0.25 per M tokens on third-party</td><td>Customer, on third-party. Vendor, inside the pool.</td></tr>
+      <tr><td><b>Claude Code</b><br><span class="pill seat">seat</span> <span class="pill usage">credits at API</span></td><td>Allowance shared with all of Claude, reset on a five-hour window plus weekly caps. Usage credits at API rates beyond it.</td><td class="num">Pro $20 ($17 annual)</td><td class="num">Max $100 (5x) · Max $200 (20x)</td><td class="num">Standard $25, Premium $125 (5x); Enterprise $20 per seat plus API usage</td><td>Vendor inside the allowance; customer beyond.</td></tr>
+      <tr><td><b>GitHub Copilot</b><br><span class="pill credit">credits</span></td><td>Dollar-denominated AI credits, 1 credit = $0.01. Completions unlimited; chat, agents and CLI draw credits by model.</td><td class="num">Pro $10 ($15 credits)</td><td class="num">Pro+ $39 ($70) · Max $100 ($200)</td><td class="num">Business $19, Enterprise $39 per user, pooled credits</td><td>Customer, once credits run out. Admins can disable overage.</td></tr>
+      <tr><td><b>OpenAI Codex</b><br><span class="pill seat">seat</span> <span class="pill usage">consumption</span></td><td>Bundled into ChatGPT plans; bills against credit and token consumption since 2 April 2026.</td><td class="num">Plus $20</td><td class="num">Pro $200</td><td class="num">Business $25 ($20 annual); Enterprise custom</td><td>Customer. OpenAI's own guidance puts power users at $100 to $200 a month.</td></tr>
+      <tr><td><b>Devin</b><br><span class="pill seat">seat</span> <span class="pill usage">on-demand</span></td><td>Daily and weekly allowance that resets; on-demand usage at API price from prepaid credit. Enterprise still buys ACUs on an order form.</td><td class="num">Pro $20</td><td class="num">Max $200</td><td class="num">$80 plan fee plus $40 per full seat</td><td>Customer beyond the allowance, which is not published.</td></tr>
+      <tr><td><b>Replit</b><br><span class="pill credit">credits</span></td><td>Effort-based: complex agent tasks burn more of a monthly credit balance that also covers hosting and databases.</td><td class="num">Core $25 ($25 credits)</td><td class="num">Pro $100 ($100 credits, rolls over one month)</td><td class="num">Pro covers up to 15 builders</td><td>Customer. "Effort" is set by the vendor.</td></tr>
+      <tr><td><b>Lovable</b><br><span class="pill credit">per message</span></td><td>One credit per message, about $0.25 each on the ladder, $0.30 on top-ups.</td><td class="num">Pro $25 (100 credits)</td><td class="num">Up to $2,250 (10,000 credits); Business from $50</td><td class="num">Business tiers, same credit ladder at 2x</td><td>Customer. The closest thing to per-task pricing in the set.</td></tr>
+      <tr><td><b>Kiro</b> (Amazon)<br><span class="pill credit">credits</span></td><td>Credits denominated in agent work, consumed fractionally by task complexity and model. Overage at exactly double the plan rate.</td><td class="num">Pro $20 (1,000)</td><td class="num">Pro+ $40 · Pro Max $100 · Power $200 (10,000)</td><td class="num">Team plans with consolidated billing</td><td>Customer. Model choice moves cost 0.4x to 2.2x on the same task.</td></tr>
+      <tr><td><b>Google</b> (Antigravity, Jules, Code Assist)<br><span class="pill seat">seat</span> <span class="pill credit">task cap</span></td><td>Antigravity and Jules ride on Google AI plans with daily task caps (Jules: 15 free, 100 on Pro, 300 on Ultra). Gemini Code Assist is a classic per-seat licence with request quotas.</td><td class="num">AI Pro $19.99; Code Assist Standard $22.80 per user</td><td class="num">AI Ultra from $99.99; Code Assist Enterprise $54 per user</td><td class="num">Code Assist is the team product</td><td>Vendor. Caps throttle rather than bill.</td></tr>
+      <tr><td><b>Augment Code</b><br><span class="pill seat">flat team fee</span> <span class="pill usage">pooled</span></td><td>Flat team fee covering up to 50 seats with a pooled usage allowance across inference, context engine and compute.</td><td class="num">Indie $20</td><td class="num">Business $100 flat</td><td class="num">$100 for up to 50 seats plus $100 pooled usage; Enterprise custom</td><td>Customer beyond the pool. Vendor inside it.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Entry and ladder prices are monthly list prices for individuals as shown on each vendor's page on 19 October 2026. Where a vendor publishes several ladders (Lovable, Kiro) the table shows the individual one. Cursor's figures are the new X Subscription tiers; legacy Pro, Pro+ and Ultra plans continue for existing customers.</p>
+  <p>Three things jump out. First, <strong>the ladder has converged</strong>: six of the ten sell entry at $20, and the power tier is $100 or $200 everywhere except Google. The entry price is a customer-acquisition cost. The $200 tier is where the margin lives. Second, <strong>the meter has not converged</strong>. Four vendors bill in dollars of model usage, three bill in credits that stand for work, two throttle by task count, and one sells a flat team fee. Third, <strong>none of them price the result</strong>. Customer support agents moved to per-resolution pricing two years ago. Coding agents, whose output is a merged pull request sitting in a system of record, still bill for effort.</p>
+
+  <h2 id="meters">2. The four meters</h2>
+  <p>Every pricing page above is one of four meters, or a hybrid of two. Each one decides who carries the risk when the agent loops, retries, or picks an expensive model.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Meter</th><th>Who uses it</th><th>Customer sees</th><th>Vendor carries</th><th>Breaks when</th></tr></thead>
+    <tbody>
+      <tr><td class="m"><span class="pill seat">Seat</span></td><td>Gemini Code Assist, Claude Team standard seats, Augment's flat fee</td><td>A number they can budget</td><td>All inference cost. Light users subsidise heavy ones.</td><td>Agents make heavy users ten times more expensive than light ones, which they now are.</td></tr>
+      <tr><td class="m"><span class="pill credit">Credits</span></td><td>Copilot, Kiro, Replit, Lovable, Cursor's pool</td><td>An allowance that drains at a rate they cannot see until it is gone</td><td>Nothing beyond the allowance. Margin comes from the markup inside the credit.</td><td>The credit is just tokens with a different name, so the customer forecasts compute anyway.</td></tr>
+      <tr><td class="m"><span class="pill usage">Usage</span></td><td>Claude API, Cursor third-party, Devin on-demand, Codex consumption</td><td>A bill that tracks the model's list price</td><td>Nothing. Cost is passed through, often with a thin spread.</td><td>Every model price cut flows to the customer and the vendor's revenue falls with it.</td></tr>
+      <tr><td class="m"><span class="pill outcome">Outcome</span></td><td>Nobody in coding. Fin, Zendesk and Sierra in support.</td><td>A price per thing they wanted</td><td>Inefficiency. A looping agent is the vendor's cost, not the customer's.</td><td>The outcome is hard to attribute, or the definition is gamed.</td></tr>
+    </tbody>
+  </table></div>
+  <p>The a16z framing from August is the right lens: price the layer you sell. The coding vendors are selling implemented changes and billing for the ingredients. The question the rest of this page tries to answer with numbers is whether that is a mistake they can afford.</p>
+
+  <h2 id="model">3. The switch model</h2>
+  <p>I built a Monte Carlo of a Cursor-shaped vendor: ten thousand individual developers, thirty-six months, four pricing regimes. The point is not to forecast Cursor's P&amp;L. It is to see which direction each metric moves when only the meter changes.</p>
+  <h3>The population</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Segment</th><th>Share</th><th>Agent usage per month, at model list price</th><th>Merged agent-authored PRs per month</th><th>Willingness to pay per month</th></tr></thead>
+    <tbody>
+      <tr><td>Light</td><td class="num">45%</td><td class="num">$8</td><td class="num">4</td><td class="num">$34</td></tr>
+      <tr><td>Daily</td><td class="num">40%</td><td class="num">$35</td><td class="num">18</td><td class="num">$70</td></tr>
+      <tr><td>Heavy</td><td class="num">15%</td><td class="num">$150</td><td class="num">50</td><td class="num">$240</td></tr>
+    </tbody>
+  </table></div>
+  <p>Within each segment, usage and willingness to pay vary by a lognormal with 35% spread, and each developer's usage moves month to month by another 45%. Model list prices move each month by a 20% lognormal shock, which is my stand-in for frontier price cuts and the occasional expensive new model. The usage figures are anchored on Cursor's own guidance for its legacy plans, which said daily agent users typically spent $60 to $100 a month and power users passed $200.</p>
+  <h3>Costs</h3>
+  <p>First-party model usage costs the vendor 35% of list, because it owns the inference and can route and cache. Third-party usage costs 100% of list. Hosting, support and payments cost $4 per active user per month. When model choice is not penalised, 55% of usage goes to third-party models; under the bundle, where third-party costs extra, that share falls to 30%.</p>
+  <h3>Churn</h3>
+  <p>Every developer churns at a background 2% a month. On top of that, 15 points of extra churn per 100% that the bill exceeds willingness to pay, and 4 points of extra churn in any month the bill jumps more than 30% on the previous one. The second term is the cost of unpredictability, and it is the thing usage pricing is accused of.</p>
+  <h3>The four regimes</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Regime</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td><b>Flat seat</b></td><td>$40 a month, any model, fair-use throttle at $200 of list usage.</td></tr>
+      <tr><td><b>Bundle (today)</b></td><td>Cursor's Premium tier as published: $30, a $40 monthly pool of first-party usage, first-party overage at list, third-party at list from the first request.</td></tr>
+      <tr><td><b>Pure usage</b></td><td>No fee. Every dollar of list usage billed at a markup, calibrated to {{usage_markup}} so the regime starts at the same revenue per user as the bundle.</td></tr>
+      <tr><td><b>Three-part tariff</b></td><td>$15 platform fee, a $10 compute floor of any-model usage included, usage above the floor at 1.1x list, and a success fee per merged agent-authored PR, capped at $150 a month. 85% of merged PRs pass the "agent-authored, merged, lightly edited" test. The fee is calibrated to {{pr_fee}} so the regime also starts at the bundle's revenue per user.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout">
+    <div class="eyebrow">Why calibrate</div>
+    <p>If I let the tariff charge more than the bundle in month one, the model would just tell me that charging more makes more money. Calibrating every regime to the same month-one revenue per user, {{target_arpu}}, isolates the effect of the structure. Section 5 then relaxes the calibration and lets the success fee move.</p>
+  </div>
+
+  <h2 id="results">4. Results at equal starting price</h2>
+  <div class="chart"><!--CHART:regimes--></div>
+  <p class="cap">Months 7 to 36, 10,000 developers. Revenue volatility is the coefficient of variation of monthly revenue. Bill volatility is the average developer's month-to-month coefficient of variation.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Regime</th><th>Revenue per user</th><th>Gross margin</th><th>Monthly churn</th><th>Retained at 36 months</th><th>36-month gross profit</th><th>Revenue volatility</th><th>Bill volatility</th></tr></thead>
+    <tbody>
+      <tr><td><b>Flat seat</b></td><td class="num">{{seat_arpu}}</td><td class="num">{{seat_gm}}</td><td class="num">{{seat_churn}}</td><td class="num">{{seat_ret}}</td><td class="num">{{seat_gp}}</td><td class="num">{{seat_revcv}}</td><td class="num">{{seat_billcv}}</td></tr>
+      <tr><td><b>Bundle (today)</b></td><td class="num">{{bundle_arpu}}</td><td class="num">{{bundle_gm}}</td><td class="num">{{bundle_churn}}</td><td class="num">{{bundle_ret}}</td><td class="num">{{bundle_gp}}</td><td class="num">{{bundle_revcv}}</td><td class="num">{{bundle_billcv}}</td></tr>
+      <tr><td><b>Pure usage</b></td><td class="num">{{usage_arpu}}</td><td class="num">{{usage_gm}}</td><td class="num">{{usage_churn}}</td><td class="num">{{usage_ret}}</td><td class="num">{{usage_gp}}</td><td class="num">{{usage_revcv}}</td><td class="num">{{usage_billcv}}</td></tr>
+      <tr><td><b>Three-part tariff</b></td><td class="num">{{tariff_arpu}}</td><td class="num">{{tariff_gm}}</td><td class="num">{{tariff_churn}}</td><td class="num">{{tariff_ret}}</td><td class="num">{{tariff_gp}}</td><td class="num">{{tariff_revcv}}</td><td class="num">{{tariff_billcv}}</td></tr>
+    </tbody>
+  </table></div>
+  <p>Four things the table says, in order of how much they surprised me.</p>
+  <ul>
+    <li><strong>The flat seat is underwater.</strong> {{seat_gm}} gross margin before any sales or R&amp;D cost. This is the pricing Cursor ran until June 2025, and the model reproduces why it stopped: 15% of developers consume more model time than the other 85% combined, and a flat price lets them.</li>
+    <li><strong>The bundle is the best margin design in the set</strong>, at {{bundle_gm}}. Not because it charges more, but because it moves third-party cost onto the customer and routes the rest to first-party models the vendor serves at 35% of list. The cost is churn among heavy third-party users, who are precisely the ones who built the product's reputation.</li>
+    <li><strong>Pure usage is worst on every axis that matters.</strong> {{usage_gm}} margin, {{usage_churn}} monthly churn, {{usage_billcv}} bill volatility. The markup needed to match the bundle's revenue is {{usage_markup}}, which heavy users will not pay for long, and the revenue line inherits every model price cut.</li>
+    <li><strong>The tariff buys retention with margin.</strong> At equal starting price it keeps {{tariff_ret}} of developers at month 36 against the bundle's {{bundle_ret}}, with half the bill volatility of pure usage. But its gross margin is {{tariff_gm}}, below the bundle, because the compute floor and the thin markup put third-party cost back on the vendor's side of the ledger.</li>
+  </ul>
+  <p>So at the calibrated price, the honest answer is that the outcome meter is not free money. It trades the bundle's margin for a stickier customer. Whether that trade is worth making depends on the one number calibration pinned down: the success fee.</p>
+
+  <h2 id="fee">5. What the success fee does</h2>
+  <p>The calibrated fee was {{pr_fee}} per merged PR, which is almost nothing. A daily developer in the model produces 18 merged agent-authored PRs a month and values each at far more than that. So the next question is what happens when the fee moves and everything else stays fixed.</p>
+  <div class="chart"><!--CHART:fee--></div>
+  <p class="cap">Three-part tariff only. Platform fee, floor and markup held at $15, $10 and 1.1x. Gross profit is cumulative over 36 months; retention is the share of the starting cohort still paying at month 36.</p>
+  <p>Gross profit climbs with the fee and then flattens, peaking near {{best_fee}} per PR at {{best_fee_gp}} over 36 months. Retention falls the whole way, from {{tariff_ret}} at the calibrated fee to {{hi_fee_ret}} at {{hi_fee}}. The curve says three things:</p>
+  <ul>
+    <li><strong>Above about $1 per PR, the tariff beats the bundle on 36-month gross profit</strong> ({{bundle_gp}}) while still retaining a comparable share of developers. That is the regime a pricing team should actually compare against the bundle, not the calibrated one.</li>
+    <li><strong>Between $1.50 and $2.50 the tariff earns more than the bundle and keeps its margin above the bundle's</strong>, because the success fee is nearly pure margin: it costs nothing to serve.</li>
+    <li><strong>Past $3 the model is harvesting the cohort.</strong> Gross profit still rises in a 36-month window because heavy users pay up to the cap before leaving, but a vendor that watches retention collapse to {{hi_fee_ret}} is reading the chart wrong. The right fee is where the profit curve bends, not where it peaks.</li>
+  </ul>
+  <p>For scale, a merged agent-authored PR at $2 is roughly the cost of ten minutes of a US developer's loaded time. The customer's value per PR in the model is forty dollars and the fee never gets near it. The constraint on the fee is not value. It is the $20 anchor every competitor in section 1 has set.</p>
+
+  <h2 id="shocks">6. Model cost shocks and strict definitions</h2>
+  <h3>When model prices move</h3>
+  <p>I reran all four regimes with the monthly model-price shock at zero, 20% and 40%. The flat seat does not care, because its revenue is fixed and its margin is already gone. The bundle's revenue volatility rises from {{bundle_revcv}} to {{shock_bundle_cv}}, pure usage from {{usage_revcv}} to {{shock_usage_cv}}, the tariff from {{tariff_revcv}} to {{shock_tariff_cv}}. The tariff is the regime whose revenue is least coupled to the token price, which is the whole argument for pricing the layer you sell: when the model gets cheaper, a usage vendor's revenue falls, a tariff vendor's margin rises.</p>
+  <h3>When "merged" gets strict</h3>
+  <p>The fraction of merged PRs that count as agent-authored and lightly edited is the number the support vendors fight about, and it is where I expected the tariff to be fragile. At the calibrated fee it barely matters: gross margin moves from {{strict_lo_gm}} with half of PRs counted to {{strict_hi_gm}} with all of them. At higher fees the sensitivity grows, because more of the revenue sits on the success fee. The practical implication is that a vendor should launch with a strict definition and a modest fee, then loosen the definition before it raises the fee. That is the opposite of what Fin and Agentforce did in support, where loose definitions came first and the arguments followed.</p>
+
+  <h2 id="sowhat">7. What I would tell the pricing team</h2>
+  <div class="callout hot">
+    <div class="eyebrow">Recommendation</div>
+    <p><strong>Keep the bundle for the pool. Add the success fee on top of it.</strong> The model's two best regimes are the bundle's cost structure and the tariff's retention. They are not mutually exclusive. A $30 tier with a first-party pool, third-party at list, and a $1.50 fee per merged agent-authored PR with a $100 cap would have the bundle's margin on usage and the tariff's alignment on output.</p>
+    <p><strong>Publish the definition before the price.</strong> Agent-authored, merged within 14 days, under 20% human edits by line. Show the count next to usage in the same dashboard. The vendor that defines "merged" first owns the meter the way Intercom owned "resolution."</p>
+    <p><strong>Treat the fee as the hedge against the model price war.</strong> Every regime in section 1 is long the token price. A success fee is the only revenue line in the category that goes up when models get cheaper.</p>
+  </div>
+  <p>The objection I expect is that developers will hate paying per PR. I think that is a vocabulary problem. Nobody minds that Fin charges per resolution, because the thing being charged for is the thing they wanted. A developer who objects to $1.50 for a merged PR is objecting to a number, not a meter, and the number is a tenth of what a credit-pool overage already costs the same person.</p>
+
+  <h2 id="limits">8. Limitations</h2>
+  <ul>
+    <li><strong>Individuals only.</strong> The model has no teams or enterprise contracts, which were $2.6 billion of Cursor's reported revenue before the acquisition. Enterprise pooled usage changes the arithmetic on the heavy segment.</li>
+    <li><strong>No competitive response.</strong> Churned developers vanish; they do not go to a competitor who then undercuts. In reality every regime's churn is bounded by what Copilot and Claude Code charge next month.</li>
+    <li><strong>Willingness to pay is a guess.</strong> The segment anchors come from Cursor's own usage guidance and the $20 / $100 / $200 ladder, not from a survey. The relative ranking of regimes is robust to moving them; the absolute margins are not.</li>
+    <li><strong>No cost of running the outcome meter.</strong> Attributing a merged PR to an agent needs tooling and a dispute process. I have not charged for either.</li>
+    <li><strong>One vendor's cost structure.</strong> The 35% first-party cost ratio assumes the vendor owns its models. For a vendor that does not, the bundle's margin advantage disappears and the tariff looks relatively better.</li>
+  </ul>
+
+  <h2 id="download">9. Download the model</h2>
+  <p>Everything on this page is reproducible. The script is 200 lines of Python with NumPy, every assumption is a named constant at the top, and it writes the two charts above as SVG.</p>
+  <div class="dl">
+    <a href="model.py" download><code>model.py</code> the simulation</a>
+    <a href="model.csv" download><code>model.csv</code> headline table</a>
+    <a href="model.json" download><code>model.json</code> all runs and sensitivities</a>
+  </div>
+  <p>If you change an assumption and get a different ranking, I want to know. The whole point of publishing the code is that the argument should be about the inputs.</p>
+
+  <h2 id="sources">10. Sources</h2>
+  <div class="sources"><ol>
+    <li>Cursor, <a href="https://cursor.com/pricing" rel="noopener">Pricing</a> and <a href="https://cursor.com/docs/models-and-pricing" rel="noopener">Models &amp; Pricing</a>, read 19 Oct 2026; SpaceX Super Intelligence, <a href="https://x.ai/news/x-subscription" rel="noopener">Introducing The X Subscription</a>, 12 Oct 2026.</li>
+    <li>Anthropic, <a href="https://claude.com/pricing" rel="noopener">Claude plans and pricing</a>, read 19 Oct 2026.</li>
+    <li>GitHub, <a href="https://github.com/features/copilot/plans" rel="noopener">Copilot plans</a>, read 19 Oct 2026.</li>
+    <li>OpenAI Codex plan prices and the 2 April 2026 move to consumption billing: vendor pages as summarised in comparison coverage dated Aug and Sept 2026.</li>
+    <li>Devin, <a href="https://devin.ai/pricing" rel="noopener">Plans and pricing</a> and self-serve billing docs, as summarised in coverage dated Aug to Oct 2026.</li>
+    <li>Replit plan prices and credit rules: coverage dated Jul to Sept 2026 of Replit's pricing page.</li>
+    <li>Lovable credit ladder and top-up prices: coverage dated 2026 of lovable.dev/pricing.</li>
+    <li>Kiro, <a href="https://kiro.dev/docs/billing/" rel="noopener">Billing docs</a>, updated 4 Aug 2026, and kiro.dev/pricing.</li>
+    <li>Google AI plan prices, Jules task limits and Gemini Code Assist seat prices: Google plan pages and <a href="https://jules.google/docs/usage-limits" rel="noopener">Jules usage limits</a>, as summarised in coverage dated Oct 2026.</li>
+    <li>Augment Code Indie and Business pricing: coverage dated Aug 2026 of augmentcode.com/pricing.</li>
+    <li>Cursor's legacy-plan spend guidance ($60 to $100 for daily agent users, $200+ for power users): Cursor documentation as quoted in pricing guides dated Sept 2026.</li>
+    <li>a16z, <a href="https://a16z.com/you-are-not-a-model-dont-price-per-token/" rel="noopener">You are not a model. Don't price per token.</a>, 27 Aug 2026.</li>
+    <li>The three-part tariff design: my Stanford GSB investment thesis on value capture in the agentic AI stack, advised by Prof. Scott Brady.</li>
+  </ol></div>
+
+  <div class="next">
+    <a href="/teardown/"><div class="eyebrow">Read next</div><b>Teardown: Cursor, one week into The X Subscription</b><span>The bundle this model treats as the base case, and why it exists.</span></a>
+    <a href="/gtm/"><div class="eyebrow">Context</div><b>How AI is priced and sold, October 2026</b><span>The ladder from tokens to outcomes, and who sits where.</span></a>
+  </div>
+  </article>
+  <footer><span>Esther Suebsubanant</span><span><a href="/">esthercs.dev</a> · <a href="mailto:esthercs@stanford.edu">esthercs@stanford.edu</a></span></footer>
+</div>
+</body>
+</html>

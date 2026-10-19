@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cursor, one week into The X Subscription · Esther Suebsubanant</title>
+<meta name="description" content="A product and pricing teardown of Cursor one week after it was folded into The X Subscription: three billing meters in three years, what the bundle does to unit economics, and what I would do instead.">
+<meta property="og:title" content="Cursor, one week into The X Subscription">
+<meta property="og:description" content="A product and pricing teardown of Cursor one week after it was folded into The X Subscription: three billing meters in three years, what the bundle does to unit economics, and what I would do instead.">
+<meta property="og:image" content="https://esthercs.dev/portfolio/esther.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/writing.css">
+</head>
+<body>
+<div class="page">
+  <header><div class="in">
+    <a class="name" href="/"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#132033"/><circle cx="32" cy="32" r="20" fill="none" stroke="#5fb3aa" stroke-width="2.5"/><circle cx="32" cy="32" r="10" fill="none" stroke="#5fb3aa" stroke-width="2.5" opacity=".6"/><circle cx="44" cy="24" r="4" fill="#e3a248"/></svg>Esther Suebsubanant</a>
+    <nav aria-label="Site"><a href="/portfolio/">Portfolio</a><a href="/airadar/">AI Radar</a><a href="/writing/" aria-current="page">Writing</a><a href="/freeagents/">Free agents</a><a href="/ai101/">AI 101</a><a href="/#contact">Contact</a></nav>
+  </div></header>
+  <div class="pagehero">
+    <div class="status"><i></i>Product teardown · No. 1</div>
+    <h1>Cursor, one week into <span>The X Subscription</span>.</h1>
+    <p>Three billing meters in three years, a $60 billion exit, and a bundle that quietly moves the cost of Claude and GPT onto the developer. Here is what the new pricing actually does, and the meter I would ship instead.</p>
+    <p class="sub">Published 19 October 2026 · 14 min read · Facts current as of publication; sources at the end</p>
+  </div>
+  <article class="art" id="main">
+<div class="byline"><div class="mark">E</div><div><b>Esther Suebsubanant</b><span>Ex-M&amp;A and corporate VC. Stanford GSB MBA/MS. I write about how AI gets priced and sold.</span></div></div>
+
+  <div class="tldr">
+    <div class="eyebrow">The short version</div>
+    <p><strong>What happened.</strong> On 12 October 2026, SpaceX folded Cursor into The X Subscription: Free, Plus $8, Premium $30, Super $100, Ultra $200, with one weekly usage pool shared across Cursor, Grok and X. Third-party models like Claude and GPT are no longer included in any tier and bill at API list price from the first request.</p>
+    <p><strong>What it means.</strong> This is not a price cut. It is a change of meter. Cursor stopped subsidising its competitors' models, pointed the subscription at its own models, and turned the editor into a distribution channel for Grok. Margin goes up, model neutrality goes down.</p>
+    <p><strong>What I would do.</strong> Cursor now owns the whole loop from prompt to merged pull request through Bugbot and Origin. That makes it the first coding agent that can price on outcomes. A platform fee plus a compute floor plus a success fee on merged PRs would align it with customers better than any bundle.</p>
+  </div>
+
+  <div class="toc">
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#what">What Cursor is, by the numbers</a></li>
+      <li><a href="#meters">Three meters in three years</a></li>
+      <li><a href="#bundle">What the bundle actually does</a></li>
+      <li><a href="#economics">The unit economics</a></li>
+      <li><a href="#winners">Who wins, who pays</a></li>
+      <li><a href="#risks">The three risks I would underwrite</a></li>
+      <li><a href="#instead">What I would do instead</a></li>
+      <li><a href="#scorecard">Scorecard</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what">1. What Cursor is, by the numbers</h2>
+  <p>Cursor is an AI code editor and agent built by Anysphere. It started as a fork of VS Code with a very good autocomplete, became the default agentic coding tool for a large share of professional developers, and is now a product line that includes cloud agents, automations, a code review bot (Bugbot), code hosting (Origin), a CLI and an SDK.</p>
+  <p>The business grew faster than almost any software company on record, then sold before it could go public on its own.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>When</th><th>Milestone</th><th>Figure</th></tr></thead>
+    <tbody>
+      <tr><td>Jun 2025</td><td>Series C; usage-based billing introduced</td><td class="num">$9.9B valuation, &gt;$500M ARR</td></tr>
+      <tr><td>Nov 2025</td><td>Series D</td><td class="num">$29.3B valuation, ~$1B ARR</td></tr>
+      <tr><td>Feb–Mar 2026</td><td>Annualised revenue reported by TechCrunch and Bloomberg</td><td class="num">&gt;$2B ARR</td></tr>
+      <tr><td>Apr 21, 2026</td><td>SpaceX announces option to buy Cursor for $60B, or pay a $10B break fee</td><td class="num">$60B / $10B</td></tr>
+      <tr><td>Jun 2026</td><td>Annualised revenue reported ahead of the deal, $2.6B of it enterprise</td><td class="num">~$4B ARR (reported)</td></tr>
+      <tr><td>Jun 16, 2026</td><td>SpaceX agrees to acquire Anysphere, all stock, days after its own IPO</td><td class="num">$60B</td></tr>
+      <tr><td>Aug 2026</td><td>Deal closes; Cursor becomes part of SpaceX Super Intelligence (the former xAI)</td><td class="num">~15x revenue</td></tr>
+      <tr><td>Oct 12, 2026</td><td>The X Subscription launches; Cursor plans unified with Grok and X Premium</td><td class="num">$0 to $200/mo</td></tr>
+    </tbody>
+  </table></div>
+  <p>Two things stand out to an ex-banker. First, the revenue multiple at exit was not extreme for the growth rate. Fifteen times a run-rate that quadrupled in twelve months is a number a buyer can defend. Second, the buyer was not a software company. SpaceX bought distribution for its models and a product that enterprises already pay for, and it told IPO investors it sees a trillion-dollar enterprise applications opportunity. Cursor is the wedge.</p>
+
+  <h2 id="meters">2. Three meters in three years</h2>
+  <p>Most teardowns look at features. The more revealing thing to look at is what the company charges for, because that tells you what it believes its value unit is. Cursor has changed its answer three times.</p>
+  <div class="meter">
+    <div data-n="2023–mid 2025"><b>Requests</b><span>Pro at $20 bought a fixed number of "fast requests" a month. Simple, predictable, and a quiet subsidy from light users to heavy ones. Cursor ate every model-cost spike.</span></div>
+    <div data-n="Jun 2025–Oct 2026"><b>Credit pools</b><span>Each plan included a dollar pool roughly equal to its price: Pro $20, Pro+ $60, Ultra $200, Teams $40 a seat. Premium models drained the pool at real API cost. The pool, not the plan, became the real price.</span></div>
+    <div data-n="Oct 2026 →"><b>The bundle</b><span>One weekly pool of Grok and Composer usage shared with the Grok apps and X. Tiers are multiples of Plus: 1x, 4x, 15x, 50x. Third-party models fall outside the pool entirely and bill at list price.</span></div>
+  </div>
+  <p>Each change solved the previous model's economic problem and created a new strategic one. Requests were predictable but unprofitable. Credits were profitable but turned every pricing page into a cost-forecasting exercise, which is exactly the failure mode the a16z growth team warned about in August: "you are not a model, don't price per token." The bundle fixes legibility for Grok users, but it does so by pushing the one thing developers chose Cursor for, model choice, outside the subscription.</p>
+
+  <h2 id="bundle">3. What the bundle actually does</h2>
+  <p>Read the plan table slowly. The headline is a discount. The mechanics are a redirection.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Tier</th><th>Price</th><th>Included usage</th><th>Implied price per unit</th><th>Third-party models</th></tr></thead>
+    <tbody>
+      <tr><td><b>Free</b></td><td class="num">$0</td><td>Limited</td><td class="num">—</td><td>Not available</td></tr>
+      <tr><td><b>Plus</b></td><td class="num">$8</td><td>1x (base)</td><td class="num">$8.00</td><td>Not available</td></tr>
+      <tr><td><b>Premium</b></td><td class="num">$30</td><td>4x</td><td class="num">$7.50</td><td>API list price, prepaid credit</td></tr>
+      <tr><td><b>Super</b></td><td class="num">$100</td><td>15x</td><td class="num">$6.67</td><td>API list price, prepaid credit</td></tr>
+      <tr><td><b>Ultra</b></td><td class="num">$200</td><td>50x</td><td class="num">$4.00</td><td>API list price, prepaid credit</td></tr>
+      <tr><td><b>Teams</b></td><td class="num">$30 / $100 / $200 per seat</td><td>Matches seat tier</td><td class="num">as above</td><td>API list price plus a $0.25 per million token Cursor rate</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Price per unit is my own division of price by the usage multiple. The absolute size of a "unit" is not published, so the column only compares tiers with each other.</p>
+  <p>Four design choices do the real work:</p>
+  <ul>
+    <li><strong>The pool is for first-party models only.</strong> Grok 4.5 to 4.7 and Composer 2.5 draw from the pool. Claude, GPT and Gemini do not. On the legacy Pro+ plan, $60 bought roughly $70 of API-priced usage of any model. On Premium, $30 buys a Grok pool and zero dollars of Claude. SpaceXAI's own developer-relations lead acknowledged that the old plans "effectively subsidised" competitors' models and that this is why migration is opt-in.</li>
+    <li><strong>The pool refreshes weekly, not monthly.</strong> This is good product design and good finance. A developer cannot burn a month in a day, which lowers support load and bill shock, and the company's exposure to any one user is capped at a seventh of what it was.</li>
+    <li><strong>The pool is shared with Grok chat, image and video generation and Grok Bot.</strong> Coding now competes with a consumer app for the same allowance. For SpaceX this means one meter, one dashboard and one bill across three products. For a developer it means a teammate's video generation can eat their coding budget.</li>
+    <li><strong>Usage per dollar rises steeply with tier.</strong> Ultra buys units at half the price of Plus. That is a deliberate ladder toward the $200 tier, the same price point Claude Max, ChatGPT Pro and Devin Max all converged on this year.</li>
+  </ul>
+
+  <h2 id="economics">4. The unit economics</h2>
+  <p>Think of Cursor's gross margin as three stacked decisions: what the customer pays, which model serves the request, and what that model costs. The first two meters coupled all three. The bundle decouples them.</p>
+  <div class="callout">
+    <div class="eyebrow">A worked example</div>
+    <p>A developer on legacy Pro+ pays $60 and uses $70 of model time, mostly Claude. Cursor's margin on that user is negative before any infrastructure cost. Move the same developer to Premium: $30 of subscription, plus $70 of Claude billed at list through prepaid credit. The developer now pays $100, Cursor collects a small spread on the credit and a $0.25 per million token rate if they are on a team, and the Claude cost is no longer Cursor's problem.</p>
+    <p>Now take a developer who switches to Grok 4.7 to stay inside the pool. Cursor's marginal cost is SpaceX's own inference, which the company controls, can route and can cache. Every model-cost improvement flows to margin instead of to the customer. That is the margin logic the a16z piece describes for credit systems, and the bundle executes it precisely.</p>
+  </div>
+  <p>There is a second-order effect that matters more over time. Cursor's docs now describe a router that picks between Cursor models and third-party models on team plans, and a "Cost" mode that always bills as a Cursor-model request. Routing is where the margin lives in every AI application. By owning the models at one end of the router, SpaceX can make the cheap path and the default path the same path.</p>
+  <p>The cost of all of this is paid in model neutrality. Cursor's original pitch was that it was the best editor for any model. The new pricing is honest about the fact that it is now the best editor for Grok, with everything else available at a price.</p>
+
+  <h2 id="winners">5. Who wins, who pays</h2>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Segment</th><th>Before</th><th>After</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Already paying for SuperGrok, Cursor Pro and X Premium+</td><td class="num">~$90</td><td class="num">$30</td><td>Clear win. This is the user the launch copy is written for.</td></tr>
+      <tr><td>Solo developer who lives on Claude or GPT in Cursor</td><td class="num">$20 Pro, with a pool that covered part of it</td><td class="num">$30 Premium plus full API list price</td><td>Pays more. The New Stack's example lands at $50 for the same usage that cost $20.</td></tr>
+      <tr><td>Grok-first or Composer-first developer</td><td class="num">$20 to $60</td><td class="num">$30 with at least twice the coding usage, per Cursor</td><td>Wins on usage and gets Grok Bot and cloud agents thrown in.</td></tr>
+      <tr><td>Teams</td><td class="num">$40 per seat, Premium seat $120</td><td class="num">$30, $100 or $200 per seat, plus the token rate on third-party models</td><td>Cheaper entry seat, more admin features, less predictable bill if the team is on Claude.</td></tr>
+      <tr><td>Enterprise</td><td class="num">Custom</td><td class="num">Custom, with one pooled meter across Grok and Cursor</td><td>Procurement will like one contract. Security teams will ask why the editor and the social network share an account.</td></tr>
+    </tbody>
+  </table></div>
+  <p>The pattern is the one every bundle produces: the customer who wanted all three products gets a real discount, and the customer who wanted one product pays for the privilege of not using the other two. What is unusual here is that the single-product customer is the one who built Cursor's reputation.</p>
+
+  <h2 id="risks">6. The three risks I would underwrite</h2>
+  <h3>Model supply</h3>
+  <p>OpenAI said in August that it intends to withdraw direct access to its models through Cursor, with a proposed cutoff of 12 November, citing its terms of service. Anthropic has said it will keep Claude in Cursor and has a separate multi-billion dollar compute agreement with SpaceX. So the two most-used third-party models in Cursor are now held in place by one vendor's exit and one vendor's commercial entanglement. That is a concentration risk a diligence memo would flag on page one.</p>
+  <h3>Developer trust</h3>
+  <p>Legacy plans continue "for now" and migration is opt-in, but Cursor's own support staff have said remaining customers will eventually be moved with notice. Every pricing change Cursor has made since June 2025 has produced a forum thread of the same shape: long-time Ultra subscribers saying the product they pay for is being pointed somewhere else. The bundle also merges a Cursor account with an X account permanently. For a tool that lives inside corporate codebases, that is not a small ask.</p>
+  <h3>Enterprise identity</h3>
+  <p>Cursor's $2.6B of enterprise revenue was sold as a neutral, security-reviewed developer platform. Enterprise buyers will now evaluate a product whose billing dashboard lives at grok.com and whose parent sells a social network. The enterprise tier keeps pooled usage, SCIM and audit logs, which is the right call. Whether the brand survives the merge is the question I would want answered before underwriting the next renewal cohort.</p>
+
+  <h2 id="instead">7. What I would do instead</h2>
+  <p>My Stanford thesis argued that the winning pricing infrastructure for agentic AI is outcome-based, and that the coding agent category is the first place it can work because the outcome is observable: a pull request either merges or it does not. Cursor is now the only coding agent that owns every step of that loop. Agent writes the change, Bugbot reviews it, Origin hosts the repository and the pull request. The merge event happens inside Cursor's own infrastructure.</p>
+  <div class="callout hot">
+    <div class="eyebrow">The three-part tariff</div>
+    <p><strong>Platform fee.</strong> A flat monthly seat price that covers the editor, autocomplete, chat and admin. This is the part customers already understand and budget for.</p>
+    <p><strong>Compute floor.</strong> A modest included pool for any model, priced at cost plus a thin margin and passed through transparently above the floor. This keeps model choice inside the product instead of outside it.</p>
+    <p><strong>Success fee.</strong> A per-merge fee on pull requests that the agent authored and that a human merged without rewriting. The fee is capped per month and discounted by volume, so a team's bill scales with shipped work rather than with how many tokens the agent burned getting there.</p>
+  </div>
+  <p>Why this beats the bundle on the dimension that matters, which is alignment: under the bundle, Cursor earns more when a developer uses more Grok, whether or not the code shipped. Under a success fee, Cursor earns more only when the developer's team accepted the work. That removes the moral hazard of usage pricing, where a verbose or looping agent is a revenue event, and it gives Cursor a reason to route each task to whichever model merges most cheaply. My Monte Carlo benchmark of this design against GitHub Copilot, Cursor and Devin across enterprise scenarios found it produced steadier vendor revenue and lower customer cost variance than seat or usage pricing, with the main sensitivity being how strictly "merged" is defined.</p>
+  <p>The honest counter-argument is attribution. A merged PR is a clean outcome for a bug fix and a messy one for a multi-week feature with six human commits on top. The fix is to price only agent-authored PRs that merge within a window and with below-threshold human edits, and to show the customer the count in the same dashboard that shows usage. Cursor already has every data point required to do that. The question is whether a company that just bought the editor to distribute its own models wants a meter that is indifferent to which model did the work.</p>
+
+  <h2 id="scorecard">8. Scorecard</h2>
+  <div class="scorecard">
+    <div class="score"><div class="grade">A</div><div><b>Margin design</b><span>Decouples price from third-party cost, weekly pool caps exposure, routing owns the default path.</span></div></div>
+    <div class="score"><div class="grade">A−</div><div><b>Legibility</b><span>Five tiers, one multiple, one weekly pool. Easy to explain. The hidden part is the Claude bill.</span></div></div>
+    <div class="score"><div class="grade mid">B−</div><div><b>Customer alignment</b><span>Rewards usage of the parent's models, not shipped code. The bundle discount is real only for three-product buyers.</span></div></div>
+    <div class="score"><div class="grade mid">C+</div><div><b>Model neutrality</b><span>Third-party models survive at list price. The product's original promise is now a paid add-on.</span></div></div>
+    <div class="score"><div class="grade low">C</div><div><b>Trust with the core user</b><span>Third pricing change in sixteen months, a permanent account merge, and a migration that will not stay optional.</span></div></div>
+    <div class="score"><div class="grade">A</div><div><b>Strategic fit for SpaceX</b><span>Distribution for Grok into the one audience that evaluates models on merit every day. Exactly what $60B was for.</span></div></div>
+  </div>
+  <p>Net: a very good pricing move for the acquirer and a mixed one for the customer. If I were on the Cursor pricing team, the next change I would ship is not a new tier. It is a success fee on merged PRs, because it is the one meter where the company and its developers want the same thing.</p>
+
+  <h2 id="sources">9. Sources</h2>
+  <div class="sources"><ol>
+    <li>SpaceX Super Intelligence, <a href="https://x.ai/news/x-subscription" rel="noopener">Introducing The X Subscription</a>, 12 Oct 2026.</li>
+    <li>Cursor, <a href="https://cursor.com/pricing" rel="noopener">Pricing</a> and <a href="https://cursor.com/docs/models-and-pricing" rel="noopener">Models &amp; Pricing docs</a>, read 19 Oct 2026. Tier prices, usage multiples, weekly pool, third-party billing, Cursor Token Rate, legacy plan status.</li>
+    <li>The New Stack, <a href="https://thenewstack.io/x-subscription-cursor-pricing/" rel="noopener">The X Subscription bundles Cursor with Grok and X Premium. But Claude now costs extra.</a>, Oct 2026. Legacy pool sizes, worked $50 example, opt-in migration, OpenAI cutoff date.</li>
+    <li>DevOps.com, <a href="https://devops.com/one-bill-for-grok-cursor-and-x-what-spacexs-bundle-means-for-dev" rel="noopener">One Bill for Grok, Cursor, and X</a>, Oct 2026.</li>
+    <li>Reuters, <a href="https://www.reuters.com/legal/transactional/spacex-buy-anysphere-60-billion-2026-06-16/" rel="noopener">SpaceX locks in $60 billion Cursor deal</a>, 16 Jun 2026; CNBC, <a href="https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html" rel="noopener">SpaceX to acquire Cursor for $60 billion</a>; TechCrunch, <a href="https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo/" rel="noopener">SpaceX to acquire Cursor for $60B in stock</a>.</li>
+    <li>CNBC, <a href="https://www.cnbc.com/2026/04/21/spacex-says-it-can-buy-cursor-later-this-year-for-60-billion-or-pay-10-billion-for-our-work-together.html" rel="noopener">SpaceX option to buy Cursor</a>, 21 Apr 2026.</li>
+    <li>Revenue and valuation history: TechCrunch and Bloomberg reporting on the $2B run-rate (Mar 2026) and Series D (Nov 2025); the ~$4B June 2026 figure and $2.6B enterprise split are from secondary reporting and are marked as reported.</li>
+    <li>a16z, <a href="https://a16z.com/you-are-not-a-model-dont-price-per-token/" rel="noopener">You are not a model. Don't price per token.</a>, 27 Aug 2026.</li>
+    <li>Cursor pricing history (requests to credit pools, June 2025; Auto drawing from the pool, Aug 2026): Cursor documentation and third-party pricing guides published Sept 2026.</li>
+    <li>The three-part tariff and Monte Carlo benchmark: my Stanford GSB investment thesis on value capture in the agentic AI stack, advised by Prof. Scott Brady.</li>
+  </ol></div>
+
+  <div class="next">
+    <a href="/gtm/"><div class="eyebrow">Next</div><b>Pricing and GTM in AI, October 2026</b><span>Where every category sits on the token-to-outcome ladder, and how the labs are now selling.</span></a>
+    <a href="/#contact"><div class="eyebrow">Talk</div><b>Disagree with the scorecard?</b><span>I would like to hear it. Email or book twenty minutes.</span></a>
+  </div>
+  </article>
+  <footer><span>Esther Suebsubanant</span><span><a href="/">esthercs.dev</a> · <a href="mailto:esthercs@stanford.edu">esthercs@stanford.edu</a></span></footer>
+</div>
+</body>
+</html>

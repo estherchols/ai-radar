@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How AI is priced and sold, October 2026 · Esther Suebsubanant</title>
+<meta name="description" content="Field notes on how AI products are priced and sold as of October 2026: the token-to-outcome ladder, where coding and support agents sit on it, lighthouse versus landgrab sales, and the forward-deployed money flooding into enterprise AI.">
+<meta property="og:title" content="How AI is priced and sold, October 2026">
+<meta property="og:description" content="Field notes on how AI products are priced and sold as of October 2026: the token-to-outcome ladder, where coding and support agents sit on it, lighthouse versus landgrab sales, and the forward-deployed money flooding into enterprise AI.">
+<meta property="og:image" content="https://esthercs.dev/portfolio/esther.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/writing.css">
+</head>
+<body>
+<div class="page">
+  <header><div class="in">
+    <a class="name" href="/"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#132033"/><circle cx="32" cy="32" r="20" fill="none" stroke="#5fb3aa" stroke-width="2.5"/><circle cx="32" cy="32" r="10" fill="none" stroke="#5fb3aa" stroke-width="2.5" opacity=".6"/><circle cx="44" cy="24" r="4" fill="#e3a248"/></svg>Esther Suebsubanant</a>
+    <nav aria-label="Site"><a href="/portfolio/">Portfolio</a><a href="/airadar/">AI Radar</a><a href="/writing/" aria-current="page">Writing</a><a href="/freeagents/">Free agents</a><a href="/ai101/">AI 101</a><a href="/#contact">Contact</a></nav>
+  </div></header>
+  <div class="pagehero">
+    <div class="status"><i></i>Field notes · October 2026</div>
+    <h1>How AI is priced and sold, <span>October 2026</span>.</h1>
+    <p>The meter is moving up the stack, the price points have converged, and the labs just raised billions to put engineers inside customers. A working map of where every category sits, and what I think happens next.</p>
+    <p class="sub">Published 19 October 2026 · 16 min read · Prices as published on the dates cited; sources at the end</p>
+  </div>
+  <article class="art" id="main">
+<div class="byline"><div class="mark">E</div><div><b>Esther Suebsubanant</b><span>Ex-M&amp;A and corporate VC. Stanford GSB MBA/MS. My thesis work is on value capture in the agentic AI stack.</span></div></div>
+
+  <div class="tldr">
+    <div class="eyebrow">The short version</div>
+    <p><strong>Pricing.</strong> AI applications are climbing a ladder from tokens to credits to outcomes. Customer support agents reached the top rung first because a "resolution" is attributable. Coding agents are stuck on credits, and the big vendors just made those credits weekly, pooled and tilted toward their own models.</p>
+    <p><strong>GTM.</strong> Enterprise AI sales has split into two playbooks, lighthouse and landgrab, and the labs have decided the way to win either one is forward-deployed engineers funded by private equity. OpenAI raised $4B and Anthropic $1.5B in May for exactly that.</p>
+    <p><strong>My view.</strong> The category that moves to outcome pricing next is coding, because the merged pull request is the cleanest outcome in software. Whoever prices it first will own the meter the way Intercom's Fin owned "per resolution."</p>
+  </div>
+
+  <div class="toc">
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#ladder">The ladder: tokens, credits, outcomes</a></li>
+      <li><a href="#map">Where each category sits today</a></li>
+      <li><a href="#patterns">Four pricing patterns from this year</a></li>
+      <li><a href="#gtm">GTM: lighthouse or landgrab</a></li>
+      <li><a href="#fde">The forward-deployed money</a></li>
+      <li><a href="#view">What I think happens next</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </div>
+
+  <h2 id="ladder">1. The ladder: tokens, credits, outcomes</h2>
+  <p>The cleanest framing I have seen this year came from Tugce Erten and Sarah Wang at a16z in August: price the layer you sell. If you sell model access, meter tokens. If you turn models into recognisable work, meter that work, usually through credits. If you deliver a business result the customer can attribute to you, meter the outcome. The mistake most application companies make is importing the model layer's cost structure into a product whose value is in the data, workflow and orchestration above it.</p>
+  <div class="meter">
+    <div data-n="Rung 1"><b>Tokens</b><span>Right for model providers. Wrong for applications, because it anchors the product to a cost curve that keeps falling and invites comparison with raw compute.</span></div>
+    <div data-n="Rung 2"><b>Credits</b><span>A currency, not a value metric. Good credits map to work the customer recognises. Bad credits are tokens with a different name.</span></div>
+    <div data-n="Rung 3"><b>Outcomes</b><span>A resolved ticket, a qualified lead, a recovered dollar. Only works when the result is observable, attributable and stable enough to carry a price.</span></div>
+  </div>
+  <p>Their survey of fifty technical buyers found 27 preferred credits tied to recognisable work and 14 preferred tokens. Buyers want two things from a meter: comparability and the ability to allocate spend. Tokens give false precision on the first and make the second a forecasting exercise. The practical rule is that the billing meter and the cost meter do not have to be the same meter. Show usage detail for trust; bill on the unit the customer already understands.</p>
+
+  <h2 id="map">2. Where each category sits today</h2>
+  <p>Here is the map as of this week. The columns that matter are the unit and who controls the meter, because that tells you who carries the risk when the agent is inefficient.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Category</th><th>Vendor</th><th>Unit</th><th>Published price</th><th>Who controls the meter</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="5"><b>Coding agents</b><br><span style="font-size:12px;color:var(--muted)">Rung 2, credits and pools</span></td><td>Cursor (SpaceX)</td><td>Weekly pool, first-party models; third-party at API list</td><td class="num">$8 / $30 / $100 / $200</td><td>Vendor routes, customer picks model</td></tr>
+      <tr><td>Claude Code (Anthropic)</td><td>Subscription allowance, shared with Claude; API fallback</td><td class="num">Pro $20, Max $100 or $200; Team Premium seat $125</td><td>Vendor sets limits</td></tr>
+      <tr><td>GitHub Copilot</td><td>Monthly AI credits, 1 credit = $0.01, since 1 Jun 2026</td><td class="num">Pro $10, Pro+ $39, Max $100; Business $19 per seat</td><td>Customer's model choice drives burn</td></tr>
+      <tr><td>Codex (OpenAI)</td><td>Bundled in ChatGPT; credit and token consumption since 2 Apr 2026</td><td class="num">Plus $20, Pro $200; Business $25 per seat</td><td>Vendor; OpenAI estimates power users at $100 to $200 a month</td></tr>
+      <tr><td>Devin (Cognition)</td><td>Daily and weekly allowance, on-demand at API price</td><td class="num">Pro $20, Max $200; Teams $80 plus $40 per seat</td><td>Vendor; quota size not published</td></tr>
+      <tr><td rowspan="5"><b>Support agents</b><br><span style="font-size:12px;color:var(--muted)">Rung 3, outcomes</span></td><td>Fin (Salesforce, ex-Intercom)</td><td>Per outcome, including assumed resolutions after 24h of silence</td><td class="num">$0.99 per outcome; 50-outcome minimum off Intercom's helpdesk</td><td>Vendor defines "outcome"</td></tr>
+      <tr><td>Zendesk AI agents</td><td>Per automated resolution</td><td class="num">$1.50 committed, $2.00 pay-as-you-go</td><td>Vendor</td></tr>
+      <tr><td>Salesforce Agentforce</td><td>Per conversation, or per action in Flex Credits</td><td class="num">$2.00 per conversation; $0.10 per action; Core $195 / Advanced $395 / Max $550 per user per month since 3 Sep 2026</td><td>The agent decides how many billable actions a resolution takes</td></tr>
+      <tr><td>Sierra</td><td>Per outcome, negotiated; counts saves and upsells</td><td class="num">Not published; reported ~$1.50 per resolution, year-one $200K+</td><td>Vendor, per contract</td></tr>
+      <tr><td>Decagon, Ada</td><td>Per outcome in some form</td><td class="num">Not published</td><td>Vendor, per contract</td></tr>
+      <tr><td><b>GTM data</b><br><span style="font-size:12px;color:var(--muted)">Hybrid</span></td><td>Clay</td><td>Data Credits for third-party data, Actions for orchestration, token pass-through for volatile reasoning models</td><td class="num">Tiered</td><td>Split by layer; Clay admitted it mispriced Pro credits for years</td></tr>
+    </tbody>
+  </table></div>
+  <p>Two readings of this table. First, the support category has done the hard work of defining an outcome and is now competing on the definition: Fin bills an "assumed resolution" when a customer goes quiet for a day, Agentforce bills a conversation whether or not it resolved, and the same ticket can cost between roughly $0.49 and $4.19 on Salesforce depending on how many actions the agent took. The meter is the product. Second, the coding category has converged on price points, $20 at entry and $100 or $200 at the top, but not on a value unit. Every vendor sells an allowance, and every allowance is denominated in something the customer cannot forecast.</p>
+
+  <h2 id="patterns">3. Four pricing patterns from this year</h2>
+  <h3>The $20 / $100 / $200 ladder</h3>
+  <p>Six vendors now sell an entry plan at effectively $20: Claude Pro, Cursor's old Pro, ChatGPT Plus with Codex, Devin Pro, Google AI Pro, Kiro Pro. Above that is a power band at $100 and $200. The ladder exists because the top tiers are where the margin is: Cursor's new Ultra tier buys usage at half the per-unit price of Plus, and Claude Max 20x is the same $200. The entry price is a customer-acquisition cost. The $200 tier is the business.</p>
+  <h3>The pool is the price</h3>
+  <p>Cursor's move to a weekly pool is the most interesting mechanical change of the year. A monthly pool invites bill shock and a support ticket on day three. A weekly pool caps the vendor's exposure to any one user at a seventh of the old number and caps the customer's regret at a week. Devin moved its self-serve plans to daily and weekly allowances in March. Expect this to be standard by next year.</p>
+  <h3>Pass-through for the volatile layer</h3>
+  <p>Clay's 2026 pricing memo is the clearest statement of the hybrid: fixed pricing for models with predictable cost, actual token cost without markup for expensive reasoning models, and separate credits for third-party data. Cursor's bundle does a cruder version of the same thing: first-party models in the pool, third-party at list. The principle is that you should not take margin risk on an input you do not control, and you should not hide that input behind a credit that pretends you do.</p>
+  <h3>Outcome fine print is where the margin hides</h3>
+  <p>Once a category prices on outcomes, the next battle is the definition. Fin's "assumed resolution" after 24 hours of silence, Sierra counting a save or an upsell as a billable outcome, Agentforce's per-action meter that lets the agent decide how much to bill: all three are ways of recovering margin from the gap between "the customer stopped replying" and "the problem was solved." Buyers negotiating these contracts should ask for the definition before the rate.</p>
+
+  <h2 id="gtm">4. GTM: lighthouse or landgrab</h2>
+  <p>On the selling side, the framework I now use is the one Joe Schmidt and Julian Marx published at a16z in July. Enterprise AI sales runs on two playbooks, and most founders pick the wrong one by default.</p>
+  <div class="meter" style="grid-template-columns:1fr 1fr">
+    <div data-n="Proof"><b>Lighthouse</b><span>Category creation. The buyer has no precedent and real career exposure, so a few marquee customers have to go first. Founder-led, six-figure ACVs, three-to-six month cycles, the people who sell also deliver. Harvey needed Allen &amp; Overy and Paul Weiss. Hebbia needed the largest funds.</span></div>
+    <div data-n="Math"><b>Landgrab</b><span>The buyer already knows the problem and a mistake costs a bad quarter, not a career. The pitch is "I replace Y at half the cost." Demo-driven, larger sales team, forward-deployed delivery, and speed is everything because the incumbent is adding AI every quarter. Decagon in support. Stuut in accounts receivable.</span></div>
+  </div>
+  <p>Two questions decide which game you are in. How exposed is the person who signs, which rises with regulation, replacing a system of record, and output that faces the outside world. And does social proof travel, which it does in law and finance where firms watch each other and does not in fragmented mid-market categories where the controller in Des Moines has never heard of your marquee logo. High exposure and travelling proof is lighthouse. Recoverable mistakes and local proof is landgrab. When the two point in opposite directions, exposure wins.</p>
+  <p>The failure modes are symmetric. Lighthouse companies become hostages to the logo, live in pilot purgatory, and build a product perfect for one customer. Landgrab companies die of indigestion from unqualified deals and ship to five hundred customers before the product is ready. The best companies sequence: win a bellwether in one vertical, dominate it, then move to adjacent verticals that look similar. The tell that it is time to switch is buyers arriving with budget and asking for a demo instead of asking who went first.</p>
+  <p>Where this meets pricing: landgrab buyers purchase math, and math is easiest to show on an outcome meter. "We cut your cost per resolution in half" is a landgrab sentence. That is not a coincidence. The categories that reached outcome pricing first are the categories where landgrab selling works.</p>
+
+  <h2 id="fde">5. The forward-deployed money</h2>
+  <p>The biggest GTM story of the year is not a startup playbook. It is the labs deciding that the last mile of enterprise AI is a services business and raising private-equity money to build it.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>When</th><th>Who</th><th>What</th><th>Capital</th></tr></thead>
+    <tbody>
+      <tr><td>4 May 2026</td><td>Anthropic</td><td>Enterprise AI services joint venture with Blackstone, Hellman &amp; Friedman and Goldman Sachs as founding partners; Apollo, General Atlantic, GIC, Leonard Green and Sequoia backing. Engagements "shaped by the people closest to the work."</td><td class="num">~$1.5B valuation; $300M each from Anthropic, Blackstone and H&amp;F</td></tr>
+      <tr><td>4 May 2026</td><td>OpenAI</td><td>The Deployment Company, a majority-owned vehicle to parachute engineers into clients on the Palantir model, led by COO Brad Lightcap. Investors include TPG, Brookfield, Advent and Bain Capital.</td><td class="num">$4B raised from 19 investors at a $10B valuation</td></tr>
+      <tr><td>Jun 2026</td><td>AWS</td><td>Dedicated forward-deployed engineering organisation, pods of five or six engineers per customer, early customers including Cox Automotive, the NBA, the NFL and Southwest.</td><td class="num">$1B committed (as reported)</td></tr>
+    </tbody>
+  </table></div>
+  <p>The logic is in the cap table. Alternative asset managers own thousands of portfolio companies. A lab that sells them a deployment arm gets preferred access to every one of those companies, and the asset managers capture more of the value from each contract than they would as mere customers. It is a distribution deal dressed as a services company.</p>
+  <p>The worry is gross margin, and the counter-argument is Workday. a16z points out that Workday went from a 54% gross margin at IPO to roughly 75% as its implementation-heavy early motion matured. Services-led growth is a phase, not a destination, if the services are turned into product. The forward-deployed engineer at Cursor already describes the job as finding the next high-value use case rather than doing the integration, because the agents do the integration. That is the version of the role that keeps margins.</p>
+  <p>For someone looking at these roles, which I am, the implication is that the forward-deployed job is becoming a commercial job with an engineering vocabulary. The scarce skill is judging which use case is worth building and pricing it so the customer renews, not writing the integration.</p>
+
+  <h2 id="view">6. What I think happens next</h2>
+  <h3>Coding moves to outcomes, and the first mover owns the meter</h3>
+  <p>Support agents reached outcome pricing first because a resolution is attributable. The merged pull request is a cleaner outcome than a resolution: it is binary, timestamped, and already lives in a system of record. The vendor that prices on it first will define "merged" the way Intercom defined "resolution," and everyone else will be negotiating against that definition. My thesis proposes the mechanism: a platform fee for access, a compute floor for any model, and a success fee on agent-authored PRs that a human merged without rewriting. In my Monte Carlo benchmark against Copilot, Cursor and Devin, that structure produced steadier vendor revenue and lower customer cost variance than seat or usage pricing. The sensitivity is the definition of merged, which is the same place support vendors fight today.</p>
+  <h3>Bundles become the new seat</h3>
+  <p>The X Subscription is the first bundle that puts a developer tool, a consumer chatbot and a social network on one meter. Google and Microsoft already bundle AI into productivity suites. The bundle is how incumbents turn a usage meter back into something that looks like a seat, and it is how they tilt usage toward their own models. Expect model neutrality to become a feature customers pay extra for.</p>
+  <h3>Outcome definitions get audited</h3>
+  <p>Once enough budget runs through per-resolution contracts, procurement will demand third-party definitions of what counts. The first vendor to publish an auditable outcome standard, and to let customers see the count in the same dashboard as usage, will win the enterprise renewals.</p>
+  <h3>Things I am watching this quarter</h3>
+  <ul>
+    <li>12 November: OpenAI's proposed date to withdraw direct model access from Cursor. The first real test of whether a coding tool can lose a frontier model and keep its enterprise cohort.</li>
+    <li>How Salesforce prices Fin now that it owns it. Fin's $0.99 per outcome with no platform fee was the cleanest meter in the category. Agentforce's per-action meter is the opposite. One of them has to give.</li>
+    <li>Whether Copilot's credit model drifts toward outcomes. GitHub owns the merge event for more repositories than anyone. If they price it, the whole category follows.</li>
+    <li>Migration of Cursor's legacy plans. The day it stops being opt-in is the day we learn how much developers value model choice.</li>
+  </ul>
+
+  <h2 id="sources">7. Sources</h2>
+  <div class="sources"><ol>
+    <li>a16z, Tugce Erten and Sarah Wang, <a href="https://a16z.com/you-are-not-a-model-dont-price-per-token/" rel="noopener">You are not a model. Don't price per token.</a>, 27 Aug 2026. Ladder framing, buyer survey, Clay memo.</li>
+    <li>a16z, Joe Schmidt and Julian Marx, <a href="https://a16z.com/lighthouse-or-landgrab-how-to-pick-your-ai-sales-strategy/" rel="noopener">Lighthouse or Landgrab? How to Pick Your AI Sales Strategy</a>, 27 Jul 2026.</li>
+    <li>TechCrunch, <a href="https://techcrunch.com/2026/05/04/anthropic-and-openai-are-both-launching-joint-ventures-for-enterprise-ai-services/" rel="noopener">Anthropic and OpenAI are both launching joint ventures for enterprise AI services</a>, 4 May 2026, citing the WSJ and Bloomberg on the $1.5B and $10B valuations.</li>
+    <li>AWS forward-deployed commitment: as reported in secondary coverage citing About Amazon, Jun 2026. Marked as reported.</li>
+    <li>SpaceX Super Intelligence, <a href="https://x.ai/news/x-subscription" rel="noopener">Introducing The X Subscription</a>, 12 Oct 2026; Cursor, <a href="https://cursor.com/docs/models-and-pricing" rel="noopener">Models &amp; Pricing</a>, read 19 Oct 2026.</li>
+    <li>Salesforce, <a href="https://www.salesforce.com/news/press-releases/2026/09/10/salesforce-completes-acquisition-of-fin/" rel="noopener">Salesforce Completes Acquisition of Fin</a>, 10 Sep 2026.</li>
+    <li>Fin pricing, <a href="https://fin.ai/pricing" rel="noopener">fin.ai/pricing</a>; Zendesk, <a href="https://www.zendesk.com/blog/ai/agentic-ai/outcome-based-pricing/" rel="noopener">outcome-based pricing</a>; Salesforce, <a href="https://www.salesforce.com/agentforce/pricing/" rel="noopener">Agentforce pricing</a>. Rates as summarised in vendor-comparison coverage dated Sept 2026; the $0.49 to $4.19 Agentforce range is that coverage's own calculation at 3 to 40 actions per resolution.</li>
+    <li>Coding tool prices: vendor pricing pages for Claude, GitHub Copilot, OpenAI Codex and Devin as summarised in comparison guides updated Aug and Sept 2026. Copilot's 1 Jun 2026 move to credits and Codex's 2 Apr 2026 move to consumption billing are from the same coverage.</li>
+    <li>The New Stack, <a href="https://thenewstack.io/x-subscription-cursor-pricing/" rel="noopener">The X Subscription bundles Cursor with Grok and X Premium</a>, Oct 2026, for the OpenAI cutoff date and migration statements.</li>
+    <li>The three-part tariff and Monte Carlo benchmark: my Stanford GSB investment thesis on value capture in the agentic AI stack, advised by Prof. Scott Brady.</li>
+  </ol></div>
+
+  <div class="next">
+    <a href="/teardown/"><div class="eyebrow">Read next</div><b>Teardown: Cursor, one week into The X Subscription</b><span>Three meters in three years and the outcome-based meter I would ship instead.</span></a>
+    <a href="/#contact"><div class="eyebrow">Talk</div><b>Working on pricing or GTM at an AI company?</b><span>I would like to compare notes. Email or book twenty minutes.</span></a>
+  </div>
+  </article>
+  <footer><span>Esther Suebsubanant</span><span><a href="/">esthercs.dev</a> · <a href="mailto:esthercs@stanford.edu">esthercs@stanford.edu</a></span></footer>
+</div>
+</body>
+</html>

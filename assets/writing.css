@@ -1,0 +1,77 @@
+/* esthercs.dev writing pages (/teardown, /gtm, /pricing). Loads after site.css and only adds article components.
+   Colours and fonts come from site.css tokens so the pages follow the site theme in light and dark. */
+.art{
+  --accent:var(--blue); --accent-soft:var(--soft); --pine:var(--blue); --pine-soft:var(--soft);
+  --gold:#b45309; --orange:#c4561c; --muted:var(--dim); --ink-2:var(--slate); --card:var(--bg); --bg-2:var(--tint);
+  --serif:var(--sans); --radius:10px; --shadow:none;
+  max-width:760px;margin:0 auto;padding:8px 0 40px}
+@media (prefers-color-scheme: dark){.art{--gold:#e3a248;--orange:#ee8a52}}
+.pagehero .sub{font-family:var(--mono);font-size:13px}
+.pagehero .sub .sep{opacity:.5;margin:0 6px}
+.art h2{font-size:clamp(22px,3.2vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.2;margin:48px 0 14px;scroll-margin-top:84px}
+.art h2::before{content:"";display:block;width:24px;height:2px;background:var(--electric);margin-bottom:12px}
+.art h3{font-size:18px;font-weight:600;margin:28px 0 10px}
+.art p{font-size:16.5px;line-height:1.7;color:var(--ink);margin:0 0 16px}
+.art p strong{font-weight:600}
+.art ul,.art ol{line-height:1.65;padding-left:22px;margin:0 0 16px}
+.art li{margin-bottom:6px}
+.art .eyebrow{font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:.02em;margin-bottom:8px}
+.art .note{color:var(--dim);font-size:14px}
+.byline{display:flex;align-items:center;gap:12px;margin:0 0 28px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.byline .mark{width:36px;height:36px;border-radius:50%;background:var(--blue);color:var(--onaccent);display:grid;place-items:center;font-weight:700}
+.byline b{display:block;font-size:14px}
+.byline span{font-size:13px;color:var(--dim)}
+.tldr{border:1px solid var(--line);border-left:3px solid var(--electric);border-radius:10px;padding:18px 22px;margin:0 0 28px;background:var(--bg)}
+.tldr p{margin:0 0 8px;font-size:16px}
+.tldr p:last-child{margin:0}
+.callout{background:var(--soft);border-radius:10px;padding:18px 22px;margin:20px 0 24px}
+.callout.hot{background:var(--tint);border:1px solid var(--line)}
+.callout p{margin:0 0 8px;font-size:15.5px}
+.callout p:last-child{margin:0}
+.toc{border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0 0 32px;background:var(--tint)}
+.toc ol{margin:0;padding-left:18px;font-size:14px;line-height:1.75}
+.toc a{text-decoration:none;color:var(--slate)}
+.toc a:hover{color:var(--blue)}
+.tbl-wrap{overflow-x:auto;margin:0 -20px;padding:0 20px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 24px;background:var(--bg);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tbl th,.tbl td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--mono);font-weight:500;font-size:11.5px;color:var(--dim);background:var(--tint)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td b{font-weight:700;font-size:16px}
+.tbl .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl td.m{font-family:var(--mono);font-size:11px;white-space:nowrap}
+.meter{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 24px}
+@media (max-width:640px){.meter{grid-template-columns:1fr}}
+.meter div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;position:relative}
+.meter div::before{content:attr(data-n);position:absolute;right:12px;top:10px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.meter b{display:block;font-size:17px;font-weight:700;margin-bottom:4px}
+.meter span{font-size:13.5px;color:var(--slate);line-height:1.5;display:block}
+.scorecard{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0 24px}
+@media (max-width:600px){.scorecard{grid-template-columns:1fr}}
+.score{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.score .grade{flex:none;width:40px;height:40px;border-radius:8px;display:grid;place-items:center;font-family:var(--mono);font-weight:500;font-size:16px;background:var(--soft);color:var(--blue)}
+.score .grade.mid{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+.score .grade.low{background:color-mix(in srgb,var(--orange) 16%,transparent);color:var(--orange)}
+.score b{display:block;font-size:14px}
+.score span{font-size:13px;color:var(--dim)}
+.sources{font-size:13.5px;color:var(--dim);line-height:1.6}
+.sources ol{padding-left:20px}
+.sources li{margin-bottom:4px;word-break:break-word}
+.next{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+@media (max-width:600px){.next{grid-template-columns:1fr}}
+.next a{display:block;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px 18px;text-decoration:none;color:var(--ink)}
+.next a:hover{border-color:var(--electric);box-shadow:0 0 0 4px var(--glow)}
+.next b{font-size:17px;font-weight:700;display:block;letter-spacing:-.01em}
+.next span{font-size:13.5px;color:var(--dim)}
+.chart{margin:16px 0 8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 10px 6px}
+.chart svg{width:100%;height:auto;display:block}
+.cap{font-size:13px;color:var(--dim);margin:0 0 24px}
+.dl{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 24px}
+.dl a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;padding:9px 14px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.dl a:hover{border-color:var(--electric)}
+.dl code{font-family:var(--mono);font-size:12px;color:var(--blue)}
+.pill{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:3px 7px;border-radius:999px;border:1px solid var(--line);color:var(--dim);margin:1px 0}
+.pill.credit{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 45%,transparent)}
+.pill.usage{color:var(--orange);border-color:color-mix(in srgb,var(--orange) 45%,transparent)}
+.pill.outcome{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
+.art .status{margin-bottom:0}

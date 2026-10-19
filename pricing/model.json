@@ -1,0 +1,448 @@
+{
+ "results": [
+  {
+   "regime": "Flat seat",
+   "arpu_m1": 40.0,
+   "arpu": 40.0,
+   "gross_margin": 0.09923755465056971,
+   "monthly_churn": 0.026455760953405745,
+   "retained_36m": 0.3604,
+   "revenue_36m": 8567160.0,
+   "gross_profit_36m": 1153912.1581449856,
+   "revenue_cv": 0.23335492179051437,
+   "bill_cv": 0.0
+  },
+  {
+   "regime": "Bundle (today)",
+   "arpu_m1": 53.438532181991405,
+   "arpu": 50.1555466179299,
+   "gross_margin": 0.5213473520291513,
+   "monthly_churn": 0.03164432979647732,
+   "retained_36m": 0.3013,
+   "revenue_36m": 10481959.114824431,
+   "gross_profit_36m": 5403117.26656896,
+   "revenue_cv": 0.2961066675717256,
+   "bill_cv": 0.18501389430675366
+  },
+  {
+   "regime": "Pure usage",
+   "arpu_m1": 53.438532319928996,
+   "arpu": 42.93509860055781,
+   "gross_margin": 0.3698708324912391,
+   "monthly_churn": 0.04049782993669769,
+   "retained_36m": 0.2355,
+   "revenue_36m": 8570733.034721449,
+   "gross_profit_36m": 3194978.504748877,
+   "revenue_cv": 0.4027858121680363,
+   "bill_cv": 0.4962421911473783
+  },
+  {
+   "regime": "Three-part tariff",
+   "arpu_m1": 53.438532139077026,
+   "arpu": 43.13337188754779,
+   "gross_margin": 0.3936863272258333,
+   "monthly_churn": 0.03207631733799648,
+   "retained_36m": 0.3163,
+   "revenue_36m": 9639651.004194716,
+   "gross_profit_36m": 3787775.3239047863,
+   "revenue_cv": 0.33570456706210866,
+   "bill_cv": 0.24322242857504942
+  }
+ ],
+ "calibrated": {
+  "target_month1_arpu": 53.438532181991405,
+  "usage_markup": 1.3151709118857977,
+  "pr_fee": 0.2197585143148899
+ },
+ "sensitivity_fee": [
+  {
+   "pr_fee": 0.5,
+   "regime": "Three-part tariff",
+   "arpu_m1": 57.41033866739495,
+   "arpu": 46.08207815660466,
+   "gross_margin": 0.43785045509848497,
+   "monthly_churn": 0.032240944888477105,
+   "retained_36m": 0.3117,
+   "revenue_36m": 10237647.206403958,
+   "gross_profit_36m": 4474831.314117343,
+   "revenue_cv": 0.33773108292041404,
+   "bill_cv": 0.23187763746622228
+  },
+  {
+   "pr_fee": 1.0,
+   "regime": "Three-part tariff",
+   "arpu_m1": 64.49673866739496,
+   "arpu": 51.341609736228186,
+   "gross_margin": 0.5028736463098948,
+   "monthly_churn": 0.033705218470237976,
+   "retained_36m": 0.2925,
+   "revenue_36m": 11122793.55725609,
+   "gross_profit_36m": 5583706.395288152,
+   "revenue_cv": 0.35149799779635793,
+   "bill_cv": 0.22313304902698913
+  },
+  {
+   "pr_fee": 1.5,
+   "regime": "Three-part tariff",
+   "arpu_m1": 71.58313866739495,
+   "arpu": 56.7488751541845,
+   "gross_margin": 0.5546820379285765,
+   "monthly_churn": 0.036081036664766065,
+   "retained_36m": 0.264,
+   "revenue_36m": 11751136.049403807,
+   "gross_profit_36m": 6506425.613708455,
+   "revenue_cv": 0.36862889734735277,
+   "bill_cv": 0.2224423115763312
+  },
+  {
+   "pr_fee": 2.0,
+   "regime": "Three-part tariff",
+   "arpu_m1": 78.66953866739496,
+   "arpu": 62.57716891285123,
+   "gross_margin": 0.5964304295314677,
+   "monthly_churn": 0.038631245059013636,
+   "retained_36m": 0.2348,
+   "revenue_36m": 12249807.629879208,
+   "gross_profit_36m": 7294349.908408016,
+   "revenue_cv": 0.38876614703007856,
+   "bill_cv": 0.22581109918684478
+  },
+  {
+   "pr_fee": 2.5,
+   "regime": "Three-part tariff",
+   "arpu_m1": 85.75493866739497,
+   "arpu": 67.28804588770804,
+   "gross_margin": 0.6311134247846879,
+   "monthly_churn": 0.04121022881237873,
+   "retained_36m": 0.208,
+   "revenue_36m": 12496496.4178663,
+   "gross_profit_36m": 7874476.303863926,
+   "revenue_cv": 0.41918749743987355,
+   "bill_cv": 0.23012144792859196
+  },
+  {
+   "pr_fee": 3.0,
+   "regime": "Three-part tariff",
+   "arpu_m1": 92.64133866739495,
+   "arpu": 72.10667195176774,
+   "gross_margin": 0.6591402047835708,
+   "monthly_churn": 0.0440724119576957,
+   "retained_36m": 0.1815,
+   "revenue_36m": 12583658.342420693,
+   "gross_profit_36m": 8282421.768185553,
+   "revenue_cv": 0.44488672045982264,
+   "bill_cv": 0.23600168743043717
+  },
+  {
+   "pr_fee": 4.0,
+   "regime": "Three-part tariff",
+   "arpu_m1": 103.35073866739496,
+   "arpu": 81.0142451426195,
+   "gross_margin": 0.6949706395165194,
+   "monthly_churn": 0.049758628764685245,
+   "retained_36m": 0.1393,
+   "revenue_36m": 12406716.045561327,
+   "gross_profit_36m": 8613256.539559564,
+   "revenue_cv": 0.4938470983289018,
+   "bill_cv": 0.24975289505140677
+  },
+  {
+   "pr_fee": 5.0,
+   "regime": "Three-part tariff",
+   "arpu_m1": 111.35943866739497,
+   "arpu": 90.8186162805878,
+   "gross_margin": 0.7120019187992846,
+   "monthly_churn": 0.05552015668097403,
+   "retained_36m": 0.1063,
+   "revenue_36m": 12195470.341632588,
+   "gross_profit_36m": 8693149.79924381,
+   "revenue_cv": 0.5339808323696371,
+   "bill_cv": 0.2658620110182567
+  }
+ ],
+ "sensitivity_strictness": [
+  {
+   "strictness": 0.5,
+   "regime": "Three-part tariff",
+   "arpu_m1": 52.15340632321498,
+   "arpu": 42.07059251168042,
+   "gross_margin": 0.37682211950760824,
+   "monthly_churn": 0.032456922041114424,
+   "retained_36m": 0.3101,
+   "revenue_36m": 9420368.467470601,
+   "gross_profit_36m": 3542181.150191653,
+   "revenue_cv": 0.36797009931995994,
+   "bill_cv": 0.2437489872627383
+  },
+  {
+   "strictness": 0.65,
+   "regime": "Three-part tariff",
+   "arpu_m1": 52.70763729631713,
+   "arpu": 42.537849391959206,
+   "gross_margin": 0.38479625218114744,
+   "monthly_churn": 0.0320314952906186,
+   "retained_36m": 0.3169,
+   "revenue_36m": 9512636.03039473,
+   "gross_profit_36m": 3653164.939855351,
+   "revenue_cv": 0.33516071652354396,
+   "bill_cv": 0.24687190030108552
+  },
+  {
+   "strictness": 0.85,
+   "regime": "Three-part tariff",
+   "arpu_m1": 53.438532139077026,
+   "arpu": 43.13337188754779,
+   "gross_margin": 0.3936863272258333,
+   "monthly_churn": 0.03207631733799648,
+   "retained_36m": 0.3163,
+   "revenue_36m": 9639651.004194716,
+   "gross_profit_36m": 3787775.3239047863,
+   "revenue_cv": 0.33570456706210866,
+   "bill_cv": 0.24322242857504942
+  },
+  {
+   "strictness": 1.0,
+   "regime": "Three-part tariff",
+   "arpu_m1": 53.984873781515276,
+   "arpu": 43.56223264703126,
+   "gross_margin": 0.40015408488689075,
+   "monthly_churn": 0.032045847550976135,
+   "retained_36m": 0.3162,
+   "revenue_36m": 9729987.179102503,
+   "gross_profit_36m": 3886380.843141879,
+   "revenue_cv": 0.3351665902860591,
+   "bill_cv": 0.24102136818739378
+  }
+ ],
+ "sensitivity_shock": [
+  {
+   "shock": 0.0,
+   "rows": [
+    {
+     "regime": "Flat seat",
+     "arpu_m1": 40.0,
+     "arpu": 40.0,
+     "gross_margin": 0.10151036042981143,
+     "monthly_churn": 0.026455760953405745,
+     "retained_36m": 0.3604,
+     "revenue_36m": 8567160.0,
+     "gross_profit_36m": 1089385.6066409263,
+     "revenue_cv": 0.23335492179051437,
+     "bill_cv": 0.0
+    },
+    {
+     "regime": "Bundle (today)",
+     "arpu_m1": 53.849447362183604,
+     "arpu": 50.07848947238768,
+     "gross_margin": 0.5158137707068409,
+     "monthly_churn": 0.030984806191593547,
+     "retained_36m": 0.3152,
+     "revenue_36m": 10574060.095213218,
+     "gross_profit_36m": 5436677.1053563915,
+     "revenue_cv": 0.29712143051134493,
+     "bill_cv": 0.1706593280046445
+    },
+    {
+     "regime": "Pure usage",
+     "arpu_m1": 54.14650948872906,
+     "arpu": 41.73411321082522,
+     "gross_margin": 0.36893519149554166,
+     "monthly_churn": 0.03854313271351776,
+     "retained_36m": 0.2466,
+     "revenue_36m": 8665167.418291368,
+     "gross_profit_36m": 3238375.7471880023,
+     "revenue_cv": 0.40471092936946745,
+     "bill_cv": 0.4476151537411997
+    },
+    {
+     "regime": "Three-part tariff",
+     "arpu_m1": 54.00085198211586,
+     "arpu": 42.24227960025713,
+     "gross_margin": 0.39321780599114553,
+     "monthly_churn": 0.030671126508782374,
+     "retained_36m": 0.326,
+     "revenue_36m": 9667067.904738031,
+     "gross_profit_36m": 3784707.6056952123,
+     "revenue_cv": 0.34570836832983276,
+     "bill_cv": 0.21646574449203893
+    }
+   ]
+  },
+  {
+   "shock": 0.2,
+   "rows": [
+    {
+     "regime": "Flat seat",
+     "arpu_m1": 40.0,
+     "arpu": 40.0,
+     "gross_margin": 0.09923755465056971,
+     "monthly_churn": 0.026455760953405745,
+     "retained_36m": 0.3604,
+     "revenue_36m": 8567160.0,
+     "gross_profit_36m": 1153912.1581449856,
+     "revenue_cv": 0.23335492179051437,
+     "bill_cv": 0.0
+    },
+    {
+     "regime": "Bundle (today)",
+     "arpu_m1": 53.438532181991405,
+     "arpu": 50.1555466179299,
+     "gross_margin": 0.5213473520291513,
+     "monthly_churn": 0.03164432979647732,
+     "retained_36m": 0.3013,
+     "revenue_36m": 10481959.114824431,
+     "gross_profit_36m": 5403117.26656896,
+     "revenue_cv": 0.2961066675717256,
+     "bill_cv": 0.18501389430675366
+    },
+    {
+     "regime": "Pure usage",
+     "arpu_m1": 53.438532319928996,
+     "arpu": 42.93509860055781,
+     "gross_margin": 0.3698708324912391,
+     "monthly_churn": 0.04049782993669769,
+     "retained_36m": 0.2355,
+     "revenue_36m": 8570733.034721449,
+     "gross_profit_36m": 3194978.504748877,
+     "revenue_cv": 0.4027858121680363,
+     "bill_cv": 0.4962421911473783
+    },
+    {
+     "regime": "Three-part tariff",
+     "arpu_m1": 53.438532139077026,
+     "arpu": 43.13337188754779,
+     "gross_margin": 0.3936863272258333,
+     "monthly_churn": 0.03207631733799648,
+     "retained_36m": 0.3163,
+     "revenue_36m": 9639651.004194716,
+     "gross_profit_36m": 3787775.3239047863,
+     "revenue_cv": 0.33570456706210866,
+     "bill_cv": 0.24322242857504942
+    }
+   ]
+  },
+  {
+   "shock": 0.4,
+   "rows": [
+    {
+     "regime": "Flat seat",
+     "arpu_m1": 40.0,
+     "arpu": 40.0,
+     "gross_margin": 0.10968869118403635,
+     "monthly_churn": 0.026455760953405745,
+     "retained_36m": 0.3604,
+     "revenue_36m": 8567160.0,
+     "gross_profit_36m": 1332414.2827039398,
+     "revenue_cv": 0.23335492179051437,
+     "bill_cv": 0.0
+    },
+    {
+     "regime": "Bundle (today)",
+     "arpu_m1": 51.845227898281564,
+     "arpu": 49.645586078201106,
+     "gross_margin": 0.5347155605788307,
+     "monthly_churn": 0.03313555888297667,
+     "retained_36m": 0.2735,
+     "revenue_36m": 10178688.804176718,
+     "gross_profit_36m": 5313807.8320546495,
+     "revenue_cv": 0.3449473214954206,
+     "bill_cv": 0.21274678244410714
+    },
+    {
+     "regime": "Pure usage",
+     "arpu_m1": 50.67185449213618,
+     "arpu": 44.020873195746226,
+     "gross_margin": 0.3704576414077082,
+     "monthly_churn": 0.043616413131264006,
+     "retained_36m": 0.2149,
+     "revenue_36m": 8296824.2250162065,
+     "gross_profit_36m": 3077315.635475092,
+     "revenue_cv": 0.4672832730437091,
+     "bill_cv": 0.6149336242561193
+    },
+    {
+     "regime": "Three-part tariff",
+     "arpu_m1": 51.24567863875772,
+     "arpu": 43.72663627226532,
+     "gross_margin": 0.39680819312584537,
+     "monthly_churn": 0.034815524129595994,
+     "retained_36m": 0.295,
+     "revenue_36m": 9470127.516011948,
+     "gross_profit_36m": 3757985.472491027,
+     "revenue_cv": 0.37796111827026563,
+     "bill_cv": 0.3031298145588271
+    }
+   ]
+  }
+ ],
+ "assumptions": {
+  "N": 10000,
+  "months": 36,
+  "segments": {
+   "light": {
+    "share": 0.45,
+    "usage": 8.0,
+    "prs": 4,
+    "wtp": 34.0
+   },
+   "daily": {
+    "share": 0.4,
+    "usage": 35.0,
+    "prs": 18,
+    "wtp": 70.0
+   },
+   "heavy": {
+    "share": 0.15,
+    "usage": 150.0,
+    "prs": 50,
+    "wtp": 240.0
+   }
+  },
+  "user_sigma": 0.35,
+  "month_sigma": 0.45,
+  "tp_share_free": 0.55,
+  "tp_share_bundle": 0.3,
+  "fp_cost_ratio": 0.35,
+  "tp_cost_ratio": 1.0,
+  "other_cogs": 4.0,
+  "cost_shock_sigma": 0.2,
+  "churn_base": 0.02,
+  "churn_overpay": 0.15,
+  "churn_shock": 0.04,
+  "pr_strictness": 0.85,
+  "regimes": {
+   "Flat seat": {
+    "fee": 40.0,
+    "pool": 200.0,
+    "markup": 1.0,
+    "floor": 0.0,
+    "pr_fee": 0.0,
+    "pr_cap": 0.0
+   },
+   "Bundle (today)": {
+    "fee": 30.0,
+    "pool": 40.0,
+    "markup": 1.0,
+    "floor": 0.0,
+    "pr_fee": 0.0,
+    "pr_cap": 0.0
+   },
+   "Pure usage": {
+    "fee": 0.0,
+    "pool": 0.0,
+    "markup": 1.3151709118857977,
+    "floor": 0.0,
+    "pr_fee": 0.0,
+    "pr_cap": 0.0
+   },
+   "Three-part tariff": {
+    "fee": 15.0,
+    "pool": 0.0,
+    "markup": 1.1,
+    "floor": 10.0,
+    "pr_fee": 0.2197585143148899,
+    "pr_cap": 150.0
+   }
+  }
+ }
+}

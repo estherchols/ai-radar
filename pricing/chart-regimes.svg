@@ -1,0 +1,50 @@
+<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gross margin, churn and volatility by pricing regime" font-family="Inter,system-ui,sans-serif" font-size="11">
+<line x1="54" x2="700" y1="256.0" y2="256.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="260.0" text-anchor="end" fill="var(--muted)">0%</text>
+<line x1="54" x2="700" y1="222.9" y2="222.9" stroke="var(--line)" stroke-width="1"/><text x="46" y="226.9" text-anchor="end" fill="var(--muted)">10%</text>
+<line x1="54" x2="700" y1="189.7" y2="189.7" stroke="var(--line)" stroke-width="1"/><text x="46" y="193.7" text-anchor="end" fill="var(--muted)">20%</text>
+<line x1="54" x2="700" y1="156.6" y2="156.6" stroke="var(--line)" stroke-width="1"/><text x="46" y="160.6" text-anchor="end" fill="var(--muted)">30%</text>
+<line x1="54" x2="700" y1="123.4" y2="123.4" stroke="var(--line)" stroke-width="1"/><text x="46" y="127.4" text-anchor="end" fill="var(--muted)">40%</text>
+<line x1="54" x2="700" y1="90.3" y2="90.3" stroke="var(--line)" stroke-width="1"/><text x="46" y="94.3" text-anchor="end" fill="var(--muted)">50%</text>
+<line x1="54" x2="700" y1="57.1" y2="57.1" stroke="var(--line)" stroke-width="1"/><text x="46" y="61.1" text-anchor="end" fill="var(--muted)">60%</text>
+<line x1="54" x2="700" y1="24.0" y2="24.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="28.0" text-anchor="end" fill="var(--muted)">70%</text>
+<rect x="72.6" y="223.1" width="26.7" height="32.9" rx="3" fill="var(--muted)"><title>Flat seat: Gross margin 9.9%</title></rect>
+<text x="86.0" y="219.1" text-anchor="middle" fill="var(--ink-2)" font-size="10">10</text>
+<rect x="103.7" y="83.2" width="26.7" height="172.8" rx="3" fill="var(--gold)"><title>Bundle (today): Gross margin 52.1%</title></rect>
+<text x="117.0" y="79.2" text-anchor="middle" fill="var(--ink-2)" font-size="10">52</text>
+<rect x="134.8" y="133.4" width="26.7" height="122.6" rx="3" fill="var(--accent)"><title>Pure usage: Gross margin 37.0%</title></rect>
+<text x="148.1" y="129.4" text-anchor="middle" fill="var(--ink-2)" font-size="10">37</text>
+<rect x="165.8" y="125.5" width="26.7" height="130.5" rx="3" fill="var(--pine)"><title>Three-part tariff: Gross margin 39.4%</title></rect>
+<text x="179.2" y="121.5" text-anchor="middle" fill="var(--ink-2)" font-size="10">39</text>
+<text x="134.8" y="274" text-anchor="middle" fill="var(--ink)" font-weight="500">Gross margin</text>
+<rect x="234.1" y="247.2" width="26.7" height="8.8" rx="3" fill="var(--muted)"><title>Flat seat: Monthly churn 2.6%</title></rect>
+<text x="247.5" y="243.2" text-anchor="middle" fill="var(--ink-2)" font-size="10">3</text>
+<rect x="265.2" y="245.5" width="26.7" height="10.5" rx="3" fill="var(--gold)"><title>Bundle (today): Monthly churn 3.2%</title></rect>
+<text x="278.5" y="241.5" text-anchor="middle" fill="var(--ink-2)" font-size="10">3</text>
+<rect x="296.2" y="242.6" width="26.7" height="13.4" rx="3" fill="var(--accent)"><title>Pure usage: Monthly churn 4.0%</title></rect>
+<text x="309.6" y="238.6" text-anchor="middle" fill="var(--ink-2)" font-size="10">4</text>
+<rect x="327.3" y="245.4" width="26.7" height="10.6" rx="3" fill="var(--pine)"><title>Three-part tariff: Monthly churn 3.2%</title></rect>
+<text x="340.7" y="241.4" text-anchor="middle" fill="var(--ink-2)" font-size="10">3</text>
+<text x="296.2" y="274" text-anchor="middle" fill="var(--ink)" font-weight="500">Monthly churn</text>
+<rect x="395.6" y="178.7" width="26.7" height="77.3" rx="3" fill="var(--muted)"><title>Flat seat: Revenue volatility 23.3%</title></rect>
+<text x="409.0" y="174.7" text-anchor="middle" fill="var(--ink-2)" font-size="10">23</text>
+<rect x="426.7" y="157.9" width="26.7" height="98.1" rx="3" fill="var(--gold)"><title>Bundle (today): Revenue volatility 29.6%</title></rect>
+<text x="440.0" y="153.9" text-anchor="middle" fill="var(--ink-2)" font-size="10">30</text>
+<rect x="457.8" y="122.5" width="26.7" height="133.5" rx="3" fill="var(--accent)"><title>Pure usage: Revenue volatility 40.3%</title></rect>
+<text x="471.1" y="118.5" text-anchor="middle" fill="var(--ink-2)" font-size="10">40</text>
+<rect x="488.8" y="144.7" width="26.7" height="111.3" rx="3" fill="var(--pine)"><title>Three-part tariff: Revenue volatility 33.6%</title></rect>
+<text x="502.2" y="140.7" text-anchor="middle" fill="var(--ink-2)" font-size="10">34</text>
+<text x="457.8" y="274" text-anchor="middle" fill="var(--ink)" font-weight="500">Revenue volatility</text>
+<rect x="557.1" y="256.0" width="26.7" height="0.0" rx="3" fill="var(--muted)"><title>Flat seat: Bill volatility 0.0%</title></rect>
+<text x="570.5" y="252.0" text-anchor="middle" fill="var(--ink-2)" font-size="10">0</text>
+<rect x="588.2" y="194.7" width="26.7" height="61.3" rx="3" fill="var(--gold)"><title>Bundle (today): Bill volatility 18.5%</title></rect>
+<text x="601.5" y="190.7" text-anchor="middle" fill="var(--ink-2)" font-size="10">19</text>
+<rect x="619.2" y="91.5" width="26.7" height="164.5" rx="3" fill="var(--accent)"><title>Pure usage: Bill volatility 49.6%</title></rect>
+<text x="632.6" y="87.5" text-anchor="middle" fill="var(--ink-2)" font-size="10">50</text>
+<rect x="650.3" y="175.4" width="26.7" height="80.6" rx="3" fill="var(--pine)"><title>Three-part tariff: Bill volatility 24.3%</title></rect>
+<text x="663.7" y="171.4" text-anchor="middle" fill="var(--ink-2)" font-size="10">24</text>
+<text x="619.2" y="274" text-anchor="middle" fill="var(--ink)" font-weight="500">Bill volatility</text>
+<rect x="54" y="286" width="10" height="10" rx="2" fill="var(--muted)"/><text x="68" y="295" fill="var(--ink-2)">Flat seat</text>
+<rect x="147" y="286" width="10" height="10" rx="2" fill="var(--gold)"/><text x="161" y="295" fill="var(--ink-2)">Bundle (today)</text>
+<rect x="275" y="286" width="10" height="10" rx="2" fill="var(--accent)"/><text x="289" y="295" fill="var(--ink-2)">Pure usage</text>
+<rect x="375" y="286" width="10" height="10" rx="2" fill="var(--pine)"/><text x="389" y="295" fill="var(--ink-2)">Three-part tariff</text>
+</svg>
