@@ -142,9 +142,15 @@ def chart_matrix():
     for x, y, t, who, body, qq, col in qd:
         out.append(f'<rect x="{x+10}" y="{y+10}" width="{pw/2-20}" height="{ph/2-20}" rx="10" fill="var(--bg)" stroke="{col}" stroke-width="1.5"/>')
         out.append(f'<text x="{x+24}" y="{y+40}" font-size="17" font-weight="700" fill="{INK}" font-family="{SANS}">{t}</text>')
-        out.append(f'<text x="{x+pw/2-24}" y="{y+40}" font-size="11" text-anchor="end" fill="{col}" font-family="{MONO}">{qq["mw26"]:,.0f} MW live 2026</text>')
+        out.append(f'<text x="{x+pw/2-24}" y="{y+60}" font-size="11" text-anchor="end" fill="{col}" font-family="{MONO}">{qq["mw26"]:,.0f} MW live 2026</text>')
         yy = y + 60
-        for ln in wrap(who, 36):
+        items = [i.strip() for i in who.split("·")]; wl=[]; cur=""
+        for it in items:
+            cand = (cur + " · " + it) if cur else it
+            if len(cand) > 20 and cur: wl.append(cur); cur = it
+            else: cur = cand
+        wl.append(cur)
+        for ln in wl:
             out.append(f'<text x="{x+24}" y="{yy}" font-size="11" fill="{col}" font-family="{MONO}">{ln}</text>'); yy += 15
         yy += 6
         for ln in wrap(body, 38)[:8]:
