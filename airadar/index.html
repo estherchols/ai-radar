@@ -326,7 +326,7 @@ footer a { color: var(--dim); }
     <div class="wrap">
       <h1 id="h-mast">AI Radar</h1>
       <p class="desc">A weekly brief on the three things that decide who wins in AI right now, compute, capital and energy, and what each week means for the people placing bets on them.</p>
-      <p class="meta"><span>Issue <b id="mIssue"></b></span><span>Published <b id="mDate"></b></span><span>Prices checked <b id="mChecked"></b></span><span>Next issue <b id="mNext"></b></span></p>
+      <p class="meta"><span>Issue <b id="mIssue"></b></span></p>
     </div>
   </section>
 
@@ -533,7 +533,8 @@ footer a { color: var(--dim); }
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.from((r || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
-  var ext = function (u, t) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(t) + "</a>"; };
+  var undate = function (t) { return String(t == null ? "" : t).replace(/,?\s*(checked|read|updated|as of)\s+\d{1,2}\s+[A-Z][a-z]{2,8}\s+\d{4}/g, ""); };
+  var ext = function (u, t) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(undate(t)) + "</a>"; };
   var usd = function (n, d) { return "$" + Number(n).toFixed(d == null ? 2 : d); };
   var utc = function (s) { var p = String(s).split("-"); return Date.UTC(+p[0], +(p[1] || 1) - 1, +(p[2] || 1)); };
   var DAY = 86400000;
@@ -611,9 +612,6 @@ footer a { color: var(--dim); }
 
     /* masthead */
     $("#mIssue").textContent = D.meta.issue;
-    $("#mDate").textContent = fd(D.meta.updated);
-    $("#mChecked").textContent = fd(D.last_price_check);
-    $("#mNext").textContent = fd(D.meta.next_issue);
 
     /* this week */
     $("#headline").textContent = fill(D.headline || D.thesis.text);
@@ -898,7 +896,7 @@ footer a { color: var(--dim); }
         var dd = new Date(t), iso = dd.toISOString().slice(0, 10);
         s += '<line x1="' + px(iso) + '" x2="' + px(iso) + '" y1="' + AX + '" y2="' + (AX + 4) + '" style="stroke:var(--ring)"/><text x="' + px(iso) + '" y="' + (AX + 18) + '" text-anchor="middle">' + MN[dd.getUTCMonth()] + " " + dd.getUTCFullYear() + "</text>";
       }
-      s += '<line x1="' + px(TODAY) + '" x2="' + px(TODAY) + '" y1="' + TOP + '" y2="' + AX + '" style="stroke:var(--teal);stroke-width:1.5"/><text x="' + (px(TODAY) + 5) + '" y="' + (AX + 33) + '" class="ink" style="font-weight:600">Issue date ' + fd(TODAY) + ", next 90 days shaded</text>";
+      s += '<line x1="' + px(TODAY) + '" x2="' + px(TODAY) + '" y1="' + TOP + '" y2="' + AX + '" style="stroke:var(--teal);stroke-width:1.5"/><text x="' + (px(TODAY) + 5) + '" y="' + (AX + 33) + '" class="ink" style="font-weight:600">Today, next 90 days shaded</text>';
       EV.forEach(function (e) {
         var x = px(e.d), y = lane(e.ln);
         var id = regTip(tipHtml(fd(e.d), "", e.l, e.u, "Source"));
@@ -1015,8 +1013,8 @@ footer a { color: var(--dim); }
     $("#thesisKey").innerHTML = (D.thesis.key || []).map(function (k) { return "<span><b>" + DIRW[k.direction] + ".</b> " + esc(k.text) + "</span>"; }).join("");
     $("#methText").textContent = D.methodology;
     $("#changelog").innerHTML = D.changelog.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).map(function (e) {
-      return "<li><b>" + esc(e.title) + ", " + fd(e.date) + "</b><ul>" + e.items.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul></li>";
-    }).join("") + "<li><b>Next issue, " + fd(D.meta.next_issue) + "</b></li>";
+      return "<li><b>" + esc(e.title) + "</b><ul>" + e.items.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul></li>";
+    }).join("");
 
     $("#subForm").addEventListener("submit", function (e) {
       e.preventDefault();
