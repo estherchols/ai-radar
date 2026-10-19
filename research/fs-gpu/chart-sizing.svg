@@ -1,0 +1,34 @@
+<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top-down versus bottom-up sizing of financial services GPU spend 2026">
+<line x1="50" y1="240.0" x2="700" y2="240.0" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="244.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$0B</text>
+<line x1="50" y1="166.7" x2="700" y2="166.7" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="170.7" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$10B</text>
+<line x1="50" y1="93.3" x2="700" y2="93.3" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="97.3" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$20B</text>
+<line x1="50" y1="20.0" x2="700" y2="20.0" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="24.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$30B</text>
+<rect x="71.7" y="62.1" width="65.0" height="177.9" rx="3" fill="var(--electric)" opacity="0.9"/>
+<text x="104.2" y="56.1" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$24.3B</text>
+<text x="104.2" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path A</text>
+<text x="104.2" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">IT budget</text>
+<rect x="180.0" y="130.0" width="65.0" height="110.0" rx="3" fill="var(--electric)" opacity="0.9"/>
+<text x="212.5" y="124.0" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$15.0B</text>
+<text x="212.5" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path B</text>
+<text x="212.5" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">AI cloud</text>
+<rect x="288.3" y="71.3" width="65.0" height="168.7" rx="3" fill="var(--electric)" opacity="0.9"/>
+<text x="320.8" y="65.3" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$23.0B</text>
+<text x="320.8" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path C</text>
+<text x="320.8" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">AI budget</text>
+<rect x="396.7" y="87.8" width="65.0" height="152.2" rx="3" fill="#e3a248" opacity="1"/>
+<text x="429.2" y="81.8" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$20.8B</text>
+<text x="429.2" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Top-down</text>
+<text x="429.2" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">average</text>
+<rect x="505.0" y="141.1" width="65.0" height="98.9" rx="3" fill="#e3a248" opacity="1"/>
+<text x="537.5" y="135.1" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$13.5B</text>
+<text x="537.5" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Top-down,</text>
+<text x="537.5" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">GPU only</text>
+<rect x="613.3" y="152.9" width="65.0" height="87.1" rx="3" fill="#c4561c" opacity="1"/>
+<text x="645.8" y="146.9" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$11.9B</text>
+<text x="645.8" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Bottom-up</text>
+<text x="645.8" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">by segment</text>
+</svg>

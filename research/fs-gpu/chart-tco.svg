@@ -1,0 +1,30 @@
+<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Effective cost per GPU hour of an owned Blackwell node versus utilisation, against cloud prices">
+<line x1="55" y1="255.0" x2="700" y2="255.0" stroke="var(--line)"/>
+<text x="47" y="259.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$0</text>
+<line x1="55" y1="208.0" x2="700" y2="208.0" stroke="var(--line)"/>
+<text x="47" y="212.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$2</text>
+<line x1="55" y1="161.0" x2="700" y2="161.0" stroke="var(--line)"/>
+<text x="47" y="165.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$4</text>
+<line x1="55" y1="114.0" x2="700" y2="114.0" stroke="var(--line)"/>
+<text x="47" y="118.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$6</text>
+<line x1="55" y1="67.0" x2="700" y2="67.0" stroke="var(--line)"/>
+<text x="47" y="71.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$8</text>
+<line x1="55" y1="20.0" x2="700" y2="20.0" stroke="var(--line)"/>
+<text x="47" y="24.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$10</text>
+<text x="55.0" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">20%</text>
+<text x="216.2" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">40%</text>
+<text x="377.5" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">60%</text>
+<text x="538.8" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">80%</text>
+<text x="700.0" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">100%</text>
+<text x="377.5" y="294" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Utilisation of the owned GPUs (share of hours busy)</text>
+<polyline points="55.0,20.0 95.3,20.0 135.6,37.5 175.9,68.6 216.2,91.9 256.6,110.0 296.9,124.5 337.2,136.4 377.5,146.3 417.8,154.6 458.1,161.8 498.4,168.0 538.8,173.5 579.1,178.3 619.4,182.5 659.7,186.3 700.0,189.8" fill="none" stroke="var(--electric)" stroke-width="2.5"/>
+<line x1="55" y1="90.7" x2="700" y2="90.7" stroke="#c4561c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="696" y="84.7" font-size="11" text-anchor="end" fill="#c4561c" font-family="Schibsted Grotesk,sans-serif">Cloud on-demand B200 $6.99</text>
+<line x1="55" y1="143.4" x2="700" y2="143.4" stroke="#e3a248" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="696" y="137.4" font-size="11" text-anchor="end" fill="#e3a248" font-family="Schibsted Grotesk,sans-serif">Cloud reserved B200 $4.75</text>
+<circle cx="213.9" cy="90.7" r="5" fill="#c4561c"/>
+<text x="213.9" y="110.7" font-size="11" text-anchor="middle" fill="#c4561c" font-family="IBM Plex Mono,monospace">40%</text>
+<circle cx="364.9" cy="143.4" r="5" fill="#e3a248"/>
+<text x="364.9" y="163.4" font-size="11" text-anchor="middle" fill="#e3a248" font-family="IBM Plex Mono,monospace">58%</text>
+<text x="425.8" y="144.6" font-size="11" fill="var(--electric)" font-family="Schibsted Grotesk,sans-serif">Owned node, five-year TCO</text>
+</svg>

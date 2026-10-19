@@ -1,0 +1,26 @@
+<svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Installed GPUs by financial services segment 2026">
+<text x="240" y="29" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Quant trading and market-making firms</text>
+<rect x="250" y="16" width="380.0" height="18" rx="3" fill="#c4561c"/>
+<text x="638.0" y="29" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">160,000</text>
+<text x="240" y="59" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">G-SIBs</text>
+<rect x="250" y="46" width="172.7" height="18" rx="3" fill="#c4561c"/>
+<text x="430.7" y="59" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">72,732</text>
+<text x="240" y="89" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Other top-100 banks</text>
+<rect x="250" y="76" width="70.5" height="18" rx="3" fill="var(--electric)"/>
+<text x="328.5" y="89" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">29,678</text>
+<text x="240" y="119" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Payment networks, processors, large fintechs</text>
+<rect x="250" y="106" width="49.6" height="18" rx="3" fill="var(--electric)"/>
+<text x="307.6" y="119" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">20,900</text>
+<text x="240" y="149" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Large hedge funds and asset managers</text>
+<rect x="250" y="136" width="22.3" height="18" rx="3" fill="var(--electric)"/>
+<text x="280.3" y="149" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">9,405</text>
+<text x="240" y="179" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Regional and mid-size banks</text>
+<rect x="250" y="166" width="21.7" height="18" rx="3" fill="var(--electric)"/>
+<text x="279.7" y="179" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">9,152</text>
+<text x="240" y="209" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Large insurers and reinsurers</text>
+<rect x="250" y="196" width="11.9" height="18" rx="3" fill="var(--electric)"/>
+<text x="269.9" y="209" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">5,016</text>
+<text x="240" y="239" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Exchanges, clearing, market data</text>
+<rect x="250" y="226" width="6.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="264.0" y="239" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">2,508</text>
+</svg>

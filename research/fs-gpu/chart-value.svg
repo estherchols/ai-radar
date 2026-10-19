@@ -1,0 +1,14 @@
+<svg viewBox="0 0 720 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Annual compute cost as a share of value created by use case">
+<text x="320" y="31" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Payments fraud: fleet cost vs fraud prevented</text>
+<rect x="330" y="18" width="2.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="340.0" y="31" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">0.2%</text>
+<text x="320" y="65" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">G-SIB assistant: GPU cost vs reported savings</text>
+<rect x="330" y="52" width="3.9" height="18" rx="3" fill="var(--electric)"/>
+<text x="341.9" y="65" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">0.5%</text>
+<text x="320" y="99" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Quant fleet: 25,000 GPUs vs top-firm trading revenue</text>
+<rect x="330" y="86" width="41.2" height="18" rx="3" fill="var(--electric)"/>
+<text x="379.2" y="99" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">5.0%</text>
+<text x="320" y="133" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Risk grid: GPU capital vs five-year CPU refresh avoided</text>
+<rect x="330" y="120" width="310.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="648.0" y="133" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">37.5%</text>
+</svg>

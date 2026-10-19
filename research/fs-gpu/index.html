@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where the GPUs are in finance · Esther Suebsubanant</title>
+<meta name="description" content="A market sizing of GPU deployments in financial services for 2026 to 2030, top-down and bottom-up, with a segment map, the solution stack, a five-year TCO of an owned Blackwell node against cloud, value per use case, and what NVIDIA should sell to each buyer. Model and sources included.">
+<meta property="og:title" content="Where the GPUs are in finance">
+<meta property="og:description" content="Financial services buys about $20.8B of accelerated compute in 2026 on the top-down view and $11.9B on the bottom-up. Most of the GPUs sit with quant firms and payment networks, not banks. Here is the model.">
+<meta property="og:image" content="https://esthercs.dev/portfolio/esther.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/writing.css">
+<style>
+.stack{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:12px 0 24px;font-size:14px}
+.stack > div{display:grid;grid-template-columns:150px minmax(0,1fr) 190px;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--bg)}
+.stack > div:last-child{border-bottom:0}
+.stack b{font-weight:600}
+.stack .l{font-family:var(--mono);font-size:11.5px;color:var(--blue)}
+.stack .r{font-size:12.5px;color:var(--dim)}
+@media (max-width:640px){.stack > div{grid-template-columns:1fr}}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 24px}
+@media (max-width:700px){.kpi{grid-template-columns:repeat(2,1fr)}}
+.kpi div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--bg)}
+.kpi b{display:block;font-size:22px;letter-spacing:-.02em;font-weight:700}
+.kpi span{font-size:12.5px;color:var(--dim);display:block;line-height:1.4}
+</style>
+</head>
+<body>
+<div class="page">
+  <header><div class="in">
+    <a class="name" href="/"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#132033"/><circle cx="32" cy="32" r="20" fill="none" stroke="#5fb3aa" stroke-width="2.5"/><circle cx="32" cy="32" r="10" fill="none" stroke="#5fb3aa" stroke-width="2.5" opacity=".6"/><circle cx="44" cy="24" r="4" fill="#e3a248"/></svg>Esther Suebsubanant</a>
+    <nav aria-label="Site"><a href="/portfolio/">Portfolio</a><a href="/airadar/">AI Radar</a><a href="/research/" aria-current="page">Research</a><a href="/freeagents/">Free agents</a><a href="/ai101/">AI 101</a><a href="/#contact">Contact</a></nav>
+  </div></header>
+  <div class="pagehero">
+    <div class="status"><i></i>Data center research · Financial services</div>
+    <h1>Where the GPUs are <span>in finance</span>.</h1>
+    <p>How much accelerated compute financial institutions buy, who buys it, what they run on it, what it costs them to own against renting, what it is worth, and what that means for the way NVIDIA should package and sell into the vertical. Three top-down paths, one segment-level bottom-up, a five-year TCO, and a value case per workload. Every figure is dated, and the model is downloadable.</p>
+    <p class="sub">Published 19 October 2026 · 32 min read · Figures read from sources between 19 Oct 2026 and the dates shown · Model: Excel, 396 live formulas</p>
+  </div>
+  <article class="art" id="main">
+<div class="byline"><div class="mark">E</div><div><b>Esther Suebsubanant</b><span>Ex-M&amp;A and corporate VC. Stanford GSB MBA/MS, EIPER (AI, compute and energy). Thesis work on AI in the semiconductor industry.</span></div></div>
+
+  <div class="tldr">
+    <div class="eyebrow">The short version</div>
+    <p><strong>The size.</strong> Financial services spends about $20.8B on accelerated compute in 2026 on the average of three top-down paths (range $15.0B to $24.3B). A segment-by-segment build gets to $11.9B and roughly 309,000 installed GPUs. Once storage, networking and the CPU estate are stripped out of the top-down figure, the bottom-up explains 88% of it. The vertical is on the order of 5.5% of NVIDIA's data center run-rate.</p>
+    <p><strong>The shape.</strong> 58% of the installed GPUs sit with quant trading firms and payment networks, not with banks. A bank-wide assistant for 230,000 employees needs about 383 GPUs. Scoring every Visa transaction at peak needs less than one GPU of raw compute. XTX Markets alone runs 25,000. In finance the GPU is a research and training instrument first, and an inference engine a distant third.</p>
+    <p><strong>The economics.</strong> An owned eight-GPU Blackwell node costs $4.27 per used GPU-hour over five years at 65% utilisation, against $6.99 for the same GPU rented on demand. Owning beats on-demand rental above 40% utilisation and reserved rental above 58%. Compute is under 1% of the value it creates in payments fraud and under 5% of trading revenue for a top quant firm, so the constraint on demand is not the GPU price. It is data readiness, regulation and power.</p>
+    <p><strong>The ask.</strong> Four buyer types want four different products. Sovereign fleets want NVL72 racks in their own jurisdiction with financing attached. Regulated pods want a four-node appliance with NIM blueprints that never let data leave. Research factories want Rubin first and Spectrum-X. Renters want a reserved $/GPU-hour. NVIDIA already has the parts. The gap is packaging them by quadrant and pricing the software on the value it unlocks rather than per GPU.</p>
+  </div>
+
+  <div class="toc">
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#question">The question and the scope</a></li>
+      <li><a href="#map">The map: four kinds of buyer</a></li>
+      <li><a href="#evidence">Who has actually bought</a></li>
+      <li><a href="#topdown">Sizing, top-down</a></li>
+      <li><a href="#bottomup">Sizing, bottom-up</a></li>
+      <li><a href="#workloads">What the workloads need</a></li>
+      <li><a href="#stack">The solution stack and the ecosystem</a></li>
+      <li><a href="#gtm">What each buyer wants, and how it gets sold</a></li>
+      <li><a href="#configs">The configurations customers deploy</a></li>
+      <li><a href="#cost">Cost: owning against renting</a></li>
+      <li><a href="#price">Price: per GPU-hour, per token, and where the margin sits</a></li>
+      <li><a href="#value">Value: what the compute buys</a></li>
+      <li><a href="#synthesis">Synthesis: where the bottleneck is and what I would ship</a></li>
+      <li><a href="#limits">Limitations</a></li>
+      <li><a href="#download">Download the model</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </div>
+
+  <h2 id="question">1. The question and the scope</h2>
+  <p>NVIDIA's data center product management team describes its job as researching emerging markets and use cases for GPU deployments in specific industry verticals, analysing segmentation, sizing, solution stacks, key players and ecosystems, evaluating the configurations customers deploy, and building pricing and value analyses. This piece does that for one vertical, financial services, and tries to do it the way I would want to read it if I were on that team. Numbers first, assumptions labelled, and a point of view at the end.</p>
+  <p>The question I set out to answer is this. How large is the market for GPU deployments in financial services in 2026, how does it split by buyer and workload, what does the compute cost the buyer under each buying route, what is it worth to them, and therefore what should the product and the go-to-market look like? "Financial services" here means banks, payment networks and processors, capital markets firms including quant trading and market making, asset managers and hedge funds, insurers, and exchanges and market infrastructure. "GPU deployments" means accelerated compute bought as owned systems or rented as dedicated cloud capacity. It does not include the far larger sum banks spend on software and services around the compute.</p>
+  <p>Two things make finance an unusual vertical for this exercise. First, it is the industry with the oldest GPU habit outside of graphics. Dealer banks ran Monte Carlo risk on GPUs a decade before transformers, and quant firms have been buying accelerators since the V100. Second, finance has turned out to be NVIDIA's lender as well as its customer. In August 2026 NVIDIA announced financing platforms with Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs and KKR to mobilise over $500 billion of third-party capital for AI factories, with NVIDIA standing behind residual value for up to 25% of an opportunity.<sup>10</sup> The same institutions that are deciding whether to buy a SuperPOD are also deciding whether to finance a gigawatt. That changes the conversation in the room.</p>
+
+  <h2 id="map">2. The map: four kinds of buyer</h2>
+  <p>Every segmentation I tried that started from the org chart (retail banking, capital markets, insurance) failed, because institutions in the same category buy completely differently. The two axes that actually separate buyers are how much compute an institution needs per site, and how hard regulation and data pull that compute toward infrastructure the institution owns in its own jurisdiction. Plot the segments on those two axes and four buying behaviours fall out.</p>
+  <div class="chart"><svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two by two map of financial services GPU buyers">
+<rect x="70" y="30" width="600" height="420" fill="none" stroke="var(--line)"/>
+<line x1="370.0" y1="30" x2="370.0" y2="450" stroke="var(--line)"/>
+<line x1="70" y1="240.0" x2="670" y2="240.0" stroke="var(--line)"/>
+<text x="370.0" y="478" font-size="12" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Compute intensity per institution (GPUs installed)  →</text>
+<text transform="translate(22,240.0) rotate(-90)" font-size="12" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Pull toward owned, in-jurisdiction infrastructure (regulation, data)  →</text>
+<text x="76" y="464" font-size="10" fill="var(--dim)" font-family="IBM Plex Mono,monospace">tens to hundreds</text>
+<text x="664" y="464" font-size="10" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">thousands to tens of thousands</text>
+<rect x="380.0" y="40" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="#c4561c" stroke-width="1.5"/>
+<text x="396.0" y="70" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Sovereign fleets</text>
+<text x="644.0" y="70" font-size="12" text-anchor="end" fill="#c4561c" font-family="IBM Plex Mono,monospace">~99k GPUs</text>
+<text x="396.0" y="90" font-size="11.5" fill="#c4561c" font-family="IBM Plex Mono,monospace">G-SIBs · payment networks · large insurers</text>
+<text x="396.0" y="116" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Own, in region. Buy SuperPOD or NVL72 through</text>
+<text x="396.0" y="133" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Dell, HPE or a sovereign cloud. Train</text>
+<text x="396.0" y="150" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">transaction and risk models, serve open models</text>
+<text x="396.0" y="167" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">to staff.</text>
+<rect x="80" y="40" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="#e3a248" stroke-width="1.5"/>
+<text x="96" y="70" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Regulated pods</text>
+<text x="344.0" y="70" font-size="12" text-anchor="end" fill="#e3a248" font-family="IBM Plex Mono,monospace">~12k GPUs</text>
+<text x="96" y="90" font-size="11.5" fill="#e3a248" font-family="IBM Plex Mono,monospace">Regional banks · mid-size insurers · exchanges</text>
+<text x="96" y="116" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Small owned pods (4 to 8 nodes) for documents,</text>
+<text x="96" y="133" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">fraud and compliance. NIM blueprints, EDB or</text>
+<text x="96" y="150" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Cloudera on the bank's own data.</text>
+<rect x="80" y="250.0" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="var(--dim)" stroke-width="1.5"/>
+<text x="96" y="280.0" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Renters</text>
+<text x="344.0" y="280.0" font-size="12" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">~9k GPUs</text>
+<text x="96" y="300.0" font-size="11.5" fill="var(--dim)" font-family="IBM Plex Mono,monospace">Hedge funds · asset managers · fintechs</text>
+<text x="96" y="326.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Rent reserved cloud capacity. Price sensitive,</text>
+<text x="96" y="343.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">elastic, no residency pull. Compete on</text>
+<text x="96" y="360.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">$/GPU-hour and reserved terms.</text>
+<rect x="380.0" y="250.0" width="280.0" height="190.0" rx="10" fill="var(--bg)" stroke="var(--electric)" stroke-width="1.5"/>
+<text x="396.0" y="280.0" font-size="17" font-weight="700" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Research factories</text>
+<text x="644.0" y="280.0" font-size="12" text-anchor="end" fill="var(--electric)" font-family="IBM Plex Mono,monospace">~160k GPUs</text>
+<text x="396.0" y="300.0" font-size="11.5" fill="var(--electric)" font-family="IBM Plex Mono,monospace">Quant and market-making firms</text>
+<text x="396.0" y="326.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Own, but for latency, cost and secrecy rather</text>
+<text x="396.0" y="343.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">than regulation. Build their own data centers</text>
+<text x="396.0" y="360.0" font-size="12.5" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">(XTX Finland, HRT Lefdal). First to Rubin.</text>
+</svg></div>
+  <p class="cap">GPU counts are the 2026 installed base from the bottom-up model in section 5. Positions on the axes are qualitative.</p>
+  <p><strong>Sovereign fleets</strong> are the G-SIBs, the payment networks and the largest insurers. They need thousands of GPUs, they are the most regulated buyers in the world, and they are increasingly told where their data may be processed (DORA in Europe since January 2025, the ECB's 2026 to 2028 supervisory priorities, data-localisation rules across Asia). They own or they buy dedicated capacity in region, and they buy at SuperPOD or NVL72 scale through Dell, HPE or a sovereign cloud. BNY Mellon's DGX SuperPOD and Deutsche Bank's multi-year NVIDIA partnership are this quadrant.<sup>14,15</sup></p>
+  <p><strong>Research factories</strong> are the quant trading and market-making firms. They own the most GPUs per institution of anyone in finance, but not because a regulator told them to. They own because research iteration speed is their product, because their models and data are the firm, and because at their utilisation owning is far cheaper than renting. XTX Markets runs over 25,000 GPUs and is spending more than a billion euros on its own data centers in Finland. Hudson River Trading built a Blackwell AI factory on Spectrum-X Ethernet in a Norwegian mine at a PUE of 1.15. Jump Trading is among the first trading firms on Vera Rubin NVL72.<sup>16,17,19</sup></p>
+  <p><strong>Regulated pods</strong> are regional and mid-size banks, mid-size insurers and the exchanges. Their compute need is modest, a few nodes for document processing, a fraud model and a compliance assistant, but the data cannot leave the building. They buy small, pre-integrated and on their own data. The NVIDIA partner page's EDB and Cloudera entries, "without data leaving your controlled environment" and "up to 3x faster than cloud-based solutions", are written for this quadrant.<sup>27</sup></p>
+  <p><strong>Renters</strong> are hedge funds, asset managers and most fintechs. Elastic workloads, no residency pull, and a sharp eye on $/GPU-hour. They are where the cloud and the neoclouds compete on price, and where NVIDIA's own rental price indices (H100 one-year at $2.35, on-demand median $2.70 in June 2026) are the sales argument.<sup>10</sup></p>
+  <p>The map matters because NVIDIA's revenue in the vertical is concentrated in the right-hand half, while most of the institutions and most of the sales conversations are in the left-hand half. A go-to-market that treats a 400-branch regional bank and a market maker the same will overserve one and underserve the other.</p>
+
+  <h2 id="evidence">3. Who has actually bought</h2>
+  <p>Before sizing, the disclosures. Finance is secretive about compute, so the public record is thin, but it is enough to anchor the intensity assumptions in section 5.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Institution</th><th>What is disclosed</th><th>Workload</th><th>Date and source</th></tr></thead>
+    <tbody>
+      <tr><td><b>XTX Markets</b></td><td>Over 25,000 GPUs in its research cluster. In Feb 2025 this was reported as 10,000 A100 and 10,000 V100 with 650 PB of storage. Spending more than EUR 1B on five data centers in Finland.</td><td>Deep learning price forecasting, research</td><td>xtxmarkets.com, read Oct 2026 · Fintech Blueprint Feb 2025 · Bloomberg<sup>17,18,19</sup></td></tr>
+      <tr><td><b>Hudson River Trading</b></td><td>AI factory on NVIDIA Blackwell and Spectrum-X Ethernet at Lefdal Mine Data Centers, PUE 1.15 or lower. 1.6x faster research iteration than Hopper.</td><td>Research, backtesting on synthetic market data, market digital twins</td><td>NVIDIA GTC, 17 Mar 2026<sup>16</sup></td></tr>
+      <tr><td><b>Jump Trading</b></td><td>Among the first trading firms to adopt Vera Rubin NVL72. Processes over 10 million exchange messages a day on the largest US stocks, peaks above 200,000 per second.</td><td>Capital markets research, modelling, algorithmic trading</td><td>NVIDIA GTC, 17 Mar 2026<sup>16</sup></td></tr>
+      <tr><td><b>BNY Mellon</b></td><td>First major bank to deploy a DGX SuperPOD with DGX H100, "dozens" of DGX systems on InfiniBand, with NVIDIA AI Enterprise and Base Command. Hundreds of staff had used DGX for years before it.</td><td>Deposit forecasting, payment automation, trade analytics, risk</td><td>NVIDIA / BNY, Mar 2024<sup>14</sup></td></tr>
+      <tr><td><b>JPMorganChase</b></td><td>$19.8B technology budget in 2026, about $2B a year on AI, 230,000 staff on its LLM Suite, about $2B a year in savings attributed to AI. No GPU count disclosed.</td><td>Enterprise assistant, operations, research, fraud</td><td>JPMorganChase · Forbes, 1 Jul 2026 · Evident<sup>21,22,23</sup></td></tr>
+      <tr><td><b>Deutsche Bank</b></td><td>Multi-year partnership with NVIDIA. NVIDIA AI Enterprise on-premises and on Google Cloud.</td><td>Risk model development, HPC, fraud, avatars</td><td>Deutsche Bank, 7 Dec 2022<sup>15</sup></td></tr>
+      <tr><td><b>Mastercard</b></td><td>Transaction foundation model built with NeMo AutoModel on Databricks, trained on hundreds of millions of transactions. Its LLM is trained on roughly 125 billion transactions a year.</td><td>Fraud, authorisation, commerce understanding</td><td>NVIDIA GTC, Mar 2026 · Bloomberg<sup>16,25</sup></td></tr>
+      <tr><td><b>Visa</b></td><td>More than $3B on AI and data infrastructure over ten years. Advanced Authorization prevents an estimated $28B of fraud a year. Over 269 billion transactions a year.</td><td>Real-time fraud scoring</td><td>Bloomberg, Oct 2024 · Visa<sup>25,26</sup></td></tr>
+      <tr><td><b>Revolut</b></td><td>Transaction foundation model on Hopper GPUs with cuDF and Nemotron. 20% higher fraud detection precision, 9.6% better cross-sell accuracy.</td><td>Fraud, credit risk, cross-sell</td><td>NVIDIA GTC, Mar 2026<sup>16</sup></td></tr>
+      <tr><td><b>Adyen</b></td><td>Transaction foundation models at scale across $1 trillion of payments, 195x speedup in foundation-model inference on NVIDIA.</td><td>Reinforcement learning over the acquiring lifecycle</td><td>NVIDIA GTC, Mar 2026<sup>16</sup></td></tr>
+      <tr><td><b>Swedbank</b></td><td>GPU fraud models on Hopsworks cut operating cost by more than $10M, with 95% fewer false positives.</td><td>Fraud and AML</td><td>NVIDIA partners page, Feb 2026<sup>27</sup></td></tr>
+      <tr><td><b>LSEG, NatWest, Modulr</b></td><td>LSEG and NVIDIA on GPU-accelerated market analytics. NatWest on Nemotron Voice for UK customer speech. Modulr running Nemotron agents in payment operations.</td><td>Market data, voice, payment agents</td><td>NVIDIA blog, Oct 2026<sup>46</sup></td></tr>
+    </tbody>
+  </table></div>
+  <p>Two patterns. The largest disclosed fleets belong to trading firms and were built for research, not for serving models to customers. And the banks that have gone public did so with system-level purchases (a SuperPOD, a partnership) rather than GPU counts, which is itself a signal about how they buy. They buy an outcome and a vendor relationship, not a number of chips.</p>
+
+  <h2 id="topdown">4. Sizing, top-down</h2>
+  <p>No analyst publishes "GPU spend by financial services" as a line item, so I triangulate from three published markets. Each path starts from a dated figure and applies shares that are either published or labelled as mine. The model has every one as a lever.</p>
+  <h3>Path A, from the data center systems market</h3>
+  <p>Gartner puts worldwide data center systems spending at $822 billion in 2026, up 62.5% on 2025, and attributes the growth to AI servers.<sup>3</sup> Most of that is hyperscaler capex, so I take an enterprise share of 28%, giving $230B of enterprise data center systems. Banking and investment services are 13.5% of worldwide IT ($857.5 billion of $6,369 billion),<sup>2,3</sup> and because capital markets and payments are compute-heavy relative to their IT budgets I lift the financial services share of enterprise data center systems to 17%. Of that, I treat 62% as accelerated compute, derived from Gartner's two years of AI-led growth on top of a 2024 base that was mostly CPU. Path A lands at <strong>$24.3B</strong> of owned accelerated systems in 2026, of which $19.4B is NVIDIA-addressable at an 80% accelerator share.</p>
+  <h3>Path B, from the AI cloud market</h3>
+  <p>Gartner sizes AI-optimised IaaS, which is the GPU rental market, at $42.3 billion in 2026, up 96%, with 55% of it now inference.<sup>4</sup> IDC had banking at 13.3% of global AI spending in 2024 and the second-largest industry after software.<sup>6</sup> Applying that share gives $5.6B of financial services GPU rental. If the industry rents 60 cents for every dollar it spends on owned systems (a lever, set from the 47% of NVIDIA's 2026 respondents who run hybrid infrastructure<sup>41</sup>), owned systems are $9.4B and Path B totals <strong>$15.0B</strong>.</p>
+  <h3>Path C, from the banking AI budget</h3>
+  <p>IDC measured banking AI spend at $31.3 billion in 2024 with a five-year CAGR of 30% in the Americas.<sup>6</sup> Growing it two years gives $52.9B for banking in 2026. Banking excludes the insurers, exchanges, asset managers and quant firms, so I add 45% for the rest of financial services, reaching $76.7B. NVIDIA's 2026 survey found 30% of new AI investment going to infrastructure, on-premises or cloud.<sup>1</sup> Path C lands at <strong>$23.0B</strong>.</p>
+  <div class="chart"><svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top-down versus bottom-up sizing of financial services GPU spend 2026">
+<line x1="50" y1="240.0" x2="700" y2="240.0" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="244.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$0B</text>
+<line x1="50" y1="166.7" x2="700" y2="166.7" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="170.7" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$10B</text>
+<line x1="50" y1="93.3" x2="700" y2="93.3" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="97.3" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$20B</text>
+<line x1="50" y1="20.0" x2="700" y2="20.0" stroke="var(--line)" stroke-width="1"/>
+<text x="42" y="24.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$30B</text>
+<rect x="71.7" y="62.1" width="65.0" height="177.9" rx="3" fill="var(--electric)" opacity="0.9"/>
+<text x="104.2" y="56.1" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$24.3B</text>
+<text x="104.2" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path A</text>
+<text x="104.2" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">IT budget</text>
+<rect x="180.0" y="130.0" width="65.0" height="110.0" rx="3" fill="var(--electric)" opacity="0.9"/>
+<text x="212.5" y="124.0" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$15.0B</text>
+<text x="212.5" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path B</text>
+<text x="212.5" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">AI cloud</text>
+<rect x="288.3" y="71.3" width="65.0" height="168.7" rx="3" fill="var(--electric)" opacity="0.9"/>
+<text x="320.8" y="65.3" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$23.0B</text>
+<text x="320.8" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Path C</text>
+<text x="320.8" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">AI budget</text>
+<rect x="396.7" y="87.8" width="65.0" height="152.2" rx="3" fill="#e3a248" opacity="1"/>
+<text x="429.2" y="81.8" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$20.8B</text>
+<text x="429.2" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Top-down</text>
+<text x="429.2" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">average</text>
+<rect x="505.0" y="141.1" width="65.0" height="98.9" rx="3" fill="#e3a248" opacity="1"/>
+<text x="537.5" y="135.1" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$13.5B</text>
+<text x="537.5" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Top-down,</text>
+<text x="537.5" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">GPU only</text>
+<rect x="613.3" y="152.9" width="65.0" height="87.1" rx="3" fill="#c4561c" opacity="1"/>
+<text x="645.8" y="146.9" font-size="12" text-anchor="middle" fill="var(--ink)" font-weight="600" font-family="Schibsted Grotesk,sans-serif">$11.9B</text>
+<text x="645.8" y="256" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Bottom-up</text>
+<text x="645.8" y="269" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">by segment</text>
+</svg></div>
+  <p class="cap">Three top-down paths, their average, the average restated to GPU systems only, and the bottom-up build from section 5. 2026, $ billions.</p>
+  <p>The three paths average <strong>$20.8B</strong> with a spread of 45% of the mean. That spread is not an error. Path A counts owned systems only, Paths B and C include cloud rental, and all three inherit the definitional habits of the analyst who produced the base number. Gartner's broadest AI infrastructure line, $1,484 billion for 2026, I deliberately did not use because it includes AI PCs and phones and the hyperscaler buildout.<sup>5</sup></p>
+
+  <h2 id="bottomup">5. Sizing, bottom-up</h2>
+  <p>The bottom-up starts from how many institutions exist in each segment, how many of them use AI, how many of those own or dedicate GPUs rather than renting on demand, and how many GPUs an adopter runs. Installed base times a system-level price per GPU gives installed value. Dividing by a five-year refresh gives replacement spend, and multiplying by a 30% fleet growth rate gives expansion spend. Every intensity figure is my estimate anchored on the disclosures in section 3, and each is a yellow lever in the workbook.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Segment</th><th>Institutions</th><th>Using AI</th><th>Own GPUs</th><th>GPUs per adopter</th><th>Installed GPUs 2026</th><th>Installed value</th><th>Spend 2026</th></tr></thead>
+    <tbody>
+<tr><td><b>G-SIBs</b></td><td class="num">29</td><td class="num">76%</td><td class="num">55%</td><td class="num">6,000</td><td class="num">72,732</td><td class="num">$3,491M</td><td class="num">$1,746M</td></tr>
+<tr><td><b>Other top-100 banks</b></td><td class="num">71</td><td class="num">76%</td><td class="num">55%</td><td class="num">1,000</td><td class="num">29,678</td><td class="num">$1,425M</td><td class="num">$712M</td></tr>
+<tr><td><b>Regional and mid-size banks (ranks 101-500)</b></td><td class="num">400</td><td class="num">65%</td><td class="num">55%</td><td class="num">64</td><td class="num">9,152</td><td class="num">$439M</td><td class="num">$220M</td></tr>
+<tr><td><b>Payment networks, processors, large fintechs</b></td><td class="num">25</td><td class="num">76%</td><td class="num">55%</td><td class="num">2,000</td><td class="num">20,900</td><td class="num">$1,003M</td><td class="num">$502M</td></tr>
+<tr><td><b>Quant trading and market-making firms</b></td><td class="num">40</td><td class="num">100%</td><td class="num">100%</td><td class="num">4,000</td><td class="num">160,000</td><td class="num">$7,680M</td><td class="num">$3,840M</td></tr>
+<tr><td><b>Large hedge funds and asset managers</b></td><td class="num">150</td><td class="num">76%</td><td class="num">55%</td><td class="num">150</td><td class="num">9,405</td><td class="num">$451M</td><td class="num">$226M</td></tr>
+<tr><td><b>Large insurers and reinsurers</b></td><td class="num">60</td><td class="num">76%</td><td class="num">55%</td><td class="num">200</td><td class="num">5,016</td><td class="num">$241M</td><td class="num">$120M</td></tr>
+<tr><td><b>Exchanges, clearing, market data</b></td><td class="num">15</td><td class="num">76%</td><td class="num">55%</td><td class="num">400</td><td class="num">2,508</td><td class="num">$120M</td><td class="num">$60M</td></tr>
+      <tr><td><b>Total</b></td><td class="num"><b>329</b> owning adopters</td><td></td><td></td><td></td><td class="num"><b>309,391</b></td><td class="num"><b>$14.9B</b></td><td class="num"><b>$7.4B</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">Institution counts: 29 G-SIBs (FSB, Nov 2025),<sup>11</sup> the rest of S&amp;P Global's 100 largest banks (Apr 2026),<sup>12</sup> and my counts for the other tiers. Adoption rates from NVIDIA's 2026 survey (76% of firms over 1,000 staff, 65% overall).<sup>1,41</sup> Quant firms set at 100% adoption and 100% owned. Price per installed GPU $48,000, a blend of Hopper still in fleets and Blackwell at $45,000 to $50,000 a chip on the street in October 2026.<sup>29</sup></p>
+  <div class="chart"><svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Installed GPUs by financial services segment 2026">
+<text x="240" y="29" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Quant trading and market-making firms</text>
+<rect x="250" y="16" width="380.0" height="18" rx="3" fill="#c4561c"/>
+<text x="638.0" y="29" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">160,000</text>
+<text x="240" y="59" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">G-SIBs</text>
+<rect x="250" y="46" width="172.7" height="18" rx="3" fill="#c4561c"/>
+<text x="430.7" y="59" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">72,732</text>
+<text x="240" y="89" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Other top-100 banks</text>
+<rect x="250" y="76" width="70.5" height="18" rx="3" fill="var(--electric)"/>
+<text x="328.5" y="89" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">29,678</text>
+<text x="240" y="119" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Payment networks, processors, large fintechs</text>
+<rect x="250" y="106" width="49.6" height="18" rx="3" fill="var(--electric)"/>
+<text x="307.6" y="119" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">20,900</text>
+<text x="240" y="149" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Large hedge funds and asset managers</text>
+<rect x="250" y="136" width="22.3" height="18" rx="3" fill="var(--electric)"/>
+<text x="280.3" y="149" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">9,405</text>
+<text x="240" y="179" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Regional and mid-size banks</text>
+<rect x="250" y="166" width="21.7" height="18" rx="3" fill="var(--electric)"/>
+<text x="279.7" y="179" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">9,152</text>
+<text x="240" y="209" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Large insurers and reinsurers</text>
+<rect x="250" y="196" width="11.9" height="18" rx="3" fill="var(--electric)"/>
+<text x="269.9" y="209" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">5,016</text>
+<text x="240" y="239" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Exchanges, clearing, market data</text>
+<rect x="250" y="226" width="6.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="264.0" y="239" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">2,508</text>
+</svg></div>
+  <p class="cap">Installed GPUs by segment, 2026. The two largest bars are quant firms and the G-SIBs.</p>
+  <p>The build gives about <strong>309,391 installed GPUs</strong> worth $14.9B at today's prices, $7.4B of owned-system spend in 2026, and, adding rented capacity at the same 60% ratio, <strong>$11.9B</strong> of total GPU compute spend, of which about $9.5B is NVIDIA's at an 80% share. 58% of the installed GPUs are in the quant and payments segments. Grown at 30% a year the installed base reaches 883,652 GPUs by 2030 and annual owned spend reaches $21.2B.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Year</th><th>Installed GPUs</th><th>Installed value</th><th>Owned spend</th></tr></thead>
+    <tbody><tr><td class="num">2026</td><td class="num">309,391</td><td class="num">$14.9B</td><td class="num">$7.4B</td></tr>
+<tr><td class="num">2027</td><td class="num">402,208</td><td class="num">$19.3B</td><td class="num">$9.7B</td></tr>
+<tr><td class="num">2028</td><td class="num">522,871</td><td class="num">$25.1B</td><td class="num">$12.5B</td></tr>
+<tr><td class="num">2029</td><td class="num">679,732</td><td class="num">$32.6B</td><td class="num">$16.3B</td></tr>
+<tr><td class="num">2030</td><td class="num">883,652</td><td class="num">$42.4B</td><td class="num">$21.2B</td></tr></tbody>
+  </table></div>
+  <p class="cap">Price per installed GPU held flat. Blackwell to Rubin raises the price of a GPU but tokens per dollar fall faster, so dollars per installed GPU has been roughly stable across generations.</p>
+  <h3>Reconciling the two</h3>
+  <p>The bottom-up is 57% of the top-down average, a gap of $8.9B. Some of that gap is definitional. In an AI system bill of materials the GPU server is 60% to 70% of the money and the rest is network fabric, storage, CPU nodes and the data platforms around the GPUs, which the top-down "infrastructure" lines include and the bottom-up GPU count does not. Restating the top-down to GPU systems only (65% of the average) gives $13.5B, and the bottom-up explains 88% of it. What remains is either undisclosed intensity at the big banks and quant firms, or over-statement in the budget figures. Both are plausible, and I would bet on the former. JPMorgan's roughly $2 billion a year on AI with 30% to infrastructure would alone buy about 12,000 GPUs a year, which is double the fleet this model assumes it holds.</p>
+  <p>The number I would put on a slide is this. <strong>Financial services is a $12 billion to $21 billion a year market for GPU compute in 2026, growing around 30% a year, with an installed base of roughly 309,000 GPUs. It is about 5.5% of NVIDIA's data center run-rate.</strong> NVIDIA does not break out verticals, so that last figure is an inference from Path A against $89 billion of data center revenue in the quarter to July 2026.<sup>8</sup></p>
+
+  <h2 id="workloads">6. What the workloads need</h2>
+  <p>Sizing from budgets tells you how much is spent. It does not tell you whether the spend is sensible or where it goes. So I built three workloads from first principles and counted GPUs. The results are the most useful thing in this piece, because they explain the shape of the map.</p>
+  <h3>An assistant for every employee at a G-SIB</h3>
+  <p>Take JPMorgan's 230,000 LLM Suite users, assume half are active on a given day and each uses 60,000 tokens (an enterprise analyst sits at 300,000 to 2 million tokens a month<sup>35</sup>). That is 6.9 billion tokens a day, 575,000 tokens a second at a 3x peak over a ten-hour day. A Blackwell GPU serving a 70-billion-parameter open model delivers on the order of 2,500 tokens a second at interactive latency, a conservative reading of NVIDIA's own $0.02 per million tokens claim for GPT-OSS-120B.<sup>28</sup> At 60% target utilisation the whole bank needs <strong>383 GPUs</strong>, which is 6% of the fleet this model assumes a G-SIB holds. The marginal compute cost of serving 1.7 trillion tokens a year at NVIDIA's stated floor is $34k. The same tokens at frontier API list prices would be $10.3M. That spread is the business case for banks owning inference on open models, and it is why 84% of NVIDIA's respondents say open source matters to their AI strategy.<sup>1</sup></p>
+  <h3>Scoring every card transaction at a payment network</h3>
+  <p>Visa processes over 269 billion transactions a year, about 8,530 a second on average and 76,000 a second at peak capacity.<sup>25,26</sup> A production transaction model of about a billion parameters costs around 2 GFLOPs per scored transaction. At peak that is 0.15 PFLOPS, and a Blackwell GPU delivers about 2 PFLOPS of effective FP8 in production. Scoring an entire global card network at peak, with 2x redundancy, needs <strong>0.15 GPUs</strong> of raw compute. The real count is set by latency budgets, regions and redundancy, so a network runs dozens of inference GPUs rather than thousands. Training is a different matter. A 10-billion-parameter transaction model on a year of Mastercard-scale data (125 billion transactions at roughly 50 tokens each) is 52,083 GPU-hours, or 72 GPUs for a month. Retrain monthly across several models and regions, add the research that gets you to the model, and a 1,000 to 3,000 GPU payments fleet makes sense. The fleet is for the training loop, not the scoring.</p>
+  <h3>A quant research cluster</h3>
+  <p>XTX Markets' 25,000 research GPUs are 65x what the G-SIB assistant needs. Refreshing that fleet at today's system prices would cost $1.20B, and XTX has separately committed more than a billion euros to the buildings and power to house it. Hudson River Trading's buying trigger, disclosed at GTC, was 1.6x faster research iteration on Blackwell than on Hopper.<sup>16</sup> The quant firm's unit of value is a research cycle, not a token.</p>
+  <div class="callout">
+    <p><strong>What the three builds say together.</strong> Assistant for 230,000 staff, 383 GPUs. Real-time fraud scoring for a global network, under one GPU of FLOPs. One trading firm's research cluster, 25,000 GPUs. GPU fleets in finance are driven by research and training. Inference counts are set by latency, residency and redundancy rather than by compute, which is why inference lands in small pods close to the data while training lands in large clusters wherever power is cheap.</p>
+  </div>
+
+  <h2 id="stack">7. The solution stack and the ecosystem</h2>
+  <p>What a financial institution actually buys is a stack, and NVIDIA sells into every layer of it except the building. Here is the stack as it shows up in the disclosures, with who sells each layer to finance and where the alternatives are.</p>
+  <div class="stack">
+    <div><span class="l">Facility</span><div><b>Power, cooling, colocation.</b> Colocation in primary North American markets runs about $204 per kW per month for a 250 to 500 kW requirement, Frankfurt $235 to $265, Singapore $330 to $475.<sup>32,33</sup> Industrial power in the US averaged 9.77 cents per kWh in July 2026.<sup>34</sup> HRT went to a Norwegian mine for a 1.15 PUE. XTX went to Finland and Iceland.</div><span class="r">Digital Realty, Equinix, Lefdal. NVIDIA is absent here, which is why it is financing it.</span></div>
+    <div><span class="l">Silicon</span><div><b>GPUs and accelerators.</b> B200 at $45,000 to $50,000 on the street, B300 about $53,000, in October 2026.<sup>29</sup> NVIDIA holds an estimated 75% to 85% of accelerator revenue, AMD 5% to 7%, Google TPU 6% to 8%, Trainium 2% to 3%.<sup>39</sup> In finance the alternative that shows up is cloud TPU and Trainium for the renters, and AMD MI355X in sovereign clouds (HUMAIN in Saudi Arabia).</div><span class="r">NVIDIA Hopper, Blackwell, Rubin. AMD Instinct. Google TPU, AWS Trainium via cloud.</span></div>
+    <div><span class="l">Systems</span><div><b>Nodes and racks.</b> An eight-GPU DGX or HGX B200 system at $400,000 to $560,000 in configured reseller listings, with 14.3 kW of power draw.<sup>28,29</sup> GB200 NVL72 racks at $2 million to $3 million, GB300 NVL72 at $3 million to $4 million, around 120 kW liquid-cooled.<sup>29</sup> DGX SuperPOD and the DGX BasePOD for FSI reference architecture are what BNY bought.</div><span class="r">Dell, HPE (GreenLake consumption model), Supermicro, Lenovo. NVIDIA DGX direct.</span></div>
+    <div><span class="l">Network</span><div><b>Scale-out fabric.</b> InfiniBand in the bank SuperPODs, Spectrum-X Ethernet in HRT's AI factory. The fabric and storage add about 25% to a node's price at cluster scale.</div><span class="r">NVIDIA Quantum, Spectrum-X. Arista, Cisco, Broadcom-based Ethernet.</span></div>
+    <div><span class="l">Platform</span><div><b>Software that makes the GPUs usable.</b> NVIDIA AI Enterprise, NIM microservices, NeMo and NeMo Retriever, Nemotron open models, RAPIDS (cuDF, cuVS, Spark), Triton. Run:ai scheduling claims 5x utilisation. Revolut's foundation model is Hopper plus cuDF plus Nemotron.<sup>16,27</sup></div><span class="r">NVIDIA. Open alternatives: vLLM, Ray, Kubernetes. Hyperscaler equivalents in cloud.</span></div>
+    <div><span class="l">Data</span><div><b>Where the regulated data lives.</b> EDB Postgres AI with NIM "without data leaving your controlled environment". Cloudera Enterprise AI with NIM, 36x faster GPU inference. Databricks (Mastercard). Hopsworks feature store (Swedbank). Kinetica, KX for market data.<sup>16,27</sup></div><span class="r">EDB, Cloudera, Databricks, Snowflake, KX, Kinetica, Hopsworks.</span></div>
+    <div><span class="l">Vertical ISV</span><div><b>Finance-specific applications.</b> Murex MX.3 for XVA on GPU, 7x the performance and 4x less energy than CPU. Riskfuel, a million times faster risk approximations, valuations from once a day to on demand. DataRobot across lending, trading and claims. Featurespace for financial crime.<sup>27</sup></div><span class="r">Murex, Riskfuel, DataRobot, Featurespace, MOSTLY AI.</span></div>
+    <div><span class="l">Services</span><div><b>Integration and change.</b> Deloitte and Quantiphi are the named NVIDIA finance SIs. AHEAD is NVIDIA's 2026 FSI partner of the year. NVIDIA Professional Services installed BNY's SuperPOD ahead of schedule.<sup>14,27,47</sup></div><span class="r">Deloitte, Accenture, Quantiphi, AHEAD, WWT.</span></div>
+    <div><span class="l">Capital</span><div><b>Who pays for it.</b> NVIDIA's financing platforms with Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs and KKR target over $500B of third-party capital for AI factories, with NVIDIA residual-value support up to 25%.<sup>10</sup></div><span class="r">The customer is also the lender.</span></div>
+  </div>
+  <p>Three observations on the ecosystem. First, the two layers NVIDIA does not sell, the facility and the capital, are the two it has moved to influence in 2026 through the financing platforms, because power and money rather than chips now gate deployments. Second, in finance the data layer is the control point for the regulated pods. Whoever holds the bank's data (EDB, Cloudera, Databricks) decides which inference stack runs next to it, so NIM inside those platforms is the distribution channel, not the DGX catalogue. Third, the vertical ISVs with GPU-native risk engines (Murex, Riskfuel) are the Trojan horse into dealer banks, because they convert an existing CPU budget line into a GPU one without a new use case having to be approved.</p>
+
+  <h2 id="gtm">8. What each buyer wants, and how it gets sold</h2>
+  <p>The map in section 2 gives four buyers. Here is the product each is looking for, the configuration it deploys, the channel it buys through and the objection that kills the deal.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Buyer</th><th>Product they are looking for</th><th>Configuration deployed</th><th>Channel</th><th>What kills the deal</th></tr></thead>
+    <tbody>
+      <tr><td><b>Sovereign fleets</b><br><span class="pill">G-SIBs, networks, large insurers</span></td><td>A regulated AI factory in their jurisdiction. GB200 or GB300 NVL72 racks or DGX SuperPOD, NVIDIA AI Enterprise with NIM and Nemotron so open models run on their data, Run:ai so utilisation reaches 65%, and a financing structure that keeps it off capex. Transaction and risk foundation models are the flagship workloads.</td><td>64 to 512 nodes or 4 to 20 NVL72 racks, InfiniBand or Spectrum-X, in a colocation campus with a 10 to 40 MW power contract, or dedicated capacity at a sovereign cloud.</td><td>Dell and HPE for the systems, NVIDIA direct for the relationship, Deloitte or Accenture for the programme, Goldman-type partners for the lease.</td><td>Power. A 64-node system draws 892 kW of facility power. The power contract, not the purchase order, is now the long pole. Also model risk sign-off on anything that touches a customer decision.</td></tr>
+      <tr><td><b>Research factories</b><br><span class="pill">quant and market makers</span></td><td>The newest silicon first, at the lowest $/research-cycle. Vera Rubin NVL72 at launch, Spectrum-X at scale, and a story on PUE and power price because they build their own buildings. They do not want AI Enterprise or NIM. They have their own stack.</td><td>Thousands to tens of thousands of GPUs in owned or leased data centers sited for cheap power (Finland, Norway, Iceland). Air-cooled HGX today, liquid-cooled NVL72 next.</td><td>NVIDIA direct, Supermicro and Dell for iron. Early-access programmes are the sales tool. Jump was first on Rubin.</td><td>Allocation and price. These buyers compare NVIDIA to AMD and to their own ASIC options on a spreadsheet, and Jane Street led a $700M round into Etched. A one-generation delay in allocation loses the account for a cycle.</td></tr>
+      <tr><td><b>Regulated pods</b><br><span class="pill">regional banks, insurers, exchanges</span></td><td>An appliance. Four to eight nodes pre-integrated with a data platform they already run (EDB, Cloudera) and NIM blueprints for the three things they will actually do in year one: document processing, a fraud or AML model, and a staff assistant. Examiner-ready audit logs. A per-node price under $1 million all in.</td><td>32 to 64 GPUs in the bank's own data center or a local colocation cage. Air cooled. No fabric beyond a top-of-rack switch.</td><td>Dell and HPE channel partners, AHEAD and WWT, the data platform vendor's sales team, regional SIs. Not NVIDIA direct.</td><td>Skills and procurement. A regional bank has no GPU operations team, so if the appliance needs one it does not ship. The sale dies in third-party risk review if any component phones home.</td></tr>
+      <tr><td><b>Renters</b><br><span class="pill">hedge funds, asset managers, fintechs</span></td><td>A reserved $/GPU-hour that beats the neocloud, on the newest GPU, with a clean path to scale up and down around month-end and model refreshes. DGX Cloud or hyperscaler capacity with NVIDIA software included.</td><td>Reserved blocks of 8 to 512 GPUs for one to three years, burst on demand.</td><td>AWS, Azure, Google Cloud, OCI and the NVIDIA Cloud Partners, which doubled their AI factory footprint in 2026.<sup>16</sup></td><td>Price. H100 rental went from $2.00 to $2.70 an hour between October 2025 and June 2026.<sup>10</sup> Rising rental prices push the larger renters toward owning, which is good for systems revenue and bad for the cloud partners.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>The GTM plan I would run</h3>
+  <p><strong>Lead with the research factories and the payment networks, because they are where the GPUs are.</strong> Twenty-five quant firms and twenty-five payment companies account for most of the installed base. They are sophisticated, they buy early, and they are reference accounts for the banks that follow. The product motion is early access to Rubin, Spectrum-X design wins, and co-marketing of transaction foundation models (the GTC 2026 slate of Mastercard, Revolut and Adyen is exactly this).</p>
+  <p><strong>Sell sovereign fleets as financed infrastructure, not as capex.</strong> The $500 billion financing programme is the most important GTM asset NVIDIA has in this vertical, because the buyers are the lenders. Package a SuperPOD or NVL72 deployment with a lease from one of the partner platforms, residual value supported by NVIDIA, and a power contract arranged through the colocation partner. The bank's CFO sees an opex line per GPU-hour, which is the unit they already use for cloud, and the regulator sees data in jurisdiction.</p>
+  <p><strong>Ship an appliance for the regulated pods through the data platform vendors.</strong> There are 400 regional banks in the model and 4,238 FDIC-insured institutions in the US alone.<sup>13</sup> They will not buy a SuperPOD and they will not run Kubernetes. They will buy a certified four-node box from Dell or HPE with EDB or Cloudera and three NIM blueprints, through the reseller they already use, if it comes with examiner-ready documentation. This is the volume play and it is almost entirely a packaging and channel problem rather than a technology one.</p>
+  <p><strong>Let the cloud partners keep the renters, and price the software separately.</strong> NVIDIA should not fight AWS and Google for the hedge fund that rents 64 GPUs. It should make sure AI Enterprise, NIM and Nemotron are the software they run wherever they rent, and that the rental price index it publishes keeps the market honest.</p>
+
+  <h2 id="configs">9. The configurations customers deploy</h2>
+  <p>The job description asks for an evaluation of the system configurations customers deploy, so here are the four that recur in the disclosures, one per quadrant of the map, specified and costed on the same rates. The Configs sheet in the model carries every line as a formula so a different node count, utilisation or rack price can be tested.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th></th><th>Regulated pod</th><th>Bank SuperPOD class</th><th>Sovereign AI factory</th><th>Research factory</th></tr></thead>
+    <tbody>
+      <tr><td>Who deploys it</td><td>Regional bank, mid-size insurer, exchange</td><td>G-SIB or top-100 bank first system (BNY 2024)</td><td>G-SIB, payment network, sovereign cloud for banks</td><td>Quant trading or market-making firm</td></tr>
+      <tr><td>Build</td><td>4 x 8-GPU B200 nodes, air cooled</td><td>64 x 8-GPU B200 nodes, air cooled, InfiniBand</td><td>4 x GB300 NVL72 racks, liquid cooled</td><td>250 x 8-GPU HGX B200 nodes from an ODM, Spectrum-X</td></tr>
+      <tr><td>GPUs</td><td class="num">32</td><td class="num">512</td><td class="num">288</td><td class="num">2,000</td></tr>
+      <tr><td>GPU memory</td><td class="num">6 TB</td><td class="num">92 TB</td><td class="num">83 TB</td><td class="num">360 TB</td></tr>
+      <tr><td>FP8 PFLOPS (NVIDIA sparse figures)</td><td class="num">288</td><td class="num">4,608</td><td class="num">2,592</td><td class="num">18,000</td></tr>
+      <tr><td>NVLink domain</td><td class="num">8 GPUs</td><td class="num">8 GPUs</td><td class="num">72 GPUs</td><td class="num">8 GPUs</td></tr>
+      <tr><td>IT power, max</td><td class="num">57 kW</td><td class="num">915 kW</td><td class="num">540 kW</td><td class="num">3,575 kW</td></tr>
+      <tr><td>Where it sits</td><td>Own data center or local colo cage</td><td>Colo campus in a money-center city</td><td>Colo campus in jurisdiction, 10 to 40 MW contract</td><td>Owned or leased DC sited for cheap power</td></tr>
+      <tr><td>Software</td><td>AI Enterprise, NIM blueprints, EDB or Cloudera</td><td>AI Enterprise, Base Command, Run:ai</td><td>AI Enterprise, NeMo, Nemotron</td><td>Own stack (PyTorch, Ray, custom)</td></tr>
+      <tr><td>Capital incl. fabric and storage</td><td class="num">$2.1M</td><td class="num">$33.6M</td><td class="num">$16.1M</td><td class="num">$118.8M</td></tr>
+      <tr><td>Operating cost per year</td><td class="num">$0.39M</td><td class="num">$6.27M</td><td class="num">$3.82M</td><td class="num">$11.96M</td></tr>
+      <tr><td><b>Five-year TCO</b></td><td class="num"><b>$3.9M</b></td><td class="num"><b>$62.3M</b></td><td class="num"><b>$33.8M</b></td><td class="num"><b>$169.0M</b></td></tr>
+      <tr><td>Utilisation assumed</td><td class="num">40%</td><td class="num">65%</td><td class="num">75%</td><td class="num">85%</td></tr>
+      <tr><td><b>Effective $ per used GPU-hour</b></td><td class="num"><b>$6.94</b></td><td class="num"><b>$4.27</b></td><td class="num"><b>$3.57</b></td><td class="num"><b>$2.27</b></td></tr>
+      <tr><td>Capital per FP8 PFLOPS</td><td class="num">$7,292</td><td class="num">$7,292</td><td class="num">$6,211</td><td class="num">$6,597</td></tr>
+      <tr><td>Power and facility share of TCO</td><td class="num">24%</td><td class="num">24%</td><td class="num">29%</td><td class="num">18%</td></tr>
+      <tr><td>Owned TCO as share of renting the same hours on demand</td><td class="num">99%</td><td class="num">61%</td><td class="num">51%</td><td class="num">32%</td></tr>
+      <tr><td>230,000-user assistants it can serve</td><td class="num">0.1</td><td class="num">1.3</td><td class="num">0.8</td><td class="num">5.2</td></tr>
+      <tr><td>10B transaction-model training runs per month</td><td class="num">0.4</td><td class="num">7.1</td><td class="num">4.0</td><td class="num">27.6</td></tr>
+      <tr><td>Primary workload</td><td>Document processing, fraud model, staff assistant (inference)</td><td>Risk models, fraud training, department assistants</td><td>Transaction and risk foundation models (training), bank-wide inference</td><td>Research, backtesting, strategy training</td></tr>
+      <tr><td>Value anchor, $ a year</td><td>$12M (20% precision gain on a $60M fraud loss)</td><td>$39M (XVA grid power saving plus avoided CPU refresh)</td><td>$1.4B (5% of Visa-scale fraud prevented, attributable to model refresh)</td><td>1.6x research iteration (HRT). Value is strategy P&amp;L, not priced</td></tr>
+      <tr><td><b>Annual value to annual compute cost</b></td><td class="num"><b>15x</b></td><td class="num"><b>3x</b></td><td class="num"><b>207x</b></td><td class="num">n/a</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">Rates from the TCO section. Research factory assumes a 0.6x power price (sited for cheap power), half the colocation rate (owns the building), a 1.15 PUE (HRT at Lefdal) and a quarter of the software spend. Sovereign factory assumes a 20% liquid-cooling premium on colocation. Value anchors are from the Value section.</p>
+  <h3>How to read the four columns</h3>
+  <p><strong>The regulated pod is the only configuration that does not beat on-demand cloud on cost.</strong> At the 40% utilisation a regional bank realistically achieves, the pod costs $6.94 per used GPU-hour, which is the on-demand price. It wins on something else, data never leaving the building, and the sale has to be made on that. It also means the appliance must ship with a scheduler or a consumption contract (HPE GreenLake, Dell APEX) or the CFO will reject it on the numbers. Its value ratio of 15x on a single fraud use case is the strongest of the four, which is the real argument.</p>
+  <p><strong>The SuperPOD-class system is the bank's first serious purchase and it is now the wrong architecture for its heaviest workload.</strong> Sixty-four air-cooled nodes with an eight-GPU NVLink domain is what BNY bought in 2024 and what the SuperPOD reference architecture still describes. It costs $62.3M over five years and serves 1.3 bank-wide assistants, which is more inference than a bank needs. For training transaction or risk foundation models the 72-GPU NVLink domain of the rack matters more than the GPU count.</p>
+  <p><strong>The sovereign AI factory is the configuration the G-SIBs and payment networks should be buying next, and it is cheaper per PFLOPS.</strong> Four GB300 NVL72 racks give 288 GPUs with 83 TB of memory in 72-GPU domains, capital of $6,211 per FP8 PFLOPS against $7,292 for the node-based system, and $3.57 per used GPU-hour at 75% utilisation. The constraint is the building. Liquid-cooled racks at 135 kW each need a colocation partner with the inventory (Digital Realty's Frankfurt campus advertises liquid-cooled racks for exactly this reason<sup>40</sup>) and a power contract in jurisdiction. Power and facility are 29% of its five-year cost, the highest of the four, which is why this quadrant should be sold with the colocation partner and the lease in the room.</p>
+  <p><strong>The research factory is where the unit economics are best and NVIDIA's software is absent.</strong> Two thousand GPUs on ODM iron, in an owned building sited for cheap power, at 85% utilisation, cost $2.27 per used GPU-hour, a third of the on-demand rental price. The buyer does not want AI Enterprise and will not pay for it. What it will pay for is allocation, Spectrum-X and the next generation first. This configuration is also the one most exposed to AMD and to custom silicon, because the buyer runs its own software stack and can move.</p>
+  <p>Across the four, the pattern is that configuration follows the utilisation the buyer can sustain and the jurisdiction the data is allowed to be in. Compute density and FLOPS per dollar matter less than the two numbers nobody puts on a spec sheet, hours busy and kilowatts available at the address.</p>
+
+  <h2 id="cost">10. Cost: owning against renting</h2>
+  <p>The question every bank asks first is whether to own. Here is the five-year total cost of ownership of one eight-GPU Blackwell node, built from dated inputs, and the same GPU-hours rented.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Line</th><th>Five years, one node</th><th>Formula</th></tr></thead>
+    <tbody>
+      <tr><td>System price</td><td class="num">$420,000</td><td>HGX or DGX B200, 8 GPUs. OEM anchor $280k to $320k in April 2026 predates the autumn rise. Configured listings $400k to $562k in Sep 2026. Eight street B200s alone are $380k.<sup>29</sup></td></tr>
+      <tr><td>Networking, storage, installation</td><td class="num">$105,000</td><td>25% of system price</td></tr>
+      <tr><td><b>Capital cost</b></td><td class="num"><b>$525,000</b></td><td>System plus networking</td></tr>
+      <tr><td>Electricity per year</td><td class="num">$11,933</td><td>14.3 kW max x 75% load x 1.3 PUE = 13.9 kW facility power x 8,760 hours x $0.0977 per kWh<sup>28,34</sup></td></tr>
+      <tr><td>Colocation per year</td><td class="num">$35,006</td><td>14.3 kW committed x $204 per kW per month x 12<sup>32,33</sup></td></tr>
+      <tr><td>Software and support per year</td><td class="num">$36,000</td><td>8 GPUs x $4,500 per GPU per year, AI Enterprise</td></tr>
+      <tr><td>Operations staff per year</td><td class="num">$15,000</td><td>One platform engineer per 16 nodes</td></tr>
+      <tr><td><b>Operating cost per year</b></td><td class="num"><b>$97,939</b></td><td>Sum of the four lines above</td></tr>
+      <tr><td>Residual value at year five</td><td class="num">($42,000)</td><td>10% of system price. NVIDIA supports residual value up to 25% in its financing platforms, and A100s from 2020 are still in commercial use<sup>10</sup></td></tr>
+      <tr><td><b>Five-year TCO</b></td><td class="num"><b>$972,696</b></td><td>Capital + 5 x operating - residual. Hardware is 54% of it, power and facility 24%</td></tr>
+      <tr><td>GPU-hours used at 65% utilisation</td><td class="num">227,760</td><td>8 GPUs x 8,760 hours x 5 years x 65%</td></tr>
+      <tr><td><b>Effective cost per used GPU-hour</b></td><td class="num"><b>$4.27</b></td><td>TCO / used GPU-hours. At 100% utilisation the floor is $2.78</td></tr>
+      <tr><td>Same hours at cloud on-demand ($6.99)</td><td class="num">$1,592,042</td><td>Owned node is 61% of the cloud bill<sup>30</sup></td></tr>
+      <tr><td>Same hours at cloud reserved ($4.75)</td><td class="num">$1,081,860</td><td>Reserved discounts of 30% to 35% are typical. Spheron spot B200 $5.22 on 16 Oct 2026<sup>31</sup></td></tr>
+      <tr><td><b>Breakeven utilisation vs on-demand</b></td><td class="num"><b>40%</b></td><td>TCO / (available GPU-hours x on-demand price)</td></tr>
+      <tr><td><b>Breakeven utilisation vs reserved</b></td><td class="num"><b>58%</b></td><td>TCO / (available GPU-hours x reserved price)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="chart"><svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Effective cost per GPU hour of an owned Blackwell node versus utilisation, against cloud prices">
+<line x1="55" y1="255.0" x2="700" y2="255.0" stroke="var(--line)"/>
+<text x="47" y="259.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$0</text>
+<line x1="55" y1="208.0" x2="700" y2="208.0" stroke="var(--line)"/>
+<text x="47" y="212.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$2</text>
+<line x1="55" y1="161.0" x2="700" y2="161.0" stroke="var(--line)"/>
+<text x="47" y="165.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$4</text>
+<line x1="55" y1="114.0" x2="700" y2="114.0" stroke="var(--line)"/>
+<text x="47" y="118.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$6</text>
+<line x1="55" y1="67.0" x2="700" y2="67.0" stroke="var(--line)"/>
+<text x="47" y="71.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$8</text>
+<line x1="55" y1="20.0" x2="700" y2="20.0" stroke="var(--line)"/>
+<text x="47" y="24.0" font-size="11" text-anchor="end" fill="var(--dim)" font-family="IBM Plex Mono,monospace">$10</text>
+<text x="55.0" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">20%</text>
+<text x="216.2" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">40%</text>
+<text x="377.5" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">60%</text>
+<text x="538.8" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">80%</text>
+<text x="700.0" y="273" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="IBM Plex Mono,monospace">100%</text>
+<text x="377.5" y="294" font-size="11" text-anchor="middle" fill="var(--dim)" font-family="Schibsted Grotesk,sans-serif">Utilisation of the owned GPUs (share of hours busy)</text>
+<polyline points="55.0,20.0 95.3,20.0 135.6,37.5 175.9,68.6 216.2,91.9 256.6,110.0 296.9,124.5 337.2,136.4 377.5,146.3 417.8,154.6 458.1,161.8 498.4,168.0 538.8,173.5 579.1,178.3 619.4,182.5 659.7,186.3 700.0,189.8" fill="none" stroke="var(--electric)" stroke-width="2.5"/>
+<line x1="55" y1="90.7" x2="700" y2="90.7" stroke="#c4561c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="696" y="84.7" font-size="11" text-anchor="end" fill="#c4561c" font-family="Schibsted Grotesk,sans-serif">Cloud on-demand B200 $6.99</text>
+<line x1="55" y1="143.4" x2="700" y2="143.4" stroke="#e3a248" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="696" y="137.4" font-size="11" text-anchor="end" fill="#e3a248" font-family="Schibsted Grotesk,sans-serif">Cloud reserved B200 $4.75</text>
+<circle cx="213.9" cy="90.7" r="5" fill="#c4561c"/>
+<text x="213.9" y="110.7" font-size="11" text-anchor="middle" fill="#c4561c" font-family="IBM Plex Mono,monospace">40%</text>
+<circle cx="364.9" cy="143.4" r="5" fill="#e3a248"/>
+<text x="364.9" y="163.4" font-size="11" text-anchor="middle" fill="#e3a248" font-family="IBM Plex Mono,monospace">58%</text>
+<text x="425.8" y="144.6" font-size="11" fill="var(--electric)" font-family="Schibsted Grotesk,sans-serif">Owned node, five-year TCO</text>
+</svg></div>
+  <p class="cap">Effective cost per GPU-hour of the owned node as utilisation changes, against on-demand and reserved cloud B200 prices. The dots mark the breakeven points.</p>
+  <p>Three things to take from this. First, owning is cheaper than renting on demand at any utilisation above 40%, and cheaper than reserved capacity above 58%. A payment network training models around the clock and a quant firm running research sit well above both, which is why they own. A regional bank running a fraud model and a document pipeline sits below the reserved breakeven unless it schedules well, which is why the appliance for that quadrant has to come with utilisation tooling or a consumption model like HPE GreenLake. Second, hardware is only 54% of five-year cost. Power and facility are 24%, and software is 19%. A bank negotiating the server price and ignoring the colocation contract is optimising the smaller number. Third, the cheapest route for light workloads is not Blackwell at all. The same used hours on H100 at the one-year rental price of $2.35 cost $535,236, though a B200 delivers several times the tokens per hour, so this is only a bargain for workloads that do not need the throughput.</p>
+  <p>At scale the picture is steadier. A 64-node SuperPOD-class system (512 GPUs) is $33.6M of capital, 892 kW of facility power and $62.3M of five-year cost. A GB200 NVL72 rack at the $2.5 million midpoint estimate works out at 0.53x the capital cost per GPU of the eight-GPU node, before its NVLink domain and liquid cooling advantages, which is the strongest argument for the sovereign fleets to skip DGX nodes and go to racks.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Utilisation</th><th>Owned $/GPU-hour</th></tr></thead>
+    <tbody><tr><td class="num">30%</td><td class="num">$9.25</td></tr><tr><td class="num">45%</td><td class="num">$6.17</td></tr><tr><td class="num">60%</td><td class="num">$4.63</td></tr><tr><td class="num">75%</td><td class="num">$3.70</td></tr><tr><td class="num">90%</td><td class="num">$3.08</td></tr></tbody>
+  </table></div>
+
+  <h2 id="price">11. Price: per GPU-hour, per token, and where the margin sits</h2>
+  <p>Finance buys compute by three different units depending on who is in the room. Infrastructure teams think in $/GPU-hour. Product teams think in $/million tokens. CFOs think in gross margin. The same Blackwell GPU looks like this in each.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Route</th><th>$ per GPU-hour</th><th>$ per million tokens (70B open model)</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Own, 100% utilisation</td><td class="num">$2.78</td><td class="num"></td><td>The floor an owner can reach</td></tr>
+      <tr><td>Own, 65% utilisation</td><td class="num">$4.27</td><td class="num">$0.47</td><td>From the TCO above. One GPU serves about 9 million tokens an hour at 2,500 tokens a second</td></tr>
+      <tr><td>Cloud reserved B200</td><td class="num">$4.75</td><td class="num">$0.53</td><td>One to three year terms</td></tr>
+      <tr><td>Cloud on-demand B200</td><td class="num">$6.99</td><td class="num">$0.78</td><td>Range $5.99 (Hyperbolic) to $16.11 (Google Cloud), Sep 2026.<sup>29,30</sup> 1.6x the owned price</td></tr>
+      <tr><td>NVIDIA's stated Blackwell floor</td><td class="num"></td><td class="num">$0.02</td><td>GPT-OSS-120B with TensorRT-LLM, 55 tokens/s per user. Hopper with vLLM $0.09.<sup>28</sup> Our owned figure is above it because it carries the full TCO at 65% utilisation</td></tr>
+      <tr><td>Hosted open-model API</td><td class="num"></td><td class="num">$0.60</td><td>Typical blended list for a 70B-class open model</td></tr>
+      <tr><td>Frontier API</td><td class="num"></td><td class="num">$6.00</td><td>Blended $3 in, $15 out at 3 to 1. 13x the owned price per token</td></tr>
+    </tbody>
+  </table></div>
+  <p>The spread between $0.47 per million tokens owned and $6.00 at a frontier API is the economic engine behind every "bank adopts open models on-premises" headline. It is also NVIDIA's pricing argument in the vertical. The GPU is not the expensive part of a bank's AI programme. The model licence is, if the bank rents a closed one.</p>
+  <h3>Where the margin sits</h3>
+  <p>A B200 at $47,500 on the street with NVIDIA's 75% gross margin implies about $11,875 of cost of goods per GPU and $285,000 of gross profit per eight-GPU node, chips only.<sup>8,29</sup> The GPUs are 90% of the node's price and 72% of its capital cost including networking and storage. AI Enterprise at $4,500 per GPU per year is $180,000 per node over five years, or 19% of five-year TCO. That software line is the recurring revenue NVIDIA can grow in finance without shipping more silicon, and it is priced per GPU today. A cloud provider renting the same node on demand at 65% utilisation earns about 39% gross margin if its cost base matches our TCO, which is why hyperscalers and neoclouds keep buying. And the GPU rental market did something unusual for a compute market in 2026. It got more expensive. H100 one-year rentals went from $1.70 to $2.35 an hour between October 2025 and March 2026, and the on-demand median from $2.00 to $2.70 by June.<sup>10</sup> Rising rental prices move the breakeven in favour of owning, and favour the systems business over the cloud channel.</p>
+  <h3>Financing changes who pays</h3>
+  <p>If a sovereign-fleet bank finances its hardware through one of the partner platforms with NVIDIA's 25% residual-value support instead of our 10% assumption, five-year TCO falls by $63,000 per node, and more importantly the bank books a lease rather than capex. For the financial services vertical the pricing conversation is moving from the price of a server to a lease rate per GPU-hour, which is the unit banks already use for cloud. That is the single biggest change in how this vertical buys since the cloud.</p>
+
+  <h2 id="value">12. Value: what the compute buys</h2>
+  <p>A value analysis in finance has to be done workload by workload, because the value of a GPU in a fraud model and a GPU in a quant cluster are measured in different currencies. I built four, each anchored on a disclosed number.</p>
+  <h3>Payments fraud</h3>
+  <p>Visa's Advanced Authorization prevents an estimated $28 billion of fraud a year, and Visa spent more than $3 billion on AI and data infrastructure over ten years.<sup>25</sup> That is 93x value to spend on the company's own figures, and 10.4 cents of fraud prevented per transaction. The five-year TCO of the 2,000-GPU payments fleet this model assumes is $243M. Annualised, that is <strong>0.17% of the fraud prevented</strong>. Compute is a rounding error against the value. For a mid-size issuer the incremental case is just as clear. Mastercard's research puts the average organisation's payment fraud loss at $60 million a year.<sup>24</sup> Revolut's transaction foundation model raised fraud detection precision by 20%.<sup>16</sup> Apply that gain and the model is worth $12M a year to one institution, before the false-positive savings that 83% of Mastercard's respondents report. A 64-GPU regional-bank pod costs $7.8M over five years, which pays back in about 8 months on that one use case.</p>
+  <h3>Enterprise productivity at a G-SIB</h3>
+  <p>JPMorgan reports about $2 billion a year of savings attributed to AI against about $2 billion a year of AI investment, a ratio of 1.0x, with AI at 10% of a $19.8 billion technology budget.<sup>21,22,45</sup> The theoretical productivity value of 230,000 users at a $150,000 loaded cost, applying the self-reported 30% to 40% efficiency gain to a quarter of their time, is $3.0B a year, so the bank is realising about 66% of the theoretical figure, which is a high conversion rate for enterprise software. The GPUs the assistant needs cost $47M over five years, which annualised is <strong>0.5% of the reported savings</strong>. The $2 billion a year of investment is going into data, integration and change, not into GPUs. This is the use case where NVIDIA's share of the customer's wallet is smallest and where the services ecosystem matters most.</p>
+  <h3>Risk engine consolidation at a dealer bank</h3>
+  <p>Murex reports 7x the XVA performance and 4x less energy on NVIDIA GPUs than on CPUs.<sup>27</sup> Take a dealer bank with a 5,000-server CPU risk grid drawing 5 MW. At 7x per GPU, 89 eight-GPU nodes replace it at equal throughput, drawing 958 kW, a 81% power reduction that lands close to Murex's 4x claim. The power and colocation saving is $14.4M a year, the avoided CPU refresh is $125M over five years, and the GPU capital required is $46.9M. Net five-year saving before counting the value of intraday risk is <strong>$150M</strong>. The real prize, which this does not price, is Riskfuel's "valuations from once a day to on demand". A desk that can reprice its book intraday takes different positions. This is the use case that converts an existing CPU budget line into GPU spend with no new approval, and it is why the vertical ISVs matter so much in the ecosystem.</p>
+  <h3>Quant research</h3>
+  <p>A 25,000-GPU research fleet at the owned effective price costs about $608M a year. Citadel Securities booked $12.2 billion of net trading revenue in 2025 and Hudson River Trading about $12.3 billion.<sup>44</sup> An XTX-scale fleet is therefore about <strong>5.0% of a top firm's revenue</strong>. Against a 1.6x research-iteration gain per generation, these firms will pay whatever the newest silicon costs, and the sales motion is allocation and early access rather than price.</p>
+  <div class="chart"><svg viewBox="0 0 720 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Annual compute cost as a share of value created by use case">
+<text x="320" y="31" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Payments fraud: fleet cost vs fraud prevented</text>
+<rect x="330" y="18" width="2.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="340.0" y="31" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">0.2%</text>
+<text x="320" y="65" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">G-SIB assistant: GPU cost vs reported savings</text>
+<rect x="330" y="52" width="3.9" height="18" rx="3" fill="var(--electric)"/>
+<text x="341.9" y="65" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">0.5%</text>
+<text x="320" y="99" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Quant fleet: 25,000 GPUs vs top-firm trading revenue</text>
+<rect x="330" y="86" width="41.2" height="18" rx="3" fill="var(--electric)"/>
+<text x="379.2" y="99" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">5.0%</text>
+<text x="320" y="133" font-size="12" text-anchor="end" fill="var(--ink)" font-family="Schibsted Grotesk,sans-serif">Risk grid: GPU capital vs five-year CPU refresh avoided</text>
+<rect x="330" y="120" width="310.0" height="18" rx="3" fill="var(--electric)"/>
+<text x="648.0" y="133" font-size="12" fill="var(--ink)" font-family="IBM Plex Mono,monospace">37.5%</text>
+</svg></div>
+  <p class="cap">Annual compute cost as a share of the value it creates, by use case. In every case the GPU bill is a small fraction of the value.</p>
+  <div class="callout hot">
+    <p><strong>Reading the value analysis.</strong> In every use case compute is a small share of the value created. The constraint on GPU demand in finance is model and data readiness, regulatory sign-off and power, not GPU price. That argues for value-based packaging, meaning NIM blueprints and vertical ISV bundles sold on the outcome they unlock, rather than for price competition on the silicon. It also means a price cut on GPUs would not materially increase demand from this vertical. A faster path through model risk review would.</p>
+  </div>
+
+  <h2 id="synthesis">13. Synthesis: where the bottleneck is and what I would ship</h2>
+  <p>My thesis across all of this research is that value accrues to whoever controls the scarcest input, and in finance in 2026 the scarce inputs for AI are, in order, approved data, power in jurisdiction, and capital structure. Not GPUs. Here is what that implies.</p>
+  <p><strong>The market is real but it is not where the sales teams think.</strong> Financial services buys $12 billion to $21 billion of GPU compute a year, around 5.5% of NVIDIA's data center run-rate, and it is growing about 30% a year. More than half the installed base sits with about fifty institutions, the quant firms and the payment networks, that nobody puts on a "banking" account list. The G-SIBs are the second cluster. The 4,000 regional banks are a long tail that will only buy an appliance.</p>
+  <p><strong>Inference is small and training is large, and the two want different products.</strong> A bank's entire employee assistant fits in a few hundred GPUs. A payment network's real-time scoring fits in a few dozen. The thousands of GPUs are in training transaction models, running risk, and doing research. So the sovereign-fleet product is an NVL72 training rack in a financed colocation cage, and the regulated-pod product is a four-node inference appliance next to the database. Selling the rack to the regional bank or the appliance to the market maker loses both.</p>
+  <p><strong>Power now gates the fleets, and the quants have already moved to where it is cheap.</strong> XTX in Finland and Iceland, HRT in a Norwegian mine, Jump on Rubin. Banks cannot follow because their data has to stay home, so their constraint is a 10 to 40 MW power contract in Frankfurt, London, New York or Singapore where colocation already costs $200 to $475 per kW per month. NVIDIA cannot sell power, which is exactly why it has gone into financing the buildings. The FS vertical team should treat the financing platforms as its lead product for the top 100 banks.</p>
+  <p><strong>Pricing power sits in software and in the lease, not in the chip.</strong> The GPU is 54% of five-year cost and under 1% of the value in payments. AI Enterprise per GPU per year is a flat tax on a wildly uneven distribution of value. I would move it toward per-blueprint pricing for the regulated pods (pay for the fraud blueprint, the document blueprint, the assistant blueprint) and toward a per-GPU-hour lease rate for the sovereign fleets through the financing partners. The quants will not buy the software and should not be asked to.</p>
+  <p><strong>What I would ship in the next two quarters if I were on the team.</strong> One, a Financial Services AI Factory reference design around GB300 NVL72 with a lease term sheet from the partner platforms and a colocation partner in each of the five money-center cities. Two, a certified four-node "regulated pod" through Dell and HPE with EDB or Cloudera and three NIM blueprints, documented for OCC, FDIC, ECB and MAS examiners, sold only through channel. Three, a transaction-foundation-model program that puts Mastercard, Revolut and Adyen on stage every quarter, because that is the workload that converts payments companies into owners. Four, a published GPU rental price index, because rising rental prices are the best argument for owning that NVIDIA has, and it has the data.</p>
+
+  <h2 id="limits">14. Limitations</h2>
+  <ul>
+    <li>Financial institutions do not disclose GPU counts. Every intensity figure in the bottom-up is my estimate anchored on a handful of disclosures. The model exposes each as a lever and the reconciliation to the top-down is the check. The honest range is $12 billion to $21 billion, not a point.</li>
+    <li>The top-down paths borrow analyst figures that use different definitions. Gartner's data center systems line is dominated by hyperscalers and my 28% enterprise share is a judgment. IDC's banking share is a 2024 figure.</li>
+    <li>Hardware prices moved sharply during 2026. B200 street prices rose from $30,000 to $40,000 in September to $45,000 to $50,000 in October. The TCO uses $420,000 per node, which may already be low. The rental prices are from published indices rather than negotiated contracts.</li>
+    <li>Tokens per second per GPU and FLOPs per transaction are engineering assumptions. The conclusions about the ratio between inference and training needs are robust to a factor of three in either direction, which is why I present them as orders of magnitude.</li>
+    <li>I have not modelled China, where NVIDIA's share of data center AI chips fell to 34% in the first half of 2026 as Huawei reached 28%,<sup>38</sup> and where the big four banks are among the largest in the world. The 21 Chinese banks in the top 100 are counted as institutions but their GPUs are mostly not NVIDIA's.</li>
+    <li>Value figures are the companies' own. Visa's $28 billion and JPMorgan's $2 billion are not audited claims and I use them as the institutions state them.</li>
+  </ul>
+
+  <h2 id="download">15. Download the model</h2>
+  <p>The workbook has eight sheets. Assumptions holds every input with its source URL and date. TopDown, BottomUp, Workloads, TCO, Value and Pricing are all live formulas that reference it, and each computed row states its formula in words. Change a yellow cell and everything moves. The build script regenerates the workbook from scratch and the page script renders this article from the recalculated values, so the two cannot drift apart.</p>
+  <div class="dl">
+    <a href="/research/fs-gpu/fs-gpu-model.xlsx" download><code>fs-gpu-model.xlsx</code> the model, 396 formulas</a>
+    <a href="/research/fs-gpu/build_model.py" download><code>build_model.py</code> builds the workbook</a>
+    <a href="/research/fs-gpu/build_page.py" download><code>build_page.py</code> renders this page from it</a>
+  </div>
+
+  <h2 id="sources">16. Sources</h2>
+  <div class="sources"><ol>
+    <li>NVIDIA, <a href="https://blogs.nvidia.com/blog/ai-in-financial-services-survey-2026/" rel="noopener">Survey Reveals the Financial Services Industry Is Doubling Down on AI Investment and Open Source</a> (State of AI in Financial Services 2026), 22 Jan 2026.</li>
+    <li>Gartner, <a href="https://www.gartner.com/en/documents/7431362" rel="noopener">Forecast: Enterprise IT Spending for the Banking and Investment Services Market, Worldwide, 2023-2029, 4Q25</a>.</li>
+    <li>Gartner, <a href="https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion" rel="noopener">Worldwide IT Spending to Grow 14.2% in 2026, Totaling $6.37 Trillion</a>, 27 Jul 2026.</li>
+    <li>Gartner, <a href="https://www.gartner.com/en/newsroom/press-releases/2026-08-10-gartner-forecasts-worldwide-artificial-intelligence-optimized-iaas-spending-to-grow-96-percent-in-2026" rel="noopener">Worldwide AI-Optimized IaaS Spending to Grow 96% in 2026</a>, 10 Aug 2026.</li>
+    <li>Gartner, <a href="https://www.gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026" rel="noopener">Worldwide AI Spending to Grow 49.5% in 2026</a>, 16 Sep 2026.</li>
+    <li>IDC, <a href="https://www.idc.com/resource-center/blog/idcs-worldwide-ai-and-generative-ai-spending-industry-outlook/" rel="noopener">Worldwide AI and Generative AI Spending, Industry Outlook</a>, 21 Aug 2024.</li>
+    <li>Digital Applied, <a href="https://www.digitalapplied.com/blog/ai-spending-forecasts-2026-gartner-idc-stanford-compiled" rel="noopener">AI Spending Forecasts 2026: Gartner, IDC and Stanford compiled</a>, 2026.</li>
+    <li>NVIDIA, <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027" rel="noopener">Financial Results for Second Quarter Fiscal 2027</a>, Aug 2026.</li>
+    <li>NVIDIA, <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027" rel="noopener">Financial Results for First Quarter Fiscal 2027</a>, May 2026.</li>
+    <li>Jensen Huang, <a href="https://blogs.nvidia.com/blog/nvidia-ai-factory-compute/" rel="noopener">NVIDIA AI Factory Compute Is Becoming an Investable Asset Class</a>, 12 Aug 2026.</li>
+    <li>FSB, <a href="https://www.fsb.org/2025/11/2025-list-of-global-systemically-important-banks-g-sibs/" rel="noopener">2025 List of Global Systemically Important Banks</a>, 27 Nov 2025.</li>
+    <li>S&amp;P Global Market Intelligence, <a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/04/the-worlds-largest-banks-by-assets-2026" rel="noopener">The world's largest banks by assets, 2026</a>, 29 Apr 2026.</li>
+    <li>FDIC, <a href="https://www.fdic.gov/news/press-releases/2026/fdic-insured-institutions-reported-return-assets-137-percent-and-net" rel="noopener">Quarterly Banking Profile, Second Quarter 2026</a>.</li>
+    <li>BNY Mellon / NVIDIA, <a href="https://www.bny.com/corporate/global/en/about-us/newsroom/company-news/bny-mellon-first-global-bank-to-deploy-ai-supercomputer-powered-by-nvidia-dgx-superpod-with-dgx-h100.html" rel="noopener">First Global Bank to Deploy AI Supercomputer Powered by NVIDIA DGX SuperPOD With DGX H100</a>, Mar 2024.</li>
+    <li>Deutsche Bank, <a href="https://www.db.com/news/detail/20221207-deutsche-bank-partners-with-nvidia-to-embed-ai-into-financial-services?language_id=1" rel="noopener">Deutsche Bank Partners with NVIDIA to embed AI into Financial Services</a>, 7 Dec 2022.</li>
+    <li>NVIDIA, <a href="https://resources.nvidia.com/en-us-financial-services-industry/hudson-river" rel="noopener">GTC 2026 live updates: Jump Trading, Hudson River Trading, Mastercard, Revolut, Adyen</a>, 17-20 Mar 2026.</li>
+    <li>XTX Markets, <a href="https://www.xtxmarkets.com/" rel="noopener">homepage</a> (over 25,000 GPUs), read 19 Oct 2026.</li>
+    <li>Fintech Blueprint, <a href="https://lex.substack.com/p/ai-the-secret-ai-supercomputers-powering" rel="noopener">The secret AI supercomputers powering XTX Markets and DeepSeek</a>, 18 Feb 2025.</li>
+    <li>Bloomberg via Yahoo Finance, <a href="https://finance.yahoo.com/news/billionaire-alex-gerko-xtx-build-050000389.html" rel="noopener">XTX to Build EUR 1 Billion Data Hub in Finland</a>; WSJ, <a href="https://www.wsj.com/finance/alex-gerko-xtx-markets-ai-d155626a" rel="noopener">The Billionaire Math Geek Who Turned AI Into a Money-Printing Machine</a>, 23 Apr 2026.</li>
+    <li>Quantvero, <a href="https://www.quantvero.com/algo-trading/best-quant-trading-firms/" rel="noopener">10 Best Quant Trading Firms (2026)</a>, used for Citadel Securities and HRT revenue scale only.</li>
+    <li>Forbes / Bernard Marr, <a href="https://www.forbes.com/sites/bernardmarr/2026/07/01/how-jpmorgan-chase-is-building-the-ai-powered-bank-of-the-future/" rel="noopener">How JPMorgan Chase Is Building The AI-Powered Bank Of The Future</a>, 1 Jul 2026.</li>
+    <li>JPMorganChase, <a href="https://www.jpmorganchase.com/about/technology" rel="noopener">technology page</a> ($19.8B), 2026.</li>
+    <li>Evident Insights, <a href="https://evidentinsights.com/bankingbrief/ai-remakes-the-org-chart/" rel="noopener">Banking Brief: AI remakes the org chart</a>, 2026.</li>
+    <li>Mastercard, <a href="https://www.mastercard.com/us/en/news-and-trends/Insights/2026/ai-is-helping-banks-save-millions-by-transforming-payment-fraud-prevention.html" rel="noopener">AI is helping banks save millions by transforming payment fraud prevention</a>, 6 Feb 2026.</li>
+    <li>Bloomberg Professional, <a href="https://www.bloomberg.com/professional/insights/artificial-intelligence/visa-mastercard-spur-gen-ai-adoption-among-payment-companies/" rel="noopener">Visa, Mastercard spur gen-AI adoption among payment companies</a>, 4 Oct 2024.</li>
+    <li>Visa, <a href="https://corporate.visa.com/en/solutions/visa-protect/insights/ai-fraud-detection.html" rel="noopener">AI solutions for fraud prevention and detection</a>, read 19 Oct 2026.</li>
+    <li>NVIDIA, <a href="https://www.nvidia.com/en-us/industries/finance/partners/" rel="noopener">Finance Solutions from Partners and ISVs</a>, updated 3 Feb 2026.</li>
+    <li>NVIDIA, <a href="https://www.nvidia.com/en-us/data-center/dgx-b200/" rel="noopener">DGX B200 product page and specifications</a>, updated 16 Oct 2026.</li>
+    <li>Tech-Insider, <a href="https://tech-insider.org/nvidia-blackwell-gpu-pricing/" rel="noopener">NVIDIA Blackwell GPU Pricing 2026: B200, B300 and DGX Costs</a>, Oct 2026, aggregating IntuitionLabs, GPU Smith, Broadberry, iFactory and Thunder Compute.</li>
+    <li>Northflank, <a href="https://northflank.com/blog/how-much-does-an-nvidia-b200-gpu-cost" rel="noopener">How much does an NVIDIA B200 GPU cost?</a>, 2026.</li>
+    <li>Spheron, <a href="https://www.spheron.network/blog/nvidia-h200-vs-b200-vs-gb200/" rel="noopener">H200 vs B200 vs GB200: Price and Memory</a>, 16 Oct 2026.</li>
+    <li>CBRE, <a href="https://www.cbre.com/insights/reports/global-data-center-trends-2026" rel="noopener">Global Data Center Trends 2026</a>; Brightlio, <a href="https://brightlio.com/colocation-pricing/" rel="noopener">Colocation Pricing in 2026</a>.</li>
+    <li>Metro Colo Advisory, <a href="https://metrocoloadvisory.com/data-center-cost/" rel="noopener">Data Center Cost 2026</a>, mid-2026.</li>
+    <li>EIA, <a href="https://www.eia.gov/electricity/monthly/update/end-use.php" rel="noopener">Electricity Monthly Update, End Use, July 2026</a>.</li>
+    <li>iternal.ai, <a href="https://iternal.ai/token-usage-guide" rel="noopener">Token Usage Guide 2026</a>.</li>
+    <li>World Economic Forum, <a href="https://reports.weforum.org/docs/WEF_The_AI_Playbook_for_Financial_Services_2026.pdf" rel="noopener">The AI Playbook for Financial Services</a>, Jun 2026.</li>
+    <li>Cloud Security Alliance / Anjuna, <a href="https://cloudsecurityalliance.org/artifacts/state-of-cloud-and-ai-for-financial-services-2026" rel="noopener">The State of Cloud and AI for Financial Services 2026</a>, 8 Jun 2026.</li>
+    <li>Reuters, <a href="https://www.reuters.com/business/retail-consumer/nvidias-china-ai-chip-share-falls-huawei-closes-gap-report-finds-2026-10-13/" rel="noopener">Nvidia's China AI-chip share falls as Huawei closes gap</a> (IDC), 13 Oct 2026.</li>
+    <li>CommandLinux, <a href="https://commandlinux.com/statistics/ai-gpu-market-share-nvidia-vs-amd-vs-intel/" rel="noopener">AI GPU Market Share NVIDIA vs AMD vs Intel: 2026 Statistics</a>, citing IDC and Silicon Analysts.</li>
+    <li>Digital Realty, <a href="https://www.digitalrealty.com/resources/blog/frankfurt-data-centers" rel="noopener">The Frankfurt Advantage</a>, 16 Apr 2026.</li>
+    <li>R. K. Thakur, <a href="https://ninza7.medium.com/nvidias-ai-in-finance-report-just-confirmed-what-most-people-aren-t-ready-to-hear-2f26de01186d" rel="noopener">NVIDIA's AI in Finance Report Just Confirmed What Most People Aren't Ready to Hear</a>, 31 Mar 2026 (839 respondents, 47% hybrid, 76% of large firms).</li>
+    <li>Air Street Capital, <a href="https://www.stateof.ai/" rel="noopener">State of AI Report 2026</a>, Oct 2026.</li>
+    <li>J.P. Morgan, <a href="https://www.jpmorgan.com/insights/banking/capital-markets/financing-ai-infrastructure-data-centers" rel="noopener">Financing AI infrastructure and U.S. data centers</a>, 2026.</li>
+    <li>Quantvero, as item 20.</li>
+    <li>Olakai, <a href="https://olakai.ai/blog/jpmorgan-ai-measurement/" rel="noopener">JP Morgan Spent $2B on AI. Here's What They Measured.</a>, 2026.</li>
+    <li>NVIDIA Blog, <a href="https://blogs.nvidia.com/feed/" rel="noopener">feed</a>, Oct 2026 (LSEG, NatWest Nemotron Voice, Modulr).</li>
+    <li>AHEAD, <a href="https://www.ahead.com/partner/nvidia/" rel="noopener">NVIDIA 2026 NPN FSI Partner of the Year</a>.</li>
+  </ol></div>
+  <p class="note">Prices and survey figures were read from the sources on the dates shown and will move. The model carries the read dates next to every input so you can tell what has gone stale.</p>
+
+  <div class="next">
+    <a href="/airadar/#energy"><div class="eyebrow">Weekly</div><b>AI Radar: the Energy board</b><span>The power deals and prices that gate the fleets in this piece, tracked week by week.</span></a>
+    <a href="/pricing/"><div class="eyebrow">Read next</div><b>Ten coding tools, four meters, one switch</b><span>The same approach, applied to how AI software is priced.</span></a>
+  </div>
+  </article>
+  <footer><span>Esther Suebsubanant</span><span><a href="/">esthercs.dev</a> · <a href="mailto:esthercs@stanford.edu">esthercs@stanford.edu</a></span></footer>
+</div>
+</body>
+</html>
