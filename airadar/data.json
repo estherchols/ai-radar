@@ -5,7 +5,7 @@
   "next_issue": "2026-10-18",
   "author": "Esther Suebsubanant"
  },
- "last_price_check": "2026-10-18",
+ "last_price_check": "2026-10-25",
  "headline": "Compute got more expensive this month while the models that run on it got cheaper. Nebius raised GPU list prices by about a fifth and GMI Cloud funded two thirds of a $668M raise with debt, yet Anthropic cut its flagship token price 20 percent and the best open model now sits 12 index points behind the leader. The margin is moving to whoever owns capacity at one end and the customer's workflow at the other, and 2 December is the next hard date for anyone shipping generated text into Europe.",
  "implications": {
   "investors": [
@@ -785,7 +785,7 @@
   }
  ],
  "compute": {
-  "asof": "2026-10-18",
+  "asof": "2026-10-25",
   "gpu": [
    {
     "id": "lambda-h100",
@@ -804,7 +804,7 @@
     "match_sku": [
      "h100sxm"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "nebius-h100",
@@ -823,7 +823,7 @@
     "match_sku": [
      "hgxh100"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "coreweave-h100",
@@ -842,7 +842,7 @@
     "match_sku": [
      "hgxh100"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "aws-p5",
@@ -861,7 +861,7 @@
     "match_sku": [
      "p548xlarge"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "google-a3-high",
@@ -880,7 +880,7 @@
     "match_sku": [
      "a3highgpu8g"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "google-a3-mega",
@@ -899,7 +899,7 @@
     "match_sku": [
      "a3megagpu8g"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "azure-nd-h100-v5",
@@ -918,7 +918,7 @@
     "match_sku": [
      "nd96isrh100v5"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "nebius-h200",
@@ -937,7 +937,7 @@
     "match_sku": [
      "hgxh200"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "coreweave-h200",
@@ -956,7 +956,7 @@
     "match_sku": [
      "hgxh200"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "google-a3-ultra",
@@ -975,7 +975,7 @@
     "match_sku": [
      "a3ultragpu8g"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "lambda-b200",
@@ -995,7 +995,7 @@
      "b200sxm6",
      "b200"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "nebius-b200",
@@ -1014,7 +1014,7 @@
     "match_sku": [
      "hgxb200"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "coreweave-b200",
@@ -1033,7 +1033,7 @@
     "match_sku": [
      "hgxb200"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "google-a4-high",
@@ -1052,7 +1052,7 @@
     "match_sku": [
      "a4highgpu8g"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "aws-p6-b200",
@@ -1071,7 +1071,7 @@
     "match_sku": [
      "p6b200"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    }
   ],
   "storage": [
@@ -1088,7 +1088,7 @@
     "match_sku": [
      "standard"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "cloudflare-r2-r2-standard",
@@ -1104,7 +1104,7 @@
      "r2standard",
      "standard"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "google-cloud-cloud-storage-standard-us-central1",
@@ -1119,7 +1119,7 @@
     "match_sku": [
      "uscentral1"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    },
    {
     "id": "google-cloud-cloud-storage-standard-us-multi-region",
@@ -1135,7 +1135,7 @@
      "multiregion",
      "usmulti"
     ],
-    "checked": "2026-10-18"
+    "checked": "2026-10-25"
    }
   ],
   "provider_slots": {
@@ -1949,7 +1949,7 @@
    ],
    "gpus": null,
    "hint": "The page may show more than one price column. Return the rate in effect today and put any future-dated column in conditions.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -1962,7 +1962,7 @@
    ],
    "gpus": null,
    "hint": "On-demand instances only. Ignore 1-Click Clusters and reserved rates.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -1975,7 +1975,7 @@
    ],
    "gpus": null,
    "hint": "On-demand HGX instances. Return the per-instance hourly price and the GPU count.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -1988,7 +1988,7 @@
    ],
    "gpus": null,
    "hint": "Default on-demand consumption model only. Return the machine type as sku_or_instance.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -2001,7 +2001,7 @@
    ],
    "gpus": null,
    "hint": "Standard storage class. Return us-central1 and US multi-region in the product name.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -2014,7 +2014,7 @@
    ],
    "gpus": null,
    "hint": "R2 Standard storage class.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -2029,7 +2029,7 @@
     "H100"
    ],
    "hint": "Third-party mirror of AWS on-demand US East (N. Virginia) pricing for p5.48xlarge.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -2044,7 +2044,7 @@
     "B200"
    ],
    "hint": "Third-party guide. Only the AWS p6-b200.48xlarge on-demand rate matters.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   },
   {
@@ -2059,7 +2059,7 @@
     "H100"
    ],
    "hint": "Third-party mirror of Azure pay-as-you-go Linux pricing in East US for Standard_ND96isr_H100_v5.",
-   "last_checked": "2026-10-18",
+   "last_checked": "2026-10-25",
    "last_status": "ok"
   }
  ],
